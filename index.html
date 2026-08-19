@@ -479,6 +479,48 @@ li::marker{color:var(--g2)}
 .pl-links{display:flex;flex-wrap:wrap;gap:.55rem;margin:.5rem 0 .3rem}
 @media (max-width:760px){.planner-card{padding:1rem}.pl-links .btn{flex:1 1 100%}.pl-dates{gap:.5rem 1rem}}
 
+/* ============ SIMPLE PLANNER ============ */
+.pl-step{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px dashed var(--line)}
+.pl-step:last-of-type{border-bottom:0}
+.pl-num{flex:0 0 auto;width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;font-family:'SiteUI',Inter,system-ui,sans-serif;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 5px 12px -6px var(--g2)}
+.pl-body{flex:1;min-width:0}
+.pl-q{font-weight:700;font-size:1rem;margin-bottom:.5rem}
+.chipset{display:flex;flex-wrap:wrap;gap:.45rem}
+.ch{font-family:inherit;font-size:.9rem;line-height:1.3;padding:.5rem .85rem;border-radius:12px;border:1.5px solid var(--line);background:var(--surface2);color:var(--ink);cursor:pointer;transition:all .18s;text-align:left;display:flex;flex-direction:column;gap:.1rem}
+.ch small{font-size:.72rem;color:var(--muted);font-weight:400}
+.ch:hover{border-color:var(--g2);transform:translateY(-1px)}
+.ch.on{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border-color:transparent;font-weight:700;box-shadow:0 8px 18px -10px var(--g2)}
+.ch.on small{color:rgba(255,255,255,.85)}
+.pl-exact{display:inline-flex;align-items:center;gap:.5rem;margin-top:.6rem;font-size:.86rem;color:var(--muted)}
+.pl-exact input{font-family:'SiteUI',Inter,system-ui,sans-serif;padding:.4rem .55rem;border:1.5px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--ink)}
+.pl-out{margin-top:.4rem}
+.pl-res{border-top:2px solid var(--line);padding-top:1rem}
+.pl-verdict{display:flex;gap:.8rem;align-items:flex-start;padding:.85rem 1rem;border-radius:12px;margin-bottom:.9rem}
+.pl-verdict.good{background:var(--good-soft);border:1px solid color-mix(in srgb,var(--good) 40%,transparent)}
+.pl-verdict.warn{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent)}
+.pl-verdict.bad{background:var(--bad-soft);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.pv-icon{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.05rem;color:#fff}
+.pl-verdict.good .pv-icon{background:var(--good)}.pl-verdict.warn .pv-icon{background:var(--warn)}.pl-verdict.bad .pv-icon{background:var(--bad)}
+.pl-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-bottom:.9rem}
+.pl-summary > div{background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:.6rem .8rem}
+.pl-summary .k{display:block;font-family:'SiteUI',Inter,system-ui,sans-serif;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.15rem}
+.pl-summary b{font-size:1rem;color:var(--accent-ink)}
+.pl-summary b.big{font-family:'SiteUI',Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:1.4rem;display:block;line-height:1.25}
+.pl-summary small{display:block;color:var(--muted);font-size:.74rem}
+.btn.big{display:flex;flex-direction:column;align-items:center;gap:.1rem;width:100%;padding:.85rem 1rem;font-size:1.02rem;margin-bottom:.6rem}
+.btn.big small{font-weight:400;font-size:.78rem;opacity:.85}
+.pl-links{display:flex;flex-wrap:wrap;gap:.5rem}
+.pl-links .btn{flex:1 1 200px}
+@media (max-width:760px){.pl-step{gap:.7rem}.ch{font-size:.86rem;padding:.45rem .7rem}.pl-links .btn{flex:1 1 100%}}
+/* ============ QUICK START ============ */
+.qstart{background:linear-gradient(120deg,color-mix(in srgb,var(--g1) 10%,var(--surface)),var(--surface) 60%);border:1px solid var(--line);border-left:5px solid var(--g4);border-radius:16px;padding:1.1rem 1.25rem;margin:1.2rem 0;box-shadow:var(--shadow)}
+.qsteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:.7rem;margin-top:.8rem}
+.qstep{display:flex;gap:.65rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.7rem .85rem;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s,border-color .2s}
+.qstep:hover{transform:translateY(-3px);border-color:var(--g2);box-shadow:0 12px 24px -18px var(--g2)}
+.qstep i{font-style:normal;flex:0 0 auto;width:1.7rem;height:1.7rem;border-radius:50%;display:grid;place-items:center;font-family:'SiteUI',Inter,system-ui,sans-serif;font-weight:800;font-size:.82rem;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2))}
+.qstep b{display:block;font-size:.95rem;line-height:1.35}
+.qstep small{color:var(--muted);font-size:.79rem;line-height:1.45}
+
 </style>
 </head>
 <body>
@@ -506,6 +548,7 @@ li::marker{color:var(--g2)}
       <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
       <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
       <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
+      <a href="#reviews" data-nav="reviews"><i>★</i>রিভিউ যাচাই</a>
     </div>
     <div class="sn-group">
       <div class="sn-title">সেন্টার প্রোফাইল</div>
@@ -530,6 +573,7 @@ li::marker{color:var(--g2)}
       <a href="#apps" data-nav="apps"><i>▦</i>অ্যাপ ও বুকিং</a>
       <a href="#etiquette" data-nav="etiquette"><i>☯</i>আঞ্চলিক আদব-কায়দা</a>
       <a href="#clinical" data-nav="clinical"><i>✛</i>চিকিৎসাকালীন প্রস্তুতি</a>
+      <a href="#emergency" data-nav="emergency"><i>☎</i>বিপদে পড়লে</a>
     </div>
     <div class="sn-group">
       <div class="sn-title">টাকা-পয়সা</div>
@@ -564,6 +608,20 @@ li::marker{color:var(--g2)}
     </div>
     <div class="kpis" id="kpis"></div>
     <div class="hero-note">এটি চিকিৎসা-পরামর্শ নয়; ডাক্তারের সঙ্গে সিদ্ধান্ত নেওয়ার প্রস্তুতি। ট্যাগ: <span class="pill v">✔ যাচাইকৃত</span> <span class="pill p">● রোগী/সংবাদ</span> <span class="pill m">○ মার্কেটিং দাবি</span></div>
+  </div>
+</div>
+
+<div class="qstart anim-in">
+  <h3 style="margin:0">প্রথমবার এসেছেন? এই ৭ ধাপে এগোন</h3>
+  <p class="small muted" style="margin:.25rem 0 0">প্রতিটি বাক্সে ক্লিক করলে সেই সেকশনে চলে যাবে। ধাপে ধাপে করলেই যথেষ্ট — পুরো সাইট এক বসায় পড়ার দরকার নেই।</p>
+  <div class="qsteps">
+    <a class="qstep" href="#case"><i>১</i><span><b>মেডিকেল দিকটা বুঝুন</b><small>অপারেশন লাগবে কি না, AMH কী বলে, বাস্তবে সম্ভাবনা কত</small></span></a>
+    <a class="qstep" href="#verdict"><i>২</i><span><b>সেন্টার বাছুন</b><small>টপ ৫ কার্ড — নিচেই। খরচ, প্রমাণ, যোগাযোগ এক জায়গায়</small></span></a>
+    <a class="qstep" href="#appointment"><i>৩</i><span><b>ইমেইল/WhatsApp করুন</b><small>রেডি টেমপ্লেট আছে — কপি করে পাঠান, লিখিত কোট চান</small></span></a>
+    <a class="qstep" href="#visa"><i>৪</i><span><b>ভিসার কাগজ গোছান</b><small>MED ও MED-X, ইনভাইটেশন লেটার, IVAC</small></span></a>
+    <a class="qstep" href="#planner"><i>৫</i><span><b>ফ্লাইট দেখুন</b><small>৩ ক্লিকে দাম ও ঈদ/উৎসবের সতর্কতা</small></span></a>
+    <a class="qstep" href="#stay"><i>৬</i><span><b>বাসা ঠিক করুন</b><small>রান্নাঘরসহ ফ্ল্যাট, দালাল এড়ানো, কোন এলাকা</small></span></a>
+    <a class="qstep" href="#budget"><i>৭</i><span><b>বাজেট মেলান</b><small>দুজনের পূর্ণ হিসাব, টাকায়</small></span></a>
   </div>
 </div>
 
@@ -799,6 +857,88 @@ li::marker{color:var(--g2)}
     </div>
   </div>
 </section>
+<!-- ============ GOOGLE REVIEW FORENSICS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <h2>টপ ৫-এর Google রিভিউ — সাজানো বাদ দিয়ে আসল কথা <small class="h2sub">১৯ আগস্ট ২০২৬-এ Google Maps-এ নিজে পড়া; "সর্বনিম্ন রেটিং" অনুসারে সাজিয়ে নেতিবাচক রিভিউ খোঁজা হয়েছে</small></h2>
+
+    <div class="callout">
+      <b>কীভাবে সাজানো রিভিউ চিনবেন</b> — এই ৫টি লক্ষণ একসাথে থাকলে রেটিং বিশ্বাস করবেন না:
+      <ol style="margin:.4rem 0 0">
+        <li><b>রিভিউদাতার অ্যাকাউন্টে মাত্র ১টি রিভিউ</b> (আসল ব্যবহারকারীর সাধারণত অনেকগুলো থাকে; "স্থানীয় গাইড" ব্যাজ থাকলে আরও বিশ্বাসযোগ্য)</li>
+        <li><b>এক লাইনের সাধারণ প্রশংসা</b> — "সেরা আইভিএফ সেন্টার", "ভালো সার্ভিস"</li>
+        <li><b>মালিকের উত্তর প্রতিবার হুবহু একই টেমপ্লেট</b></li>
+        <li><b>নির্দিষ্ট কর্মীর নাম বারবার</b> পুরো নামসহ প্রশংসা</li>
+        <li><b>রিভিউর সংখ্যা অস্বাভাবিক বেশি</b> — একটি IVF ইউনিটে হাজারের ওপর রিভিউ স্বাভাবিক নয়</li>
+      </ol>
+      <p style="margin:.5rem 0 0"><b>উল্টো নিয়মটাও কাজে লাগে:</b> নেতিবাচক রিভিউগুলো প্রায়ই <i>বেশি</i> বিশ্বাসযোগ্য — কারণ কেউ টাকা দিয়ে খারাপ রিভিউ লেখায় না। <b>তাই "সর্বনিম্ন রেটিং" ফিল্টার দিয়ে পড়াই সবচেয়ে কাজের।</b></p>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>সেন্টার</th><th class="num">রেটিং</th><th class="num">রিভিউ</th><th>সাজানো রিভিউর লক্ষণ</th><th>প্রধান প্রশংসা</th><th>প্রধান অভিযোগ</th></tr></thead>
+        <tbody>
+          <tr><td><b>CMC Vellore</b><br><small class="muted">পুরো হাসপাতাল</small></td><td class="num">৪.২</td><td class="num">১৫,৯২৭</td><td><span class="pill good">নেই</span> সংখ্যা স্বাভাবিক, প্রশংসা-উত্তর নেই</td><td>চিকিৎসার মান, খরচ কম</td><td><b>ভোগান্তি ও দীর্ঘ অপেক্ষা</b>; ইমেইলের জবাব না পাওয়া</td></tr>
+          <tr><td><b>Sir Ganga Ram — IVF ইউনিট</b></td><td class="num">৫.০</td><td class="num"><b>মাত্র ৫</b></td><td><span class="pill good">নেই</span> রিভিউ চায়ই না</td><td>ডাক্তারদের সহানুভূতি; নাম ধরে প্রশংসা</td><td>নমুনা এত ছোট যে অভিযোগ পাওয়া যায়নি</td></tr>
+          <tr class="hl"><td><b>Oasis Fertility</b> Banjara Hills</td><td class="num">৪.৯</td><td class="num"><b>৩,০৮১</b></td><td><span class="pill bad">উচ্চ</span> ১-রিভিউ অ্যাকাউন্ট, এক লাইনের প্রশংসা, একই টেমপ্লেটের উত্তর</td><td>ডাক্তারদের ব্যবহার</td><td><b>ভয় দেখিয়ে বেশি বিক্রি</b>; প্রশাসন; স্ক্যান-রুমে গোপনীয়তা</td></tr>
+          <tr class="hl"><td><b>Solo Clinic</b> (Dr Tandulwadkar), পুনে</td><td class="num">—</td><td class="num">—</td><td><span class="pill warn">মাঝারি</span></td><td>—</td><td><b>"ক্লিনিক নয়, মার্কেটিং অফিস"</b>; ভয় দেখানো; বাইরের রিপোর্ট দেখতে অনীহা</td></tr>
+          <tr><td><b>Advance Fertility</b> (Dr Kaberi Banerjee)</td><td class="num">৪.৭</td><td class="num">২৫৬</td><td><span class="pill good">কম</span> সংখ্যা স্বাভাবিক; মালিকের উত্তর ব্যক্তিগত ও বিষয়ভিত্তিক</td><td>ডাক্তারের দক্ষতা ও নির্দেশনা; সন্তান হয়েছে</td><td>নেই এমন সমস্যা বলে টাকা নেওয়ার অভিযোগ (পুরনো)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:.6rem">
+      <div class="card">
+        <h3>Oasis Fertility — ৪.৯ ★ (৩,০৮১) <span class="pill bad">সাজানো রিভিউর প্রবল লক্ষণ</span></h3>
+        <p class="small"><b>যা দেখলাম:</b> সর্বশেষ ১০টি রিভিউর প্রায় সবই ৫-তারা; বেশিরভাগ অ্যাকাউন্টে <b>মাত্র ১টি রিভিউ</b>; লেখা এক লাইনের; আর <b>মালিকের উত্তর প্রতিবার হুবহু এক</b> ("৫-স্টার রিভিউটির জন্য ধন্যবাদ! ওয়েসিস ফার্টিলিটিতে আপনার অভিজ্ঞতা চমৎকার…")। একটি রিভিউতে তো <i>রোগীর লেখাতেই</i> মালিকের বাক্য ("ইতিবাচক প্রতিক্রিয়ার জন্য ধন্যবাদ") বসানো — কপি-পেস্টের স্পষ্ট চিহ্ন।</p>
+        <p class="small"><b>কিন্তু নেতিবাচক রিভিউগুলো অনেক বেশি বিশ্বাসযোগ্য</b> — সেগুলো "স্থানীয় গাইড" অ্যাকাউন্ট থেকে, অনেক লাইকসহ:</p>
+        <ul class="small">
+          <li><i>"সামগ্রিক রেটিং ৪.৮ দেখে অবাক হয়েছি… রোগী এলে <b>Oasis তার মনে ভয় ঢুকিয়ে দেয়</b> এবং সেই সুযোগ নেয়"</i> — ২৩ লাইক</li>
+          <li><i>"ডাক্তার ভালো কথা বলেছেন <b>কিন্তু ব্যবস্থাপনা সবচেয়ে খারাপ</b>"</i> — ১৪ লাইক</li>
+          <li><i>"পরিষ্কার-পরিচ্ছন্নতা শূন্য। <b>স্ক্যান করার সময় রিসেপশনিস্ট বারবার ঘরে ঢুকছিল</b>"</i></li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>বাস্তব প্রত্যাশা:</b> ডাক্তার নিয়ে অভিযোগ নেই — অভিযোগ <b>প্রশাসন, ভয় দেখিয়ে বাড়তি টেস্ট/প্যাকেজ বিক্রি, ও গোপনীয়তা</b> নিয়ে। <b>তাই এখানে গেলে প্রথম দিনেই itemised লিখিত কোট নিন</b> এবং "এই টেস্টটা কেন লাগবে" জিজ্ঞেস করতে দ্বিধা করবেন না।</div>
+      </div>
+
+      <div class="card">
+        <h3>Solo Clinic, পুনে (Dr Sunita Tandulwadkar) <span class="pill bad">গুরুতর অভিযোগ</span></h3>
+        <p class="small">"সর্বনিম্ন রেটিং" দিয়ে সাজিয়ে যা পড়লাম — <b>এগুলো বেশিরভাগই "স্থানীয় গাইড" অ্যাকাউন্ট থেকে, ৩১–৩৯টি রিভিউসহ, ২৩–২৫ লাইকসহ</b> (অর্থাৎ প্রতিদ্বন্দ্বীর ভুয়া রিভিউ হওয়ার সম্ভাবনা কম):</p>
+        <ul class="small">
+          <li><i>"এটা ক্লিনিক নয়, <b>এটা একটা মার্কেটিং অফিস</b> — রোগীদের এই কেবিন থেকে ওই কেবিনে ছোটানো হয়"</i> (দুটি আলাদা অ্যাকাউন্টে একই অভিযোগ)</li>
+          <li><i>"<b>আমরা প্রায় বাচ্চা হারিয়ে ফেলেছিলাম</b> ওঁর আর ওঁর ডাক্তারদের কারণে। ওঁর বড় নাম, আর <b>Google রিভিউ দেখেই আমরা গিয়েছিলাম</b>"</i> — ২৩ লাইক</li>
+          <li><i>"স্ক্যানে সমস্যা ধরা পড়েছিল, কিন্তু আমাকে <b>ভীষণ ভয় পাইয়ে দেওয়া হয়েছিল</b> — বলা হয়েছিল আমি স্বাভাবিকভাবে গর্ভধারণ করতে পারব না"</i> — ২৫ লাইক</li>
+          <li><i>"<b>ডাক্তার আমার রিপোর্ট দেখতেও রাজি হননি</b>, রেগে গেলেন কারণ অন্য ডাক্তারের কাছে অস্ত্রোপচার করিয়েছি"</i> (ক্লিনিক এর ভদ্র জবাব দিয়েছে)</li>
+          <li><i>"গাইনোকোলজিস্ট ও অন্য ডাক্তাররা কেবল <b>টাকার জন্য ব্যবসা</b> চালাচ্ছেন"</i></li>
+        </ul>
+        <div class="callout bad" style="margin-bottom:0"><b>⚠ আমাদের র‍্যাংকিং সংশোধন:</b> এই রিভিউগুলোর কারণে <b>Dr Tandulwadkar-কে আর "৪ নম্বর পছন্দ" হিসেবে সুপারিশ করছি না</b>। তাঁর সার্জিক্যাল যোগ্যতা (এন্ডোমেট্রিওসিস + IVF একই হাতে) আসল, কিন্তু <b>রোগীর অভিজ্ঞতা নিয়ে অভিযোগের ধরন গুরুতর ও পুনরাবৃত্ত</b>। যেতে চাইলে: <b>Ruby Hall Clinic-এর OPD-তে</b> (হাসপাতালের কাঠামোয়) দেখান, Solo Clinic-এ নয়; এবং শুধু <b>দ্বিতীয় মতামতের জন্য</b>, পুরো চিকিৎসা সেখানে নয়।</div>
+      </div>
+
+      <div class="card">
+        <h3>CMC Vellore — ৪.২ ★ (১৫,৯২৭) <span class="pill good">সাজানো নয়</span></h3>
+        <p class="small">⚠ এটি <b>পুরো হাসপাতালের</b> রেটিং (সব বিভাগ মিলিয়ে), IVF ইউনিটের নয় — তাই চিকিৎসার মান বিচারে দুর্বল প্রমাণ। কিন্তু <b>বাংলাদেশিদের বাস্তব অভিজ্ঞতা বোঝার জন্য অসাধারণ</b>, কারণ বহু রিভিউ বাংলায় লেখা:</p>
+        <ul class="small">
+          <li><i>"<b>ভোগান্তির আরেক নাম সিএমসি</b>… দ্রুত এবং কম হ্যাসেলে চিকিৎসা দরকার হলে সিএমসি বাদ দেওয়ার বিকল্প নাই"</i> — স্থানীয় গাইড, ৩৭ রিভিউ</li>
+          <li><i>"২০১৫-১৬ সময় খুব ভালো ছিল CMC। কিন্তু বর্তমানে <b>পয়সা ডিমান্ড অনেক বেড়ে গেছে</b>, প্রাইভেট কনসালটেন্সিতেও <b>জুনিয়র ডাক্তার দিয়ে কাজ সেরে দিচ্ছে</b>"</i> — ২০২৪-এর রিভিউ</li>
+          <li><i>"<b>মেইল করলে মেইলের রিপ্লাই দেয় না</b>"</i> — গুরুত্বপূর্ণ, কারণ আমাদের গাইডে প্রথম ধাপই ইমেইল করা</li>
+          <li><i>"আমরা বাঙালি। অনেক বাঙালি ঠিক মতো ইংরেজি জানে না…"</i> — ভাষার সমস্যা</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>বাস্তব প্রত্যাশা:</b> CMC-র চিকিৎসা ও দাম নিয়ে অভিযোগ কম — অভিযোগ <b>সময়, লাইন ও যোগাযোগ</b> নিয়ে। <b>ইমেইলের জবাব না পেলে হাল ছাড়বেন না</b> — WhatsApp (+91 9385285928) ও কল-সেন্টারে (+91 8000338855) চেষ্টা করুন, দরকারে বারবার। <b>প্রাইভেট কনসালটেশন নিলেও সিনিয়র ডাক্তার দেখবেন কি না আগে নিশ্চিত হন।</b> আর Ranipet ক্যাম্পাসের আলাদা রেটিং ৩.৮ (৮৮৩) — সেটিও মাথায় রাখুন।</div>
+      </div>
+
+      <div class="card">
+        <h3>Sir Ganga Ram IVF ও Dr Kaberi Banerjee <span class="pill good">রিভিউ-ফার্মিং নেই</span></h3>
+        <p class="small"><b>Sir Ganga Ram — IVF ইউনিট: ৫.০ ★, কিন্তু মাত্র ৫টি রিভিউ।</b> বছরে ~২,০০০ সাইকেল করা একটি ইউনিটে ৫টি রিভিউ মানে <b>তারা রোগীদের রিভিউ দিতে বলেই না</b> — Oasis-এর ৩,০৮১-র ঠিক উল্টো। যে ক-টি আছে তা বিস্তারিত ও নির্দিষ্ট: Dr Abha Majumdar, Dr Ruma (Satwik), Dr Shweta Mittal, Dr Gaurav Majumdar, Dr Bhawani-র নাম ধরে; একজন <b>দ্বিতীয় ট্রান্সফারের জন্য ফিরে এসেছেন</b>; একজন লিখেছেন Dr Bhawani <b>দীপাবলির দিনেও</b> সাহায্য করেছেন। নমুনা ছোট, কিন্তু <b>সাজানো নয়</b>।</p>
+        <p class="small"><b>Advance Fertility (Dr Kaberi Banerjee): ৪.৭ ★, ২৫৬ রিভিউ</b> — সংখ্যা স্বাভাবিক। নেতিবাচক রিভিউগুলো বেশিরভাগ <b>৮–১১ বছরের পুরনো</b>; সাম্প্রতিক অভিযোগ কম। পুরনো অভিযোগের ধরন: <i>"দ্বিতীয় মতামত নিলে দেখবেন এমন সমস্যার কথা বলা হয়েছে যা আপনার নেই — শুধু টাকা নেওয়ার জন্য"</i>। <b>ভালো দিক:</b> মালিকের উত্তরগুলো টেমপ্লেট নয় — প্রতিটি আলাদা ও বিষয়ভিত্তিক (একটিতে হিস্টোপ্যাথলজি রিপোর্টের কথা, আরেকটিতে "আমাদের রেকর্ডে আপনার নাম রোগী হিসেবে নেই")। এটি সক্রিয় ও সৎ ব্যবস্থাপনার লক্ষণ।</p>
+        <div class="callout good" style="margin-bottom:0"><b>বাস্তব প্রত্যাশা:</b> এই দুটির রেটিং <b>তুলনামূলকভাবে বিশ্বাস করা যায়</b>, কারণ কেউই রিভিউ-চাষ করছে না। তবু <b>দ্বিতীয় মতামত নেওয়ার অভ্যাসটা রাখুন</b> — বিশেষত যদি প্রথম ভিজিটেই বড় কোনো অপারেশন বা দামি প্যাকেজের কথা বলা হয়।</div>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <b>সব মিলিয়ে যা শিখলাম:</b> <b>উঁচু রেটিং মানেই ভালো নয় — বরং সন্দেহজনক।</b> এই ৫টির মধ্যে <b>সবচেয়ে উঁচু রেটিং (৪.৯) যার, তার রিভিউই সবচেয়ে বেশি সাজানো</b>; আর <b>সবচেয়ে কম রেটিং (৪.২) যার, সেটিই সবচেয়ে সৎ</b>। যেকোনো সেন্টার বাছার আগে <b>Google Maps-এ গিয়ে "সর্বনিম্ন রেটিং" দিয়ে সাজিয়ে ১০ মিনিট পড়ুন</b> — এই দশ মিনিট আপনাকে লাখ টাকা বাঁচাতে পারে।
+    </div>
+  </div>
+</section>
+
 
 <!-- ============ 5. CENTRES BY CITY ============ -->
 <section id="centres">
@@ -1120,76 +1260,64 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
   </div>
 </section>
 
-<!-- ============ FLIGHT PLANNER (dynamic) ============ -->
+<!-- ============ FLIGHT PLANNER (simple) ============ -->
 <section id="planner">
   <div class="wrap">
-    <h2>ফ্লাইট প্ল্যানার — আপনার তারিখ দিয়ে টিকিট খুঁজুন <small class="h2sub">কত দিন পরে যাবেন আর কত দিন থাকবেন — শুধু এটুকু বলুন; বাকিটা নিজেই হিসাব করে সরাসরি সার্চ-লিংক বানিয়ে দেবে</small></h2>
+    <h2>ফ্লাইট খুঁজুন — ৩টি ক্লিকে <small class="h2sub">কোথায় যাবেন, কবে, কত দিন — বেছে নিন; বাকিটা নিজেই হিসাব করে দাম ও সার্চ-লিংক দেবে</small></h2>
 
     <div class="planner-card anim-in">
-      <div class="pl-grid">
-        <label class="pl-f"><span>কোন শহরে যাবেন</span>
-          <select id="plCity"></select>
-        </label>
-        <label class="pl-f"><span>কবে রওনা</span>
-          <input type="date" id="plDep">
-          <small id="plDepHint" class="muted"></small>
-        </label>
-        <label class="pl-f"><span>কত দিন থাকবেন</span>
-          <select id="plLen">
-            <option value="10">১০ দিন — শুধু কনসাল্ট/পরীক্ষা</option>
-            <option value="16">১৬ দিন — রিমোট-স্টার্ট সাইকেল</option>
-            <option value="21" selected>২১ দিন (৩ সপ্তাহ) — সাধারণ সাইকেল</option>
-            <option value="26">২৬ দিন — সাইকেল + কিছু বাফার</option>
-            <option value="35">৩৫ দিন (৫ সপ্তাহ) — এক ট্রিপে সব</option>
-            <option value="45">৪৫ দিন — লম্বা/জটিল কেস</option>
-            <option value="8">৮ দিন — শুধু FET ট্রিপ</option>
-          </select>
-        </label>
-        <label class="pl-f"><span>কতজন যাবেন</span>
-          <select id="plPax">
-            <option value="1">১ জন</option>
-            <option value="2" selected>২ জন (দম্পতি)</option>
-            <option value="3">৩ জন (সঙ্গে অ্যাটেনডেন্ট)</option>
-            <option value="4">৪ জন</option>
-          </select>
-        </label>
+      <div class="pl-step">
+        <div class="pl-num">১</div>
+        <div class="pl-body">
+          <div class="pl-q">কোন শহরে যাবেন?</div>
+          <div class="chipset" id="plCityChips"></div>
+        </div>
       </div>
-      <div class="pl-quick">
-        <span class="muted small">দ্রুত বাছাই:</span>
-        <button class="qbtn" data-days="30">১ মাস পর</button>
-        <button class="qbtn" data-days="45">দেড় মাস পর</button>
-        <button class="qbtn" data-days="60">২ মাস পর</button>
-        <button class="qbtn" data-days="90">৩ মাস পর</button>
-        <button class="qbtn" data-days="120">৪ মাস পর</button>
-        <button class="qbtn" data-days="180">৬ মাস পর</button>
+
+      <div class="pl-step">
+        <div class="pl-num">২</div>
+        <div class="pl-body">
+          <div class="pl-q">কবে রওনা হতে চান?</div>
+          <div class="chipset" id="plWhenChips"></div>
+          <label class="pl-exact">অথবা নির্দিষ্ট তারিখ: <input type="date" id="plDep"></label>
+        </div>
       </div>
+
+      <div class="pl-step">
+        <div class="pl-num">৩</div>
+        <div class="pl-body">
+          <div class="pl-q">কত দিন থাকবেন? <small class="muted">(না জানলে "৩ সপ্তাহ" রাখুন)</small></div>
+          <div class="chipset" id="plLenChips"></div>
+          <div class="pl-q" style="margin-top:.7rem">কতজন যাবেন?</div>
+          <div class="chipset" id="plPaxChips"></div>
+        </div>
+      </div>
+
       <div id="plOut" class="pl-out"></div>
     </div>
 
     <div class="grid grid-2" style="margin-top:1.1rem">
       <div class="card anim-in">
-        <h3>টিকিট খোঁজার নিয়ম — সস্তা আগে দেখবেন কীভাবে</h3>
+        <h3>সস্তা টিকিট পাওয়ার ৬টি নিয়ম</h3>
         <ol>
-          <li><b>Google Flights:</b> উপরের বোতামে গেলে আপনার তারিখ বসানো থাকবে। ফলাফলের উপরে দুটি ট্যাব — <b>"Best"</b> আর <b>"Cheapest"</b>। <b>Cheapest-এ চাপ দিন</b>, নইলে Google সময়/স্টপ মিলিয়ে "ভালো" ফ্লাইট আগে দেখায়, সবচেয়ে সস্তাটা নয়।</li>
-          <li><b>Kayak:</b> লিংকেই <code>sort=price_a</code> বসানো — খুললেই সবচেয়ে কম দাম আগে।</li>
-          <li><b>Skyscanner:</b> খোলার পর উপরে <b>"Cheapest"</b> ট্যাব বেছে নিন; "Whole month"/"Cheapest month" দিলে পুরো মাসের সবচেয়ে সস্তা দিন দেখায়।</li>
-          <li><b>তারিখ নাড়াচাড়া করুন:</b> Google Flights-এ <b>"Date grid"</b> (তারিখের ছক) ও <b>"Price graph"</b> (দামের গ্রাফ) — যাওয়া-আসার তারিখ ১–৩ দিন এদিক-ওদিক করলেই প্রায়ই ৩–৮ হাজার টাকা কমে।</li>
-          <li><b>বাংলাদেশি সাইটেও মিলিয়ে নিন:</b> ShareTrip, GoZayaan, Flight Expert — মাঝে মাঝে দেশীয় এয়ারলাইনে (Biman/US-Bangla) এদের দাম Google-এর চেয়ে কম, আর পেমেন্ট টাকায় করা যায়।</li>
-          <li><b>বুকিংয়ের আগে দেখুন:</b> ভাড়ার সাথে কত কেজি লাগেজ আছে (নিচের টেবিল), রিফান্ড/ডেট-চেঞ্জ ফি কত, আর ফিরতি তারিখ বদলানো যাবে কি না — IVF-এ রিট্রিভাল/ট্রান্সফারের দিন ১–৩ দিন এদিক-ওদিক হয়।</li>
-          <li><b>এক দিকের (one-way) টিকিট আলাদা করে কিনবেন না</b> যদি না ফেরার তারিখ একেবারেই অনিশ্চিত হয় — রিটার্ন টিকিট প্রায় সবসময় সস্তা, আর ভিসা/ইমিগ্রেশনে ফিরতি টিকিট দেখাতে হতে পারে।</li>
+          <li><b>Google Flights খুলে "Cheapest" ট্যাবে চাপ দিন।</b> না চাপলে Google "Best" দেখায় — সেটা সবচেয়ে সস্তা নয়, সময়-স্টপ মিলিয়ে "ভালো" ফ্লাইট।</li>
+          <li><b>তারিখ ১–৩ দিন নাড়ান।</b> Google Flights-এ <b>"Date grid"</b> বা <b>"Price graph"</b> বোতামে চাপলে আশপাশের তারিখের দাম একসাথে দেখা যায় — প্রায়ই ৩–৮ হাজার টাকা কমে।</li>
+          <li><b>৪–৮ সপ্তাহ আগে বুক করুন।</b> ২ সপ্তাহের কম সময় থাকলে দাম দ্রুত বাড়ে।</li>
+          <li><b>মঙ্গল–বুধবার সাধারণত সস্তা</b>, বৃহস্পতি-শুক্র-রবি দামি।</li>
+          <li><b>বাংলাদেশি সাইটেও মিলিয়ে নিন</b> — ShareTrip, GoZayaan, Flight Expert। Biman/US-Bangla-তে মাঝে মাঝে এদের দাম কম, আর টাকায় পেমেন্ট করা যায়।</li>
+          <li><b>বুকিংয়ের আগে দেখুন:</b> ভাড়ায় কত কেজি লাগেজ আছে (নিচের ব্যাগেজ টেবিল), আর <b>ফেরার তারিখ বদলানো যাবে কি না</b> — IVF-এ রিট্রিভাল/ট্রান্সফারের দিন ১–৩ দিন এদিক-ওদিক হয়।</li>
         </ol>
-        <div class="callout good" style="margin-bottom:0"><b>কখন বুক করবেন:</b> সাধারণত <b>৪–৮ সপ্তাহ আগে</b> দাম সবচেয়ে ভালো থাকে। ২ সপ্তাহের কম সময় হাতে থাকলে দাম দ্রুত বাড়ে। তবে <b>ডাক্তারের স্লট আর মাসিকের তারিখ আগে</b>, সস্তা ভাড়া পরে — ভুল সময়ে গিয়ে সাইকেল মিস করলে ক্ষতি অনেক বেশি।</div>
+        <div class="callout good" style="margin-bottom:0"><b>মনে রাখুন:</b> <b>ডাক্তারের স্লট আর মাসিকের তারিখ আগে, সস্তা ভাড়া পরে।</b> ভুল সময়ে গিয়ে সাইকেল মিস করলে ক্ষতি টিকিটের দামের চেয়ে অনেক বেশি।</div>
       </div>
       <div class="card anim-in">
-        <h3>ভাড়া বাড়ে-কমে কীসে</h3>
+        <h3>ভাড়া কখন বাড়ে</h3>
         <ul>
-          <li><b>ঈদের সপ্তাহ</b> (ঈদুল ফিতর ও ঈদুল আজহা, আগে-পরে ৭–১০ দিন): ঢাকা থেকে সব রুটে ভাড়া ১.৫–৩ গুণ; IVAC/অফিসও বন্ধ থাকে। উপরের প্ল্যানার আপনার তারিখ এই জানালায় পড়লে লাল সতর্কতা দেখাবে।</li>
-          <li><b>ভারতীয় উৎসব:</b> দুর্গাপূজা, দীপাবলি, পোঙ্গল (তামিলনাড়ু, ১৪–১৭ জানুয়ারি), বড়দিন–নববর্ষ — ভাড়া ও হোটেল দুটোই বাড়ে, হাসপাতালের OPD-ও ছুটি/সীমিত থাকতে পারে।</li>
-          <li><b>ভারতের স্কুল-ছুটি</b> (মধ্য-এপ্রিল–মধ্য-জুন): ঘরোয়া পর্যটনের চাপে ডোমেস্টিক লেগ ও হোটেল দামি।</li>
-          <li><b>সপ্তাহের দিন:</b> মঙ্গল–বুধ সাধারণত সস্তা; বৃহস্পতি/শুক্র ও রোববার দামি।</li>
-          <li><b>আবহাওয়া:</b> চেন্নাই/ভেলোরে অক্টোবর-মাঝ থেকে ডিসেম্বর-মাঝ উত্তর-পূর্ব মৌসুমি বৃষ্টি (জলাবদ্ধতা/ঘূর্ণিঝড়ের ঝুঁকি); দিল্লিতে নভেম্বর–জানুয়ারি ধোঁয়াশা ও ডিসেম্বর–জানুয়ারি কুয়াশায় ফ্লাইট দেরি; এপ্রিল–জুন উত্তর ও দক্ষিণ ভারত দুটোতেই তীব্র গরম (৪০–৪৫°C)।</li>
+          <li><b>ঈদের সপ্তাহ</b> (আগে-পরে ৭–১০ দিন) — ভাড়া ১.৫–৩ গুণ, IVAC/অফিসও বন্ধ। উপরে তারিখ দিলে সতর্কতা দেখাবে।</li>
+          <li><b>ভারতীয় উৎসব</b> — দুর্গাপূজা, দীপাবলি, পোঙ্গল (১৪–১৭ জানু, তামিলনাড়ু), বড়দিন–নববর্ষ। হাসপাতালের OPD-ও ছুটি থাকতে পারে।</li>
+          <li><b>ভারতের স্কুল-ছুটি</b> (মধ্য-এপ্রিল–মধ্য-জুন) — হোটেল ও ডোমেস্টিক ফ্লাইট দামি।</li>
+          <li><b>আবহাওয়া:</b> চেন্নাই/ভেলোরে অক্টো-মাঝ–ডিসে-মাঝ বৃষ্টি; দিল্লিতে নভে–জানু ধোঁয়াশা ও কুয়াশায় ফ্লাইট দেরি; এপ্রিল–জুন সর্বত্র ৪০–৪৫°C গরম।</li>
         </ul>
-        <p class="small muted" style="margin-bottom:0">নিচের <a href="#season">"কখন সস্তা / দামি"</a> সেকশনে আপনার তারিখ ধরে মাস-ভিত্তিক পুরো ছক আছে।</p>
+        <p class="small muted" style="margin-bottom:0">মাসভিত্তিক পুরো ছক <a href="#season">"কখন সস্তা / দামি"</a> সেকশনে।</p>
       </div>
     </div>
   </div>
@@ -2047,6 +2175,153 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
     </div>
   </div>
 </section>
+<!-- ============ EMERGENCY & HELP ============ -->
+<section id="emergency">
+  <div class="wrap">
+    <h2>বিপদে পড়লে — হাইকমিশন, পুলিশ ও হেল্পলাইন <small class="h2sub">অসুস্থতা, পাসপোর্ট হারানো, পুলিশি ঝামেলা, প্রতারণা, হাসপাতালের বিল নিয়ে বিরোধ — কাকে ফোন করবেন</small></h2>
+
+    <div class="callout bad">
+      <b>⚠ সবচেয়ে জরুরি তথ্য যা অনেকে জানেন না:</b> <b>হায়দ্রাবাদ ও ব্যাঙ্গালোরে বাংলাদেশের কোনো কনস্যুলেট নেই।</b> পুরো ভারতে বাংলাদেশের মিশন মাত্র <b>৬টি</b>। তেলেঙ্গানা, কর্ণাটক, তামিলনাড়ু, কেরালা ও অন্ধ্রপ্রদেশ — সব <b>চেন্নাই</b> ডেপুটি হাইকমিশনের অধীনে। অর্থাৎ <b>ভেলোর, হায়দ্রাবাদ বা ব্যাঙ্গালোরে বিপদে পড়লে আপনাকে চেন্নাইয়ে যোগাযোগ করতে হবে</b>। যাওয়ার আগে নিজের শহরের মিশনের নম্বর ফোনে সেভ করে রাখুন। <span class="pill v">✔ যাচাইকৃত</span>
+    </div>
+
+    <h3 style="margin-top:1.2rem">১. জরুরি নম্বর — ফোনে সেভ করে রাখুন</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>ভারতের সরকারি হেল্পলাইন</h4>
+        <div class="tbl compact"><table>
+          <thead><tr><th class="num">নম্বর</th><th>কী জন্য</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td class="num"><b>১১২</b></td><td><b>সব ধরনের জরুরি অবস্থা</b> — পুলিশ, ফায়ার, অ্যাম্বুলেন্স একসাথে। <b>সন্দেহ হলে প্রথমে এটাই ডায়াল করুন</b></td></tr>
+            <tr><td class="num"><b>১৩৬৩</b></td><td><b>পর্যটক হেল্পলাইন</b> (Incredible India)</td></tr>
+            <tr><td class="num">১০০ / ১০১</td><td>পুলিশ / ফায়ার সার্ভিস</td></tr>
+            <tr><td class="num">১০২ · ১০৮</td><td>অ্যাম্বুলেন্স · (সরকারি পাতায় ১০৮ "দুর্যোগ ব্যবস্থাপনা" লেখা, তবে বেশিরভাগ রাজ্যে ১০৮-ই জরুরি অ্যাম্বুলেন্স) — <b>নিশ্চিত না হলে ১১২</b></td></tr>
+            <tr><td class="num">১০৪</td><td>মেডিকেল হেল্পলাইন (পরামর্শ)</td></tr>
+            <tr><td class="num"><b>১০৯১</b> · ১৮১</td><td><b>নারী নির্যাতন/বিপদ</b></td></tr>
+            <tr><td class="num">১০৯৮</td><td>শিশু হেল্পলাইন</td></tr>
+            <tr class="hl"><td class="num"><b>১৯৩০</b></td><td><b>অনলাইন/UPI আর্থিক প্রতারণা</b> — টাকা খোয়া গেলে <b>যত দ্রুত সম্ভব</b></td></tr>
+            <tr><td class="num">১৯১৫</td><td>জাতীয় ভোক্তা হেল্পলাইন — <b>সকাল ৮টা–রাত ৮টা</b> (২৪ ঘণ্টা নয়); WhatsApp +91 88000 01915</td></tr>
+            <tr><td class="num">১০৭৩ · ১০৭১</td><td>সড়ক দুর্ঘটনা · বিমান দুর্ঘটনা</td></tr>
+            <tr><td class="num">১৩২২</td><td>রেল নিরাপত্তা</td></tr>
+            <tr><td class="num"><b>৯৯৯</b></td><td><b>বাংলাদেশের জরুরি সেবা</b> — দেশে পরিবারের কারও দরকার হলে</td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted" style="margin-bottom:0">⚠ <b>যা যাচাই করা যায়নি:</b> ১৩৬৩-তে বাংলা ভাষা পাওয়া যায় কি না, এবং <b>বাংলাদেশি রোমিং সিম থেকে ১১২ কাজ করে কি না</b> — সরকারি সাইট খোলা যায়নি। <b>তাই ভারতে নেমেই স্থানীয় সিম নিন</b> (সেকশন: সিম ও অ্যাপ), তাহলে এসব নম্বর নিশ্চিতভাবে কাজ করবে।</p>
+      </div>
+      <div class="card">
+        <h4>হাসপাতালে যাওয়ার আগেই যা লিখে রাখবেন</h4>
+        <ul class="check">
+          <li><b>ক্লিনিকের ২৪ ঘণ্টার নম্বর</b> (OHSS-এর জন্য অপরিহার্য — চিকিৎসা সেকশন দেখুন)</li>
+          <li><b>নিকটতম জরুরি (Emergency/Casualty) হাসপাতালের নাম ও ঠিকানা</b> — শুধু আপনার IVF ক্লিনিক নয়</li>
+          <li>আপনার <b>মিশনের নম্বর</b> (নিচের টেবিল)</li>
+          <li>বাসার ঠিকানা <b>ইংরেজিতে ও স্থানীয় হরফে</b> (অটোচালককে দেখানোর জন্য)</li>
+          <li>দুজনের <b>পাসপোর্ট ও ভিসার ছবি</b> — ফোনে ও ইমেইলে</li>
+          <li><b>রক্তের গ্রুপ</b> ও অ্যালার্জির তালিকা</li>
+          <li>বাংলাদেশে <b>দুজন আত্মীয়ের</b> নম্বর</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>ফোন চুরি হলে:</b> আগে থানায় রিপোর্ট, তারপর <a href="https://www.ceir.gov.in">ceir.gov.in</a>-এ হ্যান্ডসেট ব্লক করুন (সারা ভারতে বন্ধ হয়ে যাবে)। IMEI যাচাই করতে <b>14422</b>-এ SMS।</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">২. বাংলাদেশ মিশন — কোন শহরে কার কাছে যাবেন</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>মিশন</th><th>ঠিকানা</th><th class="num">ফোন / WhatsApp</th><th>ইমেইল</th><th>কোন রাজ্য</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td><b>হাইকমিশন, নয়াদিল্লি</b></td><td>EP-39, Dr. S. Radhakrishnan Marg, Chanakyapuri, New Delhi-110021</td><td class="num"><b>+91 11 2412 1391-94</b><br><b>WhatsApp +91 93116 38983</b> (কনস্যুলার)<br>WhatsApp +91 88002 13179 (ভিসা/পাসপোর্ট)</td><td>mission.newdelhi@mofa.gov.bd<br>consular.newdelhi@mofa.gov.bd</td><td>দিল্লি-NCR ও উত্তর/মধ্য ভারত</td></tr>
+          <tr class="hl"><td><b>ডেপুটি হাইকমিশন, চেন্নাই</b></td><td>No. 24/46, K.B. Dasan Road, Agni Business Centre (১ম ও ২য় তলা), Alwarpet, Chennai-600018</td><td class="num"><b>+91 44 4006 4314</b> (কনস্যুলার)<br>+91 44 4006 4497<br>মোবাইল +91 73057 81777</td><td>consular.chennai@mofa.gov.bd<br>mission.chennai@mofa.gov.bd</td><td><b>তামিলনাড়ু (চেন্নাই ও ভেলোর), কর্ণাটক (ব্যাঙ্গালোর), তেলেঙ্গানা (হায়দ্রাবাদ), অন্ধ্রপ্রদেশ, কেরালা, পুদুচেরি</b></td></tr>
+          <tr class="hl"><td><b>ডেপুটি হাইকমিশন, মুম্বাই</b></td><td>Jolly Maker Bungalow No. 08, World Trade Centre Gate 06-এর উল্টোদিকে, Cuffe Parade, Mumbai-400005</td><td class="num"><b>+91 22 2218 0101</b></td><td>mission.mumbai@mofa.gov.bd</td><td><b>মহারাষ্ট্র (মুম্বাই ও পুনে), গুজরাট, মধ্যপ্রদেশ, গোয়া</b></td></tr>
+          <tr><td>ডেপুটি হাইকমিশন, কলকাতা</td><td>9 Circus Avenue, Kolkata-700017</td><td class="num">+91 33 4012 7500</td><td>mission.kolkata@mofa.gov.bd<br>welfare.kolkata@mofa.gov.bd</td><td>পশ্চিমবঙ্গ ও পূর্ব ভারত</td></tr>
+          <tr><td>সহকারী হাইকমিশন, আগরতলা</td><td>Kunjaban (Circuit House-এর কাছে), Agartala, Tripura-799006</td><td class="num">+91 381 232 4807<br><b>+91 92450 47172 — ২৪/৭ জরুরি হটলাইন</b></td><td>mission.agatala@mofa.gov.bd</td><td>ত্রিপুরা</td></tr>
+          <tr><td>সহকারী হাইকমিশন, গুয়াহাটি</td><td>Green Valley Tower, Silpukhuri, Maniram Dewan Rd., Guwahati-781003</td><td class="num">মিশনের ফোন প্রকাশিত নেই</td><td>mission.guwahati@mofa.gov.bd</td><td>আসাম, মেঘালয়, মণিপুর, মিজোরাম, নাগাল্যান্ড, অরুণাচল</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>অফিস ও কনস্যুলার সময়</h4>
+        <ul class="small">
+          <li><b>চেন্নাই:</b> অফিস সোম–শুক্র ৯টা–৫টা; জমা <b>১০টা–১২টা</b>, ডেলিভারি <b>২টা–৪টা</b></li>
+          <li><b>মুম্বাই:</b> অফিস ৯টা–৫টা; জমা <b>১০টা–১১:৩০</b>, ডেলিভারি <b>৩টা–৪টা</b></li>
+          <li><b>দিল্লি:</b> ভিসা <b>১০টা–১২টা</b> সোম–শুক্র</li>
+          <li><b>আগরতলা:</b> ৯টা–৫টা (দুপুর ১টা–২টা বিরতি)</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>⚠ সব মিশন শনি ও রবিবার বন্ধ</b>, সেই সাথে বাংলাদেশি ও ভারতীয় সরকারি ছুটি। <b>শুক্রবার সন্ধ্যায় সমস্যা হলে সোমবারের আগে কাউন্টার-সেবা পাবেন না</b> — জরুরি হলে হটলাইন/WhatsApp ব্যবহার করুন।</div>
+      </div>
+      <div class="card">
+        <h4>মিশন যেসব সাহায্য করে</h4>
+        <ul class="small">
+          <li><b>ট্রাভেল পারমিট (আউটপাস)</b> — পাসপোর্ট হারালে, মেয়াদ শেষ হলে, শিশু জন্মালে, এবং <b>আটক/ভুক্তভোগী</b> হলে</li>
+          <li>হারানো পাসপোর্টের বিপরীতে <b>ই-পাসপোর্ট</b> (চেন্নাই দেয়; দিল্লি এখন শুধু MRP, ৫ বছর মেয়াদ, ₹8,100)</li>
+          <li><b>মৃতদেহ দেশে পাঠানোর NOC — বিনামূল্যে</b></li>
+          <li>অঙ্গ-প্রতিস্থাপনের NOC — বিনামূল্যে</li>
+          <li>সত্যায়ন, জন্ম/মৃত্যু নিবন্ধন, ছুটি বাড়ানোর NOC</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">⚠ দিল্লির <code>newdelhi.mofa.gov.bd</code>-এর ভেতরের পাতাগুলো ৪০৪ দেখায় — কাজ করে <a href="https://bdhcdelhi.org/contact-us.php">bdhcdelhi.org</a>। কলকাতার <code>bdhckolkata.org</code> খোলে না — ব্যবহার করুন <a href="https://kolkata.mofa.gov.bd/">kolkata.mofa.gov.bd</a>।</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৩. পাসপোর্ট হারালে — ধাপে ধাপে</h3>
+    <div class="card">
+      <ol>
+        <li><b>আগে থানায় যান</b> — হারানো/চুরির <b>GD বা FIR</b> করুন এবং <b>সিল দেওয়া মূল কপি</b> নিন। <b>এটি ছাড়া মিশন কোনো কাজ করবে না</b> (চেন্নাই ও দিল্লি দুটোই স্পষ্ট বলেছে)।</li>
+        <li>ফোনও চুরি হলে <a href="https://www.ceir.gov.in">ceir.gov.in</a>-এ ব্লক করুন।</li>
+        <li><b>নিজের রাজ্যের মিশনে সশরীরে</b> যান (উপরের টেবিল) — আবেদন "সশরীরে জমা দিতে হবে"।</li>
+        <li><b>ট্রাভেল পারমিটের কাগজ:</b>
+          <ul>
+            <li><b>দিল্লি:</b> হেড অব মিশন বরাবর আবেদনপত্র; FIR কপি; হারানো পাসপোর্টের ফটোকপি; বৈধ ভারতীয় ভিসার কপি; ২ কপি রঙিন ছবি; <b>হোটেলের Form-C-র কপি</b>; এন্ট্রি-স্ট্যাম্প পাতার ফটোকপি</li>
+            <li><b>চেন্নাই:</b> আবেদন ফরম; পাসপোর্ট ও ভিসার কপি; <b>FIR কপি</b>; ৩ কপি ছবি (৩৫×৪৫ মিমি, সাদা ব্যাকগ্রাউন্ড); NID বা জন্মনিবন্ধনের কপি</li>
+          </ul>
+        </li>
+        <li><b>ফি:</b> দিল্লি <b>₹1,800</b> (শুধু ডেবিট/ক্রেডিট কার্ড, নগদ নয়); চেন্নাই <b>₹1,980</b> (NEFT)। <span class="pill p">● প্রসেসিং সময় প্রকাশিত নেই</span></li>
+        <li><b>শেষ ধাপ — ইমিগ্রেশন:</b> শুধু ট্রাভেল পারমিট যথেষ্ট নয়। <b>e-FRRO পোর্টালে (<a href="https://indianfrro.gov.in/efrro/home">indianfrro.gov.in</a>) "Change of passport (loss cases only)" ও "Exit permission"</b> নিতে হবে, নইলে দেশে ফেরার ফ্লাইটে উঠতে পারবেন না।</li>
+      </ol>
+      <p class="small muted" style="margin-bottom:0"><b>দ্রুত ফিরতে চাইলে ট্রাভেল পারমিটই সঠিক পথ</b> — পূর্ণ পাসপোর্ট বানাতে ঢাকা থেকে পাঠানো ও কাস্টমস ছাড়ে অনেক সময় লাগে।</p>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৪. পুলিশ, প্রতারণা ও অভিযোগ</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>থানায় গেলে</h4>
+        <ul class="small">
+          <li><b>কখনো সাদা কাগজে সই করবেন না</b></li>
+          <li><b>FIR/CSR নম্বর ও সিল দেওয়া কপি</b> চেয়ে নিন — এটি আপনার অধিকার</li>
+          <li>ভাষা না বুঝলে <b>দোভাষী</b> চান</li>
+          <li><b>Zero FIR</b> — যেকোনো থানায় অভিযোগ করা যায়, ঘটনা যেখানেই ঘটুক; পরে সংশ্লিষ্ট থানায় পাঠানো হয়</li>
+          <li>থানা FIR নিতে না চাইলে <b>লিখিতভাবে</b> SP/DCP বরাবর, তারপর ম্যাজিস্ট্রেটের কাছে</li>
+          <li>নিকটতম থানা খুঁজতে <a href="https://digitalpolice.gov.in">digitalpolice.gov.in</a> → "Locate Nearest PS"</li>
+        </ul>
+        <div class="callout bad" style="margin-bottom:0"><b>আটক হলে সবচেয়ে জরুরি কাজ:</b> সঙ্গে সঙ্গে দাবি করুন যেন <b>বাংলাদেশ মিশনকে জানানো হয়</b>। ভিয়েনা কনভেনশনের অনুচ্ছেদ ৩৬ অনুযায়ী আটক বিদেশি নাগরিকের নিজ দেশের মিশনকে জানানো ও যোগাযোগের অধিকার আছে। <span class="pill p">●</span></div>
+      </div>
+      <div class="card">
+        <h4>অনলাইন/UPI প্রতারণা</h4>
+        <p class="small">টাকা খোয়া গেলে <b>যত দ্রুত সম্ভব ১৯৩০</b>-এ ফোন করুন ও <a href="https://cybercrime.gov.in/">cybercrime.gov.in</a>-এ অভিযোগ করুন — দেরি হলে টাকা ফেরানোর সম্ভাবনা কমে।</p>
+        <div class="tbl compact"><table><thead><tr><th>রাজ্য</th><th class="num">সাইবার অভিযোগ কর্মকর্তা</th></tr></thead><tbody>
+          <tr><td>দিল্লি</td><td class="num">011-20892633</td></tr>
+          <tr><td>তামিলনাড়ু</td><td class="num">044-29580300</td></tr>
+          <tr><td>তেলেঙ্গানা</td><td class="num">040-29320049</td></tr>
+          <tr><td>কর্ণাটক</td><td class="num">080-22942475</td></tr>
+          <tr><td>মহারাষ্ট্র</td><td class="num">022-22160080</td></tr>
+        </tbody></table></div>
+      </div>
+      <div class="card">
+        <h4>হাসপাতালের বিল বা চিকিৎসা নিয়ে অভিযোগ</h4>
+        <ol class="small">
+          <li><b>প্রথমে হাসপাতালের ভেতরেই</b> — আন্তর্জাতিক রোগী ডেস্ক → বিলিং ম্যানেজার → <b>মেডিকেল সুপারিনটেনডেন্ট</b>। সবই <b>লিখিতভাবে</b>, ইমেইলে কপি রাখুন</li>
+          <li><b>ভোক্তা হেল্পলাইন ১৯১৫</b> (সকাল ৮–রাত ৮) বা <a href="https://consumerhelpline.gov.in/">consumerhelpline.gov.in</a></li>
+          <li>ভোক্তা আদালতে মামলা: <b><a href="https://e-jagriti.gov.in/">e-Jagriti</a></b> (পুরনো edaakhil.nic.in আর চলে না)</li>
+          <li><b>চিকিৎসা-অবহেলা:</b> রাজ্যের মেডিকেল কাউন্সিল — যেমন <b>Delhi Medical Council +91-11-46621000</b>; জাতীয় পর্যায়ে <a href="https://www.nmc.org.in">NMC</a>-র "Lodge a Complaint"</li>
+        </ol>
+        <p class="small muted" style="margin-bottom:0">মনে রাখুন: <b>itemised বিল পাওয়া আপনার অধিকার</b> (ভারতের Charter of Patients' Rights) — অভিযোগের আগে সব রসিদ ও বিল জোগাড় করুন।</p>
+      </div>
+    </div>
+
+    <div class="callout gold" style="margin-top:1rem">
+      <b>মানিব্যাগে রাখার মতো কার্ড (এটুকু লিখে নিন):</b><br>
+      <b>১১২</b> সব জরুরি · <b>১৩৬৩</b> পর্যটক · <b>১৯৩০</b> আর্থিক প্রতারণা · <b>১০৯১/১৮১</b> নারী · <b>১৯১৫</b> ভোক্তা (৮টা–৮টা) · <b>৯৯৯</b> বাংলাদেশ<br>
+      <b>মিশন —</b> দিল্লি <b>+91 11 2412 1391</b> / WhatsApp <b>+91 93116 38983</b> · চেন্নাই <b>+91 44 4006 4314</b> (ভেলোর, হায়দ্রাবাদ, ব্যাঙ্গালোরও এর অধীনে) · মুম্বাই <b>+91 22 2218 0101</b> (পুনেও)
+    </div>
+  </div>
+</section>
 <!-- ============ BANKING & MONEY SAFETY ============ -->
 <section id="money">
   <div class="wrap">
@@ -2477,7 +2752,7 @@ const CENTRES = [
   appointment:['<a href="https://clin.cmcvellore.ac.in/">clin.cmcvellore.ac.in</a> → "New Patient" → Reproductive Medicine (Private/General) → নিকটতম মঙ্গল/শুক্র → পেমেন্ট (আন্তর্জাতিক কার্ড চলে)','একই দিনে rmu@ ও iro@-তে রিপোর্ট (AMH, TVS, অপারেশন-নোট, semen) মেইল: "earliest RMU new-patient slot for a foreign national" — লিখিত জিজ্ঞেস করুন: সিস্ট রেখে IVF করবেন কি না, freeze-all + eSET নীতি','ভিসা-লেটার: AYUSH INFO FORM ডাউনলোড → পূরণ → iro@-তে; স্বামী (ও মা) attendant হিসেবে নাম','IVAC-এ MED + MED-X (সেকশন: ভিসা)','পৌঁছে IRO রুম 900B (West Block) — মূল পাসপোর্ট, প্রিন্টেড অ্যাপয়েন্টমেন্ট; হাসপাতাল C-Form করে','পরিকল্পনা: ট্রিপ ১ (ওয়ার্কআপ+সিদ্ধান্ত ~১০–১৪ দিন) + ট্রিপ ২ (স্টিমুলেশন→রিট্রিভাল→freeze-all→FET) বা একটানা ৪–৬ সপ্তাহ; ভিসার মেয়াদ কম হলে IRO/Silver Gate 600-এ আগের তারিখ'],
   time:'OPD মঙ্গল ও শুক্র ১:৩০–৪:৩০ (Centenary Bldg ৩য় তলা) · অপেক্ষা-সময় অপ্রকাশিত (একটি পুরনো ফোরামে ~৮ মাস) · ঢাকা থেকে ইনজেকশন শুরু করে মাঝপথে যাওয়ার নীতি নেই',
   bd:'ইউটিউব কমেন্ট-থ্রেডে (Suparna, 164K ভিউ): "মোট ১ লাখ ৬০ হাজার নিয়েছে; ট্রান্সফারের পরের ওষুধ নিজের", "১.৫০ লাখ কোট", "সব ওষুধসহ ~৪ লাখ"; বাংলাদেশি প্রশ্ন: কোন ডাক্তার (Aleyamma, Mohan Kamath), কত দিন, বাংলা অনুবাদক আছে কি না। banglanews24: "ভেলোরে চিকিৎসা পেতে দরকার সময় আর ধৈর্য"। ঢাকার "CMC appointment service" এজেন্ট অপ্রয়োজনীয়। ভিডিও: <a href="https://www.youtube.com/watch?v=P1MyMhUUCpY">CMC IVF খরচ</a> · <a href="https://www.youtube.com/watch?v=PIwMmJ9cQzM">CMC package</a> · <a href="https://www.youtube.com/watch?v=fpkMurRXOQA">Md Fizz যাত্রা-গাইড</a>',
-  watch:['OPD সপ্তাহে ২ দিন; অপেক্ষা থাকতে পারে — আগে মেইল, দুই ট্রিপ ধরুন','রিমোট-স্টার্ট নেই: বেসলাইন থেকে ওখানেই','ডোনার নেই — ওভারি সাড়া না দিলে অন্যত্র','সরকারি-ধাঁচের প্রক্রিয়া: ধৈর্য, কাগজ, লাইন'],
+  watch:['<b>বাংলাদেশি রোগীদের Google রিভিউতে সবচেয়ে বড় অভিযোগ: "ভোগান্তি" — লাইন, অপেক্ষা ও ইমেইলের জবাব না পাওয়া</b>; ২০২৪-এর একটি রিভিউতে "প্রাইভেট কনসালটেন্সিতেও জুনিয়র ডাক্তার" — <a href="#reviews">বিস্তারিত</a>','OPD সপ্তাহে ২ দিন; অপেক্ষা থাকতে পারে — আগে মেইল, দুই ট্রিপ ধরুন','রিমোট-স্টার্ট নেই: বেসলাইন থেকে ওখানেই','ডোনার নেই — ওভারি সাড়া না দিলে অন্যত্র','সরকারি-ধাঁচের প্রক্রিয়া: ধৈর্য, কাগজ, লাইন'],
   scores:{evidence:5, endo:5, price:4, value:5, bd:5, speed:2}},
 
  {id:'sgrh', rank:2, name:'Sir Ganga Ram Hospital — Centre of IVF & Human Reproduction', short:'Sir Ganga Ram, দিল্লি', city:'delhi_rn', area:'Old Rajinder Nagar, নয়াদিল্লি',
@@ -2505,12 +2780,12 @@ const CENTRES = [
   appointment:['Oasis আন্তর্জাতিক পাতায় রিপোর্ট আপলোড/WhatsApp → ৩৬ ঘণ্টায় প্ল্যান+itemised খরচ+কো-অর্ডিনেটর → ইনভাইটেশন লেটার','Dr Rooma Sinha-কে WhatsApp/ইমেইলে MRI/USG + অপারেশন-নোট পাঠিয়ে "operate or not" মতামত (ভিডিও/সশরীর)','প্ল্যান চূড়ান্ত হলে ভিসা; পৌঁছে Oasis Banjara Hills-এ বেসলাইন; freeze-all + ব্যাংকিং','সিনিয়র কনসালট্যান্ট (Dr Durga Rao/নামযুক্ত) নিজে রিট্রিভাল করবেন কি না — লিখিত'],
   time:'দ্রুততম সাড়া (৩৬ ঘণ্টা); ~১৪–১৮ দিন প্রথম ট্রিপ (রিমোট-স্টার্ট অনুমতি পেলে ১০–১৪) + FET ৭–১০ দিন',
   bd:'হায়দ্রাবাদে বাংলাদেশি IVF-অভিজ্ঞতা অনলাইনে নেই — কমিউনিটি পাতলা; হালাল খাবার সর্বত্র, বাঙালি হোটেল অনেক। FB গ্রুপে "কেউ Oasis/Apollo হায়দ্রাবাদে করেছেন?" জিজ্ঞেস করুন।',
-  watch:['PE-বিনিয়োগ পাওয়া চেইন — সেলস-চাপ থাকতে পারে; itemised কোটের বাইরে কিছু নয়','Google Flights সেদিন IndiGo ঢাকা–হায়দ্রাবাদ ভাড়া দেখায়নি — goindigo.in-এ যাচাই','Universal Srushti-র সাথে গুলিয়ে ফেলবেন না (গ্রেপ্তার ২০২৫)'],
+  watch:['<b>Google রিভিউ ৪.৯ (৩,০৮১) — কিন্তু প্রবলভাবে সাজানো</b> (১-রিভিউ অ্যাকাউন্ট, এক লাইনের প্রশংসা, একই টেমপ্লেটের উত্তর)। আসল অভিযোগ: <b>ভয় দেখিয়ে বাড়তি বিক্রি</b>, প্রশাসন, স্ক্যান-রুমে গোপনীয়তা — <a href="#reviews">বিস্তারিত</a>','PE-বিনিয়োগ পাওয়া চেইন — সেলস-চাপ থাকতে পারে; itemised কোটের বাইরে কিছু নয়','Google Flights সেদিন IndiGo ঢাকা–হায়দ্রাবাদ ভাড়া দেখায়নি — goindigo.in-এ যাচাই','Universal Srushti-র সাথে গুলিয়ে ফেলবেন না (গ্রেপ্তার ২০২৫)'],
   scores:{evidence:3, endo:5, price:5, value:4, bd:2, speed:5}},
 
  {id:'tandulwadkar', rank:4, name:'Dr Sunita Tandulwadkar — Solo Clinic & Ruby Hall Clinic', short:'Dr Sunita Tandulwadkar, পুনে', city:'pune', area:'Bund Garden Rd (Solo) · Sassoon Rd (Ruby Hall), পুনে',
-  tagline:'একই ব্যক্তি সিনিয়র এন্ডোমেট্রিওসিস এন্ডোস্কোপিস্ট এবং IVF ডিরেক্টর — এই কেসের মূল বিচারটাই তাঁর হাতে',
-  tags:[['good','এন্ডোমেট্রিওসিস + IVF এক হাতে'],['v','✔ poor-responder পেপার'],['good','NABH হাসপাতাল ব্যাকআপ'],['warn','সরাসরি ফ্লাইট নেই']],
+  tagline:'সার্জিক্যাল যোগ্যতা আসল — কিন্তু রোগীর অভিজ্ঞতা নিয়ে গুরুতর ও পুনরাবৃত্ত অভিযোগ (নিচের রিভিউ-বিশ্লেষণ দেখুন)',
+  tags:[['good','এন্ডোমেট্রিওসিস + IVF এক হাতে'],['bad','● রিভিউতে গুরুতর অভিযোগ'],['warn','সরাসরি ফ্লাইট নেই']],
   doctors:['Dr Sunita Tandulwadkar — HOD Obs-Gyn ও Chief, IVF & Endoscopy Centre, Ruby Hall Clinic; Solo Clinic-এর প্রতিষ্ঠাতা/Medical Director; ৬৩তম FOGSI প্রেসিডেন্ট (২০২৫)','Ruby Hall OPD: সোম ও বৃহঃ ১০–১টা'],
   why:['সিস্ট রেখে স্টিমুলেশন বনাম ন্যূনতম হস্তক্ষেপ — সার্জন ও IVF-চিকিৎসক একই মানুষ হলে সিদ্ধান্তে স্বার্থ-সংঘাত কম','poor-responder নিয়ে প্রকাশনা (stem cell/PRP — ছোট/পরীক্ষামূলক; এর জন্য বাড়তি টাকা নয়)','Ruby Hall NABH মাল্টিস্পেশালিটি — রিট্রিভাল-জটিলতার নিরাপত্তা','পুনে থাকা মুম্বাইয়ের চেয়ে ~৪০% সস্তা; Camp-এ বাঙালি খাবার (Aahar)'],
   evidence:{tag:'p', summary:'ক্লিনিক-ব্যাপী LBR নেই; ছোট গবেষণাপত্র আছে; বিজ্ঞাপনে "৮০%" — উপেক্ষা করুন।', numbers:[['JHRS 2020: poor responder-এ ABMDSC+PRP','ছোট সিরিজ'],['Facebook রেকমেন্ড','96% (42)'],['Practo','মিশ্র (অ্যাপয়েন্টমেন্টে অনুপস্থিতির অভিযোগ ১টি)']], links:[['PMC7727891','https://pmc.ncbi.nlm.nih.gov/articles/PMC7727891/'],['Solo Clinic','https://www.soloclinicivf.com/'],['Ruby Hall প্রোফাইল','https://rubyhall.com/doctors_listing/dr-sunita-tandulwadkar/']]},
@@ -2519,8 +2794,8 @@ const CENTRES = [
   appointment:['Solo Clinic-এ WhatsApp/ইমেইলে রিপোর্ট → ভিডিও কনসাল্ট (আন্তর্জাতিক রোগীর জন্য আছে)','ইনভাইটেশন লেটার Solo/Ruby Hall থেকে; ভিসা','ঢাকা→মুম্বাই ফ্লাইট → পুনে ক্যাব/বাস ৩–৪ ঘণ্টা','তিনি নিজে রিট্রিভাল করবেন কি না — নিশ্চিত হন (FOGSI/ISAR ব্যস্ততা)'],
   time:'~১৪–২০ দিন প্রথম ট্রিপ + FET ৭–১০ দিন; মুম্বাই-পুনে যাতায়াত যোগ',
   bd:'বাংলাদেশি অভিজ্ঞতা অনলাইনে নেই; বাংলা কো-অর্ডিনেটর নেই — হিন্দি/ইংরেজি।',
-  watch:['খুব ব্যস্ত (FOGSI প্রেসিডেন্ট) — কে দেখবেন/কে করবেন লিখিত','সরাসরি ফ্লাইট নেই; মুম্বাই→পুনে বাড়তি সময়/খরচ','"৮০%" বিজ্ঞাপন উপেক্ষা'],
-  scores:{evidence:2, endo:5, price:2, value:3, bd:1, speed:3}},
+  watch:['<b>Google রিভিউতে (স্থানীয় গাইড অ্যাকাউন্ট, ২৩–২৫ লাইক) বারবার একই অভিযোগ:</b> "ক্লিনিক নয়, মার্কেটিং অফিস", ভয় দেখিয়ে সিদ্ধান্ত করানো, বাইরের রিপোর্ট দেখতে অনীহা — <a href="#reviews">বিস্তারিত</a>','<b>তাই পুরো চিকিৎসা এখানে না নিয়ে শুধু দ্বিতীয় মতামতের জন্য বিবেচনা করুন</b>, এবং Solo Clinic-এর বদলে <b>Ruby Hall Clinic-এর OPD</b>-তে দেখান','খুব ব্যস্ত (FOGSI প্রেসিডেন্ট) — কে দেখবেন/কে করবেন লিখিত','সরাসরি ফ্লাইট নেই; মুম্বাই→পুনে বাড়তি সময়/খরচ','"৮০%" বিজ্ঞাপন উপেক্ষা'],
+  scores:{evidence:2, endo:5, price:2, value:2, bd:1, speed:3}},
 
  {id:'kaberi', rank:5, name:'Advance Fertility & Gynaecological Centre — Dr Kaberi Banerjee', short:'Dr Kaberi Banerjee, দিল্লি', city:'delhi_ln', area:'Lajpat Nagar IV · CR Park, নয়াদিল্লি',
   tagline:'AIIMS+UK-প্রশিক্ষিত, বাংলাভাষী, স্বচ্ছ প্যাকেজ, বাঙালি পাড়ায় থাকা — সবচেয়ে স্বাচ্ছন্দ্যের পছন্দ',
@@ -2868,53 +3143,56 @@ function seasonNote(dep){
   if(m===6||m===7||m===8) return {t:'', s:'জুলাই–সেপ্টেম্বর: মুম্বাই/পুনেতে ভারী বর্ষা; বাকি শহরে ভাড়া মাঝারি।'};
   return {t:'', s:'মার্চ: আবহাওয়া ভালো, ভাড়া সমতল (ঈদ-সপ্তাহ বাদে)।'};
 }
+const PL_LEN=[[10,'১০ দিন','শুধু কনসাল্ট/পরীক্ষা'],[16,'২ সপ্তাহ+','রিমোট-স্টার্ট সাইকেল'],[21,'৩ সপ্তাহ','সাধারণ সাইকেল'],[26,'৪ সপ্তাহ','সাইকেল + বাফার'],[35,'৫ সপ্তাহ','এক ট্রিপে সব'],[8,'৮ দিন','শুধু FET ট্রিপ']];
+const PL_WHEN=[[30,'১ মাস পর'],[45,'দেড় মাস পর'],[60,'২ মাস পর'],[90,'৩ মাস পর'],[120,'৪ মাস পর'],[180,'৬ মাস পর']];
+const PL_PAX=[[1,'১ জন'],[2,'২ জন (দম্পতি)'],[3,'৩ জন'],[4,'৪ জন']];
+let PL={city:'MAA',days:45,len:21,pax:2,exact:null};
+function chips(el,items,cur,cb){ if(!el) return; el.innerHTML=items.map(it=>`<button class="ch${it[0]==cur?' on':''}" data-v="${it[0]}">${it[1]}${it[2]?`<small>${it[2]}</small>`:''}</button>`).join('');
+  el.querySelectorAll('.ch').forEach(b=>b.addEventListener('click',()=>{ cb(b.dataset.v); }));
+}
 function renderPlanner(){
-  const sel=document.getElementById('plCity'); if(!sel) return;
-  if(!sel.options.length){ PL_CITIES.forEach(c=>{ const o=document.createElement('option'); o.value=c.code; o.textContent=c.label; sel.appendChild(o); }); }
-  const dep=document.getElementById('plDep'), len=document.getElementById('plLen'), pax=document.getElementById('plPax'), out=document.getElementById('plOut');
-  if(!dep.value){ dep.value=iso(addDays(new Date(),45)); }
-  dep.min=iso(addDays(new Date(),1));
-  const d1=new Date(dep.value+'T00:00:00'); const nights=+len.value; const d2=addDays(d1,nights);
-  const days=Math.round((d1-new Date(new Date().toDateString()))/86400000);
-  document.getElementById('plDepHint').textContent = days>=0 ? 'আজ থেকে '+bnNum(days)+' দিন পর' : 'তারিখটি অতীতে';
-  const city=PL_CITIES.find(c=>c.code===sel.value)||PL_CITIES[0];
-  const P=+pax.value;
+  const out=document.getElementById('plOut'); if(!out) return;
+  chips(document.getElementById('plCityChips'), PL_CITIES.map(c=>[c.code, c.label.split(' — ')[0], c.label.split(' — ')[1]||'']), PL.city, v=>{PL.city=v; renderPlanner();});
+  chips(document.getElementById('plWhenChips'), PL_WHEN, PL.exact?null:PL.days, v=>{PL.days=+v; PL.exact=null; renderPlanner();});
+  chips(document.getElementById('plLenChips'), PL_LEN, PL.len, v=>{PL.len=+v; renderPlanner();});
+  chips(document.getElementById('plPaxChips'), PL_PAX, PL.pax, v=>{PL.pax=+v; renderPlanner();});
+  const d1 = PL.exact ? new Date(PL.exact+'T00:00:00') : addDays(new Date(), PL.days);
+  const dep=document.getElementById('plDep'); if(dep){ dep.value=iso(d1); dep.min=iso(addDays(new Date(),1)); }
+  const nights=PL.len, d2=addDays(d1,nights), P=PL.pax;
+  const city=PL_CITIES.find(c=>c.code===PL.city)||PL_CITIES[0];
   const f = city.fk ? FLIGHTS[city.fk] : {city:'কলকাতা', s1:17907, s2:17907, nonstop:'IndiGo, US-Bangla, Biman — ননস্টপ ১ ঘণ্টা', est:false};
-  const hits=peakHits(d1,d2); const sn=seasonNote(d1);
+  const hits=peakHits(d1,d2), sn=seasonNote(d1);
   const D1=iso(d1), D2=iso(d2), K1=yymmdd(d1), K2=yymmdd(d2);
-  const gq = encodeURIComponent('Flights from DAC to '+city.code+' on '+D1+' through '+D2);
-  const gUrl='https://www.google.com/travel/flights?q='+gq+'&curr=BDT&hl=bn';
+  const gUrl='https://www.google.com/travel/flights?q='+encodeURIComponent('Flights from DAC to '+city.code+' on '+D1+' through '+D2)+'&curr=BDT&hl=bn';
   const kUrl='https://www.kayak.com/flights/DAC-'+city.code+'/'+D1+'/'+D2+'/'+P+'adults?sort=price_a&currency=BDT';
   const sUrl='https://www.skyscanner.net/transport/flights/dac/'+city.code.toLowerCase()+'/'+K1+'/'+K2+'/?adults='+P+'&cabinclass=economy&rtn=1&currency=BDT&preferdirects=false';
-  const mUrl='https://www.momondo.com/flight-search/DAC-'+city.code+'/'+D1+'/'+D2+'?sort=price_a';
   const est=(f.s1+f.s2)/2*P;
+  const bad=hits.some(h=>h.hard);
   out.innerHTML = `
     <div class="pl-res">
-      <div class="pl-dates">
+      <div class="pl-verdict ${hits.length?(bad?'bad':'warn'):'good'}">
+        <div class="pv-icon">${hits.length?(bad?'✕':'!'):'✓'}</div>
+        <div>
+          <b>${hits.length?(bad?'এই সময়ে যাওয়া এড়িয়ে চলুন':'এই সময়ে ভিড় থাকবে'):'এই সময়টা ভালো'}</b>
+          <div class="small">${hits.length?`${hits.map(h=>h.n).join(', ')} পড়ছে — ভাড়া ${bad?'১.৫–৩ গুণ':'উল্লেখযোগ্য'} বেশি${bad?', IVAC/অফিসও বন্ধ থাকতে পারে':''}। ৭–১০ দিন আগে-পরে সরালে ভালো।`:'বড় কোনো ঈদ বা উৎসবের ভিড়ে পড়ছে না।'}</div>
+        </div>
+      </div>
+      <div class="pl-summary">
         <div><span class="k">যাওয়া</span><b>${bnDate(d1)}</b></div>
-        <div class="arrow">→</div>
         <div><span class="k">ফেরা</span><b>${bnDate(d2)}</b></div>
-        <div><span class="k">মোট</span><b>${bnNum(nights)} রাত</b></div>
-        <div><span class="k">যাত্রী</span><b>${bnNum(P)} জন</b></div>
+        <div><span class="k">আনুমানিক ভাড়া (${bnNum(P)} জন, রিটার্ন)</span><b class="big">${fmtBDTx(est)}</b><small>${f.est?'আনুমানিক · ':''}আসল দাম লিংকে</small></div>
       </div>
-      ${hits.length ? `<div class="callout ${hits.some(h=>h.hard)?'bad':'warn'}" style="margin:.7rem 0"><b>⚠ সতর্কতা:</b> আপনার ভ্রমণের সময়ে পড়ছে — ${hits.map(h=>`<b>${h.n}</b> (${bnDate(h.c)})`).join(', ')}। এই জানালায় ভাড়া সাধারণত ${hits.some(h=>h.hard)?'১.৫–৩ গুণ':'উল্লেখযোগ্য'} বেশি${hits.some(h=>h.hard)?', এবং IVAC/অফিস বন্ধ থাকতে পারে':''}। সম্ভব হলে ৭–১০ দিন আগে-পরে সরান।</div>`
-        : `<div class="callout good" style="margin:.7rem 0"><b>✓ ভালো সময়:</b> বড় কোনো ঈদ/উৎসবের ভিড়ে পড়ছে না।</div>`}
-      <p class="small">${sn.s}</p>
-      <div class="pl-est"><span class="k">আনুমানিক ফ্লাইট খরচ (${bnNum(P)} জন, রিটার্ন)</span><b>${fmtBDTx(est)}</b><small>${f.est?'আনুমানিক — ':''}১৮ আগস্ট ২০২৬-এর Google Flights ভাড়ার ভিত্তিতে; আসল দাম লিংকে দেখুন</small></div>
+      <a class="btn gold big" href="${gUrl}" target="_blank" rel="noopener">Google Flights-এ দাম দেখুন →<small>খুলে "Cheapest" ট্যাবে চাপ দিন</small></a>
       <div class="pl-links">
-        <a class="btn gold" href="${gUrl}" target="_blank" rel="noopener">Google Flights — খুলে "Cheapest" ট্যাব চাপুন ↗</a>
-        <a class="btn" href="${kUrl}" target="_blank" rel="noopener">Kayak — সস্তা আগে সাজানো ↗</a>
+        <a class="btn ghost" href="${kUrl}" target="_blank" rel="noopener">Kayak (সস্তা আগে সাজানো) ↗</a>
         <a class="btn ghost" href="${sUrl}" target="_blank" rel="noopener">Skyscanner ↗</a>
-        <a class="btn ghost" href="${mUrl}" target="_blank" rel="noopener">Momondo ↗</a>
       </div>
-      <p class="small muted">${city.fk?('ননস্টপ: '+f.nonstop):'ঢাকা–কলকাতা ননস্টপ ১ ঘণ্টা; সেখান থেকে ডোমেস্টিক ফ্লাইট/ট্রেনে অন্য শহরে।'} ${city.code==='BOM'?'পুনে যেতে হলে মুম্বাই নেমে ক্যাব/বাসে ৩–৪ ঘণ্টা।':''} ${city.code==='MAA'?'ভেলোর/CMC যেতে হলে চেন্নাই নেমে ট্যাক্সিতে ~২.৫–৩ ঘণ্টা (১৪০ কিমি)।':''}</p>
+      <p class="small muted">${sn.s}<br>${city.fk?('<b>ননস্টপ:</b> '+f.nonstop):'ঢাকা–কলকাতা ননস্টপ ১ ঘণ্টা; সেখান থেকে ডোমেস্টিক ফ্লাইট/ট্রেন।'} ${city.code==='MAA'?'<b>ভেলোর/CMC:</b> চেন্নাই নেমে ট্যাক্সিতে ~২.৫–৩ ঘণ্টা (১৪০ কিমি)।':''}${city.code==='BOM'?'<b>পুনে:</b> মুম্বাই নেমে ক্যাব/বাসে ৩–৪ ঘণ্টা।':''}</p>
     </div>`;
 }
 function initPlanner(){
-  const ids=['plCity','plDep','plLen','plPax'];
-  if(!document.getElementById('plCity')) return;
-  ids.forEach(i=>{ const el=document.getElementById(i); el.addEventListener('change', renderPlanner); el.addEventListener('input', renderPlanner); });
-  document.querySelectorAll('.qbtn').forEach(b=>b.addEventListener('click', ()=>{ document.getElementById('plDep').value=iso(addDays(new Date(), +b.dataset.days)); renderPlanner(); }));
+  const dep=document.getElementById('plDep'); if(!dep) return;
+  dep.addEventListener('change', ()=>{ if(dep.value){ PL.exact=dep.value; renderPlanner(); } });
   renderPlanner();
 }
 function onScroll(){ const st=window.scrollY||document.documentElement.scrollTop; const h=document.documentElement.scrollHeight-window.innerHeight; const bar=document.querySelector('#progress i'); if(bar) bar.style.width=(h>0? Math.min(100,(st/h)*100):0)+'%'; const tt=document.getElementById('toTop'); if(tt) tt.classList.toggle('on', st>600); }
