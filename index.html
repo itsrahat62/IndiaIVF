@@ -455,6 +455,30 @@ li::marker{color:var(--g2)}
 .tcard:hover::after{opacity:1}
 @media (max-width:760px){#toTop{right:.7rem;bottom:.7rem;width:42px;height:42px}.subnav{padding:.45rem 0}.card{padding:.95rem 1rem}section{padding:1.1rem 0 .5rem}}
 @media print{#progress,#toTop{display:none!important}.subnav{position:static;background:#fff}}
+/* ================= FLIGHT PLANNER ================= */
+.planner-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:1.2rem 1.3rem;position:relative;overflow:hidden}
+.planner-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4))}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:.8rem}
+.pl-f{display:flex;flex-direction:column;gap:.28rem}
+.pl-f > span{font-family:'SiteUI',Inter,'Segoe UI',system-ui,sans-serif;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.pl-f select,.pl-f input{font-family:inherit;font-size:.96rem;padding:.55rem .65rem;border:1.5px solid var(--line);border-radius:10px;background:var(--surface2);color:var(--ink);width:100%}
+.pl-f input[type=date]{font-family:'SiteUI',Inter,'Segoe UI',system-ui,sans-serif}
+.pl-f select:focus,.pl-f input:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 3px color-mix(in srgb,var(--g2) 18%,transparent)}
+.pl-quick{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.85rem 0 .2rem}
+.qbtn{font-family:inherit;font-size:.84rem;padding:.34rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.qbtn:hover{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border-color:transparent;transform:translateY(-1px)}
+.pl-out{margin-top:.6rem}
+.pl-res{border-top:1px dashed var(--line);padding-top:.9rem}
+.pl-dates{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;align-items:flex-end}
+.pl-dates .k,.pl-est .k{display:block;font-family:'SiteUI',Inter,'Segoe UI',system-ui,sans-serif;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.pl-dates b{font-size:1.02rem;color:var(--accent-ink)}
+.pl-dates .arrow{color:var(--muted);font-size:1.3rem;line-height:1.6}
+.pl-est{background:linear-gradient(90deg,color-mix(in srgb,var(--g4) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--g4) 35%,var(--line));border-radius:12px;padding:.6rem .85rem;margin:.7rem 0}
+.pl-est b{display:block;font-family:'SiteUI',Inter,'Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:1.35rem;color:var(--accent-ink);line-height:1.3}
+.pl-est small{color:var(--muted);font-size:.78rem}
+.pl-links{display:flex;flex-wrap:wrap;gap:.55rem;margin:.5rem 0 .3rem}
+@media (max-width:760px){.planner-card{padding:1rem}.pl-links .btn{flex:1 1 100%}.pl-dates{gap:.5rem 1rem}}
+
 </style>
 </head>
 <body>
@@ -465,7 +489,7 @@ li::marker{color:var(--g2)}
   <div class="topbar">
     <a class="brand" href="#verdict" aria-label="হোম">
       <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".7"/><circle cx="20" cy="20" r="9.5" fill="currentColor" opacity=".25"/><circle cx="20" cy="20" r="4.2" fill="currentColor"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
-      <span class="brand-text"><span class="t">IVF ভারত গাইড</span><span class="s">আপনার কেসের সিদ্ধান্ত-সাইট · ১৮ আগস্ট ২০২৬</span></span>
+      <span class="brand-text"><span class="t">IVF ভারত গাইড</span><span class="s">বাংলাদেশ থেকে ভারতে IVF — পূর্ণ পরিকল্পনা</span></span>
     </a>
     <div class="topbar-right">
       <label class="rate" title="সব ৳ হিসাব এই রেটে; আজকের রেট বসান"><span>১₹ =</span> <input id="rateInput" type="number" step="0.01" min="1" max="2" value="1.40" inputmode="decimal"> <span>৳</span></label>
@@ -479,7 +503,7 @@ li::marker{color:var(--g2)}
     <div class="sn-group">
       <div class="sn-title">শুরু করুন</div>
       <a href="#verdict" data-nav="verdict"><i>◆</i>হোম · টপ ৫</a>
-      <a href="#case" data-nav="case"><i>✚</i>আপনার কেস (মেডিকেল)</a>
+      <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
       <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
       <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
     </div>
@@ -493,12 +517,23 @@ li::marker{color:var(--g2)}
       <a href="#centres" data-nav="centres"><i>⌂</i>সব সেন্টার (শহরভিত্তিক)</a>
     </div>
     <div class="sn-group">
-      <div class="sn-title">যাত্রা ও খরচ</div>
+      <div class="sn-title">যাত্রার প্রস্তুতি</div>
       <a href="#appointment" data-nav="appointment"><i>✉</i>অ্যাপয়েন্টমেন্ট</a>
-      <a href="#visa" data-nav="visa"><i>▣</i>ভিসা (মা-সহ)</a>
-      <a href="#flights" data-nav="flights"><i>✈</i>ফ্লাইট</a>
+      <a href="#visa" data-nav="visa"><i>▣</i>ভিসা (অ্যাটেনডেন্ট-সহ)</a>
+      <a href="#planner" data-nav="planner"><i>◈</i>ফ্লাইট প্ল্যানার</a>
+      <a href="#flights" data-nav="flights"><i>✈</i>ভাড়া ও ব্যাগেজ</a>
       <a href="#season" data-nav="season"><i>◷</i>কখন সস্তা / দামি</a>
-      <a href="#stay" data-nav="stay"><i>⌾</i>থাকা-খাওয়া</a>
+    </div>
+    <div class="sn-group">
+      <div class="sn-title">ওখানে থাকা</div>
+      <a href="#stay" data-nav="stay"><i>⌾</i>বাসা, রান্না ও খাবার</a>
+      <a href="#apps" data-nav="apps"><i>▦</i>অ্যাপ ও বুকিং</a>
+      <a href="#etiquette" data-nav="etiquette"><i>☯</i>আঞ্চলিক আদব-কায়দা</a>
+      <a href="#clinical" data-nav="clinical"><i>✛</i>চিকিৎসাকালীন প্রস্তুতি</a>
+    </div>
+    <div class="sn-group">
+      <div class="sn-title">টাকা-পয়সা</div>
+      <a href="#money" data-nav="money"><i>₿</i>ব্যাংকিং ও আর্থিক নিরাপত্তা</a>
       <a href="#budget" data-nav="budget"><i>৳</i>পূর্ণ বাজেট</a>
     </div>
     <div class="sn-group">
@@ -519,20 +554,20 @@ li::marker{color:var(--g2)}
     <div class="hero anim-in">
   <div class="hero-bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
   <div class="hero-inner">
-    <div class="eyebrow light">ব্যক্তিগত সিদ্ধান্ত-সাইট · কলকাতা বাদে ভারত · ৮টি গবেষণা-ধারা · ৬০০+ সূত্র</div>
-    <h1>আপনার জন্য সেরা ৫ IVF সেন্টার — খরচ, ফ্লাইট, থাকা, যোগাযোগ, আসল জন্মহার এক জায়গায়</h1>
-    <p class="lede">একটি ওভারি + বারবার ফিরে আসা ৬ সেমি এন্ডোমেট্রিওমা — এই কেসকে সামনে রেখে সাজানো। সব হিসাব <b>টাকায় (৳)</b>, পাশে ₹; উপরে রেট বদলালে সব সংখ্যা বদলাবে। প্রতিটি কার্ডে ক্লিক করলে সেই সেন্টারের সম্পূর্ণ প্রোফাইল — ডাক্তার, প্রমাণ, খরচ, সেই শহরের ফ্লাইট, আশপাশের হোটেল (ফোনসহ), যোগাযোগ, বাংলাদেশিদের অভিজ্ঞতা, পূর্ণ বাজেট।</p>
+    <div class="eyebrow light">বাংলাদেশ থেকে ভারতে IVF · কলকাতা বাদে · ৯টি গবেষণা-ধারা · ৬০০+ যাচাইকৃত সূত্র</div>
+    <h1>ভারতে IVF: কোন সেন্টার, কত খরচ, কীভাবে যাবেন — পুরো পরিকল্পনা এক জায়গায়</h1>
+    <p class="lede">সেন্টার ও ডাক্তার বাছাই থেকে শুরু করে ভিসা, ফ্লাইট, ব্যাগেজ, বাসা ভাড়া, রান্না, ব্যাংকিং, আঞ্চলিক আদব-কায়দা — বাংলাদেশ থেকে যাওয়া দম্পতির যা যা লাগে। সব হিসাব <b>টাকায় (৳)</b>, পাশে ₹; উপরে রেট বদলালে সব সংখ্যা বদলাবে। প্রতিটি কার্ডে ক্লিক করলে সেই সেন্টারের সম্পূর্ণ প্রোফাইল — ডাক্তার, প্রকাশিত জন্মহার, খরচ, সেই শহরের ফ্লাইট, আশপাশের হোটেল (ফোনসহ), যোগাযোগ ও পূর্ণ বাজেট।</p>
     <div class="hero-actions">
-      <a class="btn gold" href="#centre/cmc">১ নম্বর পছন্দ দেখুন →</a>
+      <a class="btn gold" href="#verdict">টপ ৫ সেন্টার দেখুন →</a>
+      <a class="btn glass" href="#planner">আমার তারিখ দিয়ে ফ্লাইট খুঁজুন</a>
       <a class="btn glass" href="#case">আগে মেডিকেল দিকটা পড়ুন</a>
-      <a class="btn glass" href="#appointment">অ্যাপয়েন্টমেন্ট কীভাবে</a>
     </div>
     <div class="kpis" id="kpis"></div>
     <div class="hero-note">এটি চিকিৎসা-পরামর্শ নয়; ডাক্তারের সঙ্গে সিদ্ধান্ত নেওয়ার প্রস্তুতি। ট্যাগ: <span class="pill v">✔ যাচাইকৃত</span> <span class="pill p">● রোগী/সংবাদ</span> <span class="pill m">○ মার্কেটিং দাবি</span></div>
   </div>
 </div>
 
-<h2 class="anim-in">আপনার কেসের জন্য টপ ৫ <small class="h2sub">value-for-money ও বিশ্বাসযোগ্যতা আগে · কার্ডে ক্লিক করুন</small></h2>
+<h2 class="anim-in">টপ ৫ সেন্টার <small class="h2sub">value-for-money ও বিশ্বাসযোগ্যতা আগে · কার্ডে ক্লিক করলে পূর্ণ প্রোফাইল</small></h2>
 <div id="top5" class="top5"></div>
 <div id="morecentres" class="more-centres"></div>
 
@@ -542,18 +577,18 @@ li::marker{color:var(--g2)}
     <div class="verdict">
       <h3>তিনটি কথা, যা বাকি সব কিছুর ভিত্তি</h3>
       <ol>
-        <li><b>একমাত্র ওভারিতে আবার সিস্ট অপারেশন = সবচেয়ে বড় এড়ানো-সম্ভব ঝুঁকি।</b> ESHRE ২০২২ গাইডলাইন (ইউরোপীয় প্রজনন-বিজ্ঞান সোসাইটি) স্পষ্ট বলছে: IVF-এর আগে এন্ডোমেট্রিওমা সার্জারি রুটিনে করা <i>উচিত নয়</i> — জন্মহার বাড়ে না, বরং ডিম্বাণুর মজুদ (ovarian reserve) কমে। এক অপারেশনেই AMH গড়ে ~৩৯% কমে; দ্বিতীয়বার/উভয়-দিকের অপারেশনে ~৫৭% এবং স্থায়ী ডিম্বাশয়-অকার্যকারিতা (POI) ২.৪–১৩%। আপনার স্ত্রীর ক্ষেত্রে বাকি একটি ওভারিতে অপারেশন মানে কার্যত সেই সর্বোচ্চ-ঝুঁকির শ্রেণি। <span class="pill v">✔ যাচাইকৃত</span> — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8951218/">ESHRE 2022</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11116636/">Younis &amp; Taylor 2024</a>, <a href="https://academic.oup.com/humupd/article/21/6/809/628247">Hamdan 2015 meta-analysis</a></li>
+        <li><b>যত কম অপ্রয়োজনীয় অপারেশন, তত ভালো — বিশেষত ডিম্বাশয়ে।</b> ESHRE ২০২২ গাইডলাইন (ইউরোপীয় প্রজনন-বিজ্ঞান সোসাইটি) স্পষ্ট বলছে: IVF-এর আগে এন্ডোমেট্রিওমা (চকলেট সিস্ট) সার্জারি রুটিনে করা <i>উচিত নয়</i> — জন্মহার বাড়ে না, বরং ডিম্বাণুর মজুদ (ovarian reserve) কমে। এক অপারেশনেই AMH গড়ে ~৩৯% কমে; দ্বিতীয়বার বা উভয়-দিকের অপারেশনে ~৫৭% এবং স্থায়ী ডিম্বাশয়-অকার্যকারিতা (POI) ২.৪–১৩%। আগে একবার ওভারি-অপারেশন হয়ে থাকলে দ্বিতীয় অপারেশন সর্বোচ্চ-ঝুঁকির শ্রেণিতে পড়ে। <span class="pill v">✔ যাচাইকৃত</span> — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8951218/">ESHRE 2022</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11116636/">Younis &amp; Taylor 2024</a>, <a href="https://academic.oup.com/humupd/article/21/6/809/628247">Hamdan 2015 meta-analysis</a></li>
         <li><b>ভারতে কোনো সরকারি/স্বাধীন per-clinic জন্মহার তথ্য নেই।</b> "৭০–৮৫% সাকসেস" মানে সাধারণত বাছাই-করা রোগীদের positive pregnancy test — live birth নয়, অডিটও নেই। যাচাইযোগ্য (peer-reviewed) নিজস্ব ডেটা আছে মাত্র হাতে-গোনা কয়েকটির: <b>Sir Ganga Ram Hospital, দিল্লি</b> (২০২২ সালের সব রিট্রিভাল: cumulative live birth <span class="num">৩৯.৬%</span> ≤৩৫ বছর, <span class="num">২৭.২%</span> &gt;৩৫), <b>CMC Vellore</b> (গুরুতর এন্ডোমেট্রিওসিসে cumulative live birth <span class="num">২৬.২%</span> প্রতি নারী — অপ্রিয় হলেও সত্যি সংখ্যা), <b>Gunasheela ব্যাঙ্গালোর</b> (২০১৫–১৯ কোহর্ট), <b>Oasis হায়দ্রাবাদ</b> (নিজস্ব সাইকেল-ডেটায় গবেষণাপত্র)। বাকিদের "সাকসেস রেট" আমরা র‍্যাংকিংয়ে গণনায় ধরিনি।</li>
-        <li><b>আর ৩–৪ বছর ওষুধে সিস্ট ছোট করে অপেক্ষা = হারানো সময়।</b> Dienogest / GnRH-agonist / পিল দিয়ে IVF-এর আগে "প্রি-ট্রিটমেন্ট" জন্মহার বাড়ায় — এমন প্রমাণ নেই (Cochrane 2019, ESHRE 2022, ২০২৬ network meta-analysis)। বয়স প্রতি বছরে সম্ভাবনা কমায়। সিদ্ধান্ত: <b>এখনই AMH/AFC মেপে সরাসরি IVF, ডিম/ভ্রূণ ব্যাংকিং (freeze-all), দরকারে ২–৩ রিট্রিভালে জমিয়ে একটি করে ভ্রূণ ট্রান্সফার।</b></li>
+        <li><b>বছরের পর বছর ওষুধে "সিস্ট ছোট করে" অপেক্ষা করা = হারানো সময়।</b> Dienogest / GnRH-agonist / জন্মনিয়ন্ত্রণ পিল দিয়ে IVF-এর আগে "প্রি-ট্রিটমেন্ট" জন্মহার বাড়ায় — এমন প্রমাণ নেই (Cochrane 2019, ESHRE 2022, ২০২৬ network meta-analysis)। বয়স প্রতি বছরে সম্ভাবনা কমায়। বাস্তব সিদ্ধান্ত: <b>আগে AMH/AFC মাপুন, তারপর সরাসরি IVF; দরকার হলে freeze-all ও ২–৩ রিট্রিভালে ভ্রূণ জমিয়ে একটি করে ট্রান্সফার।</b></li>
       </ol>
     </div>
 
-    <h3 style="margin-top:1.4rem">আপনার কেসের জন্য আমাদের র‍্যাংকিং (value-for-money ও বিশ্বাসযোগ্যতা আগে)</h3>
+    <h3 style="margin-top:1.4rem">আমাদের র‍্যাংকিং (value-for-money ও বিশ্বাসযোগ্যতা আগে)</h3>
     <p class="muted small">র‍্যাংকিং যেভাবে হয়েছে: (১) যাচাইযোগ্য জন্মহার/গবেষণা-সংস্কৃতি, (২) এন্ডোমেট্রিওসিস + কম-রিজার্ভ কেস সামলানোর প্রমাণ, (৩) স্বচ্ছ দাম, (৪) রিভিউ-সততা (রিভিউ-ফার্মিং ধরা পড়লে বাদ), (৫) বাংলাদেশি রোগীর জন্য সুবিধা (ভাষা, ফ্লাইট, থাকা), (৬) হাসপাতাল-ব্যাকআপ। বিস্তারিত পদ্ধতি <a href="#truth">সেকশন ৩</a>-এ।</p>
 
     <div class="tbl">
       <table>
-        <thead><tr><th>#</th><th>সেন্টার · ডাক্তার · শহর</th><th>কেন এই কেসে</th><th class="num">১ ICSI সাইকেল আনুমানিক (ওষুধসহ)</th><th>সতর্কতা</th></tr></thead>
+        <thead><tr><th>#</th><th>সেন্টার · ডাক্তার · শহর</th><th>কেন এই তালিকায়</th><th class="num">১ ICSI সাইকেল আনুমানিক (ওষুধসহ)</th><th>সতর্কতা</th></tr></thead>
         <tbody>
           <tr><td><span class="rank gold">1</span></td><td><b>CMC Vellore — Reproductive Medicine Unit</b><br>Dr Mohan S. Kamath (Head), Prof. Aleyamma T.K. · ভেলোর, তামিলনাড়ু</td><td>একাডেমিক, অলাভজনক, নিজস্ব <i>অপ্রিয়</i> জন্মহার প্রকাশ করে; ডোনার/সারোগেসি নেই বলে আপসেল নেই; ওষুধ ফার্মেসি-দামে; বছরে ~৬৫০ ART + ~৫০০ এন্ডোমেট্রিওসিস-ঘন ল্যাপারোস্কপি — এই কেস তাদের প্রতিদিনের কাজ; ভেলোর কার্যত বাংলাভাষী শহর, ঘর ₹৫০০–১,৫০০/রাত।</td><td class="num">₹1.2–2.0 L<br><small>(ট্যারিফ অপ্রকাশিত, অনুমান)</small></td><td>OPD শুধু মঙ্গল ও শুক্র বিকেল; অপেক্ষা-সময় অপ্রকাশিত (২ ট্রিপ বা ৪–৬ সপ্তাহ ধরুন); ঢাকা থেকে ইনজেকশন শুরু করে মাঝপথে যাওয়ার সুবিধা নেই; ডোনার ডিম নেই।</td></tr>
           <tr><td><span class="rank">2</span></td><td><b>Sir Ganga Ram Hospital — Centre of IVF &amp; Human Reproduction</b><br>Dr Shweta Mittal Gupta (Director), Prof. Abha Majumdar (Emeritus, <b>বাংলা বলেন</b>), Dr Ruma Satwik (poor-responder গবেষণা) · দিল্লি</td><td>উত্তর ভারতের বৃহত্তম ইউনিট (~২,০০০ সাইকেল/বছর); peer-reviewed cumulative live birth (৩৯.৬%/২৭.২%); POSEIDON poor-responder-দের জন্য একই সাইকেলে দ্বিতীয় স্টিমুলেশন (DuoStim-ধরনের) প্রকাশিত প্রোটোকল; একই ছাদে ল্যাপারোস্কপি; রিভিউ-ফার্মিং নেই।</td><td class="num">₹1.5–2.5 L<br><small>(বিদেশিদের জন্য ~২৫% বেশি হতে পারে)</small></td><td>বড় হাসপাতালের লাইন/আমলাতন্ত্র; স্ক্যান/রিট্রিভাল জুনিয়র টিম করতে পারে — নাম ধরে জেনে নিন; স্টিমুলেশনের ২–৩ দিন আগে পৌঁছাতে বলে (~১৮–২২ দিন)।</td></tr>
@@ -596,9 +631,9 @@ li::marker{color:var(--g2)}
 <!-- ============ 2. THE CASE ============ -->
 <section id="case">
   <div class="wrap">
-    <h2>২. আপনার স্ত্রীর কেস — প্রমাণ কী বলে</h2>
+    <h2>চিকিৎসার সিদ্ধান্ত — প্রমাণ কী বলে</h2>
     <div class="prose">
-      <p><b>পরিস্থিতি:</b> এন্ডোমেট্রিওসিস → আগের অপারেশনে একটি ওভারি অপসারণ → বাকি ওভারিতে ~৬ সেমি এন্ডোমেট্রিওমা, ৩–৪ বছর ওষুধে (সম্ভবত dienogest/পিল/GnRH-agonist) ছোট হয়, বন্ধ করলে আবার বাড়ে। লক্ষ্য: সন্তান।</p>
+      <p>এই সেকশনটি সেই প্রশ্নগুলোর উত্তর দেয় যেগুলো নিয়ে ভারতের ক্লিনিকে বসে দর-কষাকষি করতে হয়। বিশেষ জোর দেওয়া হয়েছে <b>এন্ডোমেট্রিওসিস / চকলেট সিস্ট (এন্ডোমেট্রিওমা), কম ডিম্বাণু-মজুদ (low AMH) এবং আগে ওভারি-অপারেশন হয়েছে</b> — এমন পরিস্থিতিতে, কারণ বাংলাদেশ থেকে যাওয়া দম্পতিদের একটা বড় অংশ ঠিক এই সমস্যাগুলো নিয়েই যান। আপনার সমস্যা অন্য রকম হলেও নিচের প্রশ্ন-তালিকা ও সংখ্যাগুলো কাজে লাগবে।</p>
     </div>
 
     <div class="grid grid-2">
@@ -673,9 +708,9 @@ li::marker{color:var(--g2)}
       <div class="card">
         <h3>ডাক্তারকে যে প্রশ্নগুলো লিখে নিয়ে যাবেন</h3>
         <ol>
-          <li>আমার স্ত্রীর একটি ওভারি ও ৬ সেমি এন্ডোমেট্রিওমা — আপনি কি <b>সিস্ট রেখেই</b> স্টিমুলেশন ও রিট্রিভাল করবেন? না হলে কেন?</li>
+          <li>আমার/আমার স্ত্রীর এই সমস্যা (যেমন এন্ডোমেট্রিওমা, কম AMH, আগের ওভারি-অপারেশন) — আপনি কি <b>সিস্ট রেখেই</b> স্টিমুলেশন ও রিট্রিভাল করবেন? না হলে কেন?</li>
           <li>সিস্ট সুঁইয়ের পথে থাকলে <b>ইথানল স্ক্লেরোথেরাপি</b> করেন, না অপারেশন?</li>
-          <li>গত বছর AMH আমার স্ত্রীর মতো রোগীদের <b>প্রতি রিট্রিভালে live birth</b> কত (pregnancy নয়)? বাতিলের হার কত?</li>
+          <li>গত বছর আমার মতো AMH/বয়সের রোগীদের <b>প্রতি রিট্রিভালে live birth</b> কত (pregnancy নয়)? সাইকেল বাতিলের হার কত?</li>
           <li><b>Freeze-all</b> ও ২–৩ রিট্রিভালে ভ্রূণ জমানো — করেন? একটি করে ব্লাস্টোসিস্ট ট্রান্সফার (eSET) নীতি কী?</li>
           <li>রিট্রিভাল <b>কে</b> করবেন — আপনি নিজে? অ্যান্টিবায়োটিক প্রফিল্যাক্সিস দেন?</li>
           <li>ঢাকায় বেসলাইন স্ক্যান ও প্রথম কয়েকদিনের ইনজেকশন করে <b>স্টিমুলেশনের ৫–৭ দিনে</b> এলে চলবে?</li>
@@ -690,12 +725,12 @@ li::marker{color:var(--g2)}
 <!-- ============ 3. TRUTH ABOUT SUCCESS RATES ============ -->
 <section id="truth">
   <div class="wrap">
-    <h2>৩. "সাকসেস রেট" বনাম আসল জন্মহার — কীভাবে র‍্যাংক করলাম</h2>
+    <h2>"সাকসেস রেট" বনাম আসল জন্মহার — কীভাবে র‍্যাংক করলাম</h2>
     <div class="grid grid-2">
       <div class="card">
         <h3>ভারতে কেন per-clinic জন্মহার পাওয়া যায় না</h3>
         <ul>
-          <li>ART (Regulation) Act 2021 + Rules 2022-এ <b>National ART &amp; Surrogacy Registry</b> আছে — কিন্তু সেটি শুধু <i>রেজিস্ট্রেশন</i> তালিকা (নাম, ঠিকানা, Level-1/Level-2, স্ট্যাটাস); কোনো ফলাফল প্রকাশ হয় না। <a href="https://registry.artsurrogacy.gov.in/">registry.artsurrogacy.gov.in</a> <span class="pill v">✔</span></li>
+          <li>ART (Regulation) Act 2021 + Rules 2022-এ <b>National ART &amp; Surrogacy Registry</b> আছে — কিন্তু সেটি শুধু <i>রেজিস্ট্রেশন</i> তালিকা (নাম, ঠিকানা, Level-1/Level-2, স্ট্যাটাস); কোনো ফলাফল প্রকাশ হয় না। registry.artsurrogacy.gov.in <span class="pill v">✔</span></li>
           <li>ThePrint (২৫ জুন ২০২৬): ৭,৭৩২ আবেদনের মধ্যে ৪,১৮৮ অনুমোদিত, ৭১৯ প্রত্যাখ্যাত — কিছু প্রত্যাখ্যাত ক্লিনিক তবু চালু; দিল্লিতে ভ্রূণ অদলবদল DNA টেস্টে ধরা; গুরগাঁওয়ের অবৈধ সেন্টার থেকে ৮৪ ভ্রূণ জব্দ। <a href="https://theprint.in/ground-reports/india-ivf-boom-dark-side-unlicensed-clinics-embryo-mix-ups-dna-tests/2969215/">সূত্র</a> <span class="pill p">●</span></li>
           <li>ISAR-এর স্বেচ্ছা-রেজিস্ট্রি (NARI) সর্বশেষ প্রকাশ ২০০৭–০৯ ডেটা: clinical pregnancy/ফ্রেশ ট্রান্সফার ৩৩–৩৬%; জন্মহার রিপোর্টই নেই। <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3963305/">সূত্র</a></li>
           <li>ফল: যুক্তরাজ্যের HFEA বা যুক্তরাষ্ট্রের SART-এর মতো কিছু ভারতে নেই। ওয়েবসাইটের "৭০%" = বাছাই-করা রোগীর positive test, বাতিল-সাইকেল/গর্ভপাত/কম-রিজার্ভ রোগী হিসাবের বাইরে।</li>
@@ -721,7 +756,7 @@ li::marker{color:var(--g2)}
           <tr><td><b>Sir Ganga Ram, দিল্লি</b></td><td>২০২২-এর ৭০৬ own-egg রিট্রিভাল, ≥১ বছর ফলো-আপ: cumulative live birth / রিট্রিভাল</td><td class="num">39.6% (≤35)<br>27.2% (&gt;35)</td><td>peer-reviewed (Fertility Science &amp; Research 2024)। ওয়েবসাইটের "45%" দাবির চেয়ে কম — সেজন্যই পেপারটা বেশি বিশ্বাসযোগ্য। <a href="https://fertilityscienceresearch.org/association-between-number-of-oocytes-retrieved-with-cumulative-live-birth-rate/">লিংক</a> <span class="pill v">✔</span></td></tr>
           <tr><td><b>CMC Vellore</b></td><td>মধ্যম/গুরুতর এন্ডোমেট্রিওসিস কোহর্ট: cumulative live birth / নারী</td><td class="num">26.2%</td><td>RBMO মে ২০২৫ (Kamath et al.)। এন্ডো+PCOM 52.3%, PCOM 48.6%। <a href="https://www.rbmojournal.com/article/S1472-6483(25)00281-0/abstract">লিংক</a>; ২০১১ low-cost প্রোগ্রাম: LBR 19%/ট্রান্সফার, 14%/সাইকেল <a href="https://pubmed.ncbi.nlm.nih.gov/21987524/">লিংক</a> <span class="pill v">✔</span></td></tr>
           <tr><td><b>Gunasheela, ব্যাঙ্গালোর</b></td><td>১,৯৮৯ নারী (২০১৫–১৯): CLBR / রিট্রিভাল বনাম ডিমের সংখ্যা</td><td class="num">ফ্রেশ ~41% (৬–১০ ডিম, ≤35); সর্বোচ্চ CLBR 81% (&gt;25 ডিম)</td><td>J Hum Reprod Sci 2022। কিন্তু ওয়েবসাইটের মাসিক "৭০%" = beta-hCG। <a href="https://pubmed.ncbi.nlm.nih.gov/36341006/">লিংক</a> <span class="pill v">✔</span></td></tr>
-          <tr><td><b>Oasis, হায়দ্রাবাদ</b></td><td>নিজস্ব সাইকেল-ডেটায় ~১০টি peer-reviewed পেপার (frozen single-blastocyst outcomes 2026 ইত্যাদি)</td><td class="num">ক্লিনিক-ব্যাপী LBR প্রকাশিত নয়</td><td>ভেতরে ট্র্যাকিং হয় — এটুকু প্রমাণিত। <a href="https://pubmed.ncbi.nlm.nih.gov/?term=%28%22Oasis+Fertility%22+OR+%22Oasis+Centre+for+Reproductive+Medicine%22%29+AND+Hyderabad&sort=date">PubMed</a> <span class="pill v">✔</span></td></tr>
+          <tr><td><b>Oasis, হায়দ্রাবাদ</b></td><td>নিজস্ব সাইকেল-ডেটায় ~১০টি peer-reviewed পেপার (frozen single-blastocyst outcomes 2026 ইত্যাদি)</td><td class="num">ক্লিনিক-ব্যাপী LBR প্রকাশিত নয়</td><td>ভেতরে ট্র্যাকিং হয় — এটুকু প্রমাণিত। <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Oasis+Fertility+Hyderabad">PubMed</a> <span class="pill v">✔</span></td></tr>
           <tr><td>ART Fertility Clinics (গ্রুপ)</td><td>PGT-A-tested ফ্রোজেন ট্রান্সফারে positive test / ongoing pregnancy</td><td class="num">2025: 64% / 51%</td><td>live birth নয়, ভারত-আলাদা নয়। <a href="https://www.artfertilityclinics.com/uae/en/success-rates">লিংক</a> <span class="pill m">○</span></td></tr>
           <tr><td>Nova IVF (নিজস্ব ব্যাখ্যা)</td><td>"ভারতে IVF সাকসেস ৩০–৩৫%"; বয়সভেদে ৪০–৫০% (&lt;35), ৩৫–৪২%, ২৫–৩৫%</td><td class="num">—</td><td>sanity-check হিসেবে কাজের: ঢালাও "৫০%+" মানেই মার্কেটিং। <a href="https://www.novaivffertility.com/fertility-help/ivf-success-rate-in-india">লিংক</a></td></tr>
           <tr><td>বাংলাদেশ: ICRC (Dr Rashida Begum)</td><td>"35% clinical pregnancy, 25% take-home baby"</td><td class="num">25%</td><td>স্ব-ঘোষিত হলেও বিরল সততা। <a href="https://icrc-bd.org/">লিংক</a> <span class="pill m">○</span></td></tr>
@@ -730,14 +765,14 @@ li::marker{color:var(--g2)}
         </tbody>
       </table>
     </div>
-    <p class="small muted">সোজা কথা: ভালো সেন্টারও প্রতি রিট্রিভালে ৩০–৪০%-এর বেশি দিতে পারে না; আপনার কেসে সংখ্যাটা ঠিক করবে AMH/AFC ও বয়স, ক্লিনিকের নাম নয়। ক্লিনিকের কাজ — ডিম নষ্ট না করা, ভালো ল্যাব, সৎ পরামর্শ।</p>
+    <p class="small muted">সোজা কথা: ভালো সেন্টারও প্রতি রিট্রিভালে ৩০–৪০%-এর বেশি দিতে পারে না; আপনার সংখ্যাটা ঠিক করবে AMH/AFC ও বয়স, ক্লিনিকের নাম নয়। ক্লিনিকের কাজ — ডিম নষ্ট না করা, ভালো ল্যাব, সৎ পরামর্শ।</p>
   </div>
 </section>
 
 <!-- ============ 4. COMPARISON ============ -->
 <section id="compare">
   <div class="wrap">
-    <h2>৪. তুলনা টেবিল — শর্টলিস্টের সব সেন্টার এক পাতায়</h2>
+    <h2>তুলনা টেবিল — শর্টলিস্টের সব সেন্টার এক পাতায়</h2>
     <div class="legend"><span class="pill good">উচ্চ</span> ভালো · <span class="pill warn">মাঝারি</span> · <span class="pill bad">কম / লাল পতাকা</span> · দাম = ১টি ICSI সাইকেল ওষুধসহ আনুমানিক (৳; পাশে ₹)</div>
     <div class="tbl compact">
       <table>
@@ -768,7 +803,7 @@ li::marker{color:var(--g2)}
 <!-- ============ 5. CENTRES BY CITY ============ -->
 <section id="centres">
   <div class="wrap">
-    <h2>৫. শহরভিত্তিক বিশ্লেষণ — সেন্টার, ডাক্তার, দাম, যোগাযোগ</h2>
+    <h2>শহরভিত্তিক বিশ্লেষণ — সেন্টার, ডাক্তার, দাম, যোগাযোগ</h2>
     <p class="muted small">প্রতিটি কার্ডে: কে আছেন (২০২৫–২৬-এ যাচাই), প্রমাণ, দাম, বাংলাদেশি রোগীর অভিজ্ঞতা, থাকা, এবং সরাসরি যোগাযোগ-লিংক। "▸ বিস্তারিত" খুললে সূত্রসহ পুরো নোট।</p>
 
     <h3 style="margin-top:1rem">ভেলোর (তামিলনাড়ু)</h3>
@@ -856,7 +891,7 @@ li::marker{color:var(--g2)}
         <div class="fact"><div class="k">Dr Rooma Sinha</div><div class="v">Apollo Hospitals Jubilee Hills (B-wing রুম 23); ~৩০ বছর; রোবোটিক/ল্যাপারোস্কোপিক এন্ডোমেট্রিওসিস এক্সিশন; Endometriosis Society of India-র Joint Secretary; ৪০+ পেপার · WhatsApp +91 95503 26663 · <a href="mailto:drroomasinhagyn@gmail.com">drroomasinhagyn@gmail.com</a> · <a href="https://drroomasinha.in/">drroomasinha.in</a>। "অপারেশন লাগবে কি না" — এক কনসাল্টে সবচেয়ে ওজনদার মত; তিনি "না" বললে Oasis-এ IVF।</div></div>
         <div class="fact"><div class="k">রিভিউ/অভিজ্ঞতা</div><div class="v">JustDial 4.6 (~1,045); YouTube টেস্টিমোনিয়াল-ভারী; ভোক্তা-ফোরামে অভিযোগ পাওয়া যায়নি; বাংলাদেশি-নির্দিষ্ট অভিজ্ঞতা অনলাইনে নেই।</div></div>
         <div class="fact"><div class="k">থাকা</div><div class="v">Banjara Hills সার্ভিসড অ্যাপার্টমেন্ট ₹1,590 (Elysium Inn) – ₹5,300+ (Trusted Stay, রান্নাঘরসহ); Airbnb ~₹955/রাত থেকে। বাঙালি খাবার: Amantran, Kolkata House, Nabanno, Bong Junction (JustDial-এ ১৩৫টি বাঙালি হোটেল)।</div></div>
-        <div class="fact"><div class="k">সূত্র</div><div class="v"><a href="https://oasisindia.in/why-oasis/our-expert-team/dr-durga-rao/">Dr Durga Rao</a> · <a href="https://oasisindia.in/blog/ivf-cost-in-hyderabad/">কস্ট ব্লগ</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=%28%22Oasis+Fertility%22+OR+%22Oasis+Centre+for+Reproductive+Medicine%22%29+AND+Hyderabad&sort=date">PubMed</a> · <a href="https://www.apollohospitals.com/doctors/obstetrician-and-gynecologist/hyderabad/dr-rooma-sinha">Apollo প্রোফাইল</a> · <a href="https://bag2bag.in/service-apartments/hyderabad/banjara-hills">Bag2Bag Banjara Hills</a></div></div>
+        <div class="fact"><div class="k">সূত্র</div><div class="v"><a href="https://oasisindia.in/why-oasis/our-expert-team/dr-durga-rao/">Dr Durga Rao</a> · <a href="https://oasisindia.in/blog/ivf-cost-in-hyderabad/">কস্ট ব্লগ</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Oasis+Fertility+Hyderabad">PubMed</a> · <a href="https://www.apollohospitals.com/doctors/obstetrician-and-gynecologist/hyderabad/dr-rooma-sinha">Apollo প্রোফাইল</a> · <a href="https://bag2bag.in/service-apartments/hyderabad/banjara-hills">Bag2Bag Banjara Hills</a></div></div>
       </div>
     </div>
     <div class="tbl compact">
@@ -917,7 +952,7 @@ li::marker{color:var(--g2)}
           <div class="tags"><span class="pill good">এন্ডোমেট্রিওসিস + IVF একই ব্যক্তি</span><span class="pill v">✔ poor-responder পেপার</span><span class="pill warn">খুব ব্যস্ত</span></div>
         </div></div>
       <div class="facts">
-        <div class="fact"><div class="k">কেন</div><div class="v">সিস্ট রেখে স্টিমুলেশন বনাম ন্যূনতম হস্তক্ষেপ — এই বিচারটাই এই কেসের মূল; তিনি দুই দিকই নিজে করেন। Ruby Hall NABH হাসপাতাল = রিট্রিভাল-জটিলতার নিরাপত্তা-জাল। poor-responder-এ stem cell/PRP পেপার (JHRS 2020) — ছোট/পরীক্ষামূলক; এর জন্য বাড়তি টাকা নয়।</div></div>
+        <div class="fact"><div class="k">কেন</div><div class="v">সিস্ট রেখে স্টিমুলেশন বনাম ন্যূনতম হস্তক্ষেপ — জটিল এন্ডোমেট্রিওসিস কেসে এই বিচারটাই মূল; তিনি দুই দিকই নিজে করেন। Ruby Hall NABH হাসপাতাল = রিট্রিভাল-জটিলতার নিরাপত্তা-জাল। poor-responder-এ stem cell/PRP পেপার (JHRS 2020) — ছোট/পরীক্ষামূলক; এর জন্য বাড়তি টাকা নয়।</div></div>
         <div class="fact"><div class="k">দাম ও সময়</div><div class="v">Ruby Hall IVF ₹1.2–1.5 L (অ্যাগ্রিগেটর, অযাচাইকৃত) + ওষুধ; Solo দাম নেই; বিজ্ঞাপনে "৮০%" উপেক্ষা করুন। Ruby Hall OPD সোম ও বৃহঃ ১০–১টা।</div></div>
         <div class="fact"><div class="k">যোগাযোগ</div><div class="v">Solo: +91 96732 34833 · <a href="mailto:info@soloclinicindia.com">info@soloclinicindia.com</a> · <a href="https://www.soloclinicivf.com/">soloclinicivf.com</a> (ভিডিও কনসাল্ট) · Ruby Hall WhatsApp +91 86009 93595 · <a href="https://rubyhall.com/doctors_listing/dr-sunita-tandulwadkar/">rubyhall.com</a></div></div>
         <div class="fact"><div class="k">থাকা</div><div class="v">Camp/Sassoon Rd-এ পারিবারিক গেস্টহাউস ₹1,600 থেকে, হোটেল ₹2,000–2,700 (Hotel Shree Panchratna, Satyam Guest House); বাঙালি খাবার: Aahar (Camp), FoodBengal। ঢাকা→মুম্বাই ফ্লাইট + ৩–৪ ঘণ্টা সড়ক/ট্রেন।</div></div>
@@ -979,7 +1014,7 @@ li::marker{color:var(--g2)}
 <!-- ============ 6. APPOINTMENT ============ -->
 <section id="appointment">
   <div class="wrap">
-    <h2>৬. অ্যাপয়েন্টমেন্ট — ধাপে ধাপে, যোগাযোগ-তালিকা ও ইমেইল টেমপ্লেট</h2>
+    <h2>অ্যাপয়েন্টমেন্ট — ধাপে ধাপে, যোগাযোগ-তালিকা ও ইমেইল টেমপ্লেট</h2>
     <div class="grid grid-2">
       <div class="card">
         <h3>৮ ধাপ (সব সেন্টারে একই)</h3>
@@ -988,7 +1023,7 @@ li::marker{color:var(--g2)}
           <li><b>২–৩ সেন্টারে একসাথে রিপোর্ট পাঠান</b> (ইমেইল + WhatsApp; নিচের টেমপ্লেট)। লিখিত উত্তর চান: প্ল্যান, দিন-সংখ্যা, itemised দাম, "সিস্ট রেখে IVF করবেন কি না"।</li>
           <li><b>ভিডিও/টেলি-কনসাল্ট</b> (Solo Clinic, Malpani ₹3,000 Zoom, Delhi-র বেশিরভাগ, Oasis ফ্রি) — মূল প্রশ্নগুলো করুন; কে রিট্রিভাল করবেন জেনে নিন।</li>
           <li><b>ইনভাইটেশন/অ্যাপয়েন্টমেন্ট লেটার</b> নিন (দুজনের নাম, পাসপোর্ট নম্বর, চিকিৎসার ধরন, তারিখ) — মেডিকেল ভিসার জন্য বাধ্যতামূলক। CMC-তে "AYUSH INFO FORM" ইমেইল করে।</li>
-          <li><b>ভিসা</b> (সেকশন ৭) — স্ত্রীর MED, স্বামীর MED-X (attendant) বা দুজনেই MED।</li>
+          <li><b>ভিসা</b> (সেকশন ৭) — রোগীর MED, সঙ্গীর MED-X (attendant); IVF-এ দুজনেই রোগী হলে দুজনের MED।</li>
           <li><b>তারিখ ঠিক করুন মাসিকের সাথে মিলিয়ে</b>: ফ্রেশ সাইকেল হলে Day 1-এর ২–৩ দিন আগে পৌঁছান; রিমোট-স্টার্ট অনুমতি থাকলে ঢাকায় Day 2 স্ক্যান + ইনজেকশন শুরু, স্টিমুলেশনের ৫–৭ দিনে পৌঁছান।</li>
           <li><b>ফ্লাইট + থাকা</b> বুক করুন (সেকশন ৮–১০); ফেরার টিকিট নমনীয় রাখুন — রিট্রিভাল/ট্রান্সফারের দিন ১–৩ দিন এদিক-ওদিক হয়।</li>
           <li>পৌঁছে <b>রেজিস্ট্রেশন</b> (পাসপোর্ট, ভিসা, বিয়ের সনদ, ছবি) → বেসলাইন স্ক্যান → লিখিত সম্মতি (ART Rules Form) → শুরু। প্রতিটি পেমেন্টের রসিদ ও ভ্রূণ/ডিমের সংখ্যা লিখিত নিন।</li>
@@ -1047,7 +1082,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ 7. VISA ============ -->
 <section id="visa">
   <div class="wrap">
-    <h2>৭. ভারতীয় মেডিকেল ভিসা — বাংলাদেশি নাগরিকের জন্য (আগস্ট ২০২৬)</h2>
+    <h2>ভারতীয় মেডিকেল ভিসা — বাংলাদেশি নাগরিকের জন্য (আগস্ট ২০২৬)</h2>
     <div class="grid grid-2">
       <div class="card">
         <h3>বর্তমান অবস্থা</h3>
@@ -1085,10 +1120,85 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
   </div>
 </section>
 
+<!-- ============ FLIGHT PLANNER (dynamic) ============ -->
+<section id="planner">
+  <div class="wrap">
+    <h2>ফ্লাইট প্ল্যানার — আপনার তারিখ দিয়ে টিকিট খুঁজুন <small class="h2sub">কত দিন পরে যাবেন আর কত দিন থাকবেন — শুধু এটুকু বলুন; বাকিটা নিজেই হিসাব করে সরাসরি সার্চ-লিংক বানিয়ে দেবে</small></h2>
+
+    <div class="planner-card anim-in">
+      <div class="pl-grid">
+        <label class="pl-f"><span>কোন শহরে যাবেন</span>
+          <select id="plCity"></select>
+        </label>
+        <label class="pl-f"><span>কবে রওনা</span>
+          <input type="date" id="plDep">
+          <small id="plDepHint" class="muted"></small>
+        </label>
+        <label class="pl-f"><span>কত দিন থাকবেন</span>
+          <select id="plLen">
+            <option value="10">১০ দিন — শুধু কনসাল্ট/পরীক্ষা</option>
+            <option value="16">১৬ দিন — রিমোট-স্টার্ট সাইকেল</option>
+            <option value="21" selected>২১ দিন (৩ সপ্তাহ) — সাধারণ সাইকেল</option>
+            <option value="26">২৬ দিন — সাইকেল + কিছু বাফার</option>
+            <option value="35">৩৫ দিন (৫ সপ্তাহ) — এক ট্রিপে সব</option>
+            <option value="45">৪৫ দিন — লম্বা/জটিল কেস</option>
+            <option value="8">৮ দিন — শুধু FET ট্রিপ</option>
+          </select>
+        </label>
+        <label class="pl-f"><span>কতজন যাবেন</span>
+          <select id="plPax">
+            <option value="1">১ জন</option>
+            <option value="2" selected>২ জন (দম্পতি)</option>
+            <option value="3">৩ জন (সঙ্গে অ্যাটেনডেন্ট)</option>
+            <option value="4">৪ জন</option>
+          </select>
+        </label>
+      </div>
+      <div class="pl-quick">
+        <span class="muted small">দ্রুত বাছাই:</span>
+        <button class="qbtn" data-days="30">১ মাস পর</button>
+        <button class="qbtn" data-days="45">দেড় মাস পর</button>
+        <button class="qbtn" data-days="60">২ মাস পর</button>
+        <button class="qbtn" data-days="90">৩ মাস পর</button>
+        <button class="qbtn" data-days="120">৪ মাস পর</button>
+        <button class="qbtn" data-days="180">৬ মাস পর</button>
+      </div>
+      <div id="plOut" class="pl-out"></div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:1.1rem">
+      <div class="card anim-in">
+        <h3>টিকিট খোঁজার নিয়ম — সস্তা আগে দেখবেন কীভাবে</h3>
+        <ol>
+          <li><b>Google Flights:</b> উপরের বোতামে গেলে আপনার তারিখ বসানো থাকবে। ফলাফলের উপরে দুটি ট্যাব — <b>"Best"</b> আর <b>"Cheapest"</b>। <b>Cheapest-এ চাপ দিন</b>, নইলে Google সময়/স্টপ মিলিয়ে "ভালো" ফ্লাইট আগে দেখায়, সবচেয়ে সস্তাটা নয়।</li>
+          <li><b>Kayak:</b> লিংকেই <code>sort=price_a</code> বসানো — খুললেই সবচেয়ে কম দাম আগে।</li>
+          <li><b>Skyscanner:</b> খোলার পর উপরে <b>"Cheapest"</b> ট্যাব বেছে নিন; "Whole month"/"Cheapest month" দিলে পুরো মাসের সবচেয়ে সস্তা দিন দেখায়।</li>
+          <li><b>তারিখ নাড়াচাড়া করুন:</b> Google Flights-এ <b>"Date grid"</b> (তারিখের ছক) ও <b>"Price graph"</b> (দামের গ্রাফ) — যাওয়া-আসার তারিখ ১–৩ দিন এদিক-ওদিক করলেই প্রায়ই ৩–৮ হাজার টাকা কমে।</li>
+          <li><b>বাংলাদেশি সাইটেও মিলিয়ে নিন:</b> ShareTrip, GoZayaan, Flight Expert — মাঝে মাঝে দেশীয় এয়ারলাইনে (Biman/US-Bangla) এদের দাম Google-এর চেয়ে কম, আর পেমেন্ট টাকায় করা যায়।</li>
+          <li><b>বুকিংয়ের আগে দেখুন:</b> ভাড়ার সাথে কত কেজি লাগেজ আছে (নিচের টেবিল), রিফান্ড/ডেট-চেঞ্জ ফি কত, আর ফিরতি তারিখ বদলানো যাবে কি না — IVF-এ রিট্রিভাল/ট্রান্সফারের দিন ১–৩ দিন এদিক-ওদিক হয়।</li>
+          <li><b>এক দিকের (one-way) টিকিট আলাদা করে কিনবেন না</b> যদি না ফেরার তারিখ একেবারেই অনিশ্চিত হয় — রিটার্ন টিকিট প্রায় সবসময় সস্তা, আর ভিসা/ইমিগ্রেশনে ফিরতি টিকিট দেখাতে হতে পারে।</li>
+        </ol>
+        <div class="callout good" style="margin-bottom:0"><b>কখন বুক করবেন:</b> সাধারণত <b>৪–৮ সপ্তাহ আগে</b> দাম সবচেয়ে ভালো থাকে। ২ সপ্তাহের কম সময় হাতে থাকলে দাম দ্রুত বাড়ে। তবে <b>ডাক্তারের স্লট আর মাসিকের তারিখ আগে</b>, সস্তা ভাড়া পরে — ভুল সময়ে গিয়ে সাইকেল মিস করলে ক্ষতি অনেক বেশি।</div>
+      </div>
+      <div class="card anim-in">
+        <h3>ভাড়া বাড়ে-কমে কীসে</h3>
+        <ul>
+          <li><b>ঈদের সপ্তাহ</b> (ঈদুল ফিতর ও ঈদুল আজহা, আগে-পরে ৭–১০ দিন): ঢাকা থেকে সব রুটে ভাড়া ১.৫–৩ গুণ; IVAC/অফিসও বন্ধ থাকে। উপরের প্ল্যানার আপনার তারিখ এই জানালায় পড়লে লাল সতর্কতা দেখাবে।</li>
+          <li><b>ভারতীয় উৎসব:</b> দুর্গাপূজা, দীপাবলি, পোঙ্গল (তামিলনাড়ু, ১৪–১৭ জানুয়ারি), বড়দিন–নববর্ষ — ভাড়া ও হোটেল দুটোই বাড়ে, হাসপাতালের OPD-ও ছুটি/সীমিত থাকতে পারে।</li>
+          <li><b>ভারতের স্কুল-ছুটি</b> (মধ্য-এপ্রিল–মধ্য-জুন): ঘরোয়া পর্যটনের চাপে ডোমেস্টিক লেগ ও হোটেল দামি।</li>
+          <li><b>সপ্তাহের দিন:</b> মঙ্গল–বুধ সাধারণত সস্তা; বৃহস্পতি/শুক্র ও রোববার দামি।</li>
+          <li><b>আবহাওয়া:</b> চেন্নাই/ভেলোরে অক্টোবর-মাঝ থেকে ডিসেম্বর-মাঝ উত্তর-পূর্ব মৌসুমি বৃষ্টি (জলাবদ্ধতা/ঘূর্ণিঝড়ের ঝুঁকি); দিল্লিতে নভেম্বর–জানুয়ারি ধোঁয়াশা ও ডিসেম্বর–জানুয়ারি কুয়াশায় ফ্লাইট দেরি; এপ্রিল–জুন উত্তর ও দক্ষিণ ভারত দুটোতেই তীব্র গরম (৪০–৪৫°C)।</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">নিচের <a href="#season">"কখন সস্তা / দামি"</a> সেকশনে আপনার তারিখ ধরে মাস-ভিত্তিক পুরো ছক আছে।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 8. FLIGHTS ============ -->
 <section id="flights">
   <div class="wrap">
-    <h2>৮. ফ্লাইট — Google Flights লাইভ ভাড়া (১৮ আগস্ট ২০২৬)</h2>
+    <h2>ফ্লাইট — Google Flights লাইভ ভাড়া (১৮ আগস্ট ২০২৬)</h2>
     <p class="muted small">সব ভাড়া <b>Google Flights</b> থেকে, ঢাকা (DAC) থেকে <b>রিটার্ন, ইকোনমি, ১ জন প্রাপ্তবয়স্ক, ট্যাক্সসহ, ৳ (BDT)</b> — দম্পতির জন্য ×২। S1 = ২০ সেপ্টে→১১ অক্টো ২০২৬ (৩ সপ্তাহ), S2 = ৮ নভে→১৩ ডিসে ২০২৬ (৫ সপ্তাহ)। <b>Skyscanner</b> সব চেষ্টায় (.net/.com/.co.in) "Are you a person or a robot?" ক্যাপচায় আটকেছে — সেখান থেকে ভাড়া নেওয়া যায়নি; আপনি ফোনের Skyscanner অ্যাপে একই তারিখ মিলিয়ে দেখতে পারেন। ভাড়া প্রতিদিন বদলায়।</p>
     <div class="tbl">
       <table>
@@ -1102,7 +1212,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
           <tr><td>S2</td><td class="num">31,235</td><td>IndiGo · ননস্টপ · 3h25</td><td>Air India ননস্টপ 42,656</td><td>—</td></tr>
           <tr><td rowspan="2"><b>ঢাকা → ব্যাঙ্গালোর (BLR)</b></td><td>S1</td><td class="num">32,553</td><td>IndiGo · ১ স্টপ (MAA) · ভালো কানেকশন 5h45 @ 32,886</td><td>—</td><td>ননস্টপ নেই</td></tr>
           <tr><td>S2</td><td class="num">40,166</td><td>IndiGo · ১ স্টপ (CCU) · 10h35; via HYD 6h40 @ 44,157</td><td>—</td><td>—</td></tr>
-          <tr><td rowspan="2"><b>ঢাকা → হায়দ্রাবাদ (HYD)</b></td><td>S1</td><td class="num">102,157*</td><td>SriLankan via CMB 31h (Google-এ IndiGo দেখায়নি)</td><td>Etihad via AUH 123,444</td><td rowspan="2">*<b>IndiGo 6E1118 ঢাকা–হায়দ্রাবাদ ননস্টপ (~2h35, সোম/মঙ্গল/বৃহঃ/শনি) শিডিউলে আছে</b>; ixigo/goindigo-তে ওয়ান-ওয়ে ~₹11,200–12,600 — অর্থাৎ রিটার্ন ~৳32–36k হওয়ার কথা। Google Flights সেদিন এই ভাড়া দেখায়নি; <a href="https://www.goindigo.in/international-flights/dhaka-to-hyderabad-flights.html">goindigo.in</a>-এ সরাসরি দেখুন। নয়তো ঢাকা→চেন্নাই + চেন্নাই→হায়দ্রাবাদ (১ ঘণ্টা)।</td></tr>
+          <tr><td rowspan="2"><b>ঢাকা → হায়দ্রাবাদ (HYD)</b></td><td>S1</td><td class="num">102,157*</td><td>SriLankan via CMB 31h (Google-এ IndiGo দেখায়নি)</td><td>Etihad via AUH 123,444</td><td rowspan="2">*<b>IndiGo 6E1118 ঢাকা–হায়দ্রাবাদ ননস্টপ (~2h35, সোম/মঙ্গল/বৃহঃ/শনি) শিডিউলে আছে</b>; ixigo/goindigo-তে ওয়ান-ওয়ে ~₹11,200–12,600 — অর্থাৎ রিটার্ন ~৳32–36k হওয়ার কথা। Google Flights সেদিন এই ভাড়া দেখায়নি; goindigo.in-এ সরাসরি দেখুন। নয়তো ঢাকা→চেন্নাই + চেন্নাই→হায়দ্রাবাদ (১ ঘণ্টা)।</td></tr>
           <tr><td>S2</td><td class="num">88,787*</td><td>SriLankan via CMB</td><td>—</td></tr>
           <tr><td><b>ঢাকা → পুনে (PNQ)</b></td><td>S1/S2</td><td class="num">n/a</td><td>Air India via DEL — Google-এ দাম নেই</td><td>ঢাকা→মুম্বাই + সড়ক</td><td>মুম্বাই হয়েই যান</td></tr>
           <tr><td><b>ঢাকা → কলকাতা (CCU)</b> (ট্রানজিট)</td><td>S1/S2</td><td class="num">17,907</td><td>IndiGo · ননস্টপ · 1h05</td><td>US-Bangla 19,306; Biman (দাম দেখায়নি)</td><td>"typical"</td></tr>
@@ -1132,13 +1242,93 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
         </ul>
       </div>
     </div>
+      <h3 style="margin-top:1.6rem">ব্যাগেজ — কোন এয়ারলাইনে কত কেজি <small class="h2sub" style="display:inline">প্রতিটি সংখ্যা এয়ারলাইনের নিজের ওয়েবসাইট থেকে (আগস্ট ২০২৬)</small></h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>এয়ারলাইন</th><th>রুট</th><th class="num">ফ্রি চেকড (ইকোনমি)</th><th class="num">কেবিন</th><th>ব্যক্তিগত ব্যাগ</th><th>নোট</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="4"><b>Biman</b></td><td>ঢাকা → দিল্লি</td><td class="num"><b>২০ কেজি</b></td><td class="num" rowspan="4">৭ কেজি, ১ পিস<br>৫৬×৩৬×২৩ সেমি</td><td rowspan="4">আলাদা নেই — তবে নিচের ফ্রি ছাড় দেখুন</td><td rowspan="4">ওজন-ভিত্তিক, সর্বোচ্চ ২ পিস, প্রতি পিস ≤২৫ কেজি<br><b>⚠ "Special Fare Class S" টিকিটে চেকড ব্যাগেজ শূন্য</b>, Class G-তে ২০–২৩ কেজি</td></tr>
+          <tr><td>দিল্লি → ঢাকা</td><td class="num"><b>৩০ কেজি</b></td></tr>
+          <tr><td>ঢাকা ↔ কলকাতা</td><td class="num">২০ কেজি</td></tr>
+          <tr><td>ঢাকা ↔ চেন্নাই</td><td class="num"><b>৩০ কেজি</b></td></tr>
+          <tr><td rowspan="3"><b>US-Bangla</b></td><td>ঢাকা → কলকাতা</td><td class="num">২০ কেজি (১ পিস)</td><td class="num" rowspan="3">৭ কেজি<br><b>১৫×২২×৩৫ সেমি</b> — খুবই ছোট, ব্যাগ মেপে নিন</td><td rowspan="3">প্রকাশিত নেই</td><td rowspan="3">—</td></tr>
+          <tr><td>কলকাতা → ঢাকা</td><td class="num">২৫ কেজি (১ পিস)</td></tr>
+          <tr><td>ঢাকা ↔ চেন্নাই</td><td class="num"><b>৩০ কেজি</b> (সর্বোচ্চ ২ পিস)</td></tr>
+          <tr class="hl"><td><b>IndiGo</b></td><td>ঢাকা ↔ চেন্নাই, দিল্লি, মুম্বাই, কলকাতা, হায়দ্রাবাদ</td><td class="num"><b>৩০ কেজি</b><br><small>(২ পিস পর্যন্ত)</small></td><td class="num">৭ কেজি<br>৫৫×৩৫×২৫ সেমি</td><td><b>হ্যাঁ — ১টি ≤৩ কেজি</b> (হ্যান্ডব্যাগ/ল্যাপটপ ব্যাগ)</td><td>সব ভাড়ায় কেবিন একই। <b>ওয়েবসাইটে "Lite" ভাড়ার একটি অনুচ্ছেদে ২০ কেজি লেখা আছে — নিজের টিকিটে যা লেখা সেটাই চূড়ান্ত</b></td></tr>
+          <tr><td rowspan="2"><b>Air India</b></td><td rowspan="2">ঢাকা ↔ দিল্লি, মুম্বাই</td><td class="num">Value ও Classic: <b>৩০ কেজি</b></td><td class="num" rowspan="2">৭ কেজি<br>৫৫×৪০×২০ সেমি</td><td rowspan="2"><b>হ্যাঁ — ১টি ছোট ব্যাগ</b></td><td rowspan="2">২৫ কেজির বেশি হলে ২ পিসে ভাগ করা যায়; এক পিস সর্বোচ্চ ৩২ কেজি</td></tr>
+          <tr><td class="num">Flex: <b>৩৫ কেজি</b></td></tr>
+          <tr><td><b>Air India Express</b></td><td>ঢাকা ↔ কলকাতা</td><td class="num"><b>৩০ কেজি, ২ পিস</b></td><td class="num">২ পিস মিলিয়ে ৭ কেজি</td><td><b>হ্যাঁ</b> — ৪০×৩০×১০ সেমি</td><td>তাদের "১৫ কেজি" শুধু ভারতের অভ্যন্তরীণ রুটে</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted"><b>কোন শহরে কে ওড়ে (আগস্ট ২০২৬):</b> দিল্লি — Air India, IndiGo, Biman · মুম্বাই — Air India, IndiGo · চেন্নাই — Air India, IndiGo, US-Bangla, Biman · কলকাতা — Air India Express, IndiGo, US-Bangla, Biman · হায়দ্রাবাদ — শুধু IndiGo · <b>ব্যাঙ্গালোরে ননস্টপ নেই</b>। <b>মাইলেজ কার্ড:</b> Biman Silver +১০ কেজি, Gold +২০ কেজি; Air India Maharaja Club Silver +৫, Gold/Platinum +২০ কেজি।</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>অতিরিক্ত ব্যাগেজের দাম — দিক ভেদে বিরাট পার্থক্য</h4>
+        <div class="tbl compact"><table>
+          <thead><tr><th>এয়ারলাইন · রুট</th><th class="num">আগে কিনলে</th><th class="num">বিমানবন্দরে</th></tr></thead>
+          <tbody>
+            <tr><td>Biman/US-Bangla ঢাকা→কলকাতা</td><td class="num">—</td><td class="num">US$5/কেজি</td></tr>
+            <tr class="hl"><td><b>Biman/US-Bangla ঢাকা→চেন্নাই/দিল্লি</b></td><td class="num">—</td><td class="num"><b>US$15/কেজি</b></td></tr>
+            <tr class="hl"><td><b>US-Bangla চেন্নাই→ঢাকা</b></td><td class="num">—</td><td class="num"><b>₹945/কেজি</b> (সবচেয়ে দামি)</td></tr>
+            <tr><td>Biman দিল্লি/চেন্নাই→ঢাকা</td><td class="num">—</td><td class="num">₹619 + কর</td></tr>
+            <tr><td><b>IndiGo</b> ঢাকা→ভারত ৩০ কেজি</td><td class="num"><b>₹37,300</b> (≈₹1,243/কেজি)</td><td class="num">₹1,500/কেজি</td></tr>
+            <tr><td><b>IndiGo</b> ভারত→ঢাকা ৩০ কেজি</td><td class="num"><b>₹34,000</b> (≈₹1,133/কেজি)</td><td class="num">₹1,500/কেজি</td></tr>
+            <tr><td><b>Air India</b> দুই দিকেই</td><td class="num">২০% পর্যন্ত সাশ্রয়<br><small>ছাড়ার ২ ঘণ্টা আগ পর্যন্ত</small></td><td class="num">US$17/কেজি</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout warn" style="margin-bottom:0"><b>⚠ Biman ও US-Bangla ভারত-রুটে অনলাইনে আগে কেনার সুবিধা দেয় না</b> — বিমানবন্দরের দামই একমাত্র দাম। <b>IndiGo ও Air India-তে আগে কিনলে ২০–২৪% সাশ্রয়।</b> ফেরার সময় ওষুধ-কেনাকাটায় ব্যাগ ভারী হয় — <b>যাওয়ার সময়ই ফেরার বাড়তি ওজন কিনে রাখুন</b>। কোনো এয়ারলাইনই <b>"মেডিকেল রোগীর জন্য বাড়তি ফ্রি ব্যাগেজ" দেয় না</b> (পাঁচটি এয়ারলাইনের পাতা দেখে যাচাই করা)।</div>
+      </div>
+      <div class="card">
+        <h4>ইনজেকশন ও ওষুধ বহনের নিয়ম</h4>
+        <ul>
+          <li><b>সব ইনজেকশন হ্যান্ড লাগেজে</b> — IndiGo নিজেই বলে ওষুধ কেবিনে রাখতে, কার্গোতে নয় (কার্গোতে জমে গেলে ওষুধ নষ্ট)</li>
+          <li><b>জেল প্যাক / আইস প্যাক / কুল ব্যাগ বিপজ্জনক পণ্য নয়</b> — IATA-র ২০২৬ তালিকায় এগুলোর কোনো এন্ট্রিই নেই। Air India স্পষ্ট লিখেছে: <i>"ওষুধ নয় কিন্তু চিকিৎসার কাজে ব্যবহৃত পদার্থ, যেমন বরফ, অনুমোদিত"</i> <span class="pill v">✔</span></li>
+          <li><b>ড্রাই আইস লাগে না</b> — IVF ইনজেকশনের দরকার ২–৮°C, জমানো নয়। (ড্রাই আইস নিলে প্রতিবার এয়ারলাইনের অনুমতি লাগে; Biman-এ সর্বোচ্চ ২ কেজি, শুধু কেবিনে)</li>
+          <li><b>১০০ মিলি নিয়মের ছাড়:</b> Air India লিখেছে ১০০ মিলির বেশি ওষুধ নেওয়া যাবে যদি যাত্রার জন্য অপরিহার্য হয় ও পরিমাণ যাত্রার প্রয়োজনের বেশি না হয়; <b>ওষুধের লেবেলের নাম বোর্ডিং পাসের নামের সাথে মিলতে হবে</b> ও ডাক্তারের চিঠি দেখাতে হতে পারে <span class="pill v">✔</span></li>
+          <li><b>সুই-সিরিঞ্জ:</b> Biman-এর নিয়মই সবচেয়ে কড়া এবং ঢাকার লেগে সেটাই প্রযোজ্য — <b>"চিকিৎসার প্রয়োজন এবং রোগের কথা উল্লেখ করা মেডিকেল সার্টিফিকেট" সঙ্গে থাকতে হবে</b>। এটি অবশ্যই নিন। <span class="pill v">✔</span></li>
+          <li><b>পারদের থার্মোমিটার</b> কেবিনে নয়, চেকড ব্যাগে (কেসসহ ১টি) — ডিজিটাল নিলে ঝামেলা নেই</li>
+          <li><b>Biman-এর বাড়তি সুবিধা:</b> ৭ কেজির <i>অতিরিক্ত</i> হিসেবে "জীবনরক্ষাকারী সামগ্রীর কন্টেইনার" ও "মূল লেবেলযুক্ত প্যাকেটে ওষুধ" বিনামূল্যে নেওয়া যায় — IVF কুল ব্যাগের জন্য সবচেয়ে কাজের ছাড়। Air India/IndiGo এমন ছাড় প্রকাশ করেনি, তাই ধরে নিন ওটা ৭ কেজির ভেতরে গুনবে।</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">⚠ ঢাকা বিমানবন্দরের সরকারি তালিকায় "১০০ মিলির বেশি তরল" নিষিদ্ধ লেখা আছে, <b>ওষুধের কোনো ছাড় সেখানে লেখা নেই</b> — অর্থাৎ ঢাকায় ছাড়টি Biman-এর নিজের নিয়মের ওপর দাঁড়িয়ে। <b>প্রেসক্রিপশন ও ডাক্তারের চিঠি হাতের কাছে রাখুন, নিরাপত্তায় ব্যাখ্যা করতে প্রস্তুত থাকুন।</b></p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:.9rem">
+      <div class="card">
+        <h4>ভারতীয় কাস্টমস — কত টাকার জিনিস আনা যায়</h4>
+        <p class="small"><b>⚠ Baggage Rules ২০১৬ বাতিল — ২ ফেব্রুয়ারি ২০২৬ থেকে নতুন Baggage Rules 2026 চালু।</b> পুরনো সব সংখ্যা (₹50,000 ইত্যাদি) অচল।</p>
+        <div class="tbl compact"><table><thead><tr><th>যাত্রী</th><th>কীভাবে</th><th class="num">শুল্কমুক্ত সীমা</th></tr></thead><tbody>
+          <tr class="hl"><td><b>বিদেশি পর্যটক</b> (আপনি)</td><td>বিমানে</td><td class="num"><b>₹25,000 জনপ্রতি</b></td></tr>
+          <tr><td>সবাই</td><td><b>স্থলপথে</b> (বেনাপোল/আখাউড়া)</td><td class="num"><b>শূন্য</b> — শুধু ব্যবহৃত ব্যক্তিগত জিনিস</td></tr>
+        </tbody></table></div>
+        <ul class="small">
+          <li><b>স্বামী-স্ত্রীর সীমা একসাথে যোগ করা যায় না</b></li>
+          <li>ব্যবহৃত ব্যক্তিগত জিনিস ও প্রয়োজনীয় গয়না শুল্কমুক্ত</li>
+          <li><b>৪০ গ্রাম গয়নার ছাড় বাংলাদেশিদের জন্য প্রযোজ্য নয়</b> — ওটা ভারতীয় বংশোদ্ভূত/১ বছরের বেশি বিদেশে থাকা ব্যক্তিদের জন্য। বেশি গয়না নিলে <b>Red Channel</b>-এ ঘোষণা দিন, বা আসার সময় <b>Temporary Baggage Import Certificate (Form CBD-IV)</b> করিয়ে নিন — ফেরার সময় নির্ঝঞ্ঝাট</li>
+          <li>ঘোষণা এখন <b>অনলাইনে Form CBD-I</b>-তে (ATITHI/icegate পোর্টালে, পৌঁছানোর ৩ দিন আগে পর্যন্ত)</li>
+          <li><b>ওষুধ:</b> ভারতের Rule 36 অনুযায়ী ব্যক্তিগত ব্যবহারের ওষুধ আনা যায়, তবে <b>একটি ওষুধের সর্বোচ্চ ১০০ ডোজ</b>। এক IVF সাইকেলের ওষুধ সহজেই এর ভেতরে পড়ে — আলাদা অনুমতি লাগে না</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>বিমানবন্দরে পৌঁছে</h4>
+        <ul class="small">
+          <li><b>ঢাকা:</b> ⚠ <b>টার্মিনাল ৩ এখনো চালু হয়নি</b> — উদ্বোধন হলেও কোনো এয়ারলাইন সেখান থেকে ওড়ে না, চালু হতে <b>২০২৭-এর শুরু</b> লাগবে। সব আন্তর্জাতিক ফ্লাইট <b>T1 (আগমন) / T2 (বহির্গমন)</b>। <b>৩ ঘণ্টা আগে</b> পৌঁছান (ঈদ/ডিসেম্বরে ৩.৫–৪ ঘণ্টা)। কাউন্টার বন্ধ হয় ৬০–৭৫ মিনিট আগে; ওয়েব চেক-ইন করলেও ভিসা যাচাইয়ের জন্য কাউন্টারে যেতেই হয়।</li>
+          <li><b>দিল্লি (T3):</b> ⚠ <b>Uber/Ola ফুটপাতে নয় — মাল্টি-লেভel কার পার্কে হেঁটে যেতে হয়</b> (Gate 1/2 দিয়ে বেরিয়ে Pillar 4, দুটো লেন পেরিয়ে MLCP)। মালপত্র নিয়ে কষ্টকর। <b>Airport Express মেট্রো ₹60</b>, নতুন দিল্লি স্টেশন পর্যন্ত ১৫–২৫ মিনিট, ভোর ৪:৪৫–রাত ১১:৩০। রাতে নামলে <b>প্রিপেইড ট্যাক্সি</b> নিন। অ্যাপ-ক্যাবে <b>₹150 এয়ারপোর্ট ফি</b> যোগ হয়।</li>
+          <li><b>চেন্নাই:</b> আন্তর্জাতিক আগমন <b>T2</b> (T3 আর নেই)। <b>Ola/Uber-এর বুকিং কিয়স্ক আগমন হলেই</b> — ভারতীয় সিম না থাকলেও বুক করা যায়। <b>প্রিপেইড ট্যাক্সি বুথ</b> আগমন হলে। মেট্রো স্টেশন <b>টার্মিনালের সাথেই যুক্ত</b> — T. Nagar ₹30, Anna Nagar ₹40, Central ₹40।</li>
+          <li><b>মুম্বাই (T2) ও হায়দ্রাবাদ:</b> মুম্বাইয়ে Ola/Rapido <b>P4</b>, Uber <b>P6/P7</b> — অ্যাপের নির্দেশ মানুন, ছাপানো নম্বর নয়। <b>Metro Line 3 চালু</b>, T2 থেকে দক্ষিণ মুম্বাই ₹10–50। হায়দ্রাবাদে Uber জোন <b>D1</b> (এসকেলেটরে এক তলা নিচে); ⚠ <b>ORR টোল ₹130–180 যাত্রা শেষে যোগ হয়</b>, অ্যাপের দামে দেখায় না। হায়দ্রাবাদে <b>এয়ারপোর্ট মেট্রো নেই</b>।</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ============ 9. SEASONALITY ============ -->
 <section id="season">
   <div class="wrap">
-    <h2>৯. কখন গেলে খরচ কম, কখন বেশি — মাসভিত্তিক তুলনা</h2>
+    <h2>কখন গেলে খরচ কম, কখন বেশি — মাসভিত্তিক তুলনা</h2>
     <p class="muted small">ভাড়ার উৎস: Google Flights "Price graph" (২১ দিনের রিটার্ন ট্রিপ, ১ জন, ৳), ১৮ আগস্ট ২০২৬-এ পড়া। চিকিৎসার দাম ঋতুতে বদলায় না; বদলায় ফ্লাইট, কিছুটা হোটেল, এবং আবহাওয়া/ছুটির কারণে সুবিধা-অসুবিধা। <b>মেডিকেল দিক থেকে "সবচেয়ে সস্তা মাস" = যত তাড়াতাড়ি সম্ভব</b> — প্রতি বছরে AMH কমে, আর সিস্ট ফিরে আসে।</p>
     <div class="tbl">
       <table>
@@ -1182,97 +1372,830 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
   </div>
 </section>
 <!-- ============ 10. STAY ============ -->
+<!-- ============ STAY / LONG-STAY LIVING ============ -->
 <section id="stay">
   <div class="wrap">
-    <h2>১০. থাকা-খাওয়া — সুপারিশকৃত সেন্টারের আশপাশে (দূরত্ব · ফোন · ভাড়া)</h2>
-    <p class="muted small">ফোন নম্বরগুলো হোটেলের নিজস্ব সাইট, হাসপাতালের টাই-আপ তালিকা বা TripAdvisor/JustDial-এর দৃশ্যমান তথ্য থেকে (১৮ আগস্ট ২০২৬)। "অযাচাইকৃত" মানে সংখ্যাটি সরাসরি দেখা যায়নি। <b>আগে ফোন/WhatsApp করে "patient/attendant" বলে হাসপাতাল-রেট ও মাসিক রেট চান</b> — OTA-র দাম rack rate। বিদেশি নাগরিকের জন্য পাসপোর্ট + Form C লাগে; কিছু ছোট লজ বিদেশি নেয় না — আগে জিজ্ঞেস করুন। বিমানবন্দর/স্টেশনের দালাল এড়িয়ে চলুন।</p>
+    <h2>বাসা, রান্না ও দীর্ঘমেয়াদী থাকা <small class="h2sub">কিচেনসহ ফ্ল্যাট কীভাবে খুঁজবেন, কোন এলাকায় থাকবেন, দালাল কীভাবে এড়াবেন, খাবার কোথায় পাবেন</small></h2>
 
-    <h3>ভেলোর — CMC (Ida Scudder Road) — সবচেয়ে সস্তা শহর</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Veena Residency, 141 Arcot Rd (CMC-র উল্টোদিকে)</td><td>~200–400 মি</td><td class="num">+91 94432 43369</td><td class="num">নন-AC ~₹500, AC ~₹1,100 (পুরনো রিভিউ)</td><td>"CMC রোগীদের জন্য ২য় সেরা" — <a href="https://thetripguide.in/hotels/vellore/veena-residency">লিংক</a></td></tr>
-        <tr><td>Koona Residency, 80/2 Ida Scudder Rd</td><td>&lt;300 মি</td><td class="num">+91 88700 08271</td><td class="num">~₹1,750 থেকে</td><td><a href="https://us.trip.com/hotels/vellore-hotel-detail-14457569/koona-residency/">Trip.com</a></td></tr>
-        <tr><td>Shamsu's Inn, 4 Arcot Rd</td><td>~1–1.5 কিমি</td><td class="num">+91 97876 29567</td><td class="num">অযাচাইকৃত (বাজেট)</td><td><a href="https://www.tripadvisor.com/Hotel_Review-g1152780-d15607680-Reviews-Shamsu_s_Inn-Vellore_Vellore_District_Tamil_Nadu.html">TripAdvisor</a></td></tr>
-        <tr><td>Darling Residency, 11/8 Officers Line</td><td>~1 কিমি</td><td class="num">+91 416 221 3001</td><td class="num">₹2,400–3,900 (মিড-রেঞ্জ, নাস্তাসহ)</td><td><a href="https://www.darlingresidency.com/">darlingresidency.com</a></td></tr>
-        <tr><td>Devi Lodge (84 Babu Rao St), Divya GH, Arun Lodge — Gandhi Rd/Babu Rao St ক্লাস্টার</td><td>~500 মি</td><td class="num">—</td><td class="num">₹500–1,000 (বাজেট)</td><td>স্টাফ বাংলা বলে (Devi Lodge); OYO "₹959 থেকে", Goibibo "₹488 থেকে" — <a href="https://www.oyorooms.com/hotels-in-cmc-hospital-vellore/">OYO</a> · <a href="https://www.goibibo.com/hotels/hotels-in-vellore/near-cmc-hospital-lh/">Goibibo</a></td></tr>
-        <tr><td>মাসিক ফার্নিশড রুম/বাসা (হাসপাতালের পেছনে)</td><td>—</td><td class="num">স্থানীয়ভাবে</td><td class="num">~₹17–20k/মাস (পুরনো তথ্য)</td><td>লম্বা থাকার জন্য; পৌঁছে খোঁজ নিন</td></tr>
-        <tr><td>বাঙালি খাবার: Hotel Bengali (27/9 Gandhi Rd), Mamta Bengali Hotel (26 Mitta Anand Rao St), Bengal &amp; Assam Guest House (Viya Bucket Masjid-এর কাছে)</td><td>৫ মিনিট হাঁটা</td><td class="num">—</td><td class="num">থালি ₹80–150</td><td>হাসপাতালের ক্যান্টিনে ফিক্সড-মেনু খাবারও আছে</td></tr>
-      </tbody></table></div>
-    <p class="small muted">যাতায়াত: চেন্নাই বিমানবন্দর → ভেলোর ~১৪০ কিমি (ট্যাক্সি ~₹3,000–4,000, ২.৫–৩ ঘণ্টা; বাস ~₹200–300 জনপ্রতি — আনুমানিক); Katpadi রেলস্টেশন ~৭ কিমি।</p>
+    <div class="callout gold">
+      <b>এক লাইনে সবচেয়ে দরকারি পরামর্শ:</b> হোটেলে নয় — <b>রান্নাঘরসহ (kitchen/kitchenette) সার্ভিস অ্যাপার্টমেন্ট বা ফ্ল্যাট</b> নিন, হাসপাতাল থেকে হাঁটা দূরত্বে। কারণ তিনটি: (১) IVF চলাকালীন বাইরের খাবারে পেটের ইনফেকশন বা জ্বর হলে <b>পুরো সাইকেল বাতিল</b> হয়ে যেতে পারে; (২) ইনজেকশন ফ্রিজে রাখতে হয় — নিজের ফ্রিজ থাকা মানে দুশ্চিন্তা কম; (৩) ২–৬ সপ্তাহ বাইরের খাবার খাওয়া অসম্ভব ব্যয়বহুল ও ক্লান্তিকর। মাসিক ভাড়ায় নিলে রাতপ্রতি খরচ প্রায় <b>অর্ধেক</b> হয়ে যায়।
+    </div>
 
-    <h3 style="margin-top:1.2rem">দিল্লি — Sir Ganga Ram (Old Rajinder Nagar) — হাসপাতালের নিজস্ব টাই-আপ তালিকায় ১৫–৫০% ছাড়</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Sindhu Dharamshala, 14-A Old Rajinder Nagar (SGRH Marg)</td><td>~100–300 মি</td><td class="num">9953623701 (Mr R.K. Bhatia)</td><td class="num">বাজেট (অযাচাইকৃত)</td><td>সবচেয়ে সস্তা; SGRH তালিকা</td></tr>
-        <tr><td>Hotel Chinar Palace, 15/64 Old Rajinder Nagar (হাসপাতালের উল্টোদিকে)</td><td>~200 মি</td><td class="num">98114 26877</td><td class="num">বাজেট</td><td>JustDial 3.5/5 — <a href="https://www.justdial.com/Delhi/Hotel-Chinar-Palace-Opposite-Ganga-Ram-Hospital-Tikona-Park-Old-Rajender-Nagar/011PF003062_BZDET">লিংক</a></td></tr>
-        <tr><td>Hotel Crystal Palace, 22/7 Old Rajinder Nagar</td><td>~300 মি</td><td class="num">9810522400 / 9716224400 / 011-25869468</td><td class="num">~₹2,100 থেকে; SGRH ২০% ছাড়</td><td><a href="https://www.delhihotels.info/crystal-palace.en.html">লিংক</a></td></tr>
-        <tr><td>Hotel Royal Palace, 1/65 SGRH Marg</td><td>~300 মি</td><td class="num">9868158681 / 9312253959</td><td class="num">SGRH ৪০% ছাড়</td><td>JustDial 3.7/5</td></tr>
-        <tr><td>Hotel Bharat Palace (OYO 1233), 3/73 Old Rajinder Nagar</td><td>~500 মি</td><td class="num">9871418042 / 011-25767773</td><td class="num">২০% ছাড়</td><td>—</td></tr>
-        <tr><td>Hotel Balsons Continental (East Patel Nagar) · Hotel Romanzza Inn (WEA Karol Bagh)</td><td>~1–2 কিমি</td><td class="num">9999981966 / 9971415421 · 011-45231111 / 9910489164</td><td class="num">মিড-রেঞ্জ; SGRH ৫০% ছাড়</td><td>তালিকা: <a href="https://sgrh.com/en/list-of-hotels-nearby-sgrh">sgrh.com/en/list-of-hotels-nearby-sgrh</a> (২০১২-এর; ফোন করে যাচাই)</td></tr>
-      </tbody></table></div>
-    <p class="small muted">মেট্রো: Rajendra Place / Karol Bagh (Blue Line) ~১ কিমি। বাঙালি খাবার এখানে কম — Bengali Market/Kali Bari ~৩ কিমি; হালাল খাবার Karol Bagh-এ সহজ।</p>
+    <h3 style="margin-top:1.3rem">১. কিচেনসহ থাকার জায়গা — কী খুঁজবেন, কোথায় খুঁজবেন</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>কোন প্ল্যাটফর্মে খুঁজবেন (বিদেশি পাসপোর্টে যেগুলো আসলে কাজ করে)</h4>
+        <ul>
+          <li><b>Airbnb — "Monthly stays"</b> ⭐ সবচেয়ে ভালো। ২৮+ রাতের আলাদা সার্চ-মোড আছে, হোস্টরা সাপ্তাহিক/মাসিক ছাড় দেয়, এক মাসের ভাড়া একবারে দেওয়া যায়। Amenities-এ <b>Kitchen</b> ফিল্টার করুন; বিদেশি কার্ড চলে, পাসপোর্টই যথেষ্ট। <a href="https://www.airbnb.com/">airbnb.com</a> <span class="pill v">✔</span></li>
+          <li><b>Booking.com</b> ⭐ হাসপাতালের নাম লিখে সার্চ করলে আশপাশের <b>সার্ভিস অ্যাপার্টমেন্ট</b> দেখায় (চেন্নাইয়ের Greams Road-এ "fully equipped kitchen" সহ ফ্ল্যাট নামসহ তালিকাভুক্ত)। ফ্রি-ক্যানসেলেশন রেট নিয়ে প্রথম ৩ রাত বুক করুন। <a href="https://www.booking.com/">booking.com</a> <span class="pill v">✔</span></li>
+          <li><b>Agoda</b> — Booking-এর মতোই, বিদেশি কার্ড চলে। <a href="https://www.agoda.com/">agoda.com</a></li>
+          <li><b>Bag2Bag</b> — ঘণ্টা থেকে মাস পর্যন্ত সার্ভিস অ্যাপার্টমেন্ট, হাসপাতাল-এলাকায় ভালো কভারেজ। <a href="https://bag2bag.in/">bag2bag.in</a></li>
+          <li><b>NoBroker</b> — মালিকের সাথে সরাসরি, দালাল-বিহীন মডেল; তবে বেশিরভাগ লিস্টিং ১১ মাসের লিজ, ১ মাসের জন্য কম। <a href="https://www.nobroker.in/">nobroker.in</a></li>
+          <li><b>99acres / MagicBricks / Housing.com</b> — শুধু <i>বাজারদর জানার</i> জন্য ব্যবহার করুন, দর-কষাকষির আগে। বেশিরভাগ "owner" আসলে ব্রোকার।</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>সতর্কতা:</b> <b>MakeMyTrip / Goibibo</b> সাধারণত <b>বিদেশি কার্ড নেয় না</b> — খোঁজার জন্য ভালো, পেমেন্টের জন্য নয়। <b>OYO</b>-তে অনেক প্রপার্টি লাইসেন্সের কারণে <b>শুধু ভারতীয় নাগরিক</b> নেয়; বুকিং কনফার্ম হওয়ার পরও চেক-ইনে ফিরিয়ে দিতে পারে — <b>আগে ফোন করে "foreign national, Bangladeshi passport, medical visa" বলে নিশ্চিত হন</b>। <b>PG/co-living</b> (Stanza Living, Colive, Zolo) এই কাজে অনুপযুক্ত — শেয়ার্ড রুম, নিজের রান্নাঘর নেই।</div>
+      </div>
+      <div class="card">
+        <h4>ফ্ল্যাট দেখতে গিয়ে যা যা মিলিয়ে নেবেন</h4>
+        <ul class="check">
+          <li><b>২৪ ঘণ্টা পানি</b> আছে কি না — দক্ষিণ ভারতে আলাদা করে জিজ্ঞেস করতেই হবে</li>
+          <li><b>গ্যাসের চুলা ও সিলিন্ডার</b> চালু আছে কি না; সিলিন্ডার ফুরালে কে ভরাবে, খরচ কার</li>
+          <li><b>ফ্রিজ</b> — IVF ইনজেকশন ২–৮°C-এ রাখতে হয়, এটি বাধ্যতামূলক</li>
+          <li>গিজার/গরম পানি, AC, মশারি-জাল, লিফট</li>
+          <li><b>ইনভার্টার/জেনারেটর</b> — বিদ্যুৎ গেলে ফ্রিজ ও লিফট চলবে কি না</li>
+          <li><b>সকাল ৬টায় হাসপাতাল পর্যন্ত হেঁটে যাওয়া যায় কি না</b> — মনিটরিং স্ক্যান খুব ভোরে হয়</li>
+          <li>কাছে সবজি/মাছ/মাংসের বাজার ও ফার্মেসি</li>
+          <li>ফ্ল্যাটের ভেতরে <b>মোবাইল নেটওয়ার্ক</b> পায় কি না</li>
+          <li><b>বিদ্যুৎ বিল আলাদা না ভাড়ার ভেতরে?</b> মিটারে হলে AC চালালে মাসে ₹2,000–6,000 বাড়তি</li>
+          <li>পানি, গ্যাস, ইন্টারনেট, পরিষ্কার, লন্ড্রি — কোনটা ভেতরে কোনটা বাইরে (<b>লিখিতভাবে WhatsApp-এ নিন</b>)</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">"Fully furnished" ভারতে সাধারণত বোঝায়: খাট-তোশক, আলমারি, ফ্যান, লাইট, AC, ফ্রিজ, প্রায়ই ওয়াশিং মেশিন ও গ্যাস-সংযোগ। <b>সাধারণত থাকে না:</b> হাঁড়ি-পাতিল, প্লেট, প্রেশার কুকার, বিছানার চাদর, তোয়ালে, মাইক্রোওয়েভ। <b>লিখিত ইনভেন্টরি লিস্ট চান।</b> ভেলোরে বাসন ও চুলা স্থানীয়ভাবে ভাড়া নেওয়া যায়।</p>
+      </div>
+    </div>
 
-    <h3 style="margin-top:1.2rem">দিল্লি — Dr Kaberi Banerjee (Lajpat Nagar IV) ও CR Park (বাঙালি পাড়া)</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Dhriti Kunja — "A Bengali Guest House", F-1199 CR Park (Market No. 2-র কাছে)</td><td>ক্লিনিক থেকে ~3–4 কিমি</td><td class="num">+91 98113 82549 (WhatsApp)</td><td class="num">JustDial ব্যান্ড ₹4,001–4,500 (রুম-ক্যাটাগরি; যাচাই করুন)</td><td>ক্যান্টিনে বাঙালি খাবার; রোগীদের গেস্টহাউস — <a href="https://www.dhritikunja.com/">dhritikunja.com</a></td></tr>
-        <tr><td>Atithi Guest House, H-1576 CR Park</td><td>~3–4 কিমি</td><td class="num">+91 11 2627 2102</td><td class="num">~₹2,400 থেকে</td><td>4.4/237 রিভিউ — <a href="https://delhitourism.gov.in/dt/stay_in_delhi/atithi.html">লিংক</a></td></tr>
-        <tr><td>Bed &amp; Chai Guesthouse, CR Park</td><td>~3–4 কিমি</td><td class="num">—</td><td class="num">~₹2,026</td><td><a href="https://www.goibibo.com/hotels/guest-houses-in-delhi/chittaranjan-park-ap/">Goibibo</a></td></tr>
-        <tr><td>Malhotra BNB (Lajpat Nagar IV, ক্লিনিকের কাছে) · Aggarwal Guest House (Lajpat Nagar, রান্নাঘরসহ রুম)</td><td>Lajpat Nagar-এই</td><td class="num">—</td><td class="num">₹1,200–2,500 (আনুমানিক)</td><td><a href="https://www.justdial.com/Delhi/Guest-House-in-Advanced-Fertility--Gynaecology-Centre-Lajpat-Nagar-4/nct-10238369">JustDial তালিকা</a> · <a href="https://www.booking.com/hotel/in/aggarwal-guest-house-lajpat-nagar-rooms-with-private-kitchen-android-tv-wifi-and.html">Booking</a></td></tr>
-      </tbody></table></div>
-    <p class="small muted">খাবার: CR Park Market 1/2 (মাছ, মিষ্টি), Lajpat Nagar 2-তে 6 Ballygunge Place, Aaheli; হালাল Nizamuddin/Jamia। মেট্রো: Moolchand/Kailash Colony (Violet)।</p>
+    <h3 style="margin-top:1.4rem">২. কোন শহরে কোন এলাকায় থাকবেন</h3>
+    <div class="callout bad">
+      <b>⚠ CMC Vellore-এ সবচেয়ে দামি ভুল:</b> CMC একটি হাসপাতাল নয় — <b>একাধিক ক্যাম্পাস</b>। <b>Town Campus (Ida Scudder Road, Vellore 632004)</b> — এখানেই বেশিরভাগ বিভাগ, ৯৫% রোগীর "CMC" মানে এটি। <b>College Campus (Bagayam)</b> ~৬ কিমি দক্ষিণে — মেডিকেল কলেজ, রোগীর হাসপাতাল নয়। <b>Ranipet/Kannigapuram Campus</b> — ভেলোর শহর থেকে <b>~১৫ কিমি</b>, ১,৫০০ শয্যা (নিউরো, কার্ডিও, ক্যানসার, কিডনি, ট্রমা)। <b>অ্যাপয়েন্টমেন্ট-চিঠিতে কোন ক্যাম্পাস লেখা আছে সেটা আগে দেখে তারপর বাসা ঠিক করুন</b> — নইলে রোজ ৪০ মিনিট অটোতে যেতে হবে। <span class="pill v">✔ যাচাইকৃত</span> <a href="https://www.cmch-vellore.edu/our-campuses/">cmch-vellore.edu/our-campuses</a>
+      <br><br><b>আরও দুটি সংশোধন:</b> "রেনিগুন্টা রোড" ভেলোরে <b>নেই</b> — ওটা <b>তিরুপতি (অন্ধ্রপ্রদেশ)</b>-এ, ভেলোর থেকে ~১১০ কিমি। "সাইদাপেট" নামে ভেলোর কর্পোরেশনে একটি এলাকা <i>আছে</i>, কিন্তু বিখ্যাত সাইদাপেট <b>চেন্নাইয়ে</b> (~১৩০ কিমি) — ভেলোরে অটোচালক বা বাড়িওয়ালাকে "সাইদাপেট" বললে বিভ্রান্তি হবে। ভেলোরে বলুন: <b>Ida Scudder Road / Thottapalayam / Gandhi Road</b>।
+    </div>
 
-    <h3 style="margin-top:1.2rem">হায়দ্রাবাদ — Oasis (Banjara Hills Rd 2) / Apollo Jubilee Hills</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>TrustedStay JBHFL1, Road No 3, Jubilee Hills (ICICI Bank-এর উপরে)</td><td>Apollo থেকে 250 মি; Oasis ~2–3 কিমি</td><td class="num">+91 89510 89510 (WhatsApp 24/7)</td><td class="num">Standard ₹2,200, Studio ₹3,250 + ট্যাক্স; বাড়তি ব্যক্তি ₹400</td><td>নাস্তাসহ; কিচেনেট; থালি ₹200/280 — <a href="https://www.trustedstay.com/service-apartments-in-Hyderabad/jubilee-hills-jblfl1">লিংক</a></td></tr>
-        <tr><td>Elysium Inn, Casa Shaila Apts, Rd No 11 Banjara Hills (CARE Hospital-এর উল্টোদিকে)</td><td>Oasis ~2 কিমি, Apollo ~3 কিমি</td><td class="num">+91 88977 51857</td><td class="num">₹1,499–1,670 থেকে (২ জন); মাসিক অপশন আছে</td><td>3BHK ফ্ল্যাট পরিবারের জন্য — <a href="https://www.elysiuminn.com">elysiuminn.com</a></td></tr>
-        <tr><td>PAJASA Apartments (Jubilee Hills) · Blueberry Service Apartments (Banjara Hills) · Skyline Homestays / Cosy Banjara / SSV Homes</td><td>Apollo-র কাছে</td><td class="num">ওয়েবসাইটে</td><td class="num">₹1,500–3,000 (আনুমানিক)</td><td><a href="https://www.pajasaapartments.com/in/hyderabad/jubilee-hills/">PAJASA</a> · <a href="https://bag2bag.in/service-apartments/hyderabad/banjara-hills">Bag2Bag তালিকা</a> · Airbnb ~₹955 থেকে</td></tr>
-      </tbody></table></div>
-    <p class="small muted">হালাল খাবার সর্বত্র; বাঙালি: Amantran (Domalguda), Kolkata House/Sarkar's Kitchen (Kondapur), Nabanno (Kukatpally), Bong Junction, Call of Bengal (Gachibowli)। মেট্রো: Jubilee Hills Check Post (Blue Line)।</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>শহর</th><th>এলাকা</th><th>কোন হাসপাতালের কাছে</th><th class="num">ফার্নিশড ১BHK/স্টুডিও (মাসিক)</th><th>খাবার ও নোট</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="4"><b>ভেলোর</b><br><small class="muted">সবচেয়ে সস্তা ও সবচেয়ে বাংলা-বান্ধব</small></td>
+            <td><b>Ida Scudder Road</b></td><td>CMC Town Campus — হাসপাতালের নিজের রাস্তা</td><td class="num">₹8,000–12,000<br><small>লজ ₹200–4,000/দিন</small></td><td>রোগীদের লজের সবচেয়ে বড় জমায়েত</td></tr>
+          <tr><td><b>Thottapalayam</b></td><td>CMC-র ডাকঘর-এলাকা, লাগোয়া</td><td class="num">₹8,000–12,000</td><td>লজ + সার্ভিসড রুম</td></tr>
+          <tr><td><b>Gandhi Road</b>, Babu Rao St, Sukkiah Vadhiyar St, KVS Chetty St, Mitta Anandrao St</td><td>~১ কিমি, হেঁটে</td><td class="num">₹5,000–18,000</td><td><b>Babu Rao Street-এ টাটকা সবজি, ফল, মাছ-মাংসের দোকান।</b> বাঙালি হোটেল: Hotel Bengali (27/9 Gandhi Rd), Mamta Bengali Hotel</td></tr>
+          <tr><td>Officers Line (Anna Salai), Sainathapuram, Sathuvachari</td><td>১–৫ কিমি</td><td class="num">₹5,000–10,000</td><td>শান্ত, একটু সস্তা; Sathuvachari থেকে রোজ অটো লাগবে</td></tr>
 
-    <h3 style="margin-top:1.2rem">পুনে — Ruby Hall (Sassoon Rd) / Solo Clinic (Bund Garden Rd)</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Hotel Shree Panchratna, 7 Tadiwala Rd</td><td>Ruby Hall 0.36 কিমি; স্টেশন 750 মি</td><td class="num">+91-20-26059999 · +91-97650-10497 · reservations@hotelshreepanchratna.in</td><td class="num">~₹3,087 থেকে (২-স্টার)</td><td><a href="https://www.hotelshreepanchratna.in/contact/">লিংক</a></td></tr>
-        <tr><td>Satyam Guest House (Camp/Mangalwar Peth)</td><td>"Ruby-র ২ মিনিট হাঁটা" (স্নিপেট)</td><td class="num">—</td><td class="num">₹1,456–1,574 (MMT)</td><td>বাজেট</td></tr>
-        <tr><td>Kapila Business Hotel (0.18 কিমি) · Hotel Shivkrupa (0.32 কিমি) · Hotel Deluxe (0.35 কিমি)</td><td>হাঁটা দূরত্ব</td><td class="num">—</td><td class="num">~₹1,982 থেকে</td><td><a href="https://www.trip.com/hot/hotels-near-ruby-hall-clinic/">Trip.com</a> · <a href="https://www.easemytrip.com/hotels/hotels-near-ruby-hall-clinic-pune/">EaseMyTrip</a></td></tr>
-      </tbody></table></div>
-    <p class="small muted">Pune Metro Aqua Line-এ "Ruby Hall Clinic" স্টেশন আছে; বাঙালি খাবার: Aahar (Camp), FoodBengal। মুম্বাই বিমানবন্দর → পুনে ক্যাব ~₹3,000–4,000 / Shivneri বাস ~₹500 জনপ্রতি (আনুমানিক), ৩–৪ ঘণ্টা।</p>
+          <tr><td rowspan="4"><b>চেন্নাই</b></td>
+            <td><b>Greams Road</b> (Thousand Lights-এর ভেতরেই)</td><td>Apollo Greams Road, Apollo Heart/Children's — <b>চেন্নাইয়ের মেডিকেল রাস্তা</b>; GG Hospital হাঁটা দূরত্বে</td><td class="num">rack ₹5,301/রাত — <b>মাসিক রেট চেয়ে দর করুন</b></td><td>কিচেনেট-সহ স্টুডিও ও পূর্ণ রান্নাঘরসহ ২BHK — দুটোই আছে</td></tr>
+          <tr><td><b>Thousand Lights</b></td><td>একই এলাকা (আলাদা জায়গা নয়)</td><td class="num">—</td><td><b>মুসলিম-প্রধান, হালাল খাবার সহজ</b>; মেট্রো Thousand Lights ~৫০০ মি</td></tr>
+          <tr><td><b>Nungambakkam</b></td><td>Greams Road থেকে ~১.৫ কিমি</td><td class="num">PG ₹7,000–7,500/জন/মাস</td><td>দূতাবাস-এলাকা, ভালো রেস্তোরাঁ</td></tr>
+          <tr><td>T. Nagar · Triplicane · Alwarpet</td><td>T. Nagar হাসপাতাল-এলাকা নয় (শপিং), ~৩ কিমি; Alwarpet — Kauvery</td><td class="num">সবচেয়ে সস্তা (T. Nagar)</td><td><b>Triplicane</b> — হালাল বিরিয়ানির বেল্ট</td></tr>
 
-    <h3 style="margin-top:1.2rem">মুম্বাই — Jaslok (Peddar Road) — ব্যয়বহুল</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Hotel Kumkum, Grant Road</td><td>1.21 কিমি</td><td class="num">—</td><td class="num">₹2,387–3,330</td><td><a href="https://www.goibibo.com/hotels/kumkum-hotel-in-mumbai-1120996175678268763/">Goibibo</a></td></tr>
-        <tr><td>Hotel Royal Castle</td><td>0.9 কিমি</td><td class="num">—</td><td class="num">~₹3,800 থেকে</td><td><a href="https://www.booking.com/landmark/in/jaslok-hospital.html">Booking</a></td></tr>
-        <tr><td>Jaslok টাই-আপ: The Shalimar (Kemps Corner, 0.94 কিমি), Krishna Palace (Nana Chowk, 1.11 কিমি; ₹7,499 থেকে), Ambassador, Suba Palace</td><td>1–9 কিমি</td><td class="num">Jaslok Intl +91 95949 62354</td><td class="num">আপার-মিড</td><td>হাসপাতাল-রেট চান — <a href="https://www.jaslokhospital.net/international-patients">লিংক</a></td></tr>
-        <tr><td>Hotel Rahat (Mumbai Central) · Empire Hotel · Treebo Anam Intl (Grant Rd) · The Sahil · Falcon Inn</td><td>1.15–1.5 কিমি</td><td class="num">—</td><td class="num">৩-স্টার গড় ~US$51; গেস্টহাউস ₹829 থেকে</td><td>Grant Rd/Mumbai Central/Nagpada = হালাল-খাবার বেল্ট; মাসিক স্টুডিও ₹1.05 L (+₹25k ডিপোজিট)</td></tr>
-      </tbody></table></div>
+          <tr><td rowspan="3"><b>দিল্লি</b></td>
+            <td><b>Old Rajinder Nagar</b> ও <b>East Patel Nagar</b></td><td><b>Sir Ganga Ram</b> — হাসপাতালের ১৯টি টাই-আপ হোটেলের ৯টি এখানে</td><td class="num">₹15,000–28,000</td><td>ছাত্র/UPSC এলাকা — সস্তা মেস ও টিফিন সার্ভিস প্রচুর</td></tr>
+          <tr><td><b>Karol Bagh</b></td><td>Sir Ganga Ram (৫টি টাই-আপ হোটেল); মেট্রো কাছে</td><td class="num">₹15,000–28,000</td><td><b>হালাল খাবার ভালো</b>, বড় বাজার</td></tr>
+          <tr><td><b>Lajpat Nagar</b> · <b>CR Park</b> · Sarita Vihar</td><td>Lajpat Nagar — Dr Kaberi Banerjee, Moolchand; Sarita Vihar — Apollo (বাংলাদেশি ডেস্ক আছে)</td><td class="num">₹15,000–28,000<br><small>Sarita Vihar গেস্টহাউস ₹1,500–7,000/রাত</small></td><td>⭐ <b>CR Park = দিল্লির "ছোট কলকাতা"</b> — Market No. 1 ও 2-তে <b>রোজ কলকাতা থেকে আসা টাটকা রুই-কাতলা</b>, বাঙালি মিষ্টি, ফুচকা। উত্তর ভারতে বাঙালি রান্নার জন্য সেরা জায়গা। তবে বড় হাসপাতাল লাগোয়া নয় — এটি <b>খাবার/কমিউনিটির</b> পছন্দ</td></tr>
 
-    <h3 style="margin-top:1.2rem">চেন্নাই — GG Hospital (Nungambakkam) / Apollo Greams Road বাংলাদেশি ক্লাস্টার</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>নাম</th><th>দূরত্ব (Apollo থেকে)</th><th class="num">ফোন</th><th class="num">ভাড়া/রাত</th><th>নোট / লিংক</th></tr></thead>
-      <tbody>
-        <tr><td>Care Inn Apollo Hospitals Greams Road (Apollo main-এর উল্টোদিকে)</td><td>উল্টোদিকে</td><td class="num">—</td><td class="num">~₹2,116 থেকে</td><td><a href="https://www.justdial.com/Chennai/Care-Inn-Apollo-Hospitals-Greams-Road-Ground-Floor-Chennai-Opposite-To-Apollo-Main-Greames-Road/044PXX44-XX44-230717200104-A3X5_BZDET">JustDial</a></td></tr>
-        <tr><td>Zaith Residency, 13/31 Model School Rd, Thousand Lights</td><td>কয়েক মিনিট</td><td class="num">044-2829 5661/62 · +91 81247 04679</td><td class="num">Apollo রোগীদের ১৫% ছাড়</td><td><a href="https://www.zaithresidency.com/blog/hotels-near-apollo-hospital-greams-road-chennai/">লিংক</a></td></tr>
-        <tr><td>Pearl Guest House, 5 Ramasamy St, Makkis Garden</td><td>450 মি–1.1 কিমি</td><td class="num">—</td><td class="num">₹800–1,000 ব্যান্ড (বাজেট), কিচেনেট</td><td>"economical stay for medical treatment" — <a href="https://house-pearl.hotelinchennai.com/en/">লিংক</a></td></tr>
-        <tr><td>The Apollo Regency (210 মি) · Classic Residency (500 মি) · New Apollo Guest House · Kingsway GH · Golden GH · Shree Radha Krishna Lodge</td><td>0.2–1.1 কিমি</td><td class="num">—</td><td class="num">₹1,000–2,000</td><td>Bangla Health Connect-এর ৪৭টি হোটেলের দূরত্বসহ তালিকা: <a href="https://www.banglahealthconnect.com/hotels-near-apollo-greams-road">লিংক</a> (বুকিং সাহায্য WhatsApp +880 132 967 2100)</td></tr>
-        <tr><td>Nungambakkam PG/গেস্টহাউস (মাসিক)</td><td>GG Hospital-এর কাছে</td><td class="num">স্থানীয়</td><td class="num">~₹7,000–7,500/জন/মাস (টুইন-শেয়ার)</td><td>লম্বা থাকার জন্য</td></tr>
-      </tbody></table></div>
-    <p class="small muted">Thousand Lights মুসলিম-প্রধান এলাকা — হালাল খাবার প্রচুর; বাঙালি মেস/খাবার আশপাশে (Apollo-র উল্টোদিকে "New Bengal Mess" — শোনা কথা, যাচাই হয়নি)। GG Hospital হাঁটা দূরত্বে; PFRC Chetpet ~2–3 কিমি; মেট্রো: Thousand Lights (Blue Line) ~500 মি। Iswarya নিজস্ব বাঙালি গেস্টহাউস দেয়।</p>
+          <tr><td rowspan="2"><b>হায়দ্রাবাদ</b></td>
+            <td><b>Banjara Hills</b> (Road No. 2) · <b>Jubilee Hills</b></td><td>Oasis Fertility ফ্ল্যাগশিপ, Apollo Jubilee Hills, Care/Star</td><td class="num">₹15,000–40,000+<br><small>সার্ভিসড অ্যাপার্টমেন্ট প্রচুর</small></td><td>⭐ <b>ভারতের সেরা হালাল খাবারের শহরগুলোর একটি</b></td></tr>
+          <tr><td><b>Somajiguda</b> · Ameerpet</td><td>Yashoda Somajiguda (<b>ঢাকায় অফিস আছে</b>); Ameerpet সস্তা ও লাগোয়া</td><td class="num">হোটেল/গেস্টহাউস US$18–45/দিন (নাস্তা + হাসপাতাল ট্রান্সফারসহ)</td><td>Old City/Charminar, Tolichowki, Mallepally — হালাল সর্বত্র</td></tr>
+
+          <tr><td rowspan="2"><b>ব্যাঙ্গালোর</b></td>
+            <td><b>Kumara Park (West)</b> · Seshadripuram</td><td>Milann, Dr Kamini Rao Hospitals, Apollo, Cloudnine</td><td class="num">₹15,000–30,000</td><td>কেন্দ্রীয়, হেঁটে চলার মতো</td></tr>
+          <tr><td><b>Malleswaram</b></td><td>Manipal Malleshwaram</td><td class="num">₹11,600–20,000 (semi-furnished)</td><td>ঐতিহ্যবাহী দক্ষিণী; নিরামিষ প্রবল, মাছ-মাংস তুলনায় কম। হালাল: <b>Shivajinagar, Frazer Town, Coles Road</b></td></tr>
+
+          <tr><td><b>মুম্বাই</b></td><td>Peddar Road/Tardeo · Grant Road/Mumbai Central · Bandra</td><td>Jaslok (Peddar Rd), Bhatia (Tardeo), Lilavati (Bandra)</td><td class="num">১BHK <b>₹1,05,000/মাস</b> (ডিপোজিট ₹3,00,000) — সবচেয়ে দামি</td><td>Grant Road/Nagpada/Bhendi Bazaar/Mohammed Ali Road — <b>হালাল বেল্ট</b>। <b>চিকিৎসা অন্য শহরে সম্ভব হলে মুম্বাই এড়ানোই সাশ্রয়ী</b></td></tr>
+          <tr><td><b>পুনে</b></td><td>Camp / Sassoon Road / Mangalwar Peth</td><td>Ruby Hall Clinic, Solo Clinic</td><td class="num">গেস্টহাউস ₹1,456 থেকে/রাত</td><td>বাঙালি: Aahar (Camp)। হালাল: Camp, Kondhwa</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">রেফারেন্স-দর (২০২৫ শেষ): দিল্লি ২BHK ≈ ₹34,500/মাস · ব্যাঙ্গালোর ≈ ₹30,000 · মুম্বাই ≥ ₹40,000। <b>ভেলোর সবচেয়ে সস্তা ও সবচেয়ে "রোগী-অর্থনীতির" শহর</b> — ১ মাসের ভাড়া সহজেই পাওয়া যায়।</p>
+
+    <h3 style="margin-top:1.4rem">৩. পুরো বুকিং প্রক্রিয়া — ধাপে ধাপে</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>বাংলাদেশ থেকে রওনা হওয়ার আগে</h4>
+        <ol>
+          <li><b>আগে হাসপাতালের ইনভাইটেশন লেটার নিন</b> — কোন ক্যাম্পাস/শাখায় চিকিৎসা হবে সেটা নিশ্চিত করুন। CMC এই চিঠি <b>বিনামূল্যে</b> দেয়।</li>
+          <li><b>হাসপাতালের আন্তর্জাতিক ডেস্কে সরাসরি ইমেইল করুন</b> — দালাল এড়ানোর সবচেয়ে বড় পদক্ষেপ এটাই। অনেক হাসপাতালের নিজস্ব <b>ডিসকাউন্ট-সহ হোটেল তালিকা</b> আছে (নিচে দেখুন)।</li>
+          <li><b>শুধু ৩–৫ রাতের বুকিং</b> করুন (ফ্রি-ক্যানসেলেশন রেটে), মাসিক নয়। না দেখে এক মাসের টাকা দেবেন না।</li>
+          <li>Airbnb-তে <i>Monthly stays</i> + <i>Kitchen</i> ফিল্টার; Booking.com-এ হাসপাতালের নাম লিখে <i>Apartments</i> ফিল্টার।</li>
+          <li><b>৮–১০ জন হোস্টকে একই তিনটি প্রশ্ন</b> পাঠান: (ক) বিদেশি নাগরিক/মেডিকেল ভিসা নেবেন? (খ) <b>Form C</b> ফাইল করবেন? (গ) ২৮ রাত/মাসিক রেট কত?</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h4>পৌঁছানোর পর (প্রথম ২৪–৪৮ ঘণ্টা)</h4>
+        <ol start="6">
+          <li><b>বিমানবন্দরেই সিম কিনুন</b> (পাসপোর্ট + ভিসা + হোটেল বুকিং + ছবি) — এরপরের সব ধাপে লাগবে।</li>
+          <li><b>হাসপাতালের আন্তর্জাতিক অফিসে রেজিস্ট্রেশন</b> — CMC-তে <b>IRO, রুম 900B</b>; রোগী <i>ও</i> সব সঙ্গীর <b>মূল পাসপোর্ট</b> এবং থাকার ঠিকানা লাগে (তাই বাসা আগে ঠিক করতে হয়)।</li>
+          <li><b>স্থানীয় থানায় ২৪ ঘণ্টার মধ্যে রেজিস্ট্রেশন</b> — ফর্ম পূরণ করে থানায় গিয়ে সিল নিয়ে হাসপাতালে জমা (CMC-র নিয়ম)।</li>
+          <li><b>হোস্ট যেন Form C ফাইল করেন</b> — Immigration and Foreigners Act, 2025 (কার্যকর ১ সেপ্টেম্বর ২০২৫) অনুযায়ী হোটেল, গেস্টহাউস <i>এবং ব্যক্তিগত বাড়িওয়ালা</i> — টাকা নিন বা না নিন — বিদেশি অতিথির তথ্য <b>২৪ ঘণ্টার মধ্যে</b> e-FRRO পোর্টালে জানাতে বাধ্য। <b>এটি অতিথি নিজে করতে পারেন না, এবং এটি বিনামূল্যে।</b> যে বাড়িওয়ালা বলে "কোনো কাগজ লাগবে না" — তিনি আপনাকে ঝুঁকিতে ফেলছেন। <a href="https://indianfrro.gov.in/">indianfrro.gov.in</a> <span class="pill v">✔</span></li>
+          <li><b>FRRO রেজিস্ট্রেশন লাগে না</b> যদি ভিসা ১৮০ দিনের কম হয় — ২–৬ সপ্তাহের সফরে শুধু Form C + থানা-রেজিস্ট্রেশনই যথেষ্ট।</li>
+          <li>৩–৪টি ফ্ল্যাট <b>নিজে গিয়ে দেখুন</b>, তারপর মাসিক দর ঠিক করুন। কার্ড/ব্যাংক ট্রান্সফারে টাকা দিন, রসিদ নিন।</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:.9rem">
+      <div class="card">
+        <h4>টাকার শর্ত — যা মানবেন, যা মানবেন না</h4>
+        <ul>
+          <li><b>ডিপোজিট:</b> ভারতে ১১ মাসের লিজে ২–৩ মাসের ভাড়া ডিপোজিট স্বাভাবিক। কিন্তু <b>১ মাসের থাকার জন্য ১ মাসের ভাড়ার বেশি ডিপোজিট দেবেন না</b>। <b>তামিলনাড়ুতে (চেন্নাই, ভেলোর) ২ মাসের ডিপোজিট-সীমা আইনত প্রযোজ্য</b> (Model Tenancy Act গৃহীত); দিল্লিতে নয়। <span class="pill v">✔</span></li>
+          <li><b>ভাড়া দর-কষাকষিযোগ্য।</b> রাতপ্রতি "rack rate" মাসিক কার্যকর ভাড়ার চেয়ে ২–৪ গুণ বেশি। <b>সবসময় "monthly / long-stay / medical patient rate" চেয়ে জিজ্ঞেস করুন</b> — হাসপাতাল-লাগোয়া অপারেটররা এটা খোলাখুলি বলে, কারণ রোগীর পরিবারই তাদের ব্যবসা।</li>
+          <li><b>এক মাসের জন্যও লিখিত চুক্তি নিন</b> — নাম, পাসপোর্ট নম্বর, তারিখ, ভাড়া, ডিপোজিট, কী কী অন্তর্ভুক্ত, ফেরতের শর্ত।</li>
+          <li><b>নগদে থোক টাকা দেবেন না</b> কাউকে যিনি "ফ্ল্যাট ঠিক করে দিয়েছেন"।</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">ভুয়া তথ্য সাবধান: "New Rent Agreement Act 2025"/"Home Rent Rules 25" নামে যে কেন্দ্রীয় আইনের কথা ঘুরছে — <b>এমন কোনো আইন নেই</b> (LawStreet ফ্যাক্ট-চেক, ৩ ডিসে ২০২৫)। ভাড়া রাজ্যের বিষয়।</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--bad)">দালাল ও প্রতারণা — লাল পতাকা</h4>
+        <ul>
+          <li><b>বিমানবন্দর, রেলস্টেশন বা হাসপাতালের গেটে</b> কেউ এসে "হাসপাতাল + হোটেল + ডাক্তারের অ্যাপয়েন্টমেন্ট" প্যাকেজ অফার করছে</li>
+          <li>ঘর না দেখেই <b>অগ্রিম নগদ</b> চাইছে</li>
+          <li>বলছে <b>"পাসপোর্টের কপি লাগবে না, কোনো কাগজ লাগবে না"</b> → মানে Form C হবে না, আইনি ঝুঁকি আপনার</li>
+          <li>ভাড়া শুধু <b>মুখে</b> বলছে, WhatsApp-এ লিখতে রাজি নয়</li>
+          <li>"CMC থেকে ৫ মিনিট" বলে আসলে <b>Ranipet ক্যাম্পাসের কাছে (১৫ কিমি দূরে)</b> বা Katpadi/Sathuvachari</li>
+          <li>টাকার বিনিময়ে <b>দ্রুত অ্যাপয়েন্টমেন্ট</b> করিয়ে দেওয়ার প্রস্তাব — অ্যাপয়েন্টমেন্ট হাসপাতালের কল-সেন্টারে বিনামূল্যে হয়</li>
+          <li><b>ভিসা ইনভাইটেশন লেটারের জন্য টাকা</b> চাইছে — CMC এটি বিনামূল্যে দেয়</li>
+          <li>ভুয়া ওয়েবসাইট যারা JCI/NABH লোগো নকল করে</li>
+        </ul>
+        <p class="small" style="margin-bottom:0"><b>ব্রোকারেজের বাজারদর:</b> ভারতে আবাসিক ভাড়ায় স্বাভাবিক কমিশন <b>এক মাসের ভাড়া + ১৮% GST</b>, এবং তা <b>সবসময় দর-কষাকষিযোগ্য</b> — আইনে বাঁধা নয়। এক মাসের বেশি চাইলে সেটা প্রতারণা। সবচেয়ে ভালো: <b>ব্রোকার একদমই না</b> — হাসপাতালের ডেস্ক → Airbnb/Booking → নিজে গিয়ে দেখা।</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.4rem">৪. হাসপাতালের নিজস্ব গেস্টহাউস ও ছাড়ের তালিকা</h3>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>হাসপাতাল</th><th>নিজস্ব থাকার ব্যবস্থা?</th><th>বিস্তারিত</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sir Ganga Ram, দিল্লি</b></td><td class="pillcell"><span class="pill good">সবচেয়ে ভালো নথিভুক্ত</span></td><td><b>১৯টি হোটেল/গেস্টহাউসের তালিকা</b> প্রকাশ করে, "SGRH referred guests, patients &amp; attendants"-দের জন্য নামসহ ছাড়: Balsons Continental ও Romanzza Inn <b>৫০%</b>; Royal Palace ও Hill Palace <b>৪০%</b>; Rudra Castle, Rama Deluxe <b>৩০%</b>; Clark International, Swati <b>২৫%</b>; Bharat Palace, Crystal Palace, Goodtimes <b>২০%</b>; বাজেট: <b>Sindhu Dharamshala</b>। এলাকা: Old Rajinder Nagar (৯টি), Karol Bagh (৫টি), East Patel Nagar। <a href="https://sgrh.com/en/list-of-hotels-nearby-sgrh">তালিকা</a> <span class="pill v">✔</span></td></tr>
+          <tr><td><b>CMC Vellore</b></td><td class="pillcell"><span class="pill warn">আছে, তবে সীমিত</span></td><td>Town Campus-এ <b>Hospital Annexe</b> আছে; <b>আগাম বুকিং নেয় না</b> — গিয়ে খোঁজ করতে হয় (~₹400/দিন বলে জানা যায়)। ৪ সপ্তাহের IVF-থাকা এর ভরসায় পরিকল্পনা করবেন না। College Campus (Bagayam)-এর গেস্টহাউস ছাত্র/স্টাফের জন্য।</td></tr>
+          <tr><td><b>Apollo</b> (চেন্নাই Greams Road, দিল্লি Sarita Vihar, হায়দ্রাবাদ)</td><td class="pillcell"><span class="pill good">আন্তর্জাতিক ডেস্ক</span></td><td>মেডিকেল ভিসা, ভ্রমণ, <b>থাকার ব্যবস্থা</b>, দোভাষী, পরিবারের থাকা, লন্ড্রি, প্রাইভেট ক্যাব। দিল্লি Apollo-তে <b>বাংলাদেশি রোগীদের জন্য আলাদা বিভাগ</b> আছে।</td></tr>
+          <tr><td><b>Yashoda, হায়দ্রাবাদ</b></td><td class="pillcell"><span class="pill good">ঢাকায় অফিস</span></td><td>"Yashoda Hospitals Bangladesh Office" — কনসালটেশন, ভর্তি, মেডিকেল ভিসা, ভ্রমণ। ২ কিমির মধ্যে হোটেল <b>US$18–45/দিন</b> (নাস্তা + হাসপাতাল ট্রান্সফারসহ)।</td></tr>
+          <tr><td><b>Manipal, ব্যাঙ্গালোর</b></td><td class="pillcell"><span class="pill good">আন্তর্জাতিক ডেস্ক</span></td><td>ফ্লাইট, হোটেল, ক্যাব বুকিং; দোভাষী; ভিসার কাগজপত্র। ২ কিমির মধ্যে US$18–45/দিন। <a href="https://www.manipalhospitalsglobal.com/bangladesh/">বাংলাদেশ পাতা</a></td></tr>
+          <tr><td><b>Oasis Fertility, হায়দ্রাবাদ</b></td><td class="pillcell"><span class="pill warn">গেস্টহাউস নেই</span></td><td>হায়দ্রাবাদে <b>৯টি শাখা</b> (Banjara Hills, Gachibowli, Dilsukhnagar, Secunderabad, Miyapur, Kompally, Uppal, Tolichowki, Begumpet) — <b>আপনার ডাক্তার কোন শাখায় বসেন সেটা নিশ্চিত করে তারপর বাসা নিন</b>।</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:1.4rem">৫. খাবার — হালাল, মাছ, এবং "নিরামিষ-only" বাড়ির ফাঁদ</h3>
+    <div class="callout bad">
+      <b>⚠ বুকিংয়ের আগেই জিজ্ঞেস করুন: বাড়িটি "pure-veg" কি না।</b> মুম্বাই, পুনে, আহমেদাবাদ ও ব্যাঙ্গালোরে বহু হাউজিং সোসাইটি/বাড়িওয়ালা <b>আমিষভোজী ভাড়াটে নেয় না, বা মাছ-মাংস রান্না নিষেধ করে</b> — এটি ব্যাপকভাবে নথিভুক্ত (মুম্বাইয়ের Bandra, Khar, Nana Chowk, Juhu, Walkeshwar, Dadar, Girgaum; আহমেদাবাদের ৭৭০+ "disturbed area" পাড়া)। <b>আইনত আপনার ভাড়া করা ফ্ল্যাটের ভেতরে আপনি যা খুশি রান্না করতে পারেন</b> (বম্বে হাইকোর্টের বিচারপতির ভাষায়, সোসাইটির খাদ্যাভ্যাস চাপানোর আইনি অধিকার নেই) — কিন্তু চিকিৎসার মাঝপথে এই ঝগড়া আপনার একদমই দরকার নেই। <b>দিল্লি, হায়দ্রাবাদ, চেন্নাই ও ভেলোরে এই সমস্যা প্রায় নেই।</b>
+      <div style="margin-top:.6rem"><b>ডিপোজিট দেওয়ার আগে WhatsApp-এ এই ৫টি প্রশ্ন পাঠান (স্ক্রিনশট রাখুন):</b>
+      <ol style="margin:.35rem 0 0"><li>এটি কি pure-veg বিল্ডিং/সোসাইটি? খাবার নিয়ে সোসাইটির কোনো নিয়ম আছে?</li><li>ফ্ল্যাটে <b>মাছ ও মাংস রান্না</b> করা যাবে? কোনো নির্দিষ্ট দিনে (মঙ্গলবার, শ্রাবণ, পর্যুষণ) নিষেধ আছে?</li><li>মাছ/মাংসের <b>ডেলিভারি</b> সিকিউরিটি দিয়ে ঢুকতে দেবে?</li><li>রান্নাঘরে <b>চিমনি/এক্সহস্ট বা জানালা</b> আছে?</li><li>আমরা বাংলাদেশি দম্পতি, [হাসপাতালের নাম]-এ চিকিৎসার জন্য এসেছি — মালিক ও সোসাইটির আপত্তি নেই তো?</li></ol></div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>হালাল খাবার কোথায় সহজ</h4>
+        <ul>
+          <li><b>হায়দ্রাবাদ</b> ⭐ সবচেয়ে সহজ — Old City/Charminar, Tolichowki, Mallepally, Malakpet, Banjara Hills</li>
+          <li><b>ভেলোর</b> — CMC/Gandhi Road-এর আশপাশে <b>বাংলাদেশি রেস্তোরাঁ</b>; দোকানদার ও অটোচালক অনেকেই ভাঙা বাংলা বলেন</li>
+          <li><b>চেন্নাই</b> — Triplicane, Thousand Lights, Royapettah</li>
+          <li><b>দিল্লি</b> — Jamia Nagar (Zakir Nagar, Batla House, Okhla), Nizamuddin Basti, Old Delhi (Matia Mahal), Karol Bagh</li>
+          <li><b>ব্যাঙ্গালোর</b> — Shivajinagar, Frazer Town/Mosque Road, Coles Road, Johnson Market</li>
+          <li><b>মুম্বাই</b> — Mohammed Ali Road, Bhendi Bazaar, Bohri Mohalla, Nagpada</li>
+          <li><b>আহমেদাবাদ</b> — সবচেয়ে সীমিত; Juhapura/Sarkhej/Vejalpur-এ কেন্দ্রীভূত</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">দিল্লিতে পৌরসভার নিয়মে দোকানে <b>"হালাল" না "ঝটকা"</b> লেখা থাকার কথা — বোর্ড দেখে নিন, না থাকলে ভদ্রভাবে "Halal hai?" জিজ্ঞেস করুন। ঝটকা বললে তর্ক না করে ধন্যবাদ দিয়ে চলে আসুন।</p>
+      </div>
+      <div class="card">
+        <h4>বাঙালি রান্না ও মাছ</h4>
+        <ul>
+          <li><b>CR Park, দিল্লি</b> — Market 1 ও 2-তে রোজ কলকাতা থেকে আসা <b>রুই, কাতলা, ইলিশ</b>, বাঙালি মিষ্টি</li>
+          <li><b>অনলাইন:</b> <a href="https://www.freshtohome.com/">FreshToHome</a> (ব্যাঙ্গালোর, পুনে, দিল্লি NCR…), <a href="https://www.bonghaat.com/">BongHaat</a> (বাঙালি বিশেষায়িত, ইলিশ) — সারা ভারতে ডেলিভারি</li>
+          <li><b>বাজার:</b> ব্যাঙ্গালোরে KR Market/Madiwala (খুব ভোরে); হায়দ্রাবাদে <b>জ্যান্ত মাছের ট্যাংক</b> থেকে বেছে নেওয়া যায়; ভেলোরে Babu Rao Street</li>
+          <li><b>ইলিশের মৌসুম</b> জুন-শেষ থেকে আগস্ট</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>গন্ধের ব্যাপারে সতর্ক:</b> শেয়ার্ড বিল্ডিংয়ে মাছ ভাজার গন্ধ নিয়ে প্রতিবেশীর অভিযোগ ভারতে একটি নথিভুক্ত সমস্যা। <b>শুঁটকি একদম নয়।</b> জানালা খুলে ও এক্সহস্ট চালিয়ে রান্না করুন; ভাজার চেয়ে ঝোল/ভাপা ভালো; মাছের বর্জ্য <b>একই দিনে সিল করা ব্যাগে বাইরের ডাস্টবিনে</b> ফেলুন। কেউ বললে ক্ষমা চেয়ে সময় বদলে নিন — তর্ক নয়।</div>
+      </div>
+      <div class="card">
+        <h4>গরুর মাংস — আইনি সতর্কতা</h4>
+        <p class="small">এটি রাজ্যভেদে <b>ফৌজদারি অপরাধ</b>, এবং শাস্তি গুরুতর। বাস্তব নিয়ম: <b>দিল্লি, গুজরাট, মহারাষ্ট্র ও কর্ণাটকে গরুর মাংস কিনবেন না, বহন করবেন না, চাইবেন না।</b></p>
+        <div class="tbl compact"><table><thead><tr><th>রাজ্য</th><th>দখলে রাখা</th><th class="num">শাস্তি</th></tr></thead><tbody>
+          <tr><td><b>গুজরাট</b></td><td>অপরাধ</td><td class="num">৭–১০ বছর + ₹1–5 লাখ, <b>জামিন-অযোগ্য</b></td></tr>
+          <tr><td><b>দিল্লি</b></td><td>অপরাধ (বাইরের রাজ্যে বৈধভাবে জবাই হলেও)</td><td class="num">১ বছর / ₹2,000</td></tr>
+          <tr><td><b>কর্ণাটক</b></td><td>বাইরের রাজ্য থেকে আনা বৈধ</td><td class="num">জবাই/পরিবহন ৩–৭ বছর + ₹50k–5 লাখ</td></tr>
+          <tr><td><b>মহারাষ্ট্র</b></td><td>বাইরের রাজ্যে জবাই হলে অপরাধ নয় (হাইকোর্ট)</td><td class="num">১ বছর / ₹2,000</td></tr>
+          <tr><td><b>তেলেঙ্গানা, তামিলনাড়ু</b></td><td>আলাদা অপরাধ নয়</td><td class="num">সবচেয়ে সহজ</td></tr>
+        </tbody></table></div>
+        <p class="small" style="margin-bottom:0"><b>মহিষের মাংস (buffalo/carabeef) প্রায় সব রাজ্যেই বৈধ</b> — হায়দ্রাবাদ ও চেন্নাই/ভেলোরে খোলাখুলি বিক্রি হয়। <b>কখনো এক রাজ্য থেকে আরেক রাজ্যে মাংস বহন করবেন না।</b> স্থানীয় লাইসেন্সপ্রাপ্ত দোকান থেকে কিনুন, অস্বচ্ছ ব্যাগে নিন।</p>
+      </div>
+    </div>
   </div>
 </section>
+<!-- ============ APPS, SIM & BOOKING ============ -->
+<section id="apps">
+  <div class="wrap">
+    <h2>সিম, অ্যাপ ও বুকিং <small class="h2sub">কোন সিম কত টাকায়, কোন অ্যাপ বিদেশি পাসপোর্টে চলে, রাইড-খাবার-বাজার-ওষুধ কীভাবে</small></h2>
+
+    <div class="callout warn"><b>⚠ বাংলাদেশে কিছু সাইট/অ্যাপ খুলতে সমস্যা হতে পারে</b> — ভারতীয় কিছু ওয়েবসাইট, বুকিং প্ল্যাটফর্ম বা সংবাদমাধ্যম দেশ থেকে ব্লক বা ধীর থাকতে পারে, আবার কিছু ভারতীয় সাইট বিদেশি IP থেকেই ঢুকতে দেয় না। <b>সমাধান:</b> (১) মোবাইল ডেটা ও ওয়াই-ফাই — দুটোতেই চেষ্টা করুন, অনেক সময় একটায় খোলে; (২) ব্রাউজারের বদলে <b>অ্যাপ</b> ব্যবহার করুন (Booking.com, Airbnb, Uber-এর অ্যাপ প্রায়ই কাজ করে যখন ওয়েবসাইট করে না); (৩) হাসপাতালে <b>সরাসরি ইমেইল বা WhatsApp</b> করুন — ওয়েবসাইট না খুললেও এগুলো চলে; (৪) ভারতে পৌঁছে ভারতীয় সিমে সবকিছুই স্বাভাবিকভাবে খুলবে, তাই <b>যেসব বুকিং আটকে যাচ্ছে সেগুলো পৌঁছে করার পরিকল্পনা রাখুন</b> (প্রথম ৩–৫ রাতের হোটেল আগেই বুক করে নিন)।</div>
+
+    <div class="callout gold"><b>প্রথম দিনের কাজ:</b> বিমানবন্দরে নেমেই <b>ভারতীয় সিম</b> কিনুন। Ola ছাড়া প্রায় সব অ্যাপে OTP লাগে, আর OTP আসে ভারতীয় নম্বরে। সিম ছাড়া উবার, সুইগি, ব্লিঙ্কিট — কিছুই ঠিকমতো চলবে না।</div>
+
+    <h3 style="margin-top:1.2rem">১. সিম কার্ড — কোনটা, কীভাবে, কত</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>বিকল্প</th><th>কী লাগে</th><th class="num">দাম ও প্যাকেজ</th><th>সুবিধা / অসুবিধা</th></tr></thead>
+        <tbody>
+          <tr><td><b>Airtel প্রিপেইড (ট্যুরিস্ট)</b><br><small class="muted">সবচেয়ে ভালো নেটওয়ার্ক-কভারেজ, বিশেষত ছোট শহর/ভেলোরে</small></td>
+            <td>পাসপোর্ট + বৈধ ভারতীয় ভিসা + <b>থাকার প্রমাণ (হোটেল বুকিং)</b> + পাসপোর্ট সাইজ ছবি</td>
+            <td class="num">~₹349 / ৩০ দিন<br>দৈনিক ১.৫ GB<br>আনলিমিটেড লোকাল কল, ১০০ SMS/দিন</td>
+            <td>বিমানবন্দরের কিয়স্ক বা যেকোনো Airtel স্টোরে ~১৫ মিনিটে চালু। <b>সবচেয়ে নির্ভরযোগ্য</b>।</td></tr>
+          <tr><td><b>Jio প্রিপেইড (ট্যুরিস্ট)</b></td>
+            <td>একই কাগজপত্র</td>
+            <td class="num">~₹299 থেকে / ২৮ দিন<br>দৈনিক ২ GB</td>
+            <td>ডেটা বেশি, সস্তা। বড় শহরে চমৎকার; একদম গ্রামে Airtel ভালো।</td></tr>
+          <tr><td><b>ট্রাভেল eSIM</b> (Airalo ইত্যাদি)</td>
+            <td>শুধু অ্যাপ — <b>কোনো কাগজ লাগে না</b>, দেশে বসেই কেনা যায়</td>
+            <td class="num">~$4.5 / ১ GB / ৭ দিন<br>~$11 / ৩ GB / ৩০ দিন<br>~$27 / ১০ GB / ৩০ দিন</td>
+            <td><b>⚠ শুধু ডেটা — ভারতীয় ফোন নম্বর দেয় না</b>, তাই অ্যাপের OTP সমস্যা মিটবে না। নামার প্রথম কয়েক ঘণ্টার জন্য ভালো, পুরো সফরের সমাধান নয়।</td></tr>
+          <tr><td><b>বাংলাদেশি নম্বরে রোমিং</b></td><td>—</td><td class="num">খুব ব্যয়বহুল</td><td>শুধু জরুরি কলের জন্য চালু রাখুন; ডেটা বন্ধ রাখুন। <b>ঢাকার নম্বরটি চালু রাখা দরকার</b> — ব্যাংক/হাসপাতালের OTP ওখানে আসে।</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">দুজনের জন্য <b>দুটো সিম</b> নিন (একটা হারালে বা নেটওয়ার্ক না পেলে)। WhatsApp-এ ঢাকার নম্বরই রেখে দিন — শুধু ডেটা ভারতীয় সিমে চলবে। দাম ২০২৫–২৬-এর রিপোর্ট করা; কাউন্টারে মিলিয়ে নিন।</p>
+
+    <h3 style="margin-top:1.3rem">২. যাতায়াতের অ্যাপ</h3>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>অ্যাপ</th><th>কী</th><th>কোন শহরে</th><th>বিদেশিরা পারবে?</th><th>নোট</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ola</b> ⭐</td><td>ক্যাব, অটো, বাইক</td><td>দিল্লি, চেন্নাই, হায়দ্রাবাদ, ব্যাঙ্গালোর, মুম্বাই, পুনে + ২৫০টির বেশি শহর (ভেলোরসহ সম্ভাব্য)</td><td class="pillcell"><span class="pill good">সবচেয়ে ভালো</span></td><td><b>Ola নিজেই বলেছে বাংলাদেশসহ আন্তর্জাতিক মোবাইল নম্বরে সাইন-আপ করা যায়</b> — একমাত্র বড় অ্যাপ যেটির এই সুবিধা প্রকাশিত। বিমানবন্দর/স্টেশনে "Ola Point" ডেস্ক থেকেও বুক করা যায়। <span class="pill v">✔</span></td></tr>
+          <tr><td><b>Uber</b></td><td>ক্যাব, অটো, মোটো</td><td>ছয় শহরেই</td><td class="pillcell"><span class="pill warn">হ্যাঁ, শর্তসহ</span></td><td><b>নগদ (cash) নেয়</b> — এটাই বিদেশিদের জন্য সবচেয়ে নিরাপদ। Visa/Mastercard/Amex ক্রেডিট কার্ড সাধারণত চলে; বিদেশি <i>ডেবিট</i> কার্ড অনিশ্চিত। <b>যাত্রা শুরুর আগেই পেমেন্ট মোড ঠিক করতে হয়</b>, মাঝপথে বদলানো যায় না। <span class="pill v">✔</span></td></tr>
+          <tr><td><b>Rapido</b></td><td>বাইক-ট্যাক্সি, অটো</td><td>১০০+ শহর</td><td class="pillcell"><span class="pill warn">ভারতীয় নম্বর লাগে</span></td><td>সবচেয়ে সস্তা। <b>কিন্তু বাইক-ট্যাক্সির বৈধতা রাজ্যভেদে বারবার চ্যালেঞ্জ হয়েছে</b> (তামিলনাড়ু, কর্ণাটক, মহারাষ্ট্রে নিষেধাজ্ঞা/জব্দের ঘটনা) — সেবা হঠাৎ বন্ধ হতে পারে। <b>স্টিমুলেশন/রিট্রিভালের সময় বাইকে যাবেন না।</b></td></tr>
+          <tr><td><b>প্রিপেইড অটো / মিটার</b></td><td>—</td><td>সব</td><td class="pillcell"><span class="pill good">সবসময়</span></td><td>বিমানবন্দর ও বড় স্টেশনে <b>পুলিশ-নিয়ন্ত্রিত প্রিপেইড কাউন্টার</b> — নির্দিষ্ট ভাড়ার স্লিপ দেয়, দর-কষাকষি লাগে না। অ্যাপ না চললে এটাই সবচেয়ে নিরাপদ।</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">আনুমানিক ভাড়া: অটো — প্রথম ২ কিমি ₹20–36, তারপর ₹11–18/কিমি (শহরভেদে); ক্যাব ₹12–20/কিমি। <b>অটোতে মিটারে যেতে বলুন বা অ্যাপ ব্যবহার করুন</b> — ভাড়া নিয়ে তর্ক এড়ানোর সবচেয়ে সহজ উপায় অ্যাপ, কারণ দাম আগেই ঠিক থাকে ও রেকর্ড থাকে।</p>
+
+    <h3 style="margin-top:1.3rem">৩. খাবার, বাজার ও ওষুধের অ্যাপ</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>খাবার ডেলিভারি</h4>
+        <ul>
+          <li><b>Swiggy</b> — ছয় শহরেই; ২০২৪ থেকে ২৭টি দেশের নম্বরে লগইন চালু, <b>তবে প্রকাশিত তালিকায় বাংলাদেশ নেই</b> — ভারতীয় নম্বর ধরে নিন</li>
+          <li><b>Zomato</b> — <b>কৌশল: ব্রাউজারে ফোন নম্বরের বদলে ইমেইল দিয়ে লগইন করুন</b>, তখন ভারতীয় নম্বর ছাড়াই চলে</li>
+          <li><b>Magicpin</b> — ONDC-ভিত্তিক, প্রায়ই সস্তা; দিল্লি-NCR-এ সবচেয়ে শক্তিশালী</li>
+        </ul>
+        <p class="small" style="margin-bottom:0"><b>Cash on Delivery সব অ্যাপেই আছে</b> — এটাই আপনার নিরাপত্তা-জাল। বাসায় ₹2,000–5,000 নগদ রাখুন।</p>
+      </div>
+      <div class="card">
+        <h4>বাজার / মুদি (রান্নার জন্য)</h4>
+        <ul>
+          <li><b>Blinkit</b> — ১০–২০ মিনিটে; সবচেয়ে বড় নির্বাচন; UPI, <b>COD</b>, কার্ড</li>
+          <li><b>Zepto</b> — ১০ মিনিট, বড় শহরে</li>
+          <li><b>Swiggy Instamart</b> — Swiggy অ্যাকাউন্ট থাকলে সবচেয়ে সহজ</li>
+          <li><b>BigBasket</b> — <b>সাপ্তাহিক বড় বাজারের জন্য সেরা</b> (চাল, তেল, মসলা, মাছ); স্লট-ভিত্তিক</li>
+          <li><b>JioMart</b> — ২০০+ শহর, <b>ছোট শহরে সবচেয়ে বেশি পৌঁছায় — ভেলোরে সম্ভবত এটাই চলবে</b></li>
+          <li><b>DMart Ready</b> — সবচেয়ে সস্তা, ন্যূনতম ₹500</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">⚠ <b>ভেলোরে ১০-মিনিট ডেলিভারি আছে কি না নিশ্চিত নয়</b> — সেখানে স্থানীয় বাজার (Babu Rao Street) + JioMart/BigBasket ধরে নিন।</p>
+      </div>
+      <div class="card">
+        <h4>ওষুধ ও স্বাস্থ্য</h4>
+        <ul>
+          <li><b>Tata 1mg, PharmEasy, Apollo 24|7, Netmeds</b> — প্রেসক্রিপশন আপলোড করে সাধারণ ওষুধ কেনা যায়</li>
+          <li><b>Practo</b> — ডাক্তার খোঁজা/অনলাইন কনসাল্ট</li>
+        </ul>
+        <div class="callout bad" style="margin-bottom:0"><b>⚠ IVF ইনজেকশন অনলাইনে কিনবেন না।</b> গোনাডোট্রপিন ২–৮°C-এ রাখতে হয়; অনলাইন ডেলিভারিতে নির্ভরযোগ্য কোল্ড-চেইন আছে — এমন কোনো প্রমাণ পাওয়া যায়নি। <b>হাসপাতালের নিজস্ব ফার্মেসি বা ক্লিনিকের বলে দেওয়া ফার্মেসি থেকেই কিনুন</b>, এবং কেনার সময় স্ট্রিপে ছাপানো <b>MRP</b> মিলিয়ে নিন।</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৪. টাকা, অনুবাদ ও অন্যান্য</h3>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>সেবা</th><th>বিদেশিদের জন্য?</th><th>বিস্তারিত</th></tr></thead>
+        <tbody>
+          <tr><td><b>UPI One World</b> (বিদেশি পর্যটকের UPI ওয়ালেট)</td><td class="pillcell"><span class="pill good">হ্যাঁ</span></td><td>ভারতীয় ব্যাংক অ্যাকাউন্ট বা ভারতীয় নম্বর <b>ছাড়াই</b> প্রিপেইড INR ওয়ালেট। KYC = <b>পাসপোর্ট + ভিসা + সেলফি</b>। পার্টনার অ্যাপ: <b>CheQ, IDFC FIRST Bank, Mony (Transcorp), NamasPay</b>। এক-একবারে ₹25,000, মাসে ₹50,000 পর্যন্ত (রিপোর্টেড)। অব্যবহৃত টাকা ফেরত পাওয়া যায়। ছোট দোকান/অটোতে খুব কাজে দেয়। <span class="pill v">✔</span></td></tr>
+          <tr><td><b>Bhashini</b> (ভারত সরকারের অনুবাদ অ্যাপ)</td><td class="pillcell"><span class="pill good">ফ্রি</span></td><td><b>বাংলা ↔ তামিল/তেলুগু/কন্নড়/হিন্দি সরাসরি</b> অনুবাদ — কণ্ঠ ও লেখা দুটোতেই। দক্ষিণ ভারতের ভাষার জন্য Google Translate-এর চেয়ে ভালো। <span class="pill v">✔</span></td></tr>
+          <tr><td><b>Google Maps — অফলাইন</b></td><td class="pillcell"><span class="pill good">হ্যাঁ</span></td><td>নামার আগেই শহরের ম্যাপ ডাউনলোড করে রাখুন; হাসপাতাল, বাসা, থানা, দূতাবাস — সব পিন করে রাখুন। ডেটা না থাকলেও চলবে।</td></tr>
+          <tr><td><b>IRCTC</b> (ট্রেন)</td><td class="pillcell"><span class="pill warn">হ্যাঁ, আলাদা নিয়মে</span></td><td>পাসপোর্ট নম্বর দিয়ে রেজিস্ট্রেশন, ফি ₹100 + GST। <b>Foreign Tourist Quota</b>: 1A/2A/EC ক্লাস, ৩৬৫ দিন আগে বুকিং, ভাড়া <b>দেড় গুণ</b> + ₹200 সার্ভিস ফি। আন্তর্জাতিক কার্ড চলে। ভ্রমণে <b>মূল পাসপোর্ট + ভিসা</b> সঙ্গে রাখতে হয়। <span class="pill v">✔</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- ============ ETIQUETTE / CIVIC SENSE ============ -->
+<section id="etiquette">
+  <div class="wrap">
+    <h2>আঞ্চলিক আদব-কায়দা ও নাগরিক নিয়ম <small class="h2sub">কোন রাজ্যে কী পছন্দ করা হয় না, কোন ভাষায় কথা শুরু করবেন, কোন কাজে জরিমানা বা মামলা</small></h2>
+
+    <div class="callout">
+      নিচের সবটাই <b>আইন, পৌরসভার নিয়ম ও নথিভুক্ত স্থানীয় রীতি</b> — কোনো জাতি বা সম্প্রদায়ের স্বভাব নিয়ে মন্তব্য নয়। <b>ভারতের রাজ্যগুলো একে অন্যের থেকে আলাদা প্রায় দেশের মতোই</b> — এক শহরের নিয়ম অন্য শহরে খাটে ধরে নেওয়াই বিদেশিদের সবচেয়ে বড় ভুল।
+    </div>
+
+    <h3 style="margin-top:1.2rem">১. ভাষা — কোথায় কোন ভাষায় শুরু করবেন</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>তামিলনাড়ু (চেন্নাই, ভেলোর) — <span style="color:var(--bad)">হিন্দিতে শুরু করবেন না</span></h4>
+        <p>তামিলনাড়ুতে হিন্দি চাপিয়ে দেওয়ার বিরুদ্ধে আন্দোলনের ইতিহাস প্রায় একশো বছরের — ১৯৩৭–৪০ ও ১৯৬৪–৬৫ সালের আন্দোলনে <b>প্রায় ৬০ জন মারা যান</b>, যাঁদের মধ্যে আত্মাহুতি দেওয়া ছাত্ররাও ছিলেন। ১৯৬৭ থেকে রাজ্যটি <b>দুই-ভাষা নীতি (তামিল + ইংরেজি)</b> মেনে চলে এবং তিন-ভাষা সূত্র প্রত্যাখ্যান করে। বিষয়টি ২০২৫ সালেও রাজনৈতিকভাবে জীবন্ত। <span class="pill v">✔</span></p>
+        <p style="margin-bottom:0"><b>কী করবেন:</b> <b>ইংরেজিতে শুরু করুন</b> — ইংরেজি এখানে স্বাভাবিক ও স্বাগত। সঙ্গে "ৱণক্কম্" (Vanakkam) ও "নন্দ্রি" (Nandri) বললে মানুষ খুশি হন। <b>ভেলোরে CMC-র আশপাশে বাংলা নিজেই কাজ করে</b> — দোকানদার ও অটোচালকদের অনেকেই ভাঙা বাংলা বলেন।</p>
+      </div>
+      <div class="card">
+        <h4>কর্ণাটক (ব্যাঙ্গালোর) — কন্নড় দিয়ে শুরু, তারপর ইংরেজি</h4>
+        <p>২০২৪ সালের আইনে দোকান, হাসপাতাল ও হোস্টেলের সাইনবোর্ডে <b>৬০% কন্নড়</b> বাধ্যতামূলক (জরিমানা ₹5,000 → ₹10,000 → ₹20,000)। ভাষা নিয়ে স্থানীয় রাজনীতি সক্রিয়। <span class="pill v">✔</span></p>
+        <p style="margin-bottom:0"><b>কী করবেন:</b> আগে <b>"নমস্কার"</b>, তারপর <b>"Kannada gottilla — English?"</b> (কন্নড় জানি না — ইংরেজি?) — এই একটি বাক্য স্থানীয়ভাবে খুব পরিচিত ও ভালোভাবে গ্রহণ করা হয়। সাইনবোর্ড কন্নড় হরফে থাকবে, তাই <b>বাসার নাম ইংরেজিতে লিখে রাখুন এবং সাইনবোর্ডের ছবি তুলে রাখুন</b>।</p>
+      </div>
+      <div class="card">
+        <h4>তেলেঙ্গানা (হায়দ্রাবাদ) — আপনার জন্য সবচেয়ে সহজ শহর</h4>
+        <p style="margin-bottom:0">তেলুগু প্রথম রাষ্ট্রভাষা, কিন্তু <b>উর্দু ২০১৭ সাল থেকে রাজ্যের দ্বিতীয় সরকারি ভাষা</b> — সব জেলায়, সরকারি অফিসে উর্দুতে আবেদন গ্রহণ করা হয়। রাজ্যের প্রায় ১২% মানুষ উর্দুভাষী। <b>হিন্দি ও উর্দু এখানে সম্পূর্ণ স্বাগত</b>; "আসসালামু আলাইকুম"/"আদাব" একেবারে স্বাভাবিক। বাংলাভাষীরা সাধারণত এই শহরেই ভাষাগতভাবে সবচেয়ে স্বচ্ছন্দ বোধ করেন। <span class="pill v">✔</span></p>
+      </div>
+      <div class="card">
+        <h4>দিল্লি ও মহারাষ্ট্র (মুম্বাই, পুনে)</h4>
+        <p><b>দিল্লি:</b> হিন্দি/উর্দু ও ইংরেজি — দুটোই সর্বত্র চলে, কোনো ভাষাগত স্পর্শকাতরতা নেই। নিজামুদ্দিন, জামিয়া নগর ও পুরান দিল্লিতে "আদাব"/"আসসালামু আলাইকুম" স্বাভাবিক।</p>
+        <p style="margin-bottom:0"><b>মহারাষ্ট্র:</b> ২০২৫ সালে মারাঠি-হিন্দি বিতর্ক তীব্র হয়েছিল (স্কুলে হিন্দি বাধ্যতামূলক করার সিদ্ধান্ত প্রত্যাহার, দোকানদারের সঙ্গে ভাষা নিয়ে হাতাহাতির ঘটনা)। এটি <b>ভারতের অভ্যন্তরীণ রাজনীতি, বিদেশি রোগীদের বিরুদ্ধে নয়</b> — তবু <b>"নমস্কার"</b> দিয়ে শুরু করা ও হিন্দিতে জোর না করাই ভালো। ইংরেজি মুম্বাই-পুনেতে নিরাপদ।</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.2rem">দরকারি বাক্য (বাংলা উচ্চারণে)</h3>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>বাংলা</th><th>হিন্দি (দিল্লি, মুম্বাই)</th><th>তামিল (চেন্নাই, ভেলোর)</th><th>তেলুগু (হায়দ্রাবাদ)</th><th>কন্নড় (ব্যাঙ্গালোর)</th></tr></thead>
+        <tbody>
+          <tr><td>সালাম/নমস্কার</td><td>নমস্তে / আদাব</td><td>ৱণক্কম্</td><td>নমস্কারম্</td><td>নমস্কার</td></tr>
+          <tr><td>ধন্যবাদ</td><td>শুক্রিয়া / ধন্যবাদ</td><td>নন্দ্রি</td><td>ধন্যবাদালু</td><td>ধন্যৱাদ</td></tr>
+          <tr><td>হ্যাঁ / না</td><td>হাঁ / নেহি</td><td>আমাম্ / ইল্লে</td><td>অৱুনু / লেদু</td><td>হৌদু / ইল্লা</td></tr>
+          <tr><td>এটার দাম কত?</td><td>ইয়ে কিতনে কা হ্যায়?</td><td>ইদু এৱ্ৱলৱু?</td><td>ইদি এন্ত?</td><td>ইদু এষ্টু?</td></tr>
+          <tr><td>টয়লেট কোথায়?</td><td>টয়লেট কাহাঁ হ্যায়?</td><td>টয়লেট এঙ্গে ইরুক্কু?</td><td>টয়লেট এক্কড উন্দি?</td><td>টয়লেট এল্লিদে?</td></tr>
+          <tr><td>একটু সাহায্য করুন</td><td>মেরি মদদ কীজিয়ে</td><td>এনক্কু উদবি ৱেণ্ডুম্</td><td>নাকু সহায়ম্ কাৱালি</td><td>ননগে সহায় বেকু</td></tr>
+          <tr><td>হাসপাতাল</td><td>অসপতাল</td><td>মরুত্তুৱমনৈ</td><td>আসুপত্রি</td><td>আস্পত্রে</td></tr>
+          <tr><td>পানি</td><td>পানি</td><td>তণ্ণি</td><td>নীল্লু</td><td>নীরু</td></tr>
+          <tr><td>ঝাল কম / ঝাল দেবেন না</td><td>মির্চি কম</td><td>কারম্ ৱেণ্ডাম্</td><td>কারম্ ৱদ্দু</td><td>খারা বেডা</td></tr>
+          <tr><td>নিরামিষ / আমিষ</td><td>শাকাহারি / মাংসাহারি</td><td>সৈৱম্ / অসৈৱম্</td><td>শাকাহারম্ / মাংসাহারম্</td><td>সস্যাহারি / মাংসাহারি</td></tr>
+          <tr><td>বুঝতে পারিনি</td><td>মুঝে সমঝ নেহি আয়া</td><td>এনক্কু পুরিয়লে</td><td>নাকু অর্থম্ কালেদু</td><td>ননগে অর্থ আগলিল্ল</td></tr>
+          <tr><td>এই ভাষা জানি না — ইংরেজি?</td><td>ইংলিশ বোলতে হ্যায়ঁ?</td><td>তমিল্ তেরিয়াদু, English?</td><td>তেলুগু রাদু, English?</td><td><b>কন্নড গোত্তিল্ল, English?</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">তেলুগুতে <b>"আন্দি"</b> আর তামিলে <b>"-ঙ্গা"</b> (যেমন "কুডুঙ্গা" = দিন প্লিজ) যোগ করলে যেকোনো কথা ভদ্র শোনায়।</p>
+
+    <h3 style="margin-top:1.3rem">২. যেসব কাজ মানুষ পছন্দ করেন না (এবং যেগুলোতে জরিমানা/মামলা হয়)</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>জুতা, ছবি, শরীরী ভাষা</h4>
+        <ul>
+          <li><b>বাড়ি, মন্দির ও অনেক ছোট ক্লিনিক/দোকানে ঢোকার আগে জুতা খুলুন।</b> দরজার পাশে জুতার তাক বা স্যান্ডেলের স্তূপই নির্দেশ। মোজা পরা চলবে। মন্দিরে <b>চামড়ার বেল্ট/মানিব্যাগ</b> নিয়েও ঢোকা বারণ থাকতে পারে।</li>
+          <li><b>হাসপাতালের ভেতরে ছবি বা ভিডিও নয়</b> — বহু ভারতীয় হাসপাতালে স্পষ্ট নিষেধ (রোগীর গোপনীয়তা); ICU/OT-তে মোবাইলও নিষিদ্ধ। করিডোরে সেলফিতেও অন্য রোগী চলে আসতে পারে।</li>
+          <li><b>বিমানবন্দরের নিরাপত্তা-চেকপয়েন্ট, বোর্ডিং গেট, ট্যারমাক</b> — ছবি তুললে জরিমানা, ফোন জব্দ, বারবার করলে <b>no-fly তালিকা</b> পর্যন্ত হতে পারে (DGCA, ২০২৬)। মেট্রোতে ব্যক্তিগত ছবি চলে, কিন্তু <b>রিল/ভিডিও বানানো নিষিদ্ধ</b>।</li>
+          <li><b>অচেনা কারও — বিশেষত নারী বা শিশুর — ছবি অনুমতি ছাড়া কখনো নয়।</b> বিদেশিদের প্রকাশ্যে ঝামেলায় পড়ার সবচেয়ে সাধারণ কারণ এটাই।</li>
+          <li><b>ডান হাতে</b> খান, দিন ও নিন — টাকা, কাগজ, উপহার সবই। দুই হাতে দিলে আরও সম্মানজনক।</li>
+          <li><b>পা দিয়ে কাউকে বা কিছু স্পর্শ করবেন না</b>, পায়ের তলা কারও দিকে বা মন্দিরের দিকে রাখবেন না; মেঝেতে বসা/শোয়া মানুষকে ডিঙাবেন না।</li>
+          <li><b>প্রকাশ্যে ঘনিষ্ঠতা এড়ান</b> — চুমু/দীর্ঘ আলিঙ্গন। "অশ্লীল আচরণে" ৩ মাস পর্যন্ত কারাদণ্ডের ধারা আছে এবং তা <b>ওয়ারেন্ট ছাড়া গ্রেপ্তারযোগ্য</b>। হাত ধরা শহরে স্বাভাবিক।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>জরিমানা হয় যেসব কাজে</h4>
+        <ul>
+          <li><b>থুতু ফেলা ও ময়লা ফেলা</b> — মুম্বাইয়ে (৩ ফেব্রু ২০২৬ থেকে) ২১টি অপরাধে <b>₹200–25,000</b> জরিমানা; ব্যাঙ্গালোরে ₹100–2,000।</li>
+          <li><b>প্রকাশ্যে ধূমপান</b> — COTPA ধারা ৪, জরিমানা ₹200; "প্রকাশ্য স্থানে" <b>হাসপাতাল</b> স্পষ্টভাবে অন্তর্ভুক্ত এবং হাসপাতাল-চত্বরে কড়াকড়ি হয়।</li>
+          <li><b>গুজরাট সম্পূর্ণ "ড্রাই" রাজ্য</b> — মদ নিষিদ্ধ; পর্যটক/রোগীর জন্য পারমিটের ব্যবস্থা আছে কিন্তু <b>চিকিৎসার সফরে মদ একেবারেই এড়িয়ে চলুন</b>। মহারাষ্ট্রে ব্যক্তিগত পানের জন্যও পারমিট লাগে; প্রকাশ্যে মদ্যপান সব রাজ্যেই নিষিদ্ধ।</li>
+          <li><b>মোটরসাইকেলে চালক ও পেছনের যাত্রী — দুজনেরই হেলমেট বাধ্যতামূলক</b> (₹1,000 জরিমানা, ISI-চিহ্নিত হেলমেট)।</li>
+          <li><b>দিল্লি মেট্রোর প্রথম কামরা নারীদের জন্য সংরক্ষিত</b> — পুরুষ ঢুকলে ₹250 জরিমানা। স্ত্রী ব্যবহার করতে পারবেন, স্বামী নয়।</li>
+          <li><b>লাইন ভাঙা</b> — হাসপাতাল, ব্যাংক ও সরকারি অফিসে <b>টোকেন সিস্টেম</b>; টোকেন নিন, কাগজ রাখুন, নম্বর ডাকা পর্যন্ত অপেক্ষা করুন। অনেক কাউন্টারে <b>আলাদা মহিলা লাইন</b> থাকে ও ছোট হয়।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>দর-কষাকষি ও MRP</h4>
+        <ul>
+          <li><b>দর করা যায়:</b> রাস্তার দোকান, বাজার, হস্তশিল্প, স্যুভেনির। প্রথম দামের এক-তৃতীয়াংশ থেকে অর্ধেক বলাই রীতি। <b>কিন্তু একবার দাম বলে বিক্রেতা রাজি হয়ে গেলে কিনতেই হবে</b> — তখন চলে আসা সত্যিই অভদ্রতা।</li>
+          <li><b>দর করবেন না:</b> মল, ফিক্সড-প্রাইস দোকান, রেস্তোরাঁ, <b>ফার্মেসি, হাসপাতাল</b>, টিকিট কাউন্টার, প্যাকেটজাত পণ্য।</li>
+          <li><b>MRP = সর্বোচ্চ খুচরা মূল্য।</b> ভারতে প্যাকেটজাত সব পণ্যে — ওষুধ, পানির বোতল — MRP ছাপা বাধ্যতামূলক, এবং <b>MRP-র বেশি নেওয়া বেআইনি</b> (জরিমানা ₹25,000 → ₹50,000 → ₹1 লাখ + ১ বছর কারাদণ্ড)। <b>ওষুধের পাতা ও পানির বোতলে ছাপা MRP সবসময় দেখে নিন</b>; "MRP?" বলে আঙুল দিয়ে দেখানো একেবারে স্বাভাবিক। ফার্মেসিতে MRP-র <i>কমে</i> ছাড় চাওয়াও স্বাভাবিক।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>বকশিশ — এবং একটি কঠিন সীমা</h4>
+        <ul>
+          <li><b>রেস্তোরাঁ:</b> ২০২২-এর সরকারি নির্দেশ ও দিল্লি হাইকোর্টের ২০২৫ রায় অনুযায়ী <b>"service charge" জোর করে বিলে বসানো বেআইনি</b> — আপনি বাদ দিতে বলতে পারেন। স্বেচ্ছায় ৫–১০% টিপ স্বাভাবিক।</li>
+          <li><b>হোটেল/ড্রাইভার:</b> পোর্টার/রুম সার্ভিস ₹20–100; ড্রাইভার সারাদিনের জন্য ₹100–300।</li>
+        </ul>
+        <div class="callout bad" style="margin-bottom:0"><b>⚠ হাসপাতালের কর্মীকে কখনো টাকা বা উপহার দেবেন না</b> — বেড, দ্রুত সিরিয়াল, বাড়তি ভিজিটিং টাইম, কোনো কিছুর জন্যই নয়। Prevention of Corruption (Amendment) Act, 2018 অনুযায়ী <b>ঘুষ দেওয়াও আলাদা অপরাধ — ৭ বছর পর্যন্ত কারাদণ্ড</b>। বেসরকারি হাসপাতালে এটি অপরাধ না হলেও কর্মীর চাকরি যাবে ও আপনার ফাইল "সমস্যাজনক" হয়ে যাবে। <b>কেউ টাকা চাইলে দেবেন না — নাম লিখে রাখুন, আন্তর্জাতিক রোগী ডেস্ক বা মেডিকেল সুপারিনটেনডেন্টকে জানান।</b></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৩. বাংলাদেশ–ভারত: কথোপকথনে যা এড়াবেন</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>প্রেক্ষাপট (তথ্য হিসেবে, ভয় হিসেবে নয়)</h4>
+        <ul>
+          <li>২০২৪ সালের আগস্টের পর ভারত বাংলাদেশিদের ভিসা কমিয়ে দেয় — দৈনিক স্লট ~৭,০০০ (জুলাই ২০২৪) থেকে ~৫০০ (জানু ২০২৫)। <b>মেডিকেল ভিসা কখনো পুরোপুরি বন্ধ হয়নি</b>। <b>২৮ জুন ২০২৬ থেকে সাধারণ ট্যুরিস্ট ভিসা আবার চালু</b> (ঢাকা, রাজশাহী, চট্টগ্রাম, সিলেট, খুলনা)। <span class="pill v">✔</span></li>
+          <li>২০২৪ সালের নভেম্বর–ডিসেম্বরে <b>কলকাতার একটি ও আগরতলার একটি বেসরকারি হাসপাতাল</b> বাংলাদেশি রোগী ভর্তি না করার ঘোষণা দিয়েছিল। <span class="pill p">● সংবাদ</span></li>
+          <li><b>গুরুত্বপূর্ণ:</b> ওই ঘটনাগুলো ছিল <b>কলকাতা ও আগরতলার বিচ্ছিন্ন ঘোষণা</b> — সীমান্তবর্তী, রাজনৈতিকভাবে বেশি উত্তপ্ত শহর। <b>দিল্লি, চেন্নাই, ভেলোর, হায়দ্রাবাদ, ব্যাঙ্গালোর, মুম্বাই বা পুনের বড় হাসপাতালে এমন কোনো ঘটনা রিপোর্ট হয়নি</b> — বরং সেখানে বাংলা দোভাষীসহ বাংলাদেশি রোগীদের জন্য আলাদা প্রোগ্রাম চলে। এই গাইডের শহরগুলো সেই তালিকার বাইরে।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>যেসব প্রসঙ্গ তুলবেন না</h4>
+        <p class="small">অটোচালক, দোকানদার, হোটেলকর্মী, ওয়ার্ডের পাশের রোগী — কারও সঙ্গেই নয়:</p>
+        <ul>
+          <li>২০২৪-এর রাজনৈতিক পটপরিবর্তন, শেখ হাসিনা, বা তাঁর ভারতে অবস্থান</li>
+          <li>দুই দেশের সংখ্যালঘু পরিস্থিতি</li>
+          <li>সীমান্ত, BSF, পুশব্যাক, তিস্তা/পানিবণ্টন</li>
+          <li>ক্রিকেট প্রতিদ্বন্দ্বিতা, আম্পায়ারিং, ম্যাচের ফল</li>
+          <li>ভারতের নির্বাচন বা কোনো রাজনৈতিক দল</li>
+          <li>কোন দেশ বেশি উন্নত/পরিষ্কার — এই তুলনা</li>
+          <li>কাশ্মীর, CAA/NRC, "অনুপ্রবেশকারী"</li>
+        </ul>
+        <div class="callout good" style="margin-bottom:0"><b>কেউ তুললে যা বলবেন:</b> <i>"ভাই, আমি রাজনীতি বুঝি না — আমি শুধু চিকিৎসার জন্য এসেছি। এখানকার ডাক্তাররা খুব ভালো ব্যবহার করেছেন।"</i> তারপর খাবার বা আবহাওয়ার কথায় চলে যান। প্রায় কেউই এর পরে আর টানে না।<br><br><b>"কোথা থেকে এসেছেন?" —</b> সোজা সত্যি বলুন: <i>"বাংলাদেশ থেকে, [হাসপাতালের নাম]-এ চিকিৎসার জন্য।"</i> এতে সাধারণত মানুষ সহানুভূতিশীল হন ও ডাক্তার-রেস্তোরাঁর পরামর্শ দিতে শুরু করেন। <b>কখনো বলবেন না যে আপনি কলকাতা/পশ্চিমবঙ্গের</b> — পাসপোর্ট, ভিসা ও হাসপাতালের ফাইলে বাংলাদেশ লেখা; মিল না থাকলে হোটেল রেজিস্ট্রেশন ও থানা-যাচাইয়ে সত্যিকারের সমস্যা হয়।</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৪. হাসপাতালের ভেতরের আদব</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>অ্যাটেনডেন্ট ও ভিজিটিং</h4>
+        <ul>
+          <li>ভারতীয় হাসপাতালের সাধারণ নিয়ম: <b>একজন রোগীর সঙ্গে একজন অ্যাটেনডেন্ট</b>; সাধারণত <b>দুটি অ্যাটেনডেন্ট পাস</b> দেওয়া হয়, ভিজিটিং সময় নির্দিষ্ট (AIIMS-এ বিকেল ৪–৬টা)।</li>
+          <li><b>দম্পতির জন্য মানে:</b> রাতে ওয়ার্ডে সাধারণত একজনই থাকতে পারবেন। প্রথম দিনেই ডেস্কে জিজ্ঞেস করুন — "কয়টি পাস, ভিজিটিং কখন?"</li>
+          <li>ICU-তে আরও কড়া: একজন, ১৫–৩০ মিনিট, নির্দিষ্ট সময়ে, ফোন ছাড়া।</li>
+          <li>পাস ছাড়া বাড়তি লোক ঢোকানোর চেষ্টা — এখানেই সবচেয়ে বেশি ঝামেলা হয়।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>নিজের ফাইল নিজে বহন করুন</h4>
+        <ul>
+          <li>ভারতে কোনো জাতীয় শেয়ার্ড মেডিকেল রেকর্ড নেই — <b>আপনিই আপনার ইতিহাসের বাহক</b>।</li>
+          <li><b>সব মূল কাগজ</b> নিন: আগের প্রেসক্রিপশন, ডিসচার্জ সামারি, ইমেজিং ফিল্ম/CD, ল্যাব রিপোর্ট, <b>ডোজসহ বর্তমান ওষুধের লিখিত তালিকা</b> (ভারতে ব্র্যান্ডের নাম আলাদা — জেনেরিক নাম লিখে নিন)।</li>
+          <li>যাত্রার আগে <b>ফটোকপি সেট + ফোনে ছবি সেট</b> বানিয়ে রাখুন।</li>
+          <li>প্রতিটি ভিজিটে ফাইল সঙ্গে নিন; প্রতিবার <b>ডাক্তারের নাম ও বিভাগ</b> লিখে রাখুন।</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>বিল ও অধিকার</h4>
+        <ul>
+          <li>ভারতের <b>Charter of Patients' Rights</b> (NHRC অনুমোদিত) অনুযায়ী <b>টাকা দেওয়ার সময় itemised বিল পাওয়া আপনার অধিকার</b>, এবং সিদ্ধান্ত নেওয়ার আগে <b>সম্ভাব্য খরচ জানারও</b> অধিকার আছে।</li>
+          <li>ভর্তি বা প্রসিডিওরের <b>আগে</b> লিখিত এস্টিমেট চান — পরে নয়।</li>
+          <li>লম্বা ভর্তিতে <b>প্রতি ২–৩ দিনে অন্তর্বর্তী বিল</b> চান; ডিসচার্জের বিলের জন্য অপেক্ষা করবেন না।</li>
+          <li>অচেনা লাইন-আইটেম <b>শান্তভাবে, লিখিতভাবে</b> বিলিং ডেস্কে জিজ্ঞেস করুন → আন্তর্জাতিক ডেস্ক → মেডিকেল সুপারিনটেনডেন্ট। ওয়ার্ডের নার্সকে নয়।</li>
+          <li><b>"এই প্রসিডিওরের কি প্যাকেজ রেট আছে?"</b> — এটি বৈধ ও স্বাভাবিক প্রশ্ন, প্রায়ই কম দাম পাওয়া যায়। কিন্তু ডাক্তারের ফি নিয়ে দর করবেন না।</li>
+          <li>ডাক্তারকে <b>"Doctor"</b>, নার্সকে <b>"Sister"</b> — সারা ভারতে এটাই স্বাভাবিক ও সম্মানজনক সম্বোধন।</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:1rem">
+      <b>সবচেয়ে বেশি সমস্যা যেসব কাজে হয় — ১০টি:</b>
+      <ol style="margin:.4rem 0 0">
+        <li>গরুর মাংস কেনা/বহন করা — বিশেষত <b>গুজরাট</b> (৭–১০ বছর, জামিন-অযোগ্য), দিল্লি, মহারাষ্ট্র, কর্ণাটক</li>
+        <li>না জিজ্ঞেস করে <b>"pure-veg" সোসাইটিতে</b> ফ্ল্যাট নেওয়া</li>
+        <li>শেয়ার্ড বিল্ডিংয়ে <b>শুঁটকি</b> রান্না</li>
+        <li>তামিলনাড়ুতে <b>হিন্দিতে</b> কথা শুরু করা</li>
+        <li>অচেনা মানুষ, নারী, বিমানবন্দরের চেকপয়েন্ট বা হাসপাতালের ভেতরে <b>ছবি তোলা</b></li>
+        <li>হাসপাতালের কর্মীকে <b>টাকা দেওয়া</b></li>
+        <li><b>ভিসার মেয়াদ পার</b> করা, বা বাড়িওয়ালাকে <b>Form C</b> করতে না দেওয়া</li>
+        <li>জুতার তাক থাকা সত্ত্বেও <b>জুতা পরে</b> ঘরে/ওয়ার্ডে ঢোকা</li>
+        <li><b>ফার্মেসিতে দর করা</b> বা MRP না দেখে বেশি দাম দেওয়া</li>
+        <li><b>রাজনীতি, সীমান্ত, সংখ্যালঘু বা ক্রিকেট</b> নিয়ে আলোচনায় জড়ানো</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<!-- ============ CLINICAL GROUND REALITIES ============ -->
+<section id="clinical">
+  <div class="wrap">
+    <h2>চিকিৎসা চলাকালীন শারীরিক ও ব্যবহারিক প্রস্তুতি <small class="h2sub">দিন-ভিত্তিক সূচি, ইনজেকশন সংরক্ষণ, রিট্রিভালের দিন, OHSS-এর বিপদ-চিহ্ন, ট্রান্সফারের পর কী করবেন</small></h2>
+
+    <div class="callout warn">এই সেকশন <b>চিকিৎসা-পরামর্শ নয়</b> — আপনার ডাক্তারের নির্দেশই চূড়ান্ত। এটি আন্তর্জাতিক গাইডলাইন (ESHRE, NHS, HFEA, RCOG, Cochrane, CDC) থেকে নেওয়া <b>ব্যবহারিক প্রস্তুতি</b>, যাতে বিদেশে গিয়ে অপ্রস্তুত না হন।</div>
+
+    <h3 style="margin-top:1.2rem">১. একটি সাইকেল আসলে কেমন — দিন ধরে ধরে</h3>
+    <p class="small">একটি পূর্ণ IVF সাইকেল <b>৩–৬ সপ্তাহ</b> (NHS) বা <b>৪–৬ সপ্তাহ</b> (HFEA)। ⚑ চিহ্নিত দিনগুলো <b>কোনোভাবেই মিস করা যাবে না</b>।</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>দিন</th><th>কী হয়</th><th>হাসপাতালে যেতে হবে?</th></tr></thead>
+        <tbody>
+          <tr><td>মাসিকের ১ম দিন</td><td>মাসিক শুরু — <b>সেদিনই ক্লিনিকে ফোন</b></td><td>ফোন</td></tr>
+          <tr class="hl"><td><b>দিন ২–৩</b> ⚑</td><td><b>বেসলাইন স্ক্যান + রক্ত পরীক্ষা</b>; ওভারি শান্ত থাকলে সেদিন থেকেই স্টিমুলেশন শুরু</td><td><b>হ্যাঁ</b></td></tr>
+          <tr><td>দিন ২/৩ → ১০–১৪</td><td><b>প্রতিদিন একই সময়ে গোনাডোট্রপিন ইনজেকশন</b> (NHS: "প্রায় ২ সপ্তাহ")</td><td>নিজে দেবেন</td></tr>
+          <tr><td>স্টিমুলেশনের ~৫–৬ দিনে ⚑</td><td><b>অ্যান্টাগনিস্ট (Cetrotide) যোগ হয়</b>, প্রতিদিন — ডিম আগেই বেরিয়ে যাওয়া ঠেকাতে</td><td>নিজে দেবেন</td></tr>
+          <tr><td>~দিন ৬–৭, ৮–৯</td><td>মনিটরিং স্ক্যান ± রক্ত (ফলিকল কত বড় হলো)</td><td>হ্যাঁ</td></tr>
+          <tr class="hl"><td>~দিন ১০–১২ ⚑</td><td>শেষ মনিটরিং স্ক্যান — <b>ট্রিগারের সিদ্ধান্ত</b></td><td><b>হ্যাঁ</b></td></tr>
+          <tr class="hl"><td><b>ট্রিগারের রাত</b> ⚑</td><td><b>ঘড়ি ধরে নির্দিষ্ট সময়ে ট্রিগার ইনজেকশন</b> (শেষ FSH/hMG ডোজের ২৪–৪৮ ঘণ্টা পর)</td><td>নিজে — <b>সময় সবচেয়ে গুরুত্বপূর্ণ</b></td></tr>
+          <tr class="hl"><td>ট্রিগার + ~৩৪–৩৬ ঘণ্টা ⚑</td><td><b>ডিম সংগ্রহ (egg retrieval)</b> — অজ্ঞান/সিডেশনে, ২০–৩০ মিনিট</td><td><b>হ্যাঁ — খালি পেটে, সঙ্গী সহ</b></td></tr>
+          <tr><td>পরদিন ⚑</td><td><b>নিষেকের খবর (fertilisation report) ফোনে</b></td><td>ফোন</td></tr>
+          <tr><td>+২/৩ দিন বা +৫/৬ দিন</td><td><b>ভ্রূণ স্থাপন (transfer)</b> — অথবা সব ফ্রিজ (freeze-all)</td><td>ট্রান্সফার হলে হ্যাঁ</td></tr>
+          <tr><td>রিট্রিভাল → টেস্ট</td><td><b>প্রোজেস্টেরন সাপোর্ট</b> শুরু (রিট্রিভালের সন্ধ্যা থেকে ৩ দিনের মধ্যে) — টেস্টের দিন পর্যন্ত চলবে</td><td>নিজে</td></tr>
+          <tr class="hl"><td>ট্রান্সফার + ~১৬ দিন ⚑</td><td><b>রক্তের beta-hCG পরীক্ষা</b></td><td>প্রায়ই <b>বাংলাদেশে</b> করা যায়</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted"><b>সব মিলিয়ে সশরীরে ~৬–৯ বার</b> হাসপাতালে যেতে হয় (১ বেসলাইন + ৩–৫ মনিটরিং + রিট্রিভাল + ট্রান্সফার) — তাই <b>হাসপাতাল থেকে হাঁটা দূরত্বে</b> থাকা এত জরুরি। ⚠ "ট্রিগারের ৩৪–৩৬ ঘণ্টা পর রিট্রিভাল" — এটি <b>প্রচলিত অনুশীলন, কোনো গাইডলাইনের বাঁধা নিয়ম নয়</b> (গবেষণায় ৩২–৪০ ঘণ্টার পরিসর, এবং ট্রিগারের ধরনভেদে সেরা সময় আলাদা)। <b>আপনার ক্লিনিক যে সময় বলবে সেটাই লিখে রাখুন, দুটো অ্যালার্ম দিন, ৩০ মিনিটও এদিক-ওদিক করবেন না।</b></p>
+
+    <h3 style="margin-top:1.3rem">২. ইনজেকশন — সংরক্ষণ, বহন, ভুল হলে</h3>
+    <div class="callout good">
+      <b>ভ্রমণের জন্য সবচেয়ে কাজের তথ্য:</b> বেশিরভাগ IVF ইনজেকশন <b>প্রথমবার ব্যবহারের আগে ফ্রিজ ছাড়াও কয়েক মাস থাকতে পারে</b> — Gonal-f ও Puregon <b>≤২৫°C-এ ৩ মাস পর্যন্ত</b>, Cetrotide <b>≤৩০°C-এ ৩ মাস</b>, Ovitrelle <b>≤২৫°C-এ ৩০ দিন</b>। অর্থাৎ ঢাকা→ভারত ফ্লাইটে <b>ফ্রিজ লাগে না</b> — কিন্তু <b>২৫°C-এর নিচে</b> রাখতে হয়, যা ভারতীয় গরমে মানে <b>জেল-প্যাকসহ কুল ব্যাগ</b>। <b>অবশ্যই হ্যান্ড লাগেজে</b> — কার্গোতে জমে যেতে পারে, আর <b>জমে গেলে ওষুধ নষ্ট</b>।
+    </div>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>ওষুধ</th><th>সাধারণ সংরক্ষণ</th><th>ফ্রিজ ছাড়া কতদিন</th><th>খোলার/গোলার পর</th></tr></thead>
+        <tbody>
+          <tr><td><b>Gonal-f</b> (পেন)</td><td>২–৮°C, জমাবেন না</td><td><b>≤২৫°C-এ ৩ মাস</b> (একবারই)</td><td>খোলার পর ২–২৫°C-এ সর্বোচ্চ <b>২৮ দিন</b></td></tr>
+          <tr><td><b>Cetrotide</b> 0.25 mg</td><td>২–৮°C, আলো থেকে দূরে</td><td><b>≤৩০°C-এ ৩ মাস</b></td><td><b>গোলার সঙ্গে সঙ্গে দিতে হবে</b></td></tr>
+          <tr><td><b>Ovitrelle</b> (ট্রিগার)</td><td>২–৮°C</td><td><b>≤২৫°C-এ ৩০ দিন</b> (আর ফ্রিজে ফেরানো যাবে না)</td><td>২–৮°C-এ ২৪ ঘণ্টা</td></tr>
+          <tr><td><b>Menopur</b> 600/1200 IU</td><td>২–৮°C, জমাবেন না</td><td>—</td><td>গোলার পর <b>≤২৫°C-এ ২৮ দিন</b></td></tr>
+          <tr><td><b>Menopur</b> 75/150 IU</td><td>≤২৫°C, আলো থেকে দূরে</td><td>—</td><td><b>সঙ্গে সঙ্গে ব্যবহার</b>, বাকিটা ফেলে দিন</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>দেওয়ার নিয়ম</h4>
+        <ul>
+          <li>ইনজেকশনের <b>~৩০ মিনিট আগে</b> ফ্রিজ থেকে বের করে রাখুন — ব্যথা কম হয় (Gonal-f ও Cetrotide দুটোরই নির্দেশ)</li>
+          <li><b>প্রতিদিন একই সময়ে</b> দিন। ক্লিনিক সকাল বা সন্ধ্যার যে সূচি দেবে, সেটির সঙ্গে অ্যান্টাগনিস্ট শুরুর দিনও বদলায় — <b>হুবহু মানুন</b></li>
+          <li><b>ডোজ মিস বা নষ্ট হলে:</b> দ্বিগুণ দেবেন না, অনুমান করবেন না — <b>সেই ঘণ্টাতেই ক্লিনিকে ফোন করুন</b>। অ্যান্টাগনিস্ট মিস হলে ডিম আগেই বেরিয়ে যেতে পারে; ট্রিগার ভুল সময়ে হলে পুরো সাইকেল নষ্ট</li>
+          <li><b>সুই/সিরিঞ্জ হোটেলের ঝুড়িতে ফেলবেন না</b> — ক্লিনিক থেকে sharps কন্টেইনার চেয়ে নিন, ভরে গেলে ফেরত দিন</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>ওষুধ কোথায় কিনবেন</h4>
+        <ul>
+          <li><b>হাসপাতালের নিজস্ব ফার্মেসি</b> থেকেই কিনুন — কোল্ড-চেইন নিশ্চিত। <b>অনলাইনে IVF ইনজেকশন কিনবেন না</b>।</li>
+          <li>কেনার সময় স্ট্রিপে ছাপানো <b>MRP</b> মিলিয়ে নিন; MRP-র বেশি নেওয়া বেআইনি।</li>
+          <li><b>স্টক না থাকার ঝুঁকি বাস্তব</b> — ১৯ আগস্ট ২০২৬-এ ভারতীয় অনলাইন ফার্মেসিতে যাচাই করা ৫টি পণ্যের মধ্যে <b>Gonal-f ও Cetrotide "out of stock"</b> ছিল। <span class="pill p">●</span></li>
+          <li><b>যাওয়ার আগে ভারতীয় ক্লিনিক থেকে ওষুধের পুরো বিলের লিখিত হিসাব নিন</b>, ঢাকার ফার্মেসির দামের সাথে মিলিয়ে দেখুন — ওষুধই সবচেয়ে বড় পরিবর্তনশীল খরচ।</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৩. ডিম সংগ্রহের (retrieval) দিন</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>প্রস্তুতি</h4>
+        <ul>
+          <li><b>খালি পেটে</b> — ক্লিনিকের বলা সময় মানুন; ন্যূনতম নিয়ম: শেষ ৬ ঘণ্টা কঠিন খাবার নয়, শেষ ২ ঘণ্টা পরিষ্কার তরলও নয়</li>
+          <li><b>নেইলপলিশ (বিশেষত গাঢ়/সাদা/চকচকে), জেল-নখ, আঙুলে মেহেদি, গয়না, মেকআপ খুলে যান</b> — অক্সিজেন মাপার যন্ত্র নখের ভেতর দিয়ে পড়ে, আর মেকআপে ত্বকের রঙের পরিবর্তন ঢাকা পড়ে</li>
+          <li><b>সঙ্গে একজন দায়িত্বশীল ব্যক্তি</b> থাকতেই হবে — সিডেশনের দিন একা যাতায়াত, কাগজে সই বা বড় সিদ্ধান্ত নয়</li>
+          <li>পরে পেট ফোলা থাকবে — <b>ঢিলেঢালা প্যান্ট/পাজামা</b> নিয়ে যান</li>
+          <li>প্রক্রিয়া ~২০–৩০ মিনিট, সিডেশন বা জেনারেল অ্যানেস্থেসিয়ায়</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>এরপর কবে ফেরা / ওড়া যাবে?</h4>
+        <p><b>ক্লিনিকের কাছে লিখিতভাবে জিজ্ঞেস করুন</b> — এ ব্যাপারে সর্বজনীন নিয়ম নেই। কিন্তু একটি শক্ত যুক্তি আছে অপেক্ষা করার পক্ষে:</p>
+        <div class="callout warn" style="margin-bottom:0"><b>HFEA বলছে OHSS-এর উপসর্গ সাধারণত তীব্র হয় "ডিম সংগ্রহের পরের সপ্তাহে"।</b> অর্থাৎ রিট্রিভালের পরপরই দেশে ফিরে গেলে ঠিক সেই সপ্তাহে আপনি চিকিৎসকের নাগালের বাইরে থাকবেন। <b>রিট্রিভালের পর অন্তত ৫–৭ দিন ওই শহরেই থাকার পরিকল্পনা করুন।</b></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৪. OHSS — যে উপসর্গে সঙ্গে সঙ্গে ব্যবস্থা নিতে হবে</h3>
+    <p class="small">OHSS = ovarian hyperstimulation syndrome, ডিম্বাশয় অতি-উদ্দীপনা। <b>প্রায় এক-তৃতীয়াংশ নারীর মৃদু OHSS হয়</b> (HFEA); <b>মাঝারি/তীব্র হয় ১.১৪% রিট্রিভাল সাইকেলে</b> (চীনের জাতীয় তথ্য, ১৫.৮ লাখ সাইকেল)। উল্লেখযোগ্য: ওই তথ্যে <b>২৬–৩০ বছর বয়সীদের মধ্যেই ৪৮.৪% ঘটনা</b> — অর্থাৎ <b>কম বয়স মানেই নিরাপদ নয়</b>, বরং ঝুঁকি বেশি।</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>মাত্রা</th><th>লক্ষণ</th><th>কী করবেন</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="6" style="background:var(--bad-soft);color:var(--bad);font-weight:700">জরুরি<br>এখনই</td><td><b>শ্বাসকষ্ট / দম নিতে অসুবিধা</b></td><td rowspan="6"><b>সঙ্গে সঙ্গে নিকটতম হাসপাতালের জরুরি বিভাগে যান</b> — ক্লিনিক খোলার অপেক্ষা করবেন না</td></tr>
+          <tr><td><b>বুকে বা পিঠের উপরিভাগে ব্যথা</b></td></tr>
+          <tr><td><b>প্রচণ্ড তৃষ্ণা + প্রস্রাব কমে যাওয়া</b> (পানিশূন্যতা)</td></tr>
+          <tr><td><b>শরীর ফুলে যাওয়া</b></td></tr>
+          <tr><td><b>তলপেটের এক পাশে ব্যথা</b> (একটোপিক প্রেগন্যান্সিরও লক্ষণ হতে পারে)</td></tr>
+          <tr><td><b>কাঁধের ডগায় ব্যথা</b></td></tr>
+          <tr><td rowspan="6" style="background:var(--warn-soft);color:var(--warn);font-weight:700">একই দিনে<br>ক্লিনিকে ফোন</td><td>পেটে ব্যথা ও পেট ফাঁপা</td><td rowspan="6">সেদিনই ক্লিনিকে ফোন করুন</td></tr>
+          <tr><td>বমি বমি ভাব ও বমি</td></tr>
+          <tr><td>মাথা ঘোরা / অজ্ঞান লাগা</td></tr>
+          <tr><td>কাশির সাথে রক্ত</td></tr>
+          <tr><td>যোনিপথে রক্তপাত বা বাদামি স্রাব</td></tr>
+          <tr><td>প্রস্রাব বা পায়খানায় কষ্ট</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>নিজে যা খেয়াল রাখবেন</h4>
+        <ul>
+          <li><b>প্রতিদিন একই সময়ে ওজন মাপুন</b> ও <b>দিনে কতবার প্রস্রাব হচ্ছে গুনুন</b> — হঠাৎ পরিবর্তন হলে জানান</li>
+          <li>রিট্রিভালের <b>আগে</b>ই দুটো জিনিস লিখে রাখুন: <b>(১) ক্লিনিকের ২৪ ঘণ্টার নম্বর, (২) নিকটতম জরুরি হাসপাতালের ঠিকানা</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>ঝুঁকি কমানোর প্রমাণিত উপায় — যা ডাক্তারকে জিজ্ঞেস করবেন</h4>
+        <p class="small">ESHRE-র <b>জোরালো সুপারিশ</b>: ঝুঁকিতে থাকা নারীদের ক্ষেত্রে <b>GnRH-agonist ট্রিগার</b>, এবং <b>freeze-all কৌশল</b> — এতে দেরিতে হওয়া OHSS-এর ঝুঁকি কার্যত শূন্য হয়ে যায়।</p>
+        <div class="callout bad" style="margin-bottom:0"><b>⚠ কিন্তু দুটো একসাথে লাগে।</b> Cochrane-এর তথ্য: agonist ট্রিগারে OHSS কমে (OR 0.15), <b>কিন্তু সেই সাইকেলেই ফ্রেশ ট্রান্সফার করলে জীবিত জন্মহার কমে যায়</b> (OR 0.47)। অর্থাৎ <b>agonist ট্রিগার + freeze-all একসাথে</b> — এর একটা বাদ দিলে ফল খারাপ। ক্লিনিককে ঠিক এই প্রশ্নটাই করুন।</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৫. ভ্রূণ স্থাপনের (transfer) পর</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>শুয়ে থাকা লাগে না</h4>
+        <p class="small"><b>Cochrane (৪টি RCT, ১,৩৯২ নারী):</b> বেশি শুয়ে থাকা বনাম কম — গর্ভধারণে কোনো পার্থক্য নেই (OR 0.88)। উপসংহার: "ট্রান্সফারের পর নির্দিষ্ট সময় শুয়ে থাকার পক্ষে যথেষ্ট প্রমাণ নেই"। একটি মেটা-বিশ্লেষণে বরং শুয়ে থাকা দলে জন্মহার <i>কম</i> ছিল (৪৩.৬% বনাম ৫২.৫%)।</p>
+        <p class="small" style="margin-bottom:0"><b>মানে:</b> স্বাভাবিক হাঁটাচলা, হালকা কাজ, রান্না, সিঁড়ি — সব চলবে। শুধু ক্লিনিক যা নির্দিষ্টভাবে নিষেধ করবে সেটুকু বাদ।</p>
+      </div>
+      <div class="card">
+        <h4>ট্রান্সফারের পর ফ্লাইট</h4>
+        <p class="small"><b>২,১৩৫টি ভ্রূণ স্থাপনের গবেষণা (২০২৫):</b> ট্রান্সফারের পর বিমানে ভ্রমণ করা বনাম না করা — গর্ভধারণ ৬১.৯৯% বনাম ৬২.১৪% (p=0.94), গর্ভপাতেও পার্থক্য নেই। উপসংহার: <b>"ট্রান্সফারের পর বিমানভ্রমণ ফলাফল খারাপ করেনি"</b> — গবেষণাটি বিশেষভাবে চিকিৎসা-পর্যটকদের কথা ভেবেই করা।</p>
+        <p class="small" style="margin-bottom:0">⚠ তবে এটি <b>রিট্রিভালের পরের</b> ফ্লাইট নিয়ে কিছু বলে না — সেখানে OHSS-এর ঝুঁকি আলাদা।</p>
+      </div>
+      <div class="card">
+        <h4>প্রোজেস্টেরন ও টেস্ট</h4>
+        <ul class="small">
+          <li><b>ইনজেকশনের চেয়ে যোনিপথের ওষুধ খারাপ নয়</b> — Cochrane: IM বনাম vaginal, পার্থক্য নেই (OR 1.37, CI 0.94–1.99)। <b>দেশে ফিরে ব্যবহারের জন্য যোনিপথের ওষুধ অনেক সহজ</b> — ক্লিনিককে বলুন।</li>
+          <li>কম বনাম বেশি ডোজেও পার্থক্য নেই।</li>
+          <li>hCG দিয়ে লুটিয়াল সাপোর্ট দিলে <b>OHSS বাড়ে</b> — শুধু প্রোজেস্টেরনে ঝুঁকি প্রায় অর্ধেক।</li>
+          <li><b>আগেভাগে ঘরে প্রেগন্যান্সি টেস্ট করবেন না</b> — ট্রিগার ইনজেকশনটাই hCG, তাই মিথ্যা পজিটিভ আসতে পারে।</li>
+          <li><b>দাগ/স্পটিং হলে</b> "স্বাভাবিক" ধরে না নিয়ে ক্লিনিককে জানান — তবে এর মানে ব্যর্থতা নয়।</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৬. খাবার-পানি ও সংক্রমণ থেকে বাঁচা</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>CDC-র নিরাপদ খাবার-পানির নিয়ম (ভারতে ভ্রমণ)</h4>
+        <p class="small"><b>নিরাপদ:</b> শুকনো/প্যাকেটজাত খাবার; <b>কারখানায় সিল করা</b> ক্যান/প্যাকেট; <b>গরম ধোঁয়া-ওঠা</b> অবস্থায় পরিবেশিত খাবার; <b>সিল করা বোতলের</b> পানীয়; ধোঁয়া-ওঠা চা/কফি; <b>ফোটানো পানি</b>; সিল করা বোতলের পাস্তুরাইজড দুধ।</p>
+        <p class="small"><b>বিপজ্জনক:</b> কাঁচা খাবার — <b>সালাদ ও কেটে রাখা ফল</b>; রাস্তার খাবার (গরম-রান্না না হলে); <b>কুসুম-গরম</b> খাবার; <b>ট্যাপের পানি</b>; <b>বরফ</b>; ফাউন্টেন ড্রিংক; অপাস্তুরিত দুধ।</p>
+        <p class="small" style="margin-bottom:0">খাওয়ার আগে সাবানে হাত, নয়তো <b>৬০%+ অ্যালকোহলের</b> স্যানিটাইজার। <b>ORS/খাবার স্যালাইন</b> সঙ্গে রাখুন — ভ্রমণজনিত ডায়রিয়া সবচেয়ে সাধারণ সমস্যা।</p>
+      </div>
+      <div class="card">
+        <h4>কেন এটা IVF-এ বাড়তি গুরুত্বপূর্ণ</h4>
+        <ul>
+          <li><b>রিট্রিভালের দিন জ্বর থাকলে</b> অ্যানেস্থেসিয়া পিছিয়ে দেওয়া রুটিন সিদ্ধান্ত — অর্থাৎ পুরো সাইকেলের সময়সূচি ভেঙে যেতে পারে</li>
+          <li><b>ডায়রিয়া/বমিতে পানিশূন্যতা</b> — স্টিমুলেশনের সময় ও রিট্রিভালের পরে, যখন OHSS-এর জন্য শরীরের পানি-ভারসাম্য গুরুত্বপূর্ণ, তখন এটি বিপজ্জনক</li>
+          <li>এ কারণেই <b>রান্নার ব্যবস্থাসহ বাসা</b> শুধু সাশ্রয়ী নয় — এটি সবচেয়ে বড় একক স্বাস্থ্য-সুরক্ষা</li>
+          <li><b>ডেঙ্গু:</b> ভারতে বছরে ১.২–২.৯ লাখ কেস (সরকারি তথ্য)। <b>ডেঙ্গুর মশা দিনে কামড়ায়</b> (WHO) — তাই <b>দিনের বেলাতেই</b> রিপেলেন্ট (২০%+ DEET) ও ঢাকা পোশাক</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৭. ব্যাগে যা যা নেবেন</h3>
+    <div class="grid grid-3">
+      <div class="card"><h4>ওষুধ ও কোল্ড-চেইন</h4><ul class="check">
+        <li><b>কুল ব্যাগ + জেল প্যাক</b> (বরফের সরাসরি সংস্পর্শ নয়, জমাবেন না)</li>
+        <li>ডিজিটাল থার্মোমিটার</li><li>ORS স্যাশে, প্যারাসিটামল</li>
+        <li>ওষুধ <b>মূল প্যাকেটে</b>, সাথে প্রেসক্রিপশন</li>
+        <li>ডোজ-সময়সহ ওষুধের <b>ইংরেজি তালিকা</b></li>
+        <li>sharps-এর জন্য শক্ত সিল করা কৌটা</li>
+      </ul></div>
+      <div class="card"><h4>শরীর ও আরাম</h4><ul class="check">
+        <li><b>ঢিলেঢালা পোশাক ও ইলাস্টিক কোমরের প্যান্ট</b> (রিট্রিভালের পর পেট ফোলে)</li>
+        <li>স্যানিটারি প্যাড (ট্যাম্পন নয়)</li>
+        <li>সহজে খোলা যায় এমন জুতা</li>
+        <li>রিট্রিভালের দিনের জন্য বাড়তি কাপড়</li>
+        <li>মাস্ক, হ্যান্ড স্যানিটাইজার (৬০%+)</li>
+        <li>মশার রিপেলেন্ট (২০%+ DEET)</li>
+        <li><b>ইউনিভার্সাল অ্যাডাপ্টার</b> — ভারত ২৩০V ৫০Hz (বাংলাদেশের মতোই, কনভার্টার লাগে না), তবে সকেটের আকৃতি আলাদা (গোল-পিন Type D/M)</li>
+      </ul></div>
+      <div class="card"><h4>কাগজপত্রের ফোল্ডার<br><small class="muted">কাগজ + ফোনে ছবি + ইমেইলে/ক্লাউডে</small></h4><ul class="check">
+        <li>পাসপোর্ট, ভিসা, টিকিট, বাসার ঠিকানা</li>
+        <li><b>আগের সব রিপোর্ট</b> — AMH, হরমোন, USG/MRI, semen analysis, আগের IVF-এর সারসংক্ষেপ</li>
+        <li><b>আগের অপারেশনের মূল নোট + হিস্টোপ্যাথলজি</b> (ল্যাপারোস্কপি, সিস্ট, একটোপিক — এগুলো পরিকল্পনা বদলে দেয়)</li>
+        <li>দুজনের HIV, HBsAg, HCV, VDRL</li>
+        <li><b>নোটারাইজড ইংরেজি বিয়ের সনদ</b>, দুজনের NID</li>
+        <li>হাসপাতালের <b>লিখিত খরচ-হিসাব</b> (ব্যাংকের জন্যও লাগবে)</li>
+        <li><b>ক্লিনিকের ২৪ ঘণ্টার নম্বর</b> ও নিকটতম জরুরি হাসপাতালের ঠিকানা</li>
+      </ul></div>
+    </div>
+
+    <h3 style="margin-top:1.3rem">৮. মানসিক ও আর্থিক প্রস্তুতি — সত্যি কথাগুলো</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>এক সাইকেলেই সিদ্ধান্ত নয়</h4>
+        <p><b>JAMA ২০১৫ — ১,৫৬,৯৪৭ নারীর তথ্য (যুক্তরাজ্য):</b> ৬ সাইকেল পর্যন্ত <b>ক্রমপুঞ্জিত জীবিত জন্মহার ৬৫.৩%</b>; ৪০ বছরের নিচে নিজের ডিমে <b>৬৮.৪%</b>; ৪০–৪২ বছরে ৩১.৫%। গুরুত্বপূর্ণ: <b>চতুর্থ সাইকেল পর্যন্তও প্রতি-সাইকেল সাফল্য ২০%-এর ওপরে থাকে</b> — লেখকদের ভাষায়, ৩–৪ সাইকেলের বেশি চালিয়ে যাওয়ার পক্ষে প্রমাণ আছে।</p>
+        <p style="margin-bottom:0"><b>মানে:</b> প্রথমবার ব্যর্থ হলে সেটি যতটা খারাপ মনে হয়, পরিসংখ্যানে ততটা নয়। <b>শুরু থেকেই ২–৩ প্রচেষ্টার জন্য টাকা ও ছুটির পরিকল্পনা করুন</b>; বাড়তি ভ্রূণ ফ্রিজ করা থাকলে পরেরবার <b>পুরো স্টিমুলেশন, পুরো সফর ও নতুন করে ডলার-অনুমোদন</b> — তিনটেই বেঁচে যায়। ফ্রোজেন সাইকেলের খরচ কত, সেটাও আগে জেনে নিন।</p>
+      </div>
+      <div class="card">
+        <h4>সাইকেল বাতিল বা ভ্রূণ না হওয়া</h4>
+        <ul>
+          <li><b>সাইকেল বাতিল হয়</b> — সাধারণত সাড়া কম হলে বা OHSS-ঝুঁকিতে। যুক্তরাজ্য বা যুক্তরাষ্ট্রের নিয়ন্ত্রক সংস্থা এর জাতীয় হার প্রকাশ করে না, <b>কিন্তু ESHRE-র মান-নির্দেশিকা অনুযায়ী ভালো ক্লিনিক নিজের হার হিসাব রাখে</b>। তাই জিজ্ঞেস করুন: <b>"আপনাদের cancellation rate কত, এবং কোন পর্যায়ে বাতিল হলে কত টাকা ফেরত?"</b> — লিখিতভাবে, টাকা দেওয়ার আগে।</li>
+          <li><b>ডিম না পাওয়া (empty follicle):</b> একটি বিশ্লেষণে দেখা গেছে এমন ঘটনার <b>৬৭%-ই আসলে মানুষের ভুল</b> — বেশিরভাগই ট্রিগার ভুল সময়ে/ভুলভাবে দেওয়া। <b>আপনার হাতে সবচেয়ে বড় নিয়ন্ত্রণ এটাই।</b> কিছু ভুল হলে লুকাবেন না — সঙ্গে সঙ্গে বলুন, অনেক সময় rescue trigger দেওয়া যায়।</li>
+          <li><b>নিষেক না হওয়া (fertilisation failure):</b> এক গবেষণায় প্রথমবার প্রচলিত IVF-এ ১৩.৩%। <b>ICSI-তে অনেক কম</b> — semen analysis দেখে ক্লিনিক IVF না ICSI না দুটোই করবে, সেটা <b>রিট্রিভালের আগেই</b> জেনে নিন।</li>
+          <li><b>কাউন্সেলিং:</b> যুক্তরাজ্যে লাইসেন্সপ্রাপ্ত সব ক্লিনিককে চিকিৎসা শুরুর আগে কাউন্সেলরের সাথে দেখা করার সুযোগ দিতে হয় — <b>ভারতীয় ক্লিনিক তুলনা করার সময় এটাও জিজ্ঞেস করুন</b>: কাউন্সেলিং আছে কি না, কোন ভাষায়, কত টাকায়।</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ BANKING & MONEY SAFETY ============ -->
+<section id="money">
+  <div class="wrap">
+    <h2>ব্যাংকিং, টাকা নেওয়ার নিয়ম ও আর্থিক নিরাপত্তা <small class="h2sub">কত ডলার নিতে পারবেন, কীভাবে অনুমোদন নেবেন, ভারতে কীভাবে টাকা খরচ করবেন, কোনটা বেআইনি</small></h2>
+
+    <div class="callout bad">
+      <b>⚠ সবচেয়ে গুরুত্বপূর্ণ নিয়মটি প্রথমেই:</b> ভারতের FEMA আইনে (Regulation 3(2), FEMA 6(R)/RB-2015) বিদেশিদের ₹25,000 পর্যন্ত ভারতীয় নোট আনা-নেওয়ার যে অনুমতি আছে, সেখানে <b>"পাকিস্তান বা বাংলাদেশের নাগরিক নন এমন ব্যক্তি"</b> — এই কথাটি স্পষ্ট লেখা। অর্থাৎ <b>বাংলাদেশি নাগরিকের ভারতীয় রুপির নোট ভারতে নিয়ে যাওয়া বা ভারত থেকে নিয়ে আসা — কোনোটিরই অনুমতি নেই, কোনো পরিমাণেই নয়।</b> <span class="pill v">✔ যাচাইকৃত</span><br><br>
+      <b>বাস্তব ফল:</b> রুপি <b>ভারতে গিয়ে</b> ভাঙান; ফেরার আগে খরচ করে ফেলুন বা আবার ডলারে বদলে নিন। ঢাকায় কোনো এজেন্ট "আমি ভারতে রুপি দিয়ে দেব" বললে <b>রাজি হবেন না</b> — ভারতে ওটা অপরাধ, আর বাংলাদেশে সেটি Foreign Exchange Regulation Act ধারা ৪/৫ লঙ্ঘন।
+    </div>
+
+    <h3 style="margin-top:1.2rem">১. কত টাকা নিতে পারবেন — দুটি আলাদা কোটা</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>কোটা</th><th class="num">পরিমাণ</th><th>ভিত্তি</th><th>নোট</th></tr></thead>
+        <tbody>
+          <tr><td><b>ব্যক্তিগত ভ্রমণ কোটা</b></td><td class="num"><b>US$ 12,000</b><br>প্রাপ্তবয়স্ক প্রতি, প্রতি পঞ্জিকাবর্ষে</td><td>FE Circular No. 30, ২৫ জুলাই ২০১৯</td><td>সারা বিশ্বের জন্য একক সীমা — <b>সার্ক/নন-সার্ক ভাগ আর নেই</b>। ১২ বছরের কম বয়সীদের অর্ধেক। <span class="pill v">✔</span></td></tr>
+          <tr class="hl"><td><b>চিকিৎসার জন্য আলাদা ছাড়</b></td><td class="num"><b>US$ 10,000</b> পর্যন্ত<br>ব্যাংক নিজেই দিতে পারে</td><td>GFET-2018 Vol-1, <b>অধ্যায় ১২, অনুচ্ছেদ ২</b></td><td>বাংলাদেশ ব্যাংকের পূর্বানুমতি ছাড়াই অনুমোদিত ডিলার (AD) ব্যাংক ছাড় করতে পারে। <span class="pill v">✔</span></td></tr>
+          <tr><td>এর বেশি লাগলে</td><td class="num">সীমা নেই</td><td>ঐ</td><td>ব্যাংক কাগজপত্রসহ ফাইল <b>বাংলাদেশ ব্যাংকে</b> পাঠায়, তারা "খরচের সত্যতা যাচাই করে" অনুমোদন দেয়। <span class="pill v">✔</span></td></tr>
+          <tr><td>২০২৫-এর সংবাদ</td><td class="num">US$ 15,000/ট্রিপ</td><td>bdnews24, ১২ মে ২০২৫</td><td><span class="pill p">● যাচাই করা যায়নি</span> — ৩১ ডিসে ২০২৪-এর FE Circular 37-এও US$10,000-ই লেখা। <b>ব্যাংকে গিয়ে বর্তমান সার্কুলার নম্বর লিখিতভাবে জিজ্ঞেস করুন।</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good"><b>দুটি কোটা একসাথে ব্যবহার করা যায়</b> — এগুলো GFET-এর আলাদা আলাদা অনুচ্ছেদে দেওয়া আলাদা অধিকার। অর্থাৎ স্বামী-স্ত্রী দুজনের <b>প্রত্যেকের নিজের US$12,000</b> ভ্রমণ কোটা আছে, তার <b>ওপরে</b> রোগীর চিকিৎসা-ছাড়। <span class="pill p">● হিসাবটি সংবাদ-সূত্রে</span></div>
+
+    <h3 style="margin-top:1.2rem">২. চিকিৎসা-ছাড়ের জন্য যা যা লাগবে</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>কাগজপত্র (GFET অধ্যায় ১২ ¶২ অনুযায়ী)</h4>
+        <ul class="check">
+          <li><b>Appendix 5/83 ফরম — দুই কপি</b></li>
+          <li><b>হয়</b> স্বাস্থ্য অধিদপ্তরের গঠিত <b>মেডিকেল বোর্ডের সুপারিশ</b><br><b>অথবা</b> উপযুক্ত <b>বিশেষজ্ঞ চিকিৎসকের সুপারিশ</b> + <b>বিদেশি হাসপাতালের লিখিত খরচ-হিসাব (cost estimate)</b></li>
+          <li>বৈধ ভিসাসহ পাসপোর্ট (US$200-এর বেশি ছাড়ে ভিসা লাগবেই)</li>
+          <li>নিশ্চিত বিমান টিকিট (প্রযোজ্য ক্ষেত্রে), TM ফরম</li>
+        </ul>
+        <div class="callout good" style="margin-bottom:0"><b>এখানেই দুটো কাজ এক হয়ে যায়:</b> ভারতীয় হাসপাতালের কাছে আপনি যে <b>লিখিত খরচ-হিসাব</b> চাইবেন (দালাল ও লুকানো বিল এড়াতে) — <b>সেই একই কাগজ বাংলাদেশ ব্যাংকের নিয়মেও বাধ্যতামূলক</b>। তাই প্রথম ইমেইলেই itemised estimate চেয়ে নিন।</div>
+      </div>
+      <div class="card">
+        <h4>এনডোর্সমেন্ট ও কার্ডের নিয়ম</h4>
+        <ul>
+          <li>ছাড় করা টাকা <b>পাসপোর্টে অমোচনীয় কালিতে এনডোর্স</b> করতে হয়, ব্যাংকের সই ও সিলসহ, এবং বাংলাদেশ ব্যাংকের অনলাইন মনিটরিং সিস্টেমে রিপোর্ট হয় <span class="pill v">✔</span></li>
+          <li><b>আন্তর্জাতিক কার্ডেও কোটা ব্যবহার করা যায়</b> — কার্ড ইস্যুর সময় ব্যাংক পাসপোর্টে মূল্য এনডোর্স করে দেবে</li>
+          <li><b>বছর ১ জানুয়ারি–৩১ ডিসেম্বর; অব্যবহৃত কোটা পরের বছরে যায় না</b></li>
+          <li>বিদেশে বেশি খরচ হয়ে গেলে RFCD হিসাব থেকে সমন্বয়, বা <b>US$500 পর্যন্ত</b> পরের বছরের কোটা থেকে সমন্বয় করা যায় (বাংলাদেশ ব্যাংকের অনুমতি ছাড়াই)</li>
+          <li><b>মানি চেঞ্জার</b> (ব্যাংক নয়) কোটার বিপরীতে নগদ <b>US$2,000</b> পর্যন্ত দিতে পারে</li>
+          <li><b>ব্যাংককে স্পষ্ট বলুন আপনি ভারতে যাচ্ছেন</b> — কার্ড সেখানে সচল আছে কি না, হাসপাতালের বড় অঙ্কের লেনদেন ব্লক হবে কি না, আর OTP-র জন্য <b>রোমিং চালু ঢাকার নম্বর</b> আছে কি না — তিনটেই আগে নিশ্চিত করুন</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.2rem">৩. নগদ টাকা ও ঘোষণা (declaration)</h3>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>কোথায়</th><th>নিয়ম</th><th class="num">সীমা</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="4"><b>বাংলাদেশ থেকে বেরোনো</b></td><td>নগদ বৈদেশিক মুদ্রা প্রতি ট্রিপে</td><td class="num"><b>সর্বোচ্চ US$5,000/জন</b> <span class="pill v">✔</span></td></tr>
+          <tr><td>বার্ষিক কোটার মধ্যে <b>মার্কিন ডলার নোটে</b></td><td class="num">সর্বোচ্চ US$5,000; বাকিটা অন্য মুদ্রা বা কার্ডে</td></tr>
+          <tr><td>বাংলাদেশি টাকা</td><td class="num">GFET বলে ৳10,000; কাস্টমস বলে ৳5,000 — <b>দুই সরকারি সূত্রে গরমিল</b>, বিমানবন্দরে জিজ্ঞেস করুন</td></tr>
+          <tr><td>ফেরার সময় অব্যবহৃত মুদ্রা</td><td class="num">US$5,000 পর্যন্ত হাতে রাখা যায়; বেশি হলে টাকায় ভাঙান বা RFCD হিসাবে রাখুন (FMJ ঘোষণাসহ)</td></tr>
+          <tr><td rowspan="2"><b>ভারতে ঢোকা</b></td><td>Currency Declaration Form (CDF) <b>লাগবে যদি</b></td><td class="num">নগদ নোট <b>US$5,000</b>-এর বেশি, <b>অথবা</b> মোট (নোট+চেক) <b>US$10,000</b>-এর বেশি <span class="pill v">✔</span></td></tr>
+          <tr><td>ফেরার সময়</td><td class="num">যত এনেছিলেন ও ঘোষণা করেছিলেন, <b>তার বেশি বৈদেশিক মুদ্রা ফেরত নেওয়া যাবে না</b> — তাই <b>CDF-এর সিল দেওয়া কপি ও প্রতিটি এনক্যাশমেন্ট রসিদ রেখে দিন</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">⚠ <b>দুটি সরকারি পাতা পুরনো তথ্য দেখাচ্ছে:</b> বাংলাদেশ কাস্টমসের সাইটে এখনো ২০২০-পূর্ব US$5,000 (সার্ক)/US$7,000 (অন্যান্য) ভাগ দেখানো আছে, যা ২০১৯ সালের সার্কুলারে বাতিল হয়েছে। <b>সন্দেহ হলে ব্যাংকের সর্বশেষ সার্কুলার দেখতে চান।</b></p>
+
+    <h3 style="margin-top:1.2rem">৪. ভারতে টাকা খরচ করার উপায়</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>টাকা → ডলার → রুপি</h4>
+        <p class="small"><b>বৈধ পথ এটাই।</b> ঢাকায় ব্যাংক/মানি চেঞ্জার থেকে ডলার নিন (পাসপোর্টে এনডোর্স করিয়ে), ভারতে গিয়ে <b>RBI-অনুমোদিত</b> ব্যাংক বা <b>Full-Fledged Money Changer (FFMC)</b>-এ রুপি করুন।</p>
+        <ul class="small">
+          <li>বিমানবন্দরে <b>প্রথম দিনের জন্য অল্প</b> ভাঙান (রেট খারাপ), তারপর শহরের FFMC-তে</li>
+          <li><b>কমিশনের পরের রেট</b> জিজ্ঞেস করুন, আগেরটা নয়</li>
+          <li>হোটেলের ডেস্ক বা রাস্তার লোক — রেট খারাপ, এবং রাস্তায় বেআইনি</li>
+          <li><b>এনক্যাশমেন্ট সার্টিফিকেট রাখুন</b> — ফেরার সময় বাকি রুপি ডলারে বদলাতে লাগে</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">১৯ আগস্ট ২০২৬-এর আনুমানিক মধ্য-বাজার হার: US$1 ≈ ৳122.19 ≈ ₹95.77; <b>৳1 ≈ ₹0.78</b>, <b>₹1 ≈ ৳1.28</b>। হার বদলায় — দিনের রেট দেখে নিন।</p>
+      </div>
+      <div class="card">
+        <h4>কার্ড</h4>
+        <ul class="small">
+          <li><b>ডুয়াল-কারেন্সি Visa/Mastercard</b> পাসপোর্টে এনডোর্স করিয়ে নিন</li>
+          <li>বড় হাসপাতালগুলো আন্তর্জাতিক কার্ড নেয়; ছোট ক্লিনিক ও লজ প্রায়ই নগদ চায়</li>
+          <li><b>এনডোর্স করা সীমার বেশি খরচ = নিয়ম লঙ্ঘন</b> — বাংলাদেশ ব্যাংক এ নিয়ে ব্যাংকগুলোকে শোকজ করেছে</li>
+          <li>ব্যাংকের ATM ব্যবহার করুন (রাস্তার আলাদা বুথ নয়)</li>
+        </ul>
+        <p class="small muted" style="margin-bottom:0">কার্ডের forex markup কত ও ভারতীয় হাসপাতালে বাংলাদেশি কার্ড কতটা চলে — <b>নির্ভরযোগ্য সূত্র পাওয়া যায়নি</b>, তাই সংখ্যা দিলাম না। নিজের ব্যাংকে জিজ্ঞেস করুন।</p>
+      </div>
+      <div class="card">
+        <h4>UPI One World (পর্যটকের ওয়ালেট)</h4>
+        <ul class="small">
+          <li>ভারতীয় ব্যাংক হিসাব বা ভারতীয় নম্বর <b>ছাড়াই</b> রুপির প্রিপেইড ওয়ালেট; KYC = <b>পাসপোর্ট + ভিসা সরাসরি দেখিয়ে</b></li>
+          <li><b>শুধু দোকানে পেমেন্ট (P2M)</b> — ব্যক্তিকে টাকা পাঠানো বা নগদ তোলা যায় না</li>
+          <li>সর্বোচ্চ ব্যালান্স <b>₹2,00,000</b>; অব্যবহৃত টাকা বিদেশি মুদ্রায় ফেরত নেওয়া যায়</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>⚠ বাংলাদেশিরা পাবেন কি না — নিশ্চিত নয়।</b> RBI-র মূল সার্কুলারে "শুরুতে G-20 দেশের যাত্রীদের জন্য" বলা আছে, <b>এবং বাংলাদেশ G-20-তে নেই</b>। NPCI ২০২৪-এ "সব আন্তর্জাতিক যাত্রীর জন্য" বলেছে বলে সংবাদ আছে, কিন্তু যাচাই করা যায়নি। <b>এটাকে বাড়তি সুবিধা ভাবুন, পরিকল্পনা নয় — বিমানবন্দরের কাউন্টারে জিজ্ঞেস করুন।</b></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.2rem">৫. মাঝপথে টাকা ফুরালে</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>বৈধ উপায়</h4>
+        <p>একই প্রক্রিয়া আবার — AD ব্যাংকে Appendix 5/83, বিশেষজ্ঞের সুপারিশ ও হাসপাতালের খরচ-হিসাব দিয়ে নতুন ছাড়, তারপর SWIFT-এ হাসপাতালের হিসাবে পাঠানো বা কার্ডের সীমা বাড়ানো। ব্যাংকের ক্ষমতার বেশি হলে ফাইল বাংলাদেশ ব্যাংকে যায়।</p>
+        <div class="callout warn" style="margin-bottom:0"><b>এতে কাগজ ও কয়েক দিন লাগে</b> — বিদেশে বসে যা সবচেয়ে কষ্টকর। <b>তাই যাওয়ার আগেই পুরো আনুমানিক খরচের অনুমোদন করিয়ে নিন</b>, এবং হাসপাতালের লিখিত এস্টিমেটটা ব্যাংকে জমা দিন।</div>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--bad)">হুন্ডি — দুই দেশেই অপরাধ</h4>
+        <ul>
+          <li><b>বাংলাদেশ:</b> Foreign Exchange Regulation Act 1947 ধারা ৪ — অনুমোদিত ডিলার ছাড়া কেউ বৈদেশিক মুদ্রা কেনা-বেচা করতে পারবে না; ধারা ৫ — বিদেশে বসবাসকারীর পক্ষে/উদ্দেশে পেমেন্টে বিধিনিষেধ; ধারা ২৩ — লঙ্ঘন, চেষ্টা বা সহায়তা সবই অপরাধ। <b>ধারা ২৪ অনুযায়ী "অনুমতি ছিল" সেটা প্রমাণের দায়িত্ব অভিযুক্তের</b>। <span class="pill v">✔</span></li>
+          <li><b>ভারত:</b> FEMA 6(R) Regulation 5 — RBI-র অনুমতি ছাড়া কোনো বৈদেশিক মুদ্রা ভারতে আনা বা বের করা যাবে না। <span class="pill v">✔</span></li>
+        </ul>
+        <p style="margin-bottom:0"><b>সহজ কথায়:</b> হুন্ডি সস্তা ও দ্রুত মনে হয়, কিন্তু টাকা আটকে গেলে বা এজেন্ট উধাও হলে <b>কোনো দেশেই আপনার আইনি প্রতিকার নেই</b> — এবং আইনে প্রমাণের দায় আপনার ঘাড়ে।</p>
+      </div>
+    </div>
+    <p class="small muted"><b>bKash / নগদ / রকেট ভারতে চলে না</b> — এগুলো টাকায় চলা দেশীয় হিসাব, ভারতীয় দোকান বা হাসপাতাল নেয় না। সীমান্ত-পার পেমেন্টের বৈধ মাধ্যমও নয়।</p>
+
+    <h3 style="margin-top:1.2rem">৬. হাসপাতালের বিল ও আর্থিক নিরাপত্তা</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>টাকা দেওয়ার আগে লিখিতভাবে যা নেবেন</h4>
+        <ol>
+          <li><b>লিখিত খরচ-হিসাব</b> — কী কী <i>অন্তর্ভুক্ত</i> ও কী কী <i>নয়</i>, নাম ধরে (এটি বাংলাদেশ ব্যাংকের নিয়মেও লাগবে, তাই চাইতে দ্বিধা করবেন না)</li>
+          <li><b>প্যাকেজ না itemised?</b> — বিশেষভাবে জিজ্ঞেস করুন: <b>স্টিমুলেশনের ওষুধ</b> (সবচেয়ে বড় পরিবর্তনশীল খরচ), অ্যানেস্থেসিয়া, ICSI, ব্লাস্টোসিস্ট কালচার, ফ্রিজিং, <b>প্রথম বছরের স্টোরেজ</b>, এবং <b>ফ্রোজেন ট্রান্সফার</b> — এগুলো দামের ভেতরে আছে কি না</li>
+          <li><b>বাতিল হলে কত ফেরত?</b> — বেসলাইনে বাতিল, রিট্রিভালের আগে বাতিল, আর ভ্রূণ না হলে — <b>তিন অবস্থাতেই আলাদা করে</b> লিখিয়ে নিন</li>
+          <li><b>প্রতি ২–৩ দিনে অন্তর্বর্তী বিল</b> চান; ডিসচার্জের দিন পর্যন্ত অপেক্ষা করবেন না</li>
+          <li><b>itemised চূড়ান্ত বিল ও প্রতিটি রসিদ</b> — ব্যাংকের রিপোর্টিং ও ফেরার সময় কাস্টমসের জন্য লাগবে</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h4>দালাল ও নিরাপত্তা</h4>
+        <ul>
+          <li>হাসপাতালের <b>আন্তর্জাতিক রোগী ডেস্কের সাথে সরাসরি</b> কথা বলুন</li>
+          <li>কোনো এজেন্টের হাতে <b>পাসপোর্ট, নগদ টাকা বা ব্যাংকের কাগজ</b> দেবেন না</li>
+          <li><b>ঢাকায় বসে "ফ্যাসিলিটেটর"-কে ভারতের চিকিৎসার টাকা দেবেন না</b> — এটি ব্যাংকিং চ্যানেলের বাইরে সীমান্ত-পার পেমেন্ট, FER Act ধারা ৫ লঙ্ঘন</li>
+          <li>নগদ US$5,000-এর বেশি নয়, এবং <b>দুজনের মধ্যে ভাগ করে</b> রাখুন</li>
+          <li>CDF-এর সিল দেওয়া কপি ও এনক্যাশমেন্ট রসিদ <b>পাসপোর্টের সাথে একসাথে</b> রাখুন</li>
+        </ul>
+        <div class="callout warn" style="margin-bottom:0"><b>বিমা:</b> IVF একটি <b>পরিকল্পিত (elective)</b> চিকিৎসা, আর ট্রাভেল-মেডিকেল পলিসি সাধারণত <b>অপ্রত্যাশিত</b> অসুস্থতার জন্য — তাই IVF-এর খরচ কাভার হওয়ার সম্ভাবনা কম। কোনো বাংলাদেশি বিমা কোম্পানির পলিসির শর্ত যাচাই করা যায়নি, তাই "হয় না" বলে দিচ্ছি না — <b>নিজে exclusions পড়ুন ও লিখিত নিশ্চয়তা নিন</b>। বরং <b>জরুরি অবস্থার (যেমন OHSS-এ হাসপাতালে ভর্তি) কাভারেজ আছে কি না</b> — সেটা আলাদা করে জিজ্ঞেস করুন, ওটা কাজে লাগতে পারে।</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ============ 11. BUDGET ============ -->
 <section id="budget">
   <div class="wrap">
-    <h2>১১. পূর্ণ বাজেট — দুজনের জন্য (৳), সঙ্গে "মা গেলে" হিসাব</h2>
+    <h2>পূর্ণ বাজেট — দুজনের জন্য (৳), সঙ্গে "মা গেলে" হিসাব</h2>
     <p class="muted small">অনুমানের ভিত্তি: ফ্লাইট = সেকশন ৮-এর Google Flights ভাড়া (জনপ্রতি রিটার্ন) ×২; ভিসা = IVAC ফি ৳1,500 ×২ (ভারতীয় ভিসা-ফি মওকুফ); থাকা = দুজনের ডাবল রুমের মধ্যম দর (সেকশন ১০); খাবার দুজনের ₹500–1,000/দিন; লোকাল যাতায়াত ₹100–300/দিন; SIM ₹700; বিমানবন্দর/শহর-স্থানান্তর; রেট উপরের বাক্সে বদলানো যায় (এই টেবিল সঙ্গে সঙ্গে বদলাবে); ১০% কন্টিনজেন্সি ধরা। <b>চিকিৎসার খরচ আলাদা</b> (নিচে যোগ করা আছে)। সংখ্যা গোল করা।</p>
     <div id="budgetTable"></div>
 
@@ -1303,7 +2226,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ 12. VOICES ============ -->
 <section id="voices">
   <div class="wrap">
-    <h2>১২. বাংলাদেশিরা কী বলছেন — ফেসবুক গ্রুপ, ইউটিউব, সংবাদ</h2>
+    <h2>বাংলাদেশিরা কী বলছেন — ফেসবুক গ্রুপ, ইউটিউব, সংবাদ</h2>
     <div class="callout"><b>সততার সাথে বলা দরকার:</b> বাংলাদেশি IVF-অভিজ্ঞতার আসল আলোচনা হয় <b>ফেসবুকের গ্রুপে</b>, যেগুলোর পোস্ট লগইন ছাড়া পড়া যায় না (আমরা শুধু গ্রুপের নাম/সদস্য-সংখ্যা/টিজার দেখতে পেরেছি)। তাই এখানে যা আছে তা মূলত <b>বাংলা ইউটিউব ভ্লগের কমেন্ট-থ্রেড</b> (আমরা সরাসরি পড়েছি) ও সংবাদমাধ্যম থেকে। এই গ্রুপগুলোতে নিজে পোস্ট করে "কেউ CMC/Ganga Ram/Oasis-এ করেছেন?" জিজ্ঞেস করুন — সবচেয়ে কাজের উৎস।</div>
     <div class="grid grid-2">
       <div class="card">
@@ -1340,7 +2263,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       </tbody></table></div>
     <div class="grid grid-2">
       <div class="card"><h4>বারবার আসা অভিযোগ</h4><ul><li>খরচ/সামর্থ্য (সবচেয়ে বেশি), বিদেশি হলে বেশি দাম নেওয়া হয় কি না — সন্দেহ</li><li>এজেন্ট/দালাল/লিয়াজোঁ-অফিস ও টিভি-বিজ্ঞাপন — কমিশন-কাঠামো</li><li>প্যাকেজের বাইরে ওষুধ/FET/ফ্রিজিং — লুকানো খরচ</li><li>ডোনার ডিম নিয়ে চাপ/গোপনীয়তার উদ্বেগ</li><li>ভাষা (বাংলা অনুবাদক), কত দিন থাকতে হবে — অনিশ্চয়তা</li></ul></div>
-      <div class="card"><h4>বারবার আসা পরামর্শ (আমাদের সংযোজনসহ)</h4><ul><li>নির্দিষ্ট ডাক্তারের নাম ধরে যান; থাকার বাজেট আগে ধরুন</li><li>দালাল নয় — হাসপাতালের ইমেইল/পোর্টাল সরাসরি; হাসপাতালের অ্যাকাউন্টে পেমেন্ট, রসিদ</li><li>Level-2 রেজিস্ট্রেশন যাচাই (<a href="https://registry.artsurrogacy.gov.in/">রেজিস্ট্রি</a>); itemised লিখিত কোট; ভ্রূণ/ডিমের সংখ্যা লিখিত</li><li>এক খারাপ সাইকেলের পরই ডোনারে যেতে বললে দ্বিতীয় মতামত</li><li>স্টোরেজ-চুক্তি নিজেদের নামে, বার্ষিক ফি ও যোগাযোগ চালু রাখুন (নইলে ভ্রূণ "abandoned" ধরা হয় — সেকশন ১৩)</li></ul></div>
+      <div class="card"><h4>বারবার আসা পরামর্শ (আমাদের সংযোজনসহ)</h4><ul><li>নির্দিষ্ট ডাক্তারের নাম ধরে যান; থাকার বাজেট আগে ধরুন</li><li>দালাল নয় — হাসপাতালের ইমেইল/পোর্টাল সরাসরি; হাসপাতালের অ্যাকাউন্টে পেমেন্ট, রসিদ</li><li>Level-2 রেজিস্ট্রেশন যাচাই (রেজিস্ট্রি); itemised লিখিত কোট; ভ্রূণ/ডিমের সংখ্যা লিখিত</li><li>এক খারাপ সাইকেলের পরই ডোনারে যেতে বললে দ্বিতীয় মতামত</li><li>স্টোরেজ-চুক্তি নিজেদের নামে, বার্ষিক ফি ও যোগাযোগ চালু রাখুন (নইলে ভ্রূণ "abandoned" ধরা হয় — সেকশন ১৩)</li></ul></div>
     </div>
   </div>
 </section>
@@ -1348,12 +2271,12 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ 13. LAW ============ -->
 <section id="law">
   <div class="wrap">
-    <h2>১৩. ভারতীয় আইন — বাংলাদেশি বিবাহিত দম্পতির জন্য যা জানা জরুরি</h2>
+    <h2>ভারতীয় আইন — বাংলাদেশি বিবাহিত দম্পতির জন্য যা জানা জরুরি</h2>
     <div class="grid grid-2">
       <div class="card">
         <h4>ART (Regulation) Act 2021 + Rules 2022 (কার্যকর ২৫ জানু ২০২২)</h4>
         <ul>
-          <li><b>যোগ্যতা:</b> "commissioning couple" = বন্ধ্যাত্বে ভোগা <b>বিবাহিত</b> দম্পতি; বয়স নারী ২১–৫০, পুরুষ ২১–৫৫। ART-এর জন্য নাগরিকত্বের শর্ত নেই (সারোগেসি বিদেশিদের জন্য বন্ধ)। <a href="https://www.indiacode.nic.in/handle/123456789/17031">Act</a> · <a href="https://prsindia.org/billtrack/the-assisted-reproductive-technology-regulation-bill-2020">PRS সারাংশ</a> · <a href="https://www.apollofertility.com/patient-corner/art-law">ক্লিনিক-ব্যাখ্যা</a></li>
+          <li><b>যোগ্যতা:</b> "commissioning couple" = বন্ধ্যাত্বে ভোগা <b>বিবাহিত</b> দম্পতি; বয়স নারী ২১–৫০, পুরুষ ২১–৫৫। ART-এর জন্য নাগরিকত্বের শর্ত নেই (সারোগেসি বিদেশিদের জন্য বন্ধ)। Act · <a href="https://prsindia.org/billtrack/the-assisted-reproductive-technology-regulation-bill-2020">PRS সারাংশ</a> · <a href="https://www.apollofertility.com/patient-corner/art-law">ক্লিনিক-ব্যাখ্যা</a></li>
           <li><b>কাগজ:</b> বৈধ মেডিকেল ভিসা, পাসপোর্ট, <b>বিয়ের সনদ</b> (ইংরেজি/নোটারাইজড), রেফারেল, ART Rules-এর Form 6–13 সম্মতিপত্র; দুজনের HIV/HBsAg/HCV/VDRL।</li>
           <li><b>ডোনার ডিম:</b> ডোনার ২৩–৩৫ বছর, বিবাহিতা ও নিজের একটি সন্তান আছে, জীবনে একবার, সর্বোচ্চ ৭টি ডিম; শুধু নিবন্ধিত ART Bank; দম্পতিকে ডোনারের ১২ মাসের স্বাস্থ্যবিমা কিনতে হয় → বৈধ ডোনার ডিম দুর্লভ ও দামি (₹3.5–6 L)। CMC ডোনার করে না।</li>
           <li><b>ফ্রিজিং/স্টোরেজ:</b> সাধারণত সর্বোচ্চ ১০ বছর; বার্ষিক ফি অগ্রিম; বছরে অন্তত একবার যোগাযোগ বাধ্যতামূলক — <b>৯০ দিনে জবাব না দিলে / ১২ মাস যোগাযোগহীন / ১ বছরের বেশি ফি বাকি = "abandoned"</b>, ক্লিনিক নষ্ট বা গবেষণায় ব্যবহার করতে পারে। ভ্রূণ শুধু একই দম্পতির জন্য। <a href="https://www.legitquest.com/act/assisted-reproductive-technology-regulation-rules-2022/BAFE">Rules</a></li>
@@ -1364,7 +2287,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       <div class="card">
         <h4>ক্লিনিক যাচাই — ২ মিনিটের কাজ</h4>
         <ol>
-          <li><a href="https://registry.artsurrogacy.gov.in/">registry.artsurrogacy.gov.in</a> → রাজ্য/নাম দিয়ে খুঁজুন → রেজিস্ট্রেশন নম্বরে <b>"L2"</b> (IVF/ICSI) আছে কি না ও status "Registered/Approved" — L1 মানে শুধু IUI। নম্বরের ধরন: <code class="num">MH/AC/2024/15441/L2/…</code></li>
+          <li>registry.artsurrogacy.gov.in → রাজ্য/নাম দিয়ে খুঁজুন → রেজিস্ট্রেশন নম্বরে <b>"L2"</b> (IVF/ICSI) আছে কি না ও status "Registered/Approved" — L1 মানে শুধু IUI। নম্বরের ধরন: <code class="num">MH/AC/2024/15441/L2/…</code></li>
           <li>ডোনার প্রস্তাব এলে ART <i>Bank</i>-এর রেজিস্ট্রেশনও আলাদা যাচাই।</li>
           <li>ওয়েবসাইটে "৭০–৮৫% সাকসেস" থাকলে লিখিত জিজ্ঞেস করুন: live birth/রিট্রিভাল, বয়সভেদে, গত বছরের — উত্তর না এলে সেটাই উত্তর।</li>
           <li>মেডিকেল ভিসা ছাড়া চিকিৎসা নয় ("A valid medical visa is mandatory…"); ট্যুরিস্ট ভিসায় গেলে ক্লিনিক ফিরিয়ে দিতে পারে।</li>
@@ -1378,7 +2301,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ 14. BANGLADESH OPTIONS ============ -->
 <section id="bd">
   <div class="wrap">
-    <h2>১৪. তুলনার জন্য: বাংলাদেশে IVF (২০২৫–২৬)</h2>
+    <h2>তুলনার জন্য: বাংলাদেশে IVF (২০২৫–২৬)</h2>
     <div class="grid grid-2">
       <div class="tbl compact"><table>
         <thead><tr><th>সেন্টার (ঢাকা)</th><th class="num">উদ্ধৃত IVF খরচ (৳)</th><th>মন্তব্য</th></tr></thead>
@@ -1407,7 +2330,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ 15. SOURCES ============ -->
 <section id="sources">
   <div class="wrap">
-    <h2>১৫. সূত্র-তালিকা (সব লিংক)</h2>
+    <h2>সূত্র-তালিকা (সব লিংক)</h2>
     <details class="card" open><summary style="cursor:pointer;font-weight:700">চিকিৎসা-প্রমাণ (গাইডলাইন, মেটা-বিশ্লেষণ, কোহর্ট)</summary>
       <ul class="src">
         <li>ESHRE Endometriosis Guideline 2022 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8951218/">PMC8951218</a> · <a href="https://www.eshre.eu/Guidelines-and-Legal/Guidelines/Endometriosis-guideline">eshre.eu</a></li>
@@ -1424,8 +2347,8 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
     <details class="card"><summary style="cursor:pointer;font-weight:700">ভারতীয় সেন্টার-ডেটা ও নিয়ন্ত্রণ</summary>
       <ul class="src">
         <li>SGRH CLBR পেপার — <a href="https://fertilityscienceresearch.org/association-between-number-of-oocytes-retrieved-with-cumulative-live-birth-rate/">লিংক</a> · CMC RBMO 2025 — <a href="https://www.rbmojournal.com/article/S1472-6483(25)00281-0/abstract">লিংক</a> · CMC EJOG 2025 — <a href="https://www.sciencedirect.com/science/article/abs/pii/S0301211525001915">লিংক</a> · CMC low-cost 2011 — <a href="https://pubmed.ncbi.nlm.nih.gov/21987524/">লিংক</a> · CMC কস্টিং 2020 — <a href="https://www.worldscientific.com/doi/abs/10.1142/S2661318220500164">লিংক</a> · Gunasheela 2022 — <a href="https://pubmed.ncbi.nlm.nih.gov/36341006/">লিংক</a> · Tandulwadkar 2020 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7727891/">লিংক</a></li>
-        <li>NARI 2007–09 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3963305/">লিংক</a> · রেজিস্ট্রি — <a href="https://registry.artsurrogacy.gov.in/">registry.artsurrogacy.gov.in</a> · <a href="https://www.india.gov.in/national-art-surrogacy-registry">india.gov.in</a> · ThePrint 2026 — <a href="https://theprint.in/ground-reports/india-ivf-boom-dark-side-unlicensed-clinics-embryo-mix-ups-dna-tests/2969215/">লিংক</a> · BMJ 2025 — <a href="https://www.bmj.com/content/390/bmj.r1769">লিংক</a></li>
-        <li>ART Act — <a href="https://www.indiacode.nic.in/handle/123456789/17031">indiacode</a> · Rules 2022 — <a href="https://www.legitquest.com/act/assisted-reproductive-technology-regulation-rules-2022/BAFE">legitquest</a> · ২০২৩ সংশোধনী — <a href="https://www.scconline.com/blog/post/2023/02/28/ministry-of-health-and-family-welfare-notified-assisted-reproductive-technology-regulation-amendment-rules-legal-research-legal-update-legal-news/">SCC</a></li>
+        <li>NARI 2007–09 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3963305/">লিংক</a> · রেজিস্ট্রি — registry.artsurrogacy.gov.in · india.gov.in · ThePrint 2026 — <a href="https://theprint.in/ground-reports/india-ivf-boom-dark-side-unlicensed-clinics-embryo-mix-ups-dna-tests/2969215/">লিংক</a> · BMJ 2025 — <a href="https://www.bmj.com/content/390/bmj.r1769">লিংক</a></li>
+        <li>ART Act — indiacode · Rules 2022 — <a href="https://www.legitquest.com/act/assisted-reproductive-technology-regulation-rules-2022/BAFE">legitquest</a> · ২০২৩ সংশোধনী — <a href="https://www.scconline.com/blog/post/2023/02/28/ministry-of-health-and-family-welfare-notified-assisted-reproductive-technology-regulation-amendment-rules-legal-research-legal-update-legal-news/">SCC</a></li>
         <li>Universal Srushti গ্রেপ্তার — <a href="https://thesouthfirst.com/health/dream-of-parenthood-false-surrogacy-and-a-scam-hyderabad-doctor-accused-of-running-child-trafficking-network/">South First</a> · <a href="https://medicaldialogues.in/news/health/doctors/hyderabad-surrogacy-racket-busted-doctor-7-others-arrested-in-baby-selling-scam-152527">Medical Dialogues</a> · Milann বিক্রি — <a href="https://www.icicidirect.com/research/equity/trending-news/hcg-q4-revenue-up-11-to-650cr-to-exit-milann-fertility-business-for-632cr-ev">ICICI Direct</a> · Kamini Rao Hospitals — <a href="https://businessnewsweek.in/business/dr-kamini-rao-opens-womens-health-hospital/">লিংক</a> · Nova–Wings — <a href="https://www.business-standard.com/companies/news/nova-ivf-fertility-expands-footprint-with-acquisition-of-wings-ivf-123062200916_1.html">BS</a></li>
       </ul>
     </details>
@@ -1441,7 +2364,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
     <details class="card"><summary style="cursor:pointer;font-weight:700">ভিসা, ফ্লাইট, থাকা, বাংলাদেশি অভিজ্ঞতা</summary>
       <ul class="src">
         <li>IVAC — <a href="https://www.ivacbd.com/">ivacbd.com</a> · <a href="https://indianvisaonline.gov.in/">indianvisaonline.gov.in</a> · Daily Star (স্লট) — <a href="https://www.thedailystar.net/news/bangladesh/diplomacy/news/indian-visa-centres-introduce-automatic-time-slots-across-bangladesh-4213261">লিংক</a> · Dhaka Tribune — <a href="https://www.dhakatribune.com/bangladesh/foreign-affairs/414009/ivac-introduces-new-automated-time-slot-system-for">লিংক</a> · bdnews24 — <a href="https://bdnews24.com/bangladesh/d69791bc4040">লিংক</a> · ট্যুরিস্ট ভিসা পুনরায় — <a href="https://www.visasupdate.com/post/india-resumes-tourist-visas-bangladeshi-nationals-2026">লিংক</a> · ORF — <a href="https://www.orfonline.org/research/medical-tourism-as-a-pillar-of-india-bangladesh-relations-will-it-hold">লিংক</a> · ফ্যাসিলিটেটর চেকলিস্ট — <a href="https://shifamhealth.com/medical-visa-from-bangladesh-to-india/">shifamhealth</a> · <a href="https://karetrip.com/blogs/documents-needed-for-indian-medical-visa-from-bangladesh-checklist">karetrip</a></li>
-        <li>ফ্লাইট — Google Flights (curr=BDT, ১৮ আগস্ট ২০২৬) · <a href="https://www.airpaz.com/en/flight/code/6E-1118">6E1118</a> · <a href="https://www.goindigo.in/international-flights/dhaka-to-hyderabad-flights.html">IndiGo DAC–HYD</a> · <a href="https://www.flightsfrom.com/DAC-BLR">DAC–BLR</a> · Skyscanner: ক্যাপচায় অবরুদ্ধ</li>
+        <li>ফ্লাইট — Google Flights (curr=BDT, ১৮ আগস্ট ২০২৬) · <a href="https://www.airpaz.com/en/flight/code/6E-1118">6E1118</a> · IndiGo DAC–HYD · <a href="https://www.flightsfrom.com/DAC-BLR">DAC–BLR</a> · Skyscanner: ক্যাপচায় অবরুদ্ধ</li>
         <li>থাকা — <a href="https://sgrh.com/en/list-of-hotels-nearby-sgrh">SGRH হোটেল-তালিকা</a> · <a href="https://www.banglahealthconnect.com/hotels-near-apollo-greams-road">Bangla Health Connect চেন্নাই</a> · <a href="https://www.trustedstay.com/service-apartments-in-Hyderabad/jubilee-hills-jblfl1">TrustedStay</a> · <a href="https://www.elysiuminn.com">Elysium Inn</a> · <a href="https://www.dhritikunja.com/">Dhriti Kunja</a> · <a href="https://www.hotelshreepanchratna.in/contact/">Shree Panchratna</a> · <a href="https://www.zaithresidency.com/blog/hotels-near-apollo-hospital-greams-road-chennai/">Zaith</a> · <a href="https://indianvagabond.com/2017/08/31/guide-to-visiting-cmc-vellore-hospital/">CMC গাইড</a> · <a href="https://bag2bag.in/service-apartments/hyderabad/banjara-hills">Bag2Bag</a> · <a href="https://www.trip.com/hot/hotels-near-jaslok-hospital/">Jaslok-এর কাছে</a> · <a href="https://www.trip.com/hot/hotels-near-ruby-hall-clinic/">Ruby Hall-এর কাছে</a></li>
         <li>বাংলাদেশি কণ্ঠ — ইউটিউব: <a href="https://www.youtube.com/watch?v=P1MyMhUUCpY">Suparna CMC খরচ</a> · <a href="https://www.youtube.com/watch?v=h0Do_3JVHCg">Suparna তুলনা</a> · <a href="https://www.youtube.com/watch?v=9gU_4_TnOM4">ATN CFC</a> · <a href="https://www.youtube.com/watch?v=PIwMmJ9cQzM">CMC package</a> · <a href="https://www.youtube.com/watch?v=fpkMurRXOQA">Md Fizz</a>; ফেসবুক গ্রুপ (সেকশন ১২); প্রথম আলো — <a href="https://www.prothomalo.com/lifestyle/চিকিৎসা-পেতে-ভোগান্তি">লিংক</a> · বণিক বার্তা — <a href="https://www.bonikbarta.com/magazine/287/d1urqmwIwv76aOjr">লিংক</a> · banglanews24 — <a href="https://www.banglanews24.com/health/news/bd/593187.details">লিংক</a></li>
         <li>বাংলাদেশে খরচ — <a href="https://harvestinfertilitycare.com/blog/ivf-cost-in-bangladesh/">Harvest</a> · <a href="https://medbitbd.com/ivf-cost-in-bangladesh/">medbitbd</a> · <a href="https://drlistify.com/test-tube-baby-ivf-cost-bangladesh-guide/">DrListify</a> · <a href="https://icrc-bd.org/">ICRC</a></li>
@@ -1903,6 +2826,97 @@ function addProfileLinks(){
   const map2={'Ferty9':'ferty9','Malpani Infertility Clinic':'malpani','Dr Kamini Rao Hospitals':'kaminirao','KJK Hospital':'kjk','Nova IVF Vasant Vihar':'nova','Nova IVF Hyderabad':'nova','Iswarya':'iswarya'};
   document.querySelectorAll('#centres td b').forEach(b=>{ for(const k in map2){ if(b.textContent.indexOf(k)===0){ const a=document.createElement('a'); a.href='#centre/'+map2[k]; a.className='mini-link'; a.textContent=' প্রোফাইল →'; b.after(a); break; } } });
 }
+/* ===================== FLIGHT PLANNER (dynamic dates) ===================== */
+const PL_CITIES = [
+  {code:'MAA', label:'চেন্নাই (MAA) — চেন্নাইয়ের সেন্টার ও ভেলোর/CMC', fk:'MAA'},
+  {code:'DEL', label:'দিল্লি (DEL) — Sir Ganga Ram, Kaberi Banerjee, ART', fk:'DEL'},
+  {code:'HYD', label:'হায়দ্রাবাদ (HYD) — Oasis, Apollo, Ferty9', fk:'HYD'},
+  {code:'BOM', label:'মুম্বাই (BOM) — Jaslok, Malpani; পুনের জন্যও', fk:'BOM'},
+  {code:'BLR', label:'ব্যাঙ্গালোর (BLR) — Kamini Rao, Milann, Gunasheela', fk:'BLR'},
+  {code:'CCU', label:'কলকাতা (CCU) — ট্রানজিট/সস্তা রুট', fk:null}
+];
+/* উচ্চ-চাহিদার জানালা। ঈদ/হিন্দু উৎসবের তারিখ চাঁদ ও পঞ্জিকা-নির্ভর — আনুমানিক ধরা হয়েছে। */
+const PEAKS = [
+  {n:'ঈদুল ফিতর', d:'2027-03-09', pad:9, hard:true}, {n:'ঈদুল আজহা', d:'2027-05-16', pad:9, hard:true},
+  {n:'ঈদুল ফিতর', d:'2028-02-26', pad:9, hard:true}, {n:'ঈদুল আজহা', d:'2028-05-05', pad:9, hard:true},
+  {n:'ঈদুল ফিতর', d:'2029-02-14', pad:9, hard:true}, {n:'ঈদুল আজহা', d:'2029-04-24', pad:9, hard:true},
+  {n:'ঈদুল আজহা', d:'2026-05-27', pad:9, hard:true},
+  {n:'দুর্গাপূজা', d:'2026-10-20', pad:6}, {n:'দীপাবলি', d:'2026-11-08', pad:5},
+  {n:'দুর্গাপূজা', d:'2027-10-09', pad:6}, {n:'দীপাবলি', d:'2027-10-29', pad:5},
+  {n:'দুর্গাপূজা', d:'2028-09-27', pad:6}, {n:'দীপাবলি', d:'2028-11-15', pad:5},
+  {n:'বড়দিন–নববর্ষ', d:'2026-12-28', pad:8}, {n:'বড়দিন–নববর্ষ', d:'2027-12-28', pad:8}, {n:'বড়দিন–নববর্ষ', d:'2028-12-28', pad:8},
+  {n:'পোঙ্গল (তামিলনাড়ু)', d:'2027-01-15', pad:3}, {n:'পোঙ্গল (তামিলনাড়ু)', d:'2028-01-15', pad:3}, {n:'পোঙ্গল (তামিলনাড়ু)', d:'2029-01-15', pad:3}
+];
+const MONTH_BN = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const DAY_BN = ['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'];
+function bnNum(x){ return String(x).replace(/[0-9]/g, d=>'০১২৩৪৫৬৭৮৯'[d]); }
+function iso(d){ const m=String(d.getMonth()+1).padStart(2,'0'), dd=String(d.getDate()).padStart(2,'0'); return d.getFullYear()+'-'+m+'-'+dd; }
+function yymmdd(d){ return String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0'); }
+function bnDate(d){ return bnNum(d.getDate())+' '+MONTH_BN[d.getMonth()]+' '+bnNum(d.getFullYear())+' ('+DAY_BN[d.getDay()]+')'; }
+function addDays(d,n){ const x=new Date(d.getTime()); x.setDate(x.getDate()+n); return x; }
+function peakHits(dep, ret){
+  const out=[];
+  PEAKS.forEach(p=>{ const c=new Date(p.d+'T00:00:00'); const a=addDays(c,-p.pad), b=addDays(c,p.pad);
+    if(dep<=b && ret>=a) out.push({n:p.n, c, hard:!!p.hard}); });
+  return out;
+}
+function seasonNote(dep){
+  const m=dep.getMonth();
+  if(m===3||m===4||m===5) return {t:'warn', s:'এপ্রিল–জুন: উত্তর ও দক্ষিণ ভারতে তীব্র গরম (৪০–৪৫°C); ভাড়া মাঝারি, কিন্তু দীর্ঘ থাকা কষ্টকর।'};
+  if(m===9||m===10) return {t:'good', s:'অক্টোবর–নভেম্বর: ঢাকা→ভারত রুটে সাধারণত বছরের সবচেয়ে সস্তা জানালা; তবে চেন্নাইয়ে বৃষ্টি ও দিল্লিতে ধোঁয়াশা শুরু।'};
+  if(m===11||m===0||m===1) return {t:'good', s:'ডিসেম্বর–ফেব্রুয়ারি: দক্ষিণ ভারতে আবহাওয়া সেরা, ভাড়া সমতল; দিল্লিতে কুয়াশায় ফ্লাইট দেরি ও বাতাস খারাপ।'};
+  if(m===6||m===7||m===8) return {t:'', s:'জুলাই–সেপ্টেম্বর: মুম্বাই/পুনেতে ভারী বর্ষা; বাকি শহরে ভাড়া মাঝারি।'};
+  return {t:'', s:'মার্চ: আবহাওয়া ভালো, ভাড়া সমতল (ঈদ-সপ্তাহ বাদে)।'};
+}
+function renderPlanner(){
+  const sel=document.getElementById('plCity'); if(!sel) return;
+  if(!sel.options.length){ PL_CITIES.forEach(c=>{ const o=document.createElement('option'); o.value=c.code; o.textContent=c.label; sel.appendChild(o); }); }
+  const dep=document.getElementById('plDep'), len=document.getElementById('plLen'), pax=document.getElementById('plPax'), out=document.getElementById('plOut');
+  if(!dep.value){ dep.value=iso(addDays(new Date(),45)); }
+  dep.min=iso(addDays(new Date(),1));
+  const d1=new Date(dep.value+'T00:00:00'); const nights=+len.value; const d2=addDays(d1,nights);
+  const days=Math.round((d1-new Date(new Date().toDateString()))/86400000);
+  document.getElementById('plDepHint').textContent = days>=0 ? 'আজ থেকে '+bnNum(days)+' দিন পর' : 'তারিখটি অতীতে';
+  const city=PL_CITIES.find(c=>c.code===sel.value)||PL_CITIES[0];
+  const P=+pax.value;
+  const f = city.fk ? FLIGHTS[city.fk] : {city:'কলকাতা', s1:17907, s2:17907, nonstop:'IndiGo, US-Bangla, Biman — ননস্টপ ১ ঘণ্টা', est:false};
+  const hits=peakHits(d1,d2); const sn=seasonNote(d1);
+  const D1=iso(d1), D2=iso(d2), K1=yymmdd(d1), K2=yymmdd(d2);
+  const gq = encodeURIComponent('Flights from DAC to '+city.code+' on '+D1+' through '+D2);
+  const gUrl='https://www.google.com/travel/flights?q='+gq+'&curr=BDT&hl=bn';
+  const kUrl='https://www.kayak.com/flights/DAC-'+city.code+'/'+D1+'/'+D2+'/'+P+'adults?sort=price_a&currency=BDT';
+  const sUrl='https://www.skyscanner.net/transport/flights/dac/'+city.code.toLowerCase()+'/'+K1+'/'+K2+'/?adults='+P+'&cabinclass=economy&rtn=1&currency=BDT&preferdirects=false';
+  const mUrl='https://www.momondo.com/flight-search/DAC-'+city.code+'/'+D1+'/'+D2+'?sort=price_a';
+  const est=(f.s1+f.s2)/2*P;
+  out.innerHTML = `
+    <div class="pl-res">
+      <div class="pl-dates">
+        <div><span class="k">যাওয়া</span><b>${bnDate(d1)}</b></div>
+        <div class="arrow">→</div>
+        <div><span class="k">ফেরা</span><b>${bnDate(d2)}</b></div>
+        <div><span class="k">মোট</span><b>${bnNum(nights)} রাত</b></div>
+        <div><span class="k">যাত্রী</span><b>${bnNum(P)} জন</b></div>
+      </div>
+      ${hits.length ? `<div class="callout ${hits.some(h=>h.hard)?'bad':'warn'}" style="margin:.7rem 0"><b>⚠ সতর্কতা:</b> আপনার ভ্রমণের সময়ে পড়ছে — ${hits.map(h=>`<b>${h.n}</b> (${bnDate(h.c)})`).join(', ')}। এই জানালায় ভাড়া সাধারণত ${hits.some(h=>h.hard)?'১.৫–৩ গুণ':'উল্লেখযোগ্য'} বেশি${hits.some(h=>h.hard)?', এবং IVAC/অফিস বন্ধ থাকতে পারে':''}। সম্ভব হলে ৭–১০ দিন আগে-পরে সরান।</div>`
+        : `<div class="callout good" style="margin:.7rem 0"><b>✓ ভালো সময়:</b> বড় কোনো ঈদ/উৎসবের ভিড়ে পড়ছে না।</div>`}
+      <p class="small">${sn.s}</p>
+      <div class="pl-est"><span class="k">আনুমানিক ফ্লাইট খরচ (${bnNum(P)} জন, রিটার্ন)</span><b>${fmtBDTx(est)}</b><small>${f.est?'আনুমানিক — ':''}১৮ আগস্ট ২০২৬-এর Google Flights ভাড়ার ভিত্তিতে; আসল দাম লিংকে দেখুন</small></div>
+      <div class="pl-links">
+        <a class="btn gold" href="${gUrl}" target="_blank" rel="noopener">Google Flights — খুলে "Cheapest" ট্যাব চাপুন ↗</a>
+        <a class="btn" href="${kUrl}" target="_blank" rel="noopener">Kayak — সস্তা আগে সাজানো ↗</a>
+        <a class="btn ghost" href="${sUrl}" target="_blank" rel="noopener">Skyscanner ↗</a>
+        <a class="btn ghost" href="${mUrl}" target="_blank" rel="noopener">Momondo ↗</a>
+      </div>
+      <p class="small muted">${city.fk?('ননস্টপ: '+f.nonstop):'ঢাকা–কলকাতা ননস্টপ ১ ঘণ্টা; সেখান থেকে ডোমেস্টিক ফ্লাইট/ট্রেনে অন্য শহরে।'} ${city.code==='BOM'?'পুনে যেতে হলে মুম্বাই নেমে ক্যাব/বাসে ৩–৪ ঘণ্টা।':''} ${city.code==='MAA'?'ভেলোর/CMC যেতে হলে চেন্নাই নেমে ট্যাক্সিতে ~২.৫–৩ ঘণ্টা (১৪০ কিমি)।':''}</p>
+    </div>`;
+}
+function initPlanner(){
+  const ids=['plCity','plDep','plLen','plPax'];
+  if(!document.getElementById('plCity')) return;
+  ids.forEach(i=>{ const el=document.getElementById(i); el.addEventListener('change', renderPlanner); el.addEventListener('input', renderPlanner); });
+  document.querySelectorAll('.qbtn').forEach(b=>b.addEventListener('click', ()=>{ document.getElementById('plDep').value=iso(addDays(new Date(), +b.dataset.days)); renderPlanner(); }));
+  renderPlanner();
+}
 function onScroll(){ const st=window.scrollY||document.documentElement.scrollTop; const h=document.documentElement.scrollHeight-window.innerHeight; const bar=document.querySelector('#progress i'); if(bar) bar.style.width=(h>0? Math.min(100,(st/h)*100):0)+'%'; const tt=document.getElementById('toTop'); if(tt) tt.classList.toggle('on', st>600); }
 function markScrollables(){ document.querySelectorAll('.tbl').forEach(d=>{ d.classList.toggle('scrollable', d.scrollWidth > d.clientWidth + 4); }); }
 function closeNav(){ const s=document.getElementById('sidenav'), b=document.getElementById('menuBtn'), sc=document.getElementById('scrim'); if(!s) return; s.classList.remove('open'); sc.classList.remove('on'); b.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
@@ -1915,7 +2929,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const mb=document.getElementById('menuBtn'); if(mb) mb.addEventListener('click', toggleNav);
   const sc=document.getElementById('scrim'); if(sc) sc.addEventListener('click', closeNav);
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeNav(); });
-  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); addProfileLinks(); route();
+  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); addProfileLinks(); initPlanner(); route();
   window.addEventListener('hashchange', route);
   let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(markScrollables,150); });
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
