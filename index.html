@@ -529,7 +529,7 @@ li::marker{color:var(--g2)}
 <button id="toTop" aria-label="উপরে যান" title="উপরে"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <header class="site-header">
   <div class="topbar">
-    <a class="brand" href="#verdict" aria-label="হোম">
+    <a class="brand" href="#verdict" data-scroll="__top" aria-label="হোম">
       <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".7"/><circle cx="20" cy="20" r="9.5" fill="currentColor" opacity=".25"/><circle cx="20" cy="20" r="4.2" fill="currentColor"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
       <span class="brand-text"><span class="t">IVF ভারত গাইড</span><span class="s">বাংলাদেশ থেকে ভারতে IVF — পূর্ণ পরিকল্পনা</span></span>
     </a>
@@ -602,7 +602,7 @@ li::marker{color:var(--g2)}
     <h1>ভারতে IVF: কোন সেন্টার, কত খরচ, কীভাবে যাবেন — পুরো পরিকল্পনা এক জায়গায়</h1>
     <p class="lede">সেন্টার ও ডাক্তার বাছাই থেকে শুরু করে ভিসা, ফ্লাইট, ব্যাগেজ, বাসা ভাড়া, রান্না, ব্যাংকিং, আঞ্চলিক আদব-কায়দা — বাংলাদেশ থেকে যাওয়া দম্পতির যা যা লাগে। সব হিসাব <b>টাকায় (৳)</b>, পাশে ₹; উপরে রেট বদলালে সব সংখ্যা বদলাবে। প্রতিটি কার্ডে ক্লিক করলে সেই সেন্টারের সম্পূর্ণ প্রোফাইল — ডাক্তার, প্রকাশিত জন্মহার, খরচ, সেই শহরের ফ্লাইট, আশপাশের হোটেল (ফোনসহ), যোগাযোগ ও পূর্ণ বাজেট।</p>
     <div class="hero-actions">
-      <a class="btn gold" href="#verdict">টপ ৫ সেন্টার দেখুন →</a>
+      <a class="btn gold" href="#verdict" data-scroll="top5">টপ ৫ সেন্টার দেখুন →</a>
       <a class="btn glass" href="#planner">আমার তারিখ দিয়ে ফ্লাইট খুঁজুন</a>
       <a class="btn glass" href="#case">আগে মেডিকেল দিকটা পড়ুন</a>
     </div>
@@ -616,7 +616,7 @@ li::marker{color:var(--g2)}
   <p class="small muted" style="margin:.25rem 0 0">প্রতিটি বাক্সে ক্লিক করলে সেই সেকশনে চলে যাবে। ধাপে ধাপে করলেই যথেষ্ট — পুরো সাইট এক বসায় পড়ার দরকার নেই।</p>
   <div class="qsteps">
     <a class="qstep" href="#case"><i>১</i><span><b>মেডিকেল দিকটা বুঝুন</b><small>অপারেশন লাগবে কি না, AMH কী বলে, বাস্তবে সম্ভাবনা কত</small></span></a>
-    <a class="qstep" href="#verdict"><i>২</i><span><b>সেন্টার বাছুন</b><small>টপ ৫ কার্ড — নিচেই। খরচ, প্রমাণ, যোগাযোগ এক জায়গায়</small></span></a>
+    <a class="qstep" href="#verdict" data-scroll="top5"><i>২</i><span><b>সেন্টার বাছুন</b><small>টপ ৫ কার্ড — নিচেই। খরচ, প্রমাণ, যোগাযোগ এক জায়গায়</small></span></a>
     <a class="qstep" href="#appointment"><i>৩</i><span><b>ইমেইল/WhatsApp করুন</b><small>রেডি টেমপ্লেট আছে — কপি করে পাঠান, লিখিত কোট চান</small></span></a>
     <a class="qstep" href="#visa"><i>৪</i><span><b>ভিসার কাগজ গোছান</b><small>MED ও MED-X, ইনভাইটেশন লেটার, IVAC</small></span></a>
     <a class="qstep" href="#planner"><i>৫</i><span><b>ফ্লাইট দেখুন</b><small>৩ ক্লিকে দাম ও ঈদ/উৎসবের সতর্কতা</small></span></a>
@@ -3208,6 +3208,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const sc=document.getElementById('scrim'); if(sc) sc.addEventListener('click', closeNav);
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeNav(); });
   convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); addProfileLinks(); initPlanner(); route();
+  document.addEventListener('click', e=>{
+    const a=e.target.closest('[data-scroll]'); if(!a) return;
+    e.preventDefault();
+    const want=(a.getAttribute('href')||'#verdict').slice(1).split('/')[0];
+    const go=()=>{ if(a.dataset.scroll==='__top'){ window.scrollTo({top:0,behavior:'smooth'}); return; }
+      const el=document.getElementById(a.dataset.scroll);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); };
+    if(location.hash.slice(1).split('/')[0]!==want){ location.hash='#'+want; setTimeout(go,140); } else go();
+  });
   window.addEventListener('hashchange', route);
   let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(markScrollables,150); });
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
