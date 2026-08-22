@@ -244,11 +244,11 @@ section > .wrap > h2::before{content:"";position:absolute;left:0;top:.28em;botto
 .kpi .d{font-size:.8rem;color:rgba(255,255,255,.8)}
 /* buttons */
 .btn{display:inline-block;padding:.6rem 1.05rem;border-radius:11px;background:linear-gradient(90deg,var(--g1),var(--sky));color:#fff!important;text-decoration:none;font-weight:700;font-size:.9rem;border:0;cursor:pointer;text-align:center;transition:transform .2s,box-shadow .2s,filter .2s;box-shadow:0 10px 22px -12px rgba(14,107,94,.8)}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.cbtn:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .btn.gold{background:linear-gradient(90deg,#F5B942,#E0842B);color:#2A1500!important;box-shadow:0 10px 22px -12px rgba(224,132,43,.9)}
 .btn.glass{background:var(--glass);border:1px solid var(--glass-b);color:#fff!important;box-shadow:none;backdrop-filter:blur(6px)}
 .btn.ghost{background:transparent;color:var(--accent-ink)!important;border:1.5px solid var(--accent);box-shadow:none}
-.btn.mini{padding:.25rem .6rem;font-size:.78rem;margin-left:.6rem;vertical-align:middle}
+.cbtn.mini{padding:.25rem .6rem;font-size:.78rem;margin-left:.6rem;vertical-align:middle}
 .mini-link{font-size:.8rem;white-space:nowrap}
 /* top-5 cards */
 .top5{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.1rem;margin-top:.9rem}
@@ -314,7 +314,7 @@ section > .wrap > h2::before{content:"";position:absolute;left:0;top:.28em;botto
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.6rem}
 .cbtn{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;border:1px solid var(--line);border-radius:12px;background:var(--surface2);text-decoration:none;color:var(--ink);font-size:.9rem;overflow-wrap:anywhere;transition:transform .2s,border-color .2s,box-shadow .2s}
 .cbtn:hover{transform:translateY(-2px);border-color:var(--g2);box-shadow:0 12px 24px -18px var(--g2)}
-.cbtn .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-size:.78rem;font-weight:800;flex:0 0 auto;font-family:'Segoe UI',system-ui,sans-serif}
+.btn .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-size:.78rem;font-weight:800;flex:0 0 auto;font-family:'Segoe UI',system-ui,sans-serif}
 .cbtn.wa .ic{background:linear-gradient(135deg,#25D366,#128C7E)}
 .money b{font-family:'Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--accent-ink);font-weight:700}
 .money .inr{color:var(--muted);font-size:.8em}
@@ -330,7 +330,7 @@ th{background:linear-gradient(90deg,color-mix(in srgb,var(--g1) 12%,var(--surfac
 .verdict{border-left-width:6px;background:linear-gradient(90deg,color-mix(in srgb,var(--g4) 10%,var(--surface)),var(--surface) 40%)}
 h2{scroll-margin-top:86px}
 @media (max-width:640px){.hero-inner{padding:1.4rem 1rem 1.2rem}.tcard .facts{grid-template-columns:1fr 1fr}.brand .s{display:none}html{scroll-padding-top:80px}h2{scroll-margin-top:80px}}
-@media (prefers-reduced-motion: reduce){.anim-in,.hero-bg i,.bar > i,.tcard.first .medal{animation:none!important}.tcard,.kpi,.btn,.card,.chip,.cbtn,.subnav a{transition:none!important}}
+@media (prefers-reduced-motion: reduce){.anim-in,.hero-bg i,.bar > i,.tcard.first .medal{animation:none!important}.tcard,.kpi,.btn,.card,.chip,.btn,.subnav a{transition:none!important}}
 @media print{body{padding-right:0}.sidenav,.scrim,.menu-btn{display:none!important}.view{display:block!important}.site-header{position:static;background:#fff;color:#000}.hero{background:#fff;color:#000;box-shadow:none}.hero h1,.hero .lede{color:#000}.hero-bg{display:none}.anim-in{animation:none}.kpi,.kpi .v,.kpi .d,.kpi .k{color:#000;background:#fff}}
 
 /* ================= TABLES — never collapse into letter-columns ================= */
@@ -507,8 +507,8 @@ li::marker{color:var(--g2)}
 .pl-summary b{font-size:1rem;color:var(--accent-ink)}
 .pl-summary b.big{font-family:'SiteUI',Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:1.4rem;display:block;line-height:1.25}
 .pl-summary small{display:block;color:var(--muted);font-size:.74rem}
-.btn.big{display:flex;flex-direction:column;align-items:center;gap:.1rem;width:100%;padding:.85rem 1rem;font-size:1.02rem;margin-bottom:.6rem}
-.btn.big small{font-weight:400;font-size:.78rem;opacity:.85}
+.cbtn.big{display:flex;flex-direction:column;align-items:center;gap:.1rem;width:100%;padding:.85rem 1rem;font-size:1.02rem;margin-bottom:.6rem}
+.cbtn.big small{font-weight:400;font-size:.78rem;opacity:.85}
 .pl-links{display:flex;flex-wrap:wrap;gap:.5rem}
 .pl-links .btn{flex:1 1 200px}
 @media (max-width:760px){.pl-step{gap:.7rem}.ch{font-size:.86rem;padding:.45rem .7rem}.pl-links .btn{flex:1 1 100%}}
@@ -591,13 +591,13 @@ details.more .more-body > :first-child{margin-top:0}
 .ai-field textarea,.ai-field input{width:100%;box-sizing:border-box;padding:.5rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.86rem}
 .ai-actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.6rem}
 #aiSetup.done{opacity:.72}
-.btn{padding:.44rem .8rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.86rem;cursor:pointer}
-.btn:hover{background:var(--accent-soft)}
+.cbtn{padding:.44rem .8rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.86rem;cursor:pointer}
+.cbtn:hover{background:var(--accent-soft)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{filter:brightness(1.06)}
-.btn.primary:disabled{opacity:.6;cursor:default}
-.btn.tiny{padding:.24rem .55rem;font-size:.78rem}
-.btn.icon{padding:.4rem .55rem;font-size:1rem;line-height:1}
+.cbtn.primary:hover{filter:brightness(1.06)}
+.cbtn.primary:disabled{opacity:.6;cursor:default}
+.cbtn.tiny{padding:.24rem .55rem;font-size:.78rem}
+.cbtn.icon{padding:.4rem .55rem;font-size:1rem;line-height:1}
 .chatwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);margin-top:1rem}
 .chat-bar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem .85rem;background:var(--surface2);border-bottom:1px solid var(--line)}
 .chat-title .dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--bad);margin-right:.35rem;vertical-align:middle}
@@ -625,7 +625,57 @@ details.more .more-body > :first-child{margin-top:0}
   .chat-input{padding:.6rem .6rem .7rem}
 }
 
+/* ---------- floating AI dock ---------- */
+#aiFab{position:fixed;right:1rem;bottom:1rem;z-index:70;display:inline-flex;align-items:center;gap:.45rem;
+  padding:.6rem .95rem;border:0;border-radius:999px;cursor:pointer;font:inherit;font-size:.9rem;font-weight:700;
+  color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 26px -10px var(--g2),0 2px 8px rgba(0,0,0,.18)}
+#aiFab:hover{filter:brightness(1.07)}
+#aiFab svg{width:1.15rem;height:1.15rem;flex:0 0 auto}
+#aiScrim{position:fixed;inset:0;background:rgba(8,20,18,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:80}
+#aiScrim.on{opacity:1;pointer-events:auto}
+#aiDock{position:fixed;z-index:90;display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);box-shadow:0 24px 60px -20px rgba(0,0,0,.4);
+  right:1rem;bottom:1rem;width:min(430px,calc(100vw - 2rem));height:min(660px,calc(100vh - 2rem));
+  border-radius:16px;overflow:hidden;transform:translateY(14px) scale(.98);opacity:0;pointer-events:none;
+  transition:transform .18s ease,opacity .18s ease}
+#aiDock.open{transform:none;opacity:1;pointer-events:auto}
+.dock-head{display:flex;gap:.6rem;align-items:flex-start;justify-content:space-between;padding:.7rem .85rem;
+  background:var(--surface2);border-bottom:1px solid var(--line);font-size:.9rem}
+.dock-btns{display:flex;gap:.4rem;align-items:center;flex:0 0 auto}
+#aiDock .chat-log{flex:1;max-height:none;min-height:0}
+#aiDock .chat-chips:empty,#aiDock .chat-files:empty{display:none}
+@media(max-width:760px){
+  #aiFab{right:.8rem;bottom:.8rem;padding:.62rem .8rem}
+  #aiFab .fab-txt{display:none}
+  #aiFab{width:3.1rem;height:3.1rem;justify-content:center;padding:0}
+  #aiFab svg{width:1.35rem;height:1.35rem}
+  #aiDock{right:0;left:0;bottom:0;width:100%;height:88vh;border-radius:16px 16px 0 0;
+    transform:translateY(100%);transition:transform .22s ease}
+  #aiDock.open{transform:none}
+  .dock-head{padding:.65rem .7rem}
+}
+@media(max-width:400px){ #aiDock{height:92vh} }
+
+/* dock header buttons were collapsing to empty boxes in the flex row */
+.dock-head{align-items:center}
+.dock-btns .cbtn{white-space:nowrap;flex:0 0 auto;min-width:auto;line-height:1.2}
+.dock-btns .tgl{white-space:nowrap;flex:0 0 auto}
+.dock-head > div:first-child{min-width:0;flex:1 1 auto}
+@media(max-width:420px){
+  .dock-head > div:first-child small:last-child{display:none}
+  .dock-btns{gap:.3rem}
+  .dock-btns .cbtn{padding:.22rem .45rem;font-size:.75rem}
+}
+
+/* the base stylesheet colours bare <button> white; win on specificity, not !important */
+#aiDock .dock-btns .cbtn,#aiDock .chat-input .cbtn.icon{color:var(--ink);background:var(--surface);border:1px solid var(--line)}
+#aiDock .dock-btns .cbtn:hover,#aiDock .chat-input .cbtn.icon:hover{background:var(--accent-soft)}
+#aiDock .chat-input .cbtn.primary,#chat .cbtn.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
+#aiSetup .cbtn{color:var(--ink);background:var(--surface);border:1px solid var(--line)}
+#aiSetup .cbtn.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
+
 </style>
+<script src="keys.js" defer onerror="void 0"></script>
 </head>
 <body>
 
@@ -1555,12 +1605,12 @@ details.more .more-body > :first-child{margin-top:0}
     </ol>
   </div>
 
-  <div id="aiSetup" class="callout warn">
-    <b>শুরু করতে একবার API কী বসাতে হবে</b> — <b>যেটা সবচেয়ে ভালো উত্তর দেয় সেটাই আগে চেষ্টা করা হয়</b>, না পারলে পরেরটা। — কী <b>শুধু আপনার এই ব্রাউজারেই</b> জমা থাকে, সাইটে বা ইন্টারনেটে কোথাও যায় না। প্রতিটি ডিভাইসে (ফোন, ল্যাপটপ) একবার করে বসাতে হবে।
+  <details class="more"><summary>নিজের API কী ব্যবহার করতে চাইলে (ঐচ্ছিক)</summary><div class="more-body" id="aiSetup">
+    <b>কী আগে থেকেই বসানো আছে — আপনাকে কিছু করতে হবে না।</b> নিচের বাক্সগুলো শুধু তখনই লাগবে যদি নিজের কী ব্যবহার করতে চান (তাহলে সেগুলোই অগ্রাধিকার পাবে)। <b>যেটা সবচেয়ে ভালো উত্তর দেয় সেটাই আগে চেষ্টা করা হয়</b>, না পারলে পরেরটা। — কী <b>শুধু আপনার এই ব্রাউজারেই</b> জমা থাকে, সাইটে বা ইন্টারনেটে কোথাও যায় না। প্রতিটি ডিভাইসে (ফোন, ল্যাপটপ) একবার করে বসাতে হবে।
     <div style="margin-top:.6rem">
       <label class="ai-field"><span>সব কী একসাথে পেস্ট করুন <small class="muted">(সবচেয়ে সহজ — যেভাবে খুশি পেস্ট করুন, নিজে নিজে ভাগ হয়ে যাবে)</small></span>
         <textarea id="aiBulk" rows="3" placeholder="এখানে সব কী একসাথে পেস্ট করুন, তারপর নিচের বোতাম চাপুন" spellcheck="false"></textarea></label>
-      <div class="ai-actions" style="margin:.2rem 0 .8rem"><button class="btn" id="aiSort">ভাগ করে বসাও</button><span id="aiSortState" class="muted small"></span></div>
+      <div class="ai-actions" style="margin:.2rem 0 .8rem"><button class="cbtn" id="aiSort">ভাগ করে বসাও</button><span id="aiSortState" class="muted small"></span></div>
       <label class="ai-field"><span>Gemini কী <small class="muted">(এক লাইনে একটি করে, একাধিক দিলে একটার কোটা শেষ হলে পরেরটা চলবে)</small></span>
         <textarea id="aiGem" rows="3" placeholder="AQ.xxxxxxxx&#10;AQ.yyyyyyyy" spellcheck="false"></textarea></label>
       <label class="ai-field"><span>Groq কী <small class="muted">(ঐচ্ছিক — <b>ওয়েব সার্চ</b> এখানেই কাজ করে)</small></span>
@@ -1572,50 +1622,17 @@ details.more .more-body > :first-child{margin-top:0}
       <label class="ai-field"><span>OpenRouter কী <small class="muted">(ঐচ্ছিক — বাড়তি ব্যাকআপ)</small></span>
         <input id="aiOR" type="text" placeholder="sk-or-v1-xxxxxxxx" spellcheck="false"></label>
       <div class="ai-actions">
-        <button class="btn primary" id="aiSave">সংরক্ষণ করুন</button>
-        <button class="btn" id="aiClear">মুছে ফেলুন</button>
+        <button class="cbtn primary" id="aiSave">সংরক্ষণ করুন</button>
+        <button class="cbtn" id="aiClear">মুছে ফেলুন</button>
         <span id="aiKeyState" class="muted small"></span>
       </div>
       <p class="small muted" style="margin:.5rem 0 0"><a href="https://aistudio.google.com/apikey">aistudio.google.com/apikey</a> থেকে ফ্রি Gemini কী নেওয়া যায় · <a href="https://console.groq.com/keys">console.groq.com/keys</a> থেকে Groq · <a href="https://openrouter.ai/keys">openrouter.ai/keys</a> থেকে OpenRouter কী।</p>
     </div>
-  </div>
+  </div></details>
 
-  <div class="chatwrap">
-    <div class="chat-bar">
-      <div class="chat-title"><span class="dot" id="aiDot"></span> <b>গাইড-সহায়ক</b> <small class="muted" id="aiWho"></small></div>
-      <div class="chat-tools">
-        <label class="tgl" title="উত্তরের জন্য ইন্টারনেটে খুঁজবে (Groq কী লাগবে)"><input type="checkbox" id="aiWeb"> <span>ওয়েব সার্চ</span></label>
-        <button class="btn tiny" id="aiReset">নতুন কথা</button>
-      </div>
-    </div>
-
-    <div id="aiLog" class="chat-log" aria-live="polite">
-      <div class="msg bot"><div class="bub">
-        <b>আসসালামু আলাইকুম।</b> আমি এই গাইডের সব তথ্য জানি — সেন্টার, খরচ, ভিসা, ওষুধ, প্রমাণ, সব।<br><br>
-        <b>সবচেয়ে ভালো কাজে লাগবে এভাবে:</b> ডাক্তার যা বললেন হুবহু লিখে দিন, আমি গাইডের প্রমাণের সাথে মিলিয়ে বলব — কোনটা মিলছে, কোনটা মিলছে না, আর কী প্রশ্ন করা দরকার।<br><br>
-        <b>ডাক্তারের সাথে কথার নোট .md বা .txt ফাইলে দিলে</b> আমি ছকে সাজিয়ে দেব — <b>✔ যা ঠিক আছে</b>, <b>⚠ যা নিয়ে প্রশ্ন করা দরকার</b>, আর <b>? যা গাইডে নেই</b>। প্রেসক্রিপশন বা রিপোর্টের <b>ছবি</b>ও দিতে পারেন।
-      </div></div>
-    </div>
-
-    <div id="aiChips" class="chat-chips">
-      <button class="chip" data-q="ডাক্তার বলেছেন আগে সিস্টের অপারেশন করে তারপর IVF করতে হবে। এটা কি ঠিক?">ডাক্তার অপারেশন করতে বলেছেন — ঠিক?</button>
-      <button class="chip" data-q="ডাক্তার ICSI করতে বলেছেন। স্বামীর রিপোর্ট স্বাভাবিক হলেও কি ICSI লাগে?">ICSI করতে বলেছেন — লাগবে?</button>
-      <button class="chip" data-q="ডাক্তার ট্রান্সফারের আগে ২-৩ মাস ইনজেকশন দিয়ে ডাউনরেগুলেশন করতে বলেছেন। এর প্রমাণ কী?">২-৩ মাস ইনজেকশন বলেছেন — প্রমাণ কী?</button>
-      <button class="chip" data-q="আমাকে এই টেস্টগুলো করতে দিয়েছেন। কোনগুলো আসলে দরকার আর কোনগুলো বাদ দেওয়া যায়?">এই টেস্টগুলো কি সবই দরকার?</button>
-      <button class="chip" data-q="ভিসার জন্য হাসপাতালের চিঠিতে কী কী লেখা থাকতে হবে?">ভিসার চিঠিতে কী থাকতে হবে?</button>
-      <button class="chip" data-q="আমার মোট খরচ কত হতে পারে, আর কীভাবে কমানো যায়?">খরচ কত, কমাব কীভাবে?</button>
-      <button class="chip" data-q="ডাক্তারের সাথে আজকের কথাগুলো ফাইলে দিলাম। কোনটা করা ঠিক হবে আর কোনটা নিয়ে প্রশ্ন করা দরকার, ছকে সাজিয়ে বলুন।">ফাইল দিলাম — কোনটা ঠিক, কোনটা নয়?</button>
-    </div>
-
-    <div id="aiFiles" class="chat-files"></div>
-
-    <form class="chat-input" id="aiForm">
-      <button type="button" class="btn icon" id="aiAttach" title="ছবি বা ফাইল যোগ করুন" aria-label="সংযুক্ত করুন">📎</button>
-      <input type="file" id="aiFile" accept="image/*,.md,.txt,.markdown,text/*" multiple hidden>
-      <textarea id="aiText" rows="1" placeholder="ডাক্তার যা বললেন লিখুন, বা প্রশ্ন করুন…" spellcheck="false"></textarea>
-      <button type="submit" class="btn primary" id="aiSend">পাঠান</button>
-    </form>
-    <p class="small muted" style="margin:.5rem .2rem 0">উত্তরে গাইডের কোন অংশ থেকে বলা হচ্ছে তা লেখা থাকবে। <b>ভুল মনে হলে গাইডের ওই সেকশনটা নিজে পড়ে দেখুন</b> — লিংক দেওয়া থাকবে।</p>
+  <div style="text-align:center;margin:1.2rem 0 .4rem">
+    <button class="cbtn primary" id="aiOpen" style="font-size:1rem;padding:.7rem 1.4rem">চ্যাট খুলুন →</button>
+    <p class="small muted" style="margin:.6rem 0 0">যেকোনো পাতা থেকে <b>নিচের ডান কোণের বোতামেও</b> খোলা যায়।<br>আগের কথা <b>মনে থাকবে</b> — পরে ফিরে এলে সেখান থেকেই চালিয়ে যেতে পারবেন।</p>
   </div>
 </section>
 
@@ -4328,6 +4345,32 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
   </div>
 </section>
 
+<!-- floating AI dock — available on every panel, desktop and mobile -->
+<button id="aiFab" aria-label="AI-কে জিজ্ঞেস করুন" title="AI-কে জিজ্ঞেস করুন">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  <span class="fab-txt">Ask AI</span>
+</button>
+<div id="aiScrim" class="scrim"></div>
+<aside id="aiDock" aria-label="AI সহায়ক" aria-hidden="true">
+  <div class="dock-head">
+    <div><b>গাইড-সহায়ক</b> <small class="muted" id="aiWho2"></small><br><small class="muted">আপনার কেস মনে রেখেই উত্তর দেবে</small></div>
+    <div class="dock-btns">
+      <label class="tgl" title="ইন্টারনেটে খুঁজে দেখবে"><input type="checkbox" id="aiWeb2"> <span>সার্চ</span></label>
+      <button class="cbtn tiny" id="aiReset2" title="আগের কথা মুছে নতুন শুরু">নতুন</button>
+      <button class="cbtn tiny" id="aiClose" aria-label="বন্ধ করুন">✕</button>
+    </div>
+  </div>
+  <div id="aiLog2" class="chat-log" aria-live="polite"></div>
+  <div id="aiChips2" class="chat-chips"></div>
+  <div id="aiFiles2" class="chat-files"></div>
+  <form class="chat-input" id="aiForm2">
+    <button type="button" class="cbtn icon" id="aiAttach2" title="ছবি বা ফাইল" aria-label="সংযুক্ত করুন">📎</button>
+    <input type="file" id="aiFile2" accept="image/*,.md,.txt,.markdown,text/*" multiple hidden>
+    <textarea id="aiText2" rows="1" placeholder="ডাক্তার যা বললেন লিখুন…" spellcheck="false"></textarea>
+    <button type="submit" class="cbtn primary" id="aiSend2">পাঠান</button>
+  </form>
+</aside>
+
 <!-- ============ CENTRE PROFILE VIEW (JS-rendered) ============ -->
 <section id="centre">
   <div class="wrap" id="centreRoot"></div>
@@ -4985,14 +5028,27 @@ async function aiDiscoverOR(key){
 }
 
 let AI_KB = null, AI_KB_LOADING = null;
-let aiHistory = [];      /* [{role:'user'|'model', text}] */
+const AI_HISTKEY = 'ivf_ai_hist_v1';
+let aiHistory = (()=>{ try{ return JSON.parse(localStorage.getItem(AI_HISTKEY)||'[]'); }catch(e){ return []; } })();
+function aiSaveHist(){
+  try{ localStorage.setItem(AI_HISTKEY, JSON.stringify(aiHistory.slice(-40))); }catch(e){}
+}
 let aiFiles = [];        /* [{name, mime, b64?, text?}] */
 let aiBusy = false;
 
 function aiKeys(){
-  try{ const k = JSON.parse(localStorage.getItem(AI_KEYSTORE)||'{}');
-       return {gem:(k.gem||[]).filter(Boolean), groq:(k.groq||'').trim(), or:(k.or||'').trim(), bl:(k.bl||'').trim(), ai:(k.ai||'').trim()}; }
-  catch(e){ return {gem:[], groq:'', or:'', bl:'', ai:''}; }
+  let k = {};
+  try{ k = JSON.parse(localStorage.getItem(AI_KEYSTORE)||'{}'); }catch(e){}
+  /* keys.js is optional — if it is deleted the site simply asks for keys in Settings */
+  const b = (typeof aiBuiltinKeys==='function') ? aiBuiltinKeys() : {gem:[],groq:'',or:'',bl:'',ai:''};
+  const own = (k.gem||[]).filter(Boolean);
+  return {                                   /* anything the user saved wins; otherwise the built-ins */
+    gem : own.length ? own : b.gem,
+    groq: (k.groq||'').trim() || b.groq,
+    or  : (k.or  ||'').trim() || b.or,
+    bl  : (k.bl  ||'').trim() || b.bl,
+    ai  : (k.ai  ||'').trim() || b.ai
+  };
 }
 function aiSaveKeys(gemText, groq, or, bl, ai){
   const gem = gemText.split(/[\s,;]+/).map(s=>s.trim()).filter(s=>s.length>10);
@@ -5052,6 +5108,20 @@ function aiContext(q){
   return {text:out, ids:[...new Set(ids)]};
 }
 
+const AI_CASE = `রোগীর স্থায়ী তথ্য (প্রতিটি উত্তরে এটি মাথায় রাখবে — ব্যবহারকারী আলাদা করে না বললেও):
+- স্ত্রী, বয়স ৩০। ২০২২-এ ডান ওভারি ও টিউব বাদ (RSO) — ১১.৯ সেমি এন্ডোমেট্রিওমার জন্য। বায়োপসিতে ক্যানসার ছিল না।
+- এখন **একটিই ওভারি (বাঁ)**। তাতেও সিস্ট ফিরে এসেছে — ওঠানামা করেছে ২.১ থেকে ৮.১ সেমি, বর্তমানে ৬.৯ × ৩.৩ সেমি।
+- **AMH ৩.০১ ng/mL** (জানুয়ারি ২০২৪ — এখন আড়াই বছরের পুরনো, নতুন করে করা দরকার)।
+- CA-125 ৩২.৫ (স্বাভাবিক) · CA 19-9 ৪৮.৫ (সামান্য বেশি) · থাইরয়েড স্বাভাবিক।
+- **বাঁ টিউব খোলা** — SSG-তে দুবার নিশ্চিত (২০২৩, ২০২৫), মুক্ত স্পিলসহ।
+- নিয়মিত ডিম ছাড়ছেন — ১৮–২২ মিমি ডমিন্যান্ট ফলিকল।
+- দুটি স্ক্যানে "bulky uterus / adenomyosis pattern" — তবে এগুলো পরোক্ষ লক্ষণ, MUSA মানদণ্ডে অ্যাডেনোমায়োসিস এখনো প্রমাণিত নয়।
+- **স্বামী, ২৮ — সম্পূর্ণ স্বাভাবিক** (৫০ মিলিয়ন/মিলি, ৭৫% চলন, ৪০% স্বাভাবিক গঠন)। কোনো পুরুষ-ফ্যাক্টর নেই।
+- ৪ বছর চেষ্টা। **কখনো সত্যিকারের IUI হয়নি, IVF-ও হয়নি** — শুধু ফলিকল দেখে সময় বলে দেওয়া ও ওষুধ।
+- পরিকল্পনা: স্বামী-স্ত্রী + স্বামীর মা (অ্যাটেনডেন্ট) ভারতে যাবেন।
+
+এই তথ্যের আলোকেই ডাক্তারের কথা যাচাই করবে। বিশেষ করে মনে রাখবে: **একটিমাত্র ওভারি** — তাই ওই ওভারিতে অপারেশনের যেকোনো প্রস্তাব সবচেয়ে বড় ঝুঁকি; আর **স্বামীর রিপোর্ট স্বাভাবিক** — তাই ICSI-র প্রস্তাব এলে প্রশ্ন তুলবে।`;
+
 const AI_SYSTEM = `তুমি "IVF ভারত গাইড" নামের একটি বাংলা ওয়েবসাইটের সহায়ক। ওই গাইডটি বাংলাদেশি দম্পতিদের জন্য — ভারতে IVF করানোর সেন্টার, খরচ, ভিসা, ওষুধ ও চিকিৎসার প্রমাণ নিয়ে।
 
 তোমার প্রধান কাজ: ব্যবহারকারী ডাক্তারের সাথে কথোপকথনের নোট, ফাইল বা ছবি দেবে — তুমি সেটিকে নিচের গাইড-অংশের প্রমাণের সাথে মিলিয়ে বলবে **কোনটা করা ঠিক হবে আর কোনটা নিয়ে প্রশ্ন করা দরকার**।
@@ -5100,7 +5170,7 @@ function aiFmt(s){
   return h.replace(/\n/g,'<br>');
 }
 function aiPush(role, text, meta){
-  const log = document.getElementById('aiLog');
+  const log = document.getElementById('aiLog2');
   const d = document.createElement('div');
   d.className = 'msg ' + (role==='user'?'user':'bot');
   d.innerHTML = `<div class="bub">${role==='user'?aiEsc(text).replace(/\n/g,'<br>'):aiFmt(text)}${meta?`<div class="meta">${aiEsc(meta)}</div>`:''}</div>`;
@@ -5171,9 +5241,10 @@ async function aiAsk(question){
   const fileBlob = aiFiles.filter(f=>f.text).map(f=>f.text).join(' ').slice(0,4000);
   const ctx = aiContext(question + ' ' + fileBlob);
   const hasImage = aiFiles.some(f=>f.b64);
-  const wantWeb = document.getElementById('aiWeb') && document.getElementById('aiWeb').checked;
+  const wantWeb = document.getElementById('aiWeb2') && document.getElementById('aiWeb2').checked;
 
   let prompt = '';
+  prompt += AI_CASE + '\n---\n';
   if(ctx.text) prompt += `নিচে ওই গাইডের প্রাসঙ্গিক অংশ দেওয়া হলো। এগুলোই তোমার প্রধান সূত্র:\n${ctx.text}\n---\n`;
   const txtFiles = aiFiles.filter(f=>f.text);
   if(txtFiles.length) prompt += txtFiles.map(f=>`ব্যবহারকারীর ফাইল "${f.name}":\n${f.text.slice(0,12000)}`).join('\n\n') + '\n---\n';
@@ -5258,7 +5329,7 @@ async function aiAsk(question){
 }
 
 function aiRenderFiles(){
-  const box = document.getElementById('aiFiles'); if(!box) return;
+  const box = document.getElementById('aiFiles2'); if(!box) return;
   box.innerHTML = aiFiles.map((f,i)=>`<span class="fchip">${f.b64?'🖼':'📄'} ${aiEsc(f.name)} <button data-rmf="${i}" aria-label="বাদ দিন">×</button></span>`).join('');
 }
 function aiAddFile(file){
@@ -5275,15 +5346,15 @@ function aiAddFile(file){
 
 async function aiSubmit(q){
   if(aiBusy) return;
-  const ta = document.getElementById('aiText');
+  const ta = document.getElementById('aiText2');
   const question = (q!=null ? q : ta.value).trim();
   if(!question && !aiFiles.length) return;
   aiBusy = true;
-  const btn = document.getElementById('aiSend'); if(btn){ btn.disabled = true; btn.textContent = '…'; }
+  const btn = document.getElementById('aiSend2'); if(btn){ btn.disabled = true; btn.textContent = '…'; }
   const fileNote = aiFiles.length ? ' ['+aiFiles.map(f=>f.name).join(', ')+']' : '';
   aiPush('user', question + fileNote);
   if(q==null) ta.value = '';
-  const chips = document.getElementById('aiChips'); if(chips) chips.style.display='none';
+  const chips = document.getElementById('aiChips2'); if(chips) chips.style.display='none';
   const thinking = aiPush('bot','ভাবছি…');
   const t0 = Date.now();
   const tick = setInterval(()=>{
@@ -5298,7 +5369,8 @@ async function aiSubmit(q){
     thinking.querySelector('.bub').innerHTML = aiFmt(res.text) + `<div class="meta">${aiEsc(res.who)}</div>`;
     aiHistory.push({role:'user', text:question});
     aiHistory.push({role:'model', text:res.text});
-    const who = document.getElementById('aiWho'); if(who) who.textContent = res.who;
+    aiSaveHist();
+    const who = document.getElementById('aiWho2'); if(who) who.textContent = res.who;
   }catch(e){
     thinking.querySelector('.bub').innerHTML = '<b>উত্তর আনা গেল না।</b><br>'+aiEsc(e.message);
   }finally{
@@ -5306,7 +5378,7 @@ async function aiSubmit(q){
     aiFiles = []; aiRenderFiles();
     aiBusy = false;
     if(btn){ btn.disabled = false; btn.textContent = 'পাঠান'; }
-    const log = document.getElementById('aiLog'); if(log) log.scrollTop = log.scrollHeight;
+    const log = document.getElementById('aiLog2'); if(log) log.scrollTop = log.scrollHeight;
   }
 }
 
@@ -5371,26 +5443,65 @@ function initChat(){
     const n = k.gem.length + (k.groq?1:0) + (k.or?1:0) + (k.bl?1:0) + (k.ai?1:0);
     if(st) st.textContent = n ? n+'টি কী বসানো হয়েছে ✓' : 'চেনা কোনো কী পাওয়া যায়নি';
   });
-  document.getElementById('aiForm').addEventListener('submit', e=>{ e.preventDefault(); aiSubmit(); });
-  document.getElementById('aiAttach').addEventListener('click', ()=>document.getElementById('aiFile').click());
-  document.getElementById('aiFile').addEventListener('change', e=>{ [...e.target.files].forEach(aiAddFile); e.target.value=''; });
-  document.getElementById('aiFiles').addEventListener('click', e=>{
+  document.getElementById('aiForm2').addEventListener('submit', e=>{ e.preventDefault(); aiSubmit(); });
+  document.getElementById('aiAttach2').addEventListener('click', ()=>document.getElementById('aiFile2').click());
+  document.getElementById('aiFile2').addEventListener('change', e=>{ [...e.target.files].forEach(aiAddFile); e.target.value=''; });
+  document.getElementById('aiFiles2').addEventListener('click', e=>{
     const b = e.target.closest('[data-rmf]'); if(!b) return;
     aiFiles.splice(+b.dataset.rmf,1); aiRenderFiles();
   });
-  document.getElementById('aiChips').addEventListener('click', e=>{
+  document.getElementById('aiChips2').addEventListener('click', e=>{
     const b = e.target.closest('[data-q]'); if(!b) return; aiSubmit(b.dataset.q);
   });
-  document.getElementById('aiReset').addEventListener('click', ()=>{
-    aiHistory = []; aiFiles = []; aiRenderFiles();
-    const log = document.getElementById('aiLog');
-    log.innerHTML = '<div class="msg bot"><div class="bub">নতুন করে শুরু করলাম। বলুন।</div></div>';
-    const chips = document.getElementById('aiChips'); if(chips) chips.style.display='';
+  document.getElementById('aiReset2').addEventListener('click', ()=>{
+    aiHistory = []; aiSaveHist(); aiFiles = []; aiRenderFiles();
+    aiPaintLog();
   });
-  const ta = document.getElementById('aiText');
+  const ta = document.getElementById('aiText2');
   ta.addEventListener('input', ()=>{ ta.style.height='auto'; ta.style.height = Math.min(ta.scrollHeight,140)+'px'; });
   ta.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); aiSubmit(); } });
   aiLoadKB();
+
+  /* ---- floating dock ---- */
+  const fab=document.getElementById('aiFab'), dock=document.getElementById('aiDock'),
+        scrim=document.getElementById('aiScrim'), close=document.getElementById('aiClose');
+  const openDock = ()=>{
+    dock.classList.add('open'); scrim.classList.add('on'); dock.setAttribute('aria-hidden','false');
+    if(window.innerWidth<=760) document.body.style.overflow='hidden';
+    setTimeout(()=>{ const t=document.getElementById('aiText2'); if(t) t.focus(); },120);
+    const log=document.getElementById('aiLog2'); if(log) log.scrollTop=log.scrollHeight;
+  };
+  const closeDock = ()=>{
+    dock.classList.remove('open'); scrim.classList.remove('on'); dock.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  };
+  if(fab) fab.addEventListener('click', openDock);
+  if(close) close.addEventListener('click', closeDock);
+  if(scrim) scrim.addEventListener('click', closeDock);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && dock.classList.contains('open')) closeDock(); });
+  const opener=document.getElementById('aiOpen'); if(opener) opener.addEventListener('click', openDock);
+
+  aiPaintLog();
+}
+
+/* redraw the saved conversation, or the greeting if there is none */
+function aiPaintLog(){
+  const log=document.getElementById('aiLog2'); if(!log) return;
+  log.innerHTML='';
+  if(!aiHistory.length){
+    aiPush('bot','**আসসালামু আলাইকুম।** আমি এই গাইডের সব তথ্য জানি, এবং **আপনার স্ত্রীর কেসটাও মনে রেখেছি** — এক ওভারি, ৬.৯ সেমি সিস্ট, AMH ৩.০১, আপনার রিপোর্ট স্বাভাবিক।\n\n**ডাক্তার যা বললেন লিখে দিন, বা ফাইল/ছবি দিন** — বলব কোনটা ঠিক, কোনটা নিয়ে প্রশ্ন করা দরকার।');
+    const chips=document.getElementById('aiChips2');
+    if(chips) chips.innerHTML = [
+      ['ডাক্তার আগে সিস্টের অপারেশন করতে বলেছেন। আমার স্ত্রীর একটাই ওভারি। এটা কি ঠিক?','অপারেশন বলেছেন — ঠিক?'],
+      ['ডাক্তার ICSI করতে বলেছেন। এটা কি আমাদের লাগবে?','ICSI লাগবে?'],
+      ['ডাক্তার ট্রান্সফারের আগে ২-৩ মাস ইনজেকশন দিতে বলেছেন। প্রমাণ কী?','২-৩ মাস ইনজেকশন?'],
+      ['আজকের কথাগুলো ফাইলে দিলাম। কোনটা ঠিক, কোনটা নিয়ে প্রশ্ন করব?','ফাইল দিলাম — যাচাই করুন'],
+      ['আমাদের এখন ঠিক কী করা উচিত?','এখন কী করা উচিত?']
+    ].map(([q,l])=>`<button class="chip" data-q="${q.replace(/"/g,'&quot;')}">${l}</button>`).join('');
+  }else{
+    aiHistory.forEach(m=>aiPush(m.role==='user'?'user':'bot', m.text));
+    const chips=document.getElementById('aiChips2'); if(chips) chips.innerHTML='';
+  }
 }
 
 /* ===================== PROFILE MATCHER ===================== */
