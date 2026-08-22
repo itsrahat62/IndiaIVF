@@ -574,6 +574,17 @@ details.more .more-body > :first-child{margin-top:0}
   .tbl td.num br{display:none}
 }
 
+/* copy-ready email templates */
+.mailbox{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:1rem 0;background:var(--surface)}
+.mailbox .mail-head{padding:.7rem .95rem;background:var(--surface2);border-bottom:1px solid var(--line);font-size:.9rem;word-break:break-word}
+.mailbox .mail-body{padding:1rem;font-size:.94rem;line-height:1.65}
+.mailbox .mail-body p{margin:.6rem 0}
+.mailbox .mail-body p:first-child{margin-top:0}
+.mailbox .mail-body ul,.mailbox .mail-body ol{margin:.5rem 0;padding-left:1.25rem}
+.mailbox .mail-body li{margin:.3rem 0}
+.mailbox .mail-body .tbl{margin:.6rem 0}
+@media(max-width:560px){.mailbox .mail-body{padding:.8rem;font-size:.9rem}.mailbox .mail-head{padding:.6rem .75rem;font-size:.85rem}}
+
 </style>
 </head>
 <body>
@@ -600,6 +611,7 @@ details.more .more-body > :first-child{margin-top:0}
       <a href="#verdict" data-nav="verdict"><i>◆</i>হোম · টপ ৫</a>
       <a href="#profile" data-nav="profile"><i>❖</i>আপনার সমস্যা অনুযায়ী</a>
       <a href="#worked" data-nav="worked"><i>✎</i>একটি বাস্তব কেস</a>
+      <a href="#emails" data-nav="emails"><i>✉</i>হাসপাতালে যে মেইল</a>
       <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
       <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
       <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
@@ -1337,6 +1349,153 @@ details.more .more-body > :first-child{margin-top:0}
   <div class="callout good">
     <b>✔ শেষ কথা, এবং এটাই সবচেয়ে জরুরি:</b> ২০২৫-এর সবচেয়ে বড় প্রসপেক্টিভ গবেষণায় দেখা গেছে এন্ডোমেট্রিওসিস/অ্যাডেনোমায়োসিসের ক্ষতি <b>প্রথম সাইকেলেই সবচেয়ে বেশি</b> (aRR ০.৬৯), আর <b>তৃতীয় সাইকেলে গিয়ে পার্থক্যটা আর পরিসংখ্যানগতভাবে অর্থবহ থাকে না</b> (aRR ০.৮৩, p=০.১৮)।
     <div style="margin-top:.5rem">গবেষকদের নিজেদের ভাষায়: <i>“a negative first-cycle result should not preclude further attempts.”</i> — <b>প্রথমবার না হওয়া মানে পরেরবারও হবে না, তা নয়।</b></div>
+  </div>
+</section>
+
+<!-- ============ EMAIL TEMPLATES ============ -->
+<section id="emails">
+  <h2>হাসপাতালে যে দুটি ইমেইল পাঠাবেন — কপি করে ব্যবহার করুন</h2>
+  <p class="lede">বিদেশি রোগী হিসেবে সব শুরু হয় একটি ইমেইল দিয়ে। কিন্তু <b>প্রথম ইমেইলে কী লিখবেন — আর কী লিখবেন না</b> — সেটাই ঠিক করে দেয় আপনি পরামর্শ পাবেন, নাকি শুধু একটা দামের তালিকা।</p>
+
+  <div class="callout gold">
+    <b>সবচেয়ে জরুরি সিদ্ধান্তটা প্রথম লাইনেই: “আমরা IVF করতে চাই” — এটা <u>লিখবেন না</u>।</b>
+    <div style="margin-top:.55rem">স্বাভাবিকভাবে মনে হয়, স্পষ্ট করে বলে দিলে কাজ দ্রুত হবে। কিন্তু বাস্তবে উল্টোটা ঘটে:</div>
+    <div class="tbl compact scrollable" style="margin:.6rem 0 .3rem">
+      <table>
+        <thead><tr><th>আপনি যা লেখেন</th><th>তারা যা করে</th></tr></thead>
+        <tbody>
+          <tr class="bad-cell"><td><b>“আমরা IVF করাতে চাই, খরচ কত?”</b></td><td>এটি একটি <b>অর্ডার</b>। উত্তরে আসে <b>প্যাকেজের দাম</b> — কেউ ভেবে দেখে না IVF-ই আপনার সঠিক ধাপ কি না।</td></tr>
+          <tr class="hl"><td><b>“এই তাঁর অবস্থা — আপনারা কী পরামর্শ দেন?”</b></td><td>এটি একটি <b>প্রশ্ন</b>। উত্তরে আসে <b>মতামত</b> — এবং সেই উত্তরটাই আপনাকে বলে দেবে সেন্টারটা ভাবে, না বিক্রি করে।</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <b>খরচের হিসাব দুটো ক্ষেত্রেই পাবেন</b> — কারণ নিচের ইমেইলে সেটা আলাদা করে চাওয়া আছে। কিন্তু দ্বিতীয় ভাবে লিখলে <b>পরামর্শটা বাড়তি পাওয়া যায়, বিনামূল্যে</b>।
+    <div style="margin-top:.5rem"><b>আর সবচেয়ে বড় লাভ:</b> এটি একটি <b>পরীক্ষা</b>। যে সেন্টার কেস না পড়েই দাম পাঠায়, বা প্রথমেই “আগে অপারেশন করতে হবে” লেখে — <b>সে নিজেই নিজেকে বাদ দিয়ে দিল</b>, আর আপনার এক টাকাও খরচ হলো না।</div>
+  </div>
+
+  <div class="callout warn">
+    <b>তবে দুটো জিনিস অবশ্যই স্পষ্ট করে লিখবেন</b> — এগুলো লুকানোর কিছু নেই, আর না লিখলে ভুল বিভাগে চলে যাবেন:
+    <ul style="margin:.4rem 0 0">
+      <li><b>আপনারা বিদেশি (বাংলাদেশি) রোগী</b> — এতে আন্তর্জাতিক ডেস্কে যায়, আর ভিসার কথাও তারা মাথায় রাখে</li>
+      <li><b>সমস্যাটা সন্তান না হওয়া</b> — এতে সরাসরি <b>রিপ্রোডাক্টিভ মেডিসিন</b> বিভাগে যায়, সাধারণ গাইনিতে নয়</li>
+    </ul>
+    <b>পার্থক্যটা সূক্ষ্ম কিন্তু আসল:</b> “আমাদের সন্তান হচ্ছে না, কী করা উচিত?” বলা যাবে — “আমাদের IVF লাগবে” বলা যাবে না।
+  </div>
+
+  <h3>ইমেইল ১ — প্রথম যোগাযোগ (মতামত ও খরচ চাওয়া)</h3>
+  <p class="small">কাকে পাঠাবেন: হাসপাতালের <b>বিভাগীয়</b> ইমেইল ও <b>আন্তর্জাতিক ডেস্ক</b> — দুটোতেই একসাথে (CC)। <a href="#worked" data-scroll="whichhospital">ঠিকানাগুলো এখানে</a>। <b>এজেন্ট বা ঢাকা-অফিসের মাধ্যমে নয়</b> — <a href="#voices" data-scroll="voices">কেন</a>।</p>
+  <div class="mailbox">
+    <div class="mail-head"><b>Subject:</b> International patient (Bangladesh) — opinion sought on management of infertility with solitary ovary and recurrent endometrioma</div>
+    <div class="mail-body">
+      <p>Dear Sir/Madam,</p>
+      <p>We are a married couple from Bangladesh seeking your unit's opinion on my wife's case. We would be grateful for your guidance on <b>what treatment you would recommend</b>, before we make any travel plans.</p>
+      <p><b>Patient:</b> [নাম], aged 30 · <b>Husband:</b> [নাম], aged 28 · Married [কত] years, primary infertility for 4 years.</p>
+      <p><b>History</b></p>
+      <ul>
+        <li>2022 — laparotomy with <b>right salpingo-oophorectomy</b> for an 11.9 × 9.3 cm right ovarian endometrioma. Histopathology: endometrioma, no malignancy. Left ovary preserved.</li>
+        <li>Since 2023 — <b>recurrent left ovarian endometrioma</b>, fluctuating between 2.1 cm and 8.1 cm on serial scans; currently <b>6.9 × 3.3 cm</b>.</li>
+        <li><b>AMH 3.01 ng/mL</b> (January 2024). <b>CA-125 32.5</b>, <b>CA 19-9 48.5</b> (August 2026). Euthyroid.</li>
+        <li><b>Left tube patent</b> on sonosalpingography on two occasions (2023 and 2025), with free spill into the Pouch of Douglas.</li>
+        <li><b>Ovulatory</b> — folliculometry repeatedly shows dominant follicles of 18–22 mm.</li>
+        <li>Some scans report a <b>bulky uterus with an “adenomyosis pattern”</b>.</li>
+        <li><b>Husband: normozoospermic</b> — 50 million/mL, 75% total motility, 40% normal morphology.</li>
+        <li>Treatment so far has been <b>follicular monitoring with timed intercourse and medication only</b>. <b>She has never had an IUI, and never an IVF cycle.</b></li>
+      </ul>
+      <p><b>Our questions</b></p>
+      <ol>
+        <li><b>What would you recommend as the next step</b> in her case, and why?</li>
+        <li>Given that <b>a properly performed IUI has never been attempted</b> — and her tube is patent, she ovulates, and her husband's parameters are normal — <b>would you consider a course of stimulated IUI before ART</b>, or would you advise proceeding directly to ART?</li>
+        <li>In view of <b>ESHRE 2022 guidance against endometrioma surgery prior to ART</b>, and the fact that she has <b>only one remaining ovary</b>, would you plan to <b>proceed without operating on that ovary</b>?</li>
+        <li>If ART is advised — given her husband's normal semen parameters, would you use <b>conventional IVF rather than ICSI</b>?</li>
+        <li>Should the <b>suspected adenomyosis</b> be confirmed first (for example against MUSA criteria or by MRI), and would that change your plan?</li>
+        <li>Do you advise repeating the <b>AMH and antral follicle count</b> before any plan is fixed, given the 2024 value is now over two years old? We can have this done in Dhaka.</li>
+      </ol>
+      <p><b>Also, so that we can plan</b></p>
+      <ol>
+        <li>An <b>itemised cost estimate</b> for the treatment you would recommend — please show <b>medication, ICSI (if used), embryo freezing, annual storage and frozen embryo transfer as separate lines</b>, and state whether any international-patient tariff applies.</li>
+        <li>Approximately <b>how many days we would need to stay</b>, and whether the stay can be split into two shorter visits.</li>
+        <li>Your <b>ART (Regulation) Act 2021 registration number</b>, or a copy of the certificate.</li>
+        <li>The first available <b>appointment date</b>, and what we must bring.</li>
+      </ol>
+      <p>All reports are attached. We are willing to have any further investigation done in Bangladesh before travelling if that helps you advise us.</p>
+      <p>Thank you for your time.</p>
+      <p>Yours faithfully,<br>[নাম]<br>[মোবাইল, +880 সহ] · [WhatsApp] · [ইমেইল]<br>Dhaka, Bangladesh</p>
+    </div>
+  </div>
+
+  <div class="callout good">
+    <b>✔ সাথে যা যা সংযুক্ত (attach) করবেন — PDF করে, একটি ফাইলে</b>
+    <ul style="margin:.4rem 0 0">
+      <li><b>২০২২-এর অপারেশনের নোট ও বায়োপসি রিপোর্ট</b> — এটিই সবচেয়ে গুরুত্বপূর্ণ কাগজ, কারণ এতে পেলভিসের ভেতরের অবস্থা লেখা আছে</li>
+      <li><b>সব আল্ট্রাসাউন্ড রিপোর্ট তারিখসহ</b>, পুরনো থেকে নতুন ক্রমে</li>
+      <li>দুটি <b>SSG রিপোর্ট</b> (২০২৩, ২০২৫)</li>
+      <li><b>AMH, CA-125, CA 19-9, TSH</b> রিপোর্ট</li>
+      <li><b>স্বামীর সিমেন অ্যানালাইসিস</b></li>
+      <li>দেশের চিকিৎসকের <b>রেফারেল/সারসংক্ষেপ</b>, থাকলে</li>
+    </ul>
+    <div style="margin-top:.5rem"><b>ফাইলের নাম দিন এভাবে:</b> <code>Reports_[নাম]_2022-2026.pdf</code> — এলোমেলো নামের ২০টা ছবি পাঠালে কেউ খুলে দেখে না।</div>
+  </div>
+
+  <div class="callout warn">
+    <b>উত্তর না এলে কী করবেন</b> — বড় সরকারি/অলাভজনক হাসপাতালে দেরি স্বাভাবিক, অবহেলা নয়।
+    <ul style="margin:.4rem 0 0">
+      <li><b>৭ কার্যদিবস</b> অপেক্ষা করুন। তারপর <b>একই ইমেইলে reply</b> করে ভদ্রভাবে মনে করিয়ে দিন (নতুন ইমেইল নয় — thread একটাই রাখুন)।</li>
+      <li>আরও ৫ দিন পর <b>ফোন বা WhatsApp</b> করুন, আর বলুন <b>“I have emailed on [তারিখ], subject line [...]”</b> — এতে তারা খুঁজে পায়।</li>
+      <li><b>একসাথে ২–৩টি হাসপাতালে পাঠান।</b> এটি অভদ্রতা নয় — উত্তরগুলো পাশাপাশি রাখলেই বোঝা যাবে কে কেস পড়েছে আর কে শুধু দাম পাঠিয়েছে।</li>
+    </ul>
+  </div>
+
+  <h3>ইমেইল ২ — ভিসার চিঠির অনুরোধ (উত্তর পাওয়ার <u>পরে</u>)</h3>
+  <div class="callout bad">
+    <b>⚠ এই ইমেইলটি আগে পাঠাবেন না।</b> প্রথমে চিকিৎসার পরিকল্পনা ঠিক হোক — তারপর চিঠি। কারণ <b>চিঠিতে লেখা তারিখ ও সময়কালই আপনার ভিসার মেয়াদ ঠিক করে দেয়</b>, আর ভুল হলে দ্বিতীয়বার চিঠি পাওয়া কঠিন।
+  </div>
+  <div class="mailbox">
+    <div class="mail-head"><b>Subject:</b> Request for medical visa invitation letter — [রোগীর নাম], appointment [তারিখ]</div>
+    <div class="mail-body">
+      <p>Dear Sir/Madam,</p>
+      <p>Thank you for your advice and for the appointment on <b>[তারিখ]</b>. We now request the <b>invitation letter for an Indian medical visa</b>, generated through the Medical &amp; Ayush Visa Portal, for the following three persons:</p>
+      <div class="tbl compact" style="margin:.6rem 0">
+        <table>
+          <thead><tr><th>Name (as in passport)</th><th>Passport no.</th><th>DOB</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>[স্ত্রীর নাম]</td><td>[নম্বর]</td><td>[জন্মতারিখ]</td><td><b>Patient (M1)</b></td></tr>
+            <tr><td>[স্বামীর নাম]</td><td>[নম্বর]</td><td>[জন্মতারিখ]</td><td><b>Patient (M1)</b> — semen collection / male-factor workup<br><small class="muted">(না হলে: Medical attendant, M2 — husband)</small></td></tr>
+            <tr><td>[মায়ের নাম]</td><td>[নম্বর]</td><td>[জন্মতারিখ]</td><td><b>Medical attendant (M2)</b> — mother-in-law of patient</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>We would be grateful if the letter could reflect the following, as the Indian mission in Dhaka requires them:</p>
+      <ol>
+        <li>Issued under <b>Medical Visa sub-category M1</b> for the patient(s) and <b>M2</b> for the attendant — this is <b>allopathic ART treatment, not AYUSH</b>.</li>
+        <li>Please state the <b>treatment duration as 9–12 months</b>, as the treatment cycle includes ovarian stimulation, oocyte retrieval and a subsequent frozen embryo transfer some weeks later. <b>A short stated duration would shorten our visa and prevent the second visit.</b></li>
+        <li>All <b>three names with passport numbers</b> on the letter.</li>
+        <li>The hospital's <b>accreditation (NABH / ICMR / Government)</b> mentioned, on letterhead, signed and stamped.</li>
+        <li>The <b>portal-generated reference number</b>.</li>
+      </ol>
+      <p>Please let us know if any payment or further document is required from our side.</p>
+      <p>With thanks,<br>[নাম] · [মোবাইল] · [ইমেইল]</p>
+    </div>
+  </div>
+
+  <div class="callout good">
+    <b>✔ চিঠি হাতে পেয়ে ৪টি জিনিস মিলিয়ে দেখুন — ভুল থাকলে তখনই সংশোধন করান</b>
+    <ol style="margin:.4rem 0 0">
+      <li><b>তিনজনের নামের বানান পাসপোর্টের সাথে হুবহু</b> মিলছে কি না (একটি অক্ষর এদিক-ওদিক হলেই রিজেকশন)</li>
+      <li><b>পাসপোর্ট নম্বর</b> তিনটিই ঠিক আছে কি না</li>
+      <li class="hl-li"><b>চিকিৎসার সময়কাল ৯–১২ মাস লেখা আছে কি না</b> — “৩ সপ্তাহ” লেখা থাকলে সাথে সাথে সংশোধন চান</li>
+      <li>কোথাও <b>“Ayurveda / Unani / Homeopathy / wellness”</b> লেখা নেই তো — থাকলে ভুল শ্রেণির ভিসা আসবে</li>
+    </ol>
+    <div style="margin-top:.5rem">তারপর <a href="#visa" data-scroll="visa">ভিসা সেকশনের</a> ধাপ ১ থেকে শুরু করুন।</div>
+  </div>
+
+  <div class="callout warn">
+    <b>যে কথাগুলো ইমেইলে লিখবেন না</b>
+    <ul style="margin:.4rem 0 0">
+      <li><b>“সবচেয়ে ভালো প্যাকেজ কী?”</b> — এতে আপনি ক্রেতা হয়ে যান, রোগী নন</li>
+      <li><b>“আমাদের বাজেট X টাকা”</b> — দাম জানার আগে বাজেট বললে এস্টিমেট ঠিক ওই অঙ্কেই আসে</li>
+      <li><b>“কত পার্সেন্ট সাকসেস?”</b> — প্রথম ইমেইলে নয়। এটি জিজ্ঞেস করতে হয় নির্দিষ্ট করে: <i>“live births per cycle started, for women of my wife's age and diagnosis, over the last 12 months”</i> — <a href="#profile" data-scroll="q7">বাকি প্রশ্নগুলো</a></li>
+      <li><b>ছেলে/মেয়ে বেছে নেওয়ার কথা</b> — ভারতে এটি ফৌজদারি অপরাধ, বাংলাদেশেও নিষিদ্ধ। জিজ্ঞেস করলেই আপনার আবেদন সন্দেহের তালিকায় চলে যেতে পারে</li>
+    </ul>
   </div>
 </section>
 
