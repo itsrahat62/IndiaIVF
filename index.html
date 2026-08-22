@@ -521,6 +521,22 @@ li::marker{color:var(--g2)}
 .qstep b{display:block;font-size:.95rem;line-height:1.35}
 .qstep small{color:var(--muted);font-size:.79rem;line-height:1.45}
 
+/* profile matcher cards */
+.card.prof{margin:0 0 1rem}
+.card.prof h4{margin:0 0 .15rem;font-size:1.06rem}
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.75rem 1.1rem;margin-top:.5rem}
+.prof-grid > div{min-width:0}
+.prof-grid .lbl{display:block;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;opacity:.72;margin-bottom:.22rem}
+.prof-grid .bad-lbl{color:var(--bad,#b3261e);opacity:.95}
+.prof-grid ul{margin:0;padding-left:1.05rem}
+.prof-grid li{margin:.16rem 0}
+@media(max-width:560px){.prof-grid{grid-template-columns:1fr;gap:.6rem}}
+
+/* emphasised bullet inside profile cards */
+.prof-grid li.hl-li{background:var(--warn-soft);border-left:3px solid var(--warn);padding:.45rem .6rem;border-radius:6px;margin:.4rem 0 .4rem -.35rem;list-style-position:inside}
+
+td.bad-cell{background:var(--bad-soft)}
+
 </style>
 </head>
 <body>
@@ -545,6 +561,7 @@ li::marker{color:var(--g2)}
     <div class="sn-group">
       <div class="sn-title">শুরু করুন</div>
       <a href="#verdict" data-nav="verdict"><i>◆</i>হোম · টপ ৫</a>
+      <a href="#profile" data-nav="profile"><i>❖</i>আপনার সমস্যা অনুযায়ী</a>
       <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
       <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
       <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
@@ -579,6 +596,8 @@ li::marker{color:var(--g2)}
       <div class="sn-title">টাকা-পয়সা</div>
       <a href="#money" data-nav="money"><i>₿</i>ব্যাংকিং ও আর্থিক নিরাপত্তা</a>
       <a href="#budget" data-nav="budget"><i>৳</i>পূর্ণ বাজেট</a>
+      <a href="#cycles" data-nav="cycles"><i>⟳</i>২য়–৩য় চেষ্টার খরচ</a>
+      <a href="#abroad" data-nav="abroad"><i>◐</i>ভারতের বদলে অন্য দেশ?</a>
     </div>
     <div class="sn-group">
       <div class="sn-title">আরও</div>
@@ -685,6 +704,35 @@ li::marker{color:var(--g2)}
     </div>
   </div>
 </section>
+<!-- ============ PROFILE MATCHER ============ -->
+<section id="profile">
+  <h2>আপনার সমস্যা অনুযায়ী কোন সেন্টার, কী চাইবেন</h2>
+  <p class="lede">“সেরা সেন্টার” বলে কিছু নেই — <b>আপনার নির্দিষ্ট সমস্যার জন্য সেরা</b> বলে কিছু আছে। নিচে বাংলাদেশ থেকে যাওয়া দম্পতিদের সবচেয়ে সাধারণ প্রোফাইলগুলো ধরে বলা হয়েছে: <b>কোথায় যাবেন, কী চাইবেন, আর কোন ভুলটা করবেন না</b>।</p>
+
+  <div class="callout gold">
+    <b>শুরুর আগে একটি কথা:</b> এই পাতার কোনো কিছুই আপনার চিকিৎসকের সিদ্ধান্তের বিকল্প নয়। এটি <b>প্রশ্ন করার তালিকা</b> — যাতে ক্লিনিকের চেম্বারে বসে আপনি বুঝতে পারেন কী বলা হচ্ছে, এবং কোনটা প্রমাণভিত্তিক আর কোনটা বিক্রির কথা।
+  </div>
+
+  <div id="profileCards"></div>
+
+  <h3>যে ৭টি প্রশ্ন প্রত্যেকেরই প্রথম কনসাল্টেশনে করা উচিত</h3>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>প্রশ্ন</th><th>কেন জরুরি</th><th>খারাপ উত্তর কেমন শোনায়</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><b>“আমার বয়স ও রোগ-নির্ণয়ের রোগীদের ক্ষেত্রে, গত ১২ মাসে <u>শুরু করা প্রতি সাইকেলে জীবিত শিশু জন্মের হার</u> কত?”</b></td><td>এটাই একমাত্র সৎ সংখ্যা। “সাফল্যের হার” সাধারণত <b>প্রতি ট্রান্সফারে ক্লিনিক্যাল প্রেগন্যান্সি</b> — যা অনেক বেশি দেখায়</td><td>“আমাদের সাকসেস রেট ৭০%” (কার? কিসের ভিত্তিতে? জন্ম না গর্ভধারণ?)</td></tr>
+        <tr><td><b>“কতগুলো সাইকেল মাঝপথে বাতিল হয়?”</b></td><td>বাতিল সাইকেল সাফল্যের হিসাব থেকে বাদ দিলে সংখ্যাটা কৃত্রিমভাবে ভালো দেখায়</td><td>“আমাদের বাতিল হয় না”</td></tr>
+        <tr><td><b>“লিখিত, itemised এস্টিমেট দিন — ওষুধ, ICSI, ফ্রিজিং, স্টোরেজ, thaw আলাদা করে”</b></td><td>“প্যাকেজ” শব্দে সবচেয়ে বেশি টাকা হারায় মানুষ</td><td>“সব মিলিয়ে ধরে নিন ২ লাখ”</td></tr>
+        <tr class="hl"><td><b>“কোন add-on আপনি সুপারিশ করছেন, আর তার <u>জন্মহার বাড়ানোর</u> প্রমাণ কী?”</b></td><td>বেশিরভাগ add-on-এর জন্মহার বাড়ানোর প্রমাণ নেই, কিন্তু দাম আছে</td><td>“এটা নিলে চান্স অনেক বাড়ে” — কোনো গবেষণার নাম ছাড়া</td></tr>
+        <tr><td><b>“আমার ক্ষেত্রে freeze-all না ফ্রেশ ট্রান্সফার — কেন?”</b></td><td>উত্তরটা যুক্তিসহ আসছে কি না, তাতেই বোঝা যায় ডাক্তার কেস ধরে ভাবছেন না ছক মেনে চলছেন</td><td>“আমরা সবার ক্ষেত্রেই একই করি”</td></tr>
+        <tr><td><b>“জটিলতা হলে (OHSS, রক্তক্ষরণ, সংক্রমণ) কোথায় ভর্তি হব? খরচ কে দেবে?”</b></td><td>স্ট্যান্ডঅ্যালোন ক্লিনিকে ICU থাকে না; বিদেশে এটি বড় ঝুঁকি</td><td>“ওসব হয় না”</td></tr>
+        <tr><td><b>“ভ্রূণ কতদিন রাখবেন, বছরে ফি কত, টাকা না পাঠাতে পারলে কী হয়?”</b></td><td>দেশে ফিরে যোগাযোগ কমে গেলে ভ্রূণ নষ্ট হয়ে যাওয়ার ঘটনা ঘটে</td><td>“ওটা পরে দেখা যাবে”</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">এই প্রশ্নগুলোর উত্তর <b>ইমেইলে লিখিতভাবে</b> নিন — মুখে বলা কথা পরে কাজে লাগে না। <a href="#truth" data-scroll="truth">সাফল্যের সংখ্যা কীভাবে যাচাই করবেন</a> ও <a href="#case" data-scroll="case">প্রমাণ কী বলে</a> সেকশন দুটিতে বিস্তারিত আছে।</p>
+</section>
+
 
 <!-- ============ 2. THE CASE ============ -->
 <section id="case">
@@ -1265,8 +1313,42 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       <div style="margin-top:.6rem"><b>এবং মনে রাখুন — ভিসা যে হাসপাতালের নামে, চিকিৎসাও সেখানেই করতে হবে।</b> IVAC-এর নিজস্ব নোটিশ: <i>"Change of Hospital requires FRRO permission in India. Change of hospital without FRRO permission amounts to visa rules violation and may lead to restrictions on travel to India in future."</i> <span class="pill v">✔</span> অর্থাৎ <b>ভিসার আগেই সেন্টার চূড়ান্ত করুন</b> — পরে মন বদলালে ঝামেলা।</div>
     </div>
 
+    <h3 id="whichvisa" style="margin-top:1.4rem">কে কোন ভিসা নেবেন — স্বামী M1 না M2?</h3>
+    <p>দম্পতি হিসেবে গেলে এই প্রশ্নটাই সবচেয়ে বেশি করা হয়। উত্তর: <b>স্ত্রী অবশ্যই M1</b>। স্বামীর ক্ষেত্রে দুটোই বৈধ, তবে <b>M1 হলে সুবিধা বেশি</b> — এবং IVF-এ সেটা <i>সত্যও</i>, কারণ স্বামীও নমুনা দেন, অর্থাৎ তিনিও চিকিৎসাধীন।</p>
+    <div class="tbl compact">
+      <table>
+        <thead><tr><th>বিষয়</th><th>M1 (রোগী)</th><th>M2 / MED-X (মেডিকেল অ্যাটেনডেন্ট)</th></tr></thead>
+        <tbody>
+          <tr><td><b>মেয়াদ</b></td><td colspan="2" style="text-align:center"><b>দুটোই এক</b> — “up to one year or the period of treatment, whichever is less”, আরও এক বছর বাড়ানো যায় <span class="pill v">✔</span></td></tr>
+          <tr><td><b>এন্ট্রি</b></td><td colspan="2" style="text-align:center"><b>দুটোই এক</b> — বাংলাদেশিদের <b>৩ এন্ট্রি</b> <span class="pill v">✔</span></td></tr>
+          <tr class="hl"><td><b>স্বাধীনতা</b></td><td><b>নিজে দাঁড়িয়ে থাকে।</b> স্ত্রীর আবেদনে সমস্যা হলেও এটি আলাদাভাবে বিবেচিত</td><td><b>রোগীর ভিসার সাথে বাঁধা (co-terminus)</b> — <i>"co-terminus with the 'Med Visa' of the patient"</i>। রোগীর ভিসা না হলে/না বাড়লে এটিরও ভিত্তি থাকে না</td></tr>
+          <tr><td><b>মেয়াদ বাড়াতে</b></td><td>নিজের কাগজেই হয়</td><td>নিজের আবেদন <b>+ রোগীর পাসপোর্ট ও ভিসা পাতার কপি</b> লাগে — রোগী না বাড়ালে ইনিও পারবেন না <span class="pill v">✔</span></td></tr>
+          <tr><td><b>যে কাগজটি বাড়তি লাগে</b></td><td>হাসপাতালের চিঠিতে <b>তাঁর নিজের নাম রোগী হিসেবে</b> থাকতে হবে, এবং দেশে করা <b>নিজের মেডিকেল রিপোর্ট</b> (স্বামীর ক্ষেত্রে semen analysis-ই যথেষ্ট)</td><td>শুধু রোগীর চিঠিতে নাম-পাসপোর্ট থাকলেই হয় — <b>সহজ</b></td></tr>
+          <tr><td><b>৩ জনের কোটা</b></td><td>কোটার বাইরে</td><td>৩ অ্যাটেনডেন্টের কোটার ভিতরে</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout gold">
+      <b>সুপারিশ:</b> হাসপাতালকে চিঠিতে <b>স্বামী-স্ত্রী দুজনকেই রোগী (M1)</b> এবং <b>মা/অন্য সঙ্গীকে অ্যাটেনডেন্ট (M2)</b> লিখতে বলুন। চিঠি চাওয়ার সময় হুবহু এই বাক্যটি দিন:
+      <div style="margin:.5rem 0"><i>“Please name <b>both spouses as patients</b> undergoing ART treatment (the husband for semen collection and male-factor workup) so that both can apply under Medical Visa sub-category <b>M1</b>, and name <b>[মায়ের নাম, পাসপোর্ট নম্বর]</b> as <b>medical attendant (M2)</b>.”</i></div>
+      <b>কেন:</b> দুজন আলাদা M1 হলে একজনের কাগজে সমস্যা হলে অন্যজন আটকায় না, আর মেয়াদ বাড়াতে হলে একে অন্যের উপর নির্ভর করতে হয় না।
+      <div style="margin-top:.5rem"><b>তবে জোর করবেন না।</b> ক্লিনিক যদি শুধু স্ত্রীকেই রোগী লেখে, <b>স্বামীর M2-ই স্বাভাবিক ও সম্পূর্ণ ঠিক</b> — মেয়াদ ও এন্ট্রি একই থাকে। <small class="muted">IVF দম্পতির ক্ষেত্রে যৌথ চিঠিতে স্বামী M1 পাবেনই — এমন কোনো সরকারি নিশ্চয়তা পাওয়া যায়নি <span class="pill p">●</span>; ফর্ম জমার আগে IVAC হটলাইনে (09612 333 666) একবার জিজ্ঞেস করে নিলে ভালো।</small></div>
+    </div>
+
+    <div class="callout good">
+      <b>✔ সবচেয়ে দামি তথ্যটি: দ্বিতীয় ট্রিপের (FET) জন্য নতুন ভিসা লাগবে না।</b> <span class="pill v">✔ যাচাইকৃত</span>
+      MHA-র বাংলাদেশ-নির্দিষ্ট Annex IV, অনুচ্ছেদ (১০) “Medical Visa”-তে হুবহু:<br>
+      <i>"Medical visas valid for <b>up to one year or for the period of treatment whichever is less</b> and with <b>three entries</b> with permission for multiple entry on need basis, may be issued to Bangladeshi nationals visiting India for specialized medical treatment with prior appointment from a recognized hospital. Medical attendant visas may be granted to three accompanying attendants, <b>co-terminus with the validity of the Medical Visa granted</b>. The Medical visa and the Medical Attendant visa will be <b>extendable by another one year</b> subject to production of the required medical report."</i>
+      <div style="margin-top:.6rem">IVF-এ এটি সোনার খবর — কারণ ডিম-সংগ্রহের ট্রিপের ২–৩ মাস পরে <b>হিমায়িত ভ্রূণ ট্রান্সফারের (FET)</b> জন্য আবার যেতে হয়। ৩টি এন্ট্রি মানে: <b>১ম ট্রিপ (সাইকেল) + ২য় ট্রিপ (FET) + ১টি হাতে রইল</b>। পুরো একটি ভিসা-প্রক্রিয়া, ফি ও IVAC-এর ভোগান্তি বেঁচে যায়।</div>
+    </div>
+    <div class="callout bad">
+      <b>⚠ কিন্তু একটি ভুলে পুরো সুবিধাটা হারাবেন — চিঠিতে চিকিৎসার সময়কাল ছোট লেখালে।</b>
+      মেয়াদ হলো <b>“এক বছর <u>অথবা</u> চিকিৎসার সময়কাল — যেটি কম”</b>। হাসপাতালের চিঠিতে যদি লেখা থাকে <i>“treatment duration: 3 weeks”</i>, তাহলে ভিসাও পাবেন কয়েক সপ্তাহের — <b>FET-এর সময় সেটি মেয়াদোত্তীর্ণ</b>, আবার শুরু থেকে সব করতে হবে।
+      <div style="margin-top:.5rem"><b>তাই চিঠি চাওয়ার সময় লিখুন:</b> <i>“Please state the treatment duration as <b>9–12 months</b>, as the ART cycle includes ovarian stimulation, oocyte retrieval, and a subsequent frozen embryo transfer 2–3 months later.”</i></div>
+      <div style="margin-top:.5rem"><b>ভিসা হাতে পেয়ে স্টিকারে দুটো জিনিস মিলিয়ে দেখুন:</b> ① মেয়াদ (valid until) ② এন্ট্রি-সংখ্যা। কম থাকলে <b>ভ্রমণের আগেই</b> IVAC-এ যোগাযোগ করুন। <small class="muted">(চিঠিতে লম্বা সময়কাল লেখালে লম্বা ভিসা মিলবেই — এটি নিয়মের যৌক্তিক ফল, তবে সরাসরি সরকারি নির্দেশনা নয় <span class="pill p">●</span>।)</small></div>
+    </div>
     <div class="callout warn">
-      <b>IVF-এ একটি বিশেষ সুবিধা নিন:</b> IVF-এ স্বামীও আসলে <b>রোগী</b> (semen analysis ও নমুনা দেওয়া চিকিৎসারই অংশ)। তাই স্বামীকে "অ্যাটেনডেন্ট (MX)" না বানিয়ে <b>তাঁর নিজের নামেও রোগী হিসেবে চিঠি</b> দিতে বলুন — তখন দুজনেই MV পাবেন। ক্লিনিককে এটা আগেই বলে রাখুন।
+      <b>দ্বিতীয় সাইকেলের জন্য আবার আবেদন করলে:</b> নতুন করে <b>হাসপাতালের নতুন চিঠি</b> লাগবেই (প্রতিটি আবেদন নিজের কাগজে বিচার হয়)। তবে <b>মেডিকেল ভিসায় পুনরায় আবেদনের কোনো “অপেক্ষার সময়” সরকারি নথিতে পাওয়া যায়নি</b> <span class="pill p">●</span> — ট্যুরিস্ট ভিসার ২ মাসের ব্যবধানের নিয়মটি মেডিকেল ভিসায় প্রযোজ্য নয়। পুরনো পাসপোর্টও জমা দিতে হয়, তাই আগের ভ্রমণ-রেকর্ড মিশন দেখতে পায়।
     </div>
 
     <div class="tbl">
@@ -1334,6 +1416,19 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
           <tr><td><b>সময় বাছাই</b></td><td>১ জুলাই ২০২৬ থেকে <b>সিস্টেম নিজেই ক্রমানুসারে সময় বরাদ্দ করে</b> — আপনি শুধু কেন্দ্র বাছেন, ঘণ্টা নয়</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <h4 style="margin-top:1.2rem">তিনজন একসাথে গেলে — ঠিক কতগুলো ফর্ম, কতগুলো স্লট?</h4>
+    <div class="callout good">
+      <b>৩টি ফর্ম · ৩টি স্লট · ১টি লগইন · ১টি পেমেন্ট ইনভয়েস · ৩ জনই সশরীরে।</b>
+      <ul style="margin:.5rem 0 0">
+        <li><b>ফর্ম আলাদা</b> — <i>"Each online application form is meant for one person only."</i> তাই তিনজনের তিনটি webfile।</li>
+        <li><b>স্লটও আলাদা</b> — পোর্টালের ভাষা <i>"Maximum <b>5 persons' booking</b>… under a single booking session"</i> ও <i>"complete <b>total slot booking</b>"</i>, অর্থাৎ একটি স্লটে তিনজন নয়; একটি সেশনে তিনটি বুকিং।</li>
+        <li><b>এক লগইনেই তিনজন</b> — <i>"Add all family members in <b>Application Info tab</b> before proceeding with slot booking."</i> স্বামী-স্ত্রী-মা একই পরিবার ও একই যাত্রা, তাই শর্ত পূরণ হয়।</li>
+        <li><b>১৫ মিনিটে তিনটিই শেষ করতে হবে</b> — আগে থেকে তিনজনের webfile নম্বর, পাসপোর্ট নম্বর ও জন্মতারিখ একটি কাগজে লিখে সামনে রাখুন।</li>
+        <li><b>যাঁর লগইন, তিনিও যেন যান</b> — <i>"invariably carry your personal contact no. used for OTP validation and appointment booking"</i>; জমার দিন ওই মোবাইলটি সঙ্গে লাগবে।</li>
+        <li><b>অন্য কারও আবেদন এই লগইনে ঢোকাবেন না</b> — <i>"Unrelated applications through same login ID, under 1 payment invoice <b>will be cancelled</b>"</i>।</li>
+      </ul>
     </div>
 
     <h3 style="margin-top:1.4rem" id="ayush">"এখন নাকি মেডিকেল নয়, আয়ুষ ভিসা দিচ্ছে" — আসল ব্যাপারটা কী</h3>
@@ -1408,7 +1503,23 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
         </tbody>
       </table>
     </div>
-    <p class="small muted"><b>অ্যাটেনডেন্ট সর্বোচ্চ কতজন?</b> সরকারি নথিতে সংখ্যা লেখা নেই; প্রচলিতভাবে <b>বাংলাদেশিদের জন্য ৩ জন</b> বলা হয় <span class="pill p">●</span> — স্বামী + মা = ২ জন, তাই আপনার ক্ষেত্রে সমস্যা নেই। <b>প্রত্যেকের আলাদা অনলাইন ফর্ম লাগবে</b>, এবং বায়োমেট্রিক নেওয়া হয় বলে <b>প্রত্যেককেই সশরীরে যেতে হবে ধরে নিন</b> (এ বিষয়ে সরকারি স্পষ্ট বক্তব্য পাওয়া যায়নি)। উভয় নথির শেষে লেখা: <i>"The above list of documents are not final. High Commission of India, Dhaka reserves the right to ask any additional documents."</i></p>
+    <div class="callout good">
+      <b>✔ অ্যাটেনডেন্ট সর্বোচ্চ ৩ জন — এটি সরকারি নথিতে স্পষ্ট লেখা আছে।</b> <span class="pill v">✔ যাচাইকৃত</span>
+      MHA Annex III, অনুচ্ছেদ ২৫(ii): <i>"In the case of foreign nationals other than Pakistan and Bangladesh nationals, not more than two persons (attendant or family member) may be allowed… In the case of Pakistan nationals, only one attendant will be allowed. <b>In the case of Bangladesh nationals, three attendants may be allowed.</b>"</i>
+      বাংলাদেশ-নির্দিষ্ট Annex IV-ও একই কথা বলে: <i>"Medical attendant visas may be granted to <b>three accompanying attendants</b>, co-terminus with the validity of the Medical Visa granted."</i>
+      <div style="margin-top:.5rem">অর্থাৎ <b>স্বামী + মা + আরও একজন</b> পর্যন্ত সম্ভব। <small class="muted">(এই গাইডের আগের সংস্করণে লেখা ছিল “সরকারি নথিতে সংখ্যা লেখা নেই” — সেটি ভুল ছিল; উৎস এখন পাওয়া গেছে।)</small></div>
+    </div>
+    <div class="callout bad">
+      <b>⚠ তিনজনকেই IVAC-এ সশরীরে যেতে হবে — কেউ কারও হয়ে জমা দিতে পারবেন না।</b> <span class="pill v">✔ যাচাইকৃত</span>
+      IVAC-এর নিজস্ব মেডিকেল-ভিসা পাতায় হুবহু লেখা: <i>"<b>Applicants must come to the Visas Centre</b> due to <b>10 finger biometric data and photographs</b> of the visa applicants will be captured at the time of submission of the Visa Applications at the IVACs."</i> আঙুলের ছাপ প্রতিনিধি দিয়ে দেওয়া যায় না।
+      <div style="margin-top:.5rem"><b>শিশু বা বয়স্কদের জন্য ছাড় আছে কি না — কোনো সরকারি সূত্রে পাওয়া যায়নি</b> <span class="pill p">●</span>। IVAC-এর পুরনো একটি FAQ-তে এখনো লেখা আছে পরিবারের একজন ৫ জনের হয়ে <i>জমা</i> দিতে পারেন এবং ৬৫-ঊর্ধ্বরা প্রতিনিধি পাঠাতে পারেন — কিন্তু <b>ওই FAQ বায়োমেট্রিক চালুর আগের</b> এবং তাতে বায়োমেট্রিকের কোনো উল্লেখ নেই। <b>তাই মাকে ঘরে রেখে যাওয়ার পরিকল্পনা করবেন না</b> — তিনজনের তিনটি স্লট নিন।</div>
+    </div>
+    <div class="callout good">
+      <b>✔ তবে <u>ফেরত নেওয়ার</u> দিন তিনজনের যাওয়ার দরকার নেই — একজনই তিনটি পাসপোর্ট তুলতে পারবেন।</b> <span class="pill v">✔ যাচাইকৃত</span>
+      একই পাতায় লেখা: <i>"Any member of the family is allowed to <b>collect passport</b> on behalf of other members of the family <b>subject to proof of identification by original passport</b>."</i>
+      <div style="margin-top:.4rem">অর্থাৎ <b>জমার দিন</b> (বায়োমেট্রিক) তিনজনকেই যেতে হবে, কিন্তু <b>ডেলিভারির দিন</b> একজন গিয়ে সবার পাসপোর্ট আনতে পারবেন — নিজের মূল পাসপোর্ট ও ডেলিভারি স্লিপগুলো সঙ্গে নিয়ে। বয়স্ক মায়ের জন্য এটি বড় স্বস্তি।</div>
+    </div>
+    <p class="small muted"><b>প্রত্যেকের আলাদা অনলাইন ফর্ম লাগবে</b> — <i>"Each online application form is meant for one person only. Separate application has to be filed for each applicant."</i> <span class="pill v">✔</span> উভয় নথির শেষে লেখা: <i>"The above list of documents are not final. High Commission of India, Dhaka reserves the right to ask any additional documents."</i></p>
 
     <h3 style="margin-top:1.4rem">ফি — কত, এবং কী কী দিতে হয় না</h3>
     <div class="grid grid-2">
@@ -1519,7 +1630,11 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
           <li><b>আগের রিজেকশন থাকলে ফর্মে অবশ্যই জানাবেন</b> — লুকালে অনেক বেশি ক্ষতি</li>
           <li>ভুল সংশোধনযোগ্য হলে (বানান, কাগজ, ভুল কেন্দ্র) নতুন ফর্ম ও নতুন অ্যাপয়েন্টমেন্ট নিয়ে আবার আবেদন করা যায়; সরকারি কোনো "অপেক্ষার সময়" ঘোষিত নেই <span class="pill p">●</span></li>
         </ul>
-        <div class="callout bad" style="margin-bottom:0"><b>⚠ পৌঁছানোর পর FRRO নিবন্ধন — মেডিকেল ভিসায় এটি বাধ্যতামূলক।</b> অন্য ভিসায় শুধু ৬ মাসের বেশি থাকলে লাগে, কিন্তু <b>মেডিকেল ও মেডিকেল অ্যাটেনডেন্ট ভিসায় পৌঁছানোর ১৪ দিনের মধ্যে</b> নিকটতম FRRO-তে নিবন্ধন করতে হয় — থাকার মেয়াদ যতই হোক। <a href="https://indianfrro.gov.in/efrro/home">e-FRRO</a>-তে অনলাইনে করা যায়; হাসপাতালের আন্তর্জাতিক ডেস্ক সাহায্য করে। <b>না করলে ফেরার সময় সমস্যা হয়।</b></div>
+        <div class="callout good" style="margin-bottom:0"><b>✔ FRRO নিবন্ধন — সাধারণ IVF ট্রিপে আপনার লাগবে না।</b>
+        বাংলাদেশিদের জন্য নিয়মটি <b>আলাদা ও শিথিল</b>। MHA-র বাংলাদেশ-নির্দিষ্ট Annex IV, অনুচ্ছেদ ১০ (“Registration”)-এ হুবহু লেখা: <span class="pill v">✔ যাচাইকৃত</span><br>
+        <i>"Bangladesh nationals visiting India on a valid visa, who wish to stay for a <b>continuous period exceeding six months</b>, will be required to register within 14 days of arrival with the respective FRRO/FRO and obtain residential permit."</i>
+        <div style="margin-top:.5rem">অর্থাৎ শর্তটি <b>টানা ছয় মাসের বেশি থাকা</b> — ভিসার ধরন নয়। একটি IVF সাইকেল ৩–৫ সপ্তাহ, FET ২ সপ্তাহ — অনেক নিচে। তাই <b>নিবন্ধন করতে হবে না</b>। শুধু চিকিৎসা দীর্ঘ হয়ে টানা ৬ মাস ছাড়ালে <a href="https://indianfrro.gov.in/frro/">e-FRRO</a>-তে করবেন।</div>
+        <small class="muted">সূত্র: <a href="https://www.mha.gov.in/PDF_Other/AnnexIV_01022018.pdf">MHA Annex IV — Visa for Bangladesh Nationals (PDF)</a>। <b>সংশোধনী:</b> এই গাইডের আগের সংস্করণে লেখা ছিল মেডিকেল ভিসায় থাকার মেয়াদ যতই হোক ১৪ দিনের মধ্যে নিবন্ধন বাধ্যতামূলক — <b>সেটি ভুল ছিল</b>; ওটি সাধারণ নিয়ম, বাংলাদেশিদের জন্য প্রযোজ্য নয়।</small></div>
       </div>
     </div>
 
@@ -2768,6 +2883,176 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
     </div>
   </div>
 </section>
+<!-- ============ MULTI-CYCLE COST ============ -->
+<section id="cycles">
+  <h2>একবারে না হলে? — ২য়, ৩য় চেষ্টার বাস্তব খরচ</h2>
+  <p class="lede">IVF-এর সবচেয়ে বড় আর্থিক ভুল হলো <b>একটি সাইকেলের বাজেট নিয়ে রওনা দেওয়া</b>। ৩৫ বছরের কম বয়সেও প্রথম চেষ্টায় সন্তান আসে অর্ধেকেরও কম দম্পতির। বাংলাদেশ থেকে গেলে প্রতিটি নতুন চেষ্টার সাথে <b>ফ্লাইট, ভিসা, থাকা</b> — সবই আবার যোগ হয়। তাই আগে থেকেই ২–৩ চেষ্টার হিসাব করে যাওয়াই বাস্তবসম্মত।</p>
+
+  <div class="callout gold">
+    <b>এই সেকশনের এক লাইনের শিক্ষা:</b> <b>প্রথম ট্রিপেই যত বেশি ভ্রূণ হিমায়িত (freeze) করে আসতে পারবেন, পরের চেষ্টাগুলো তত সস্তা।</b>
+    কারণ দ্বিতীয় চেষ্টা যদি <b>হিমায়িত ভ্রূণ ট্রান্সফার (FET)</b> হয়, খরচ পড়ে এক-চতুর্থাংশ এবং ভারতে থাকতে হয় অর্ধেক সময়। কিন্তু ভ্রূণ ফুরিয়ে গেলে আবার <b>পুরো ফ্রেশ সাইকেল</b> — অর্থাৎ প্রায় প্রথমবারের সমান খরচ।
+    <div style="margin-top:.5rem">এজন্যই ক্লিনিকের সাথে প্রথম কথাটাই হওয়া উচিত: <i>“Please plan a <b>freeze-all</b> cycle and tell me how many blastocysts you expect to bank.”</i></div>
+  </div>
+
+  <h3>কোন সেন্টারের হিসাব দেখতে চান?</h3>
+  <div class="chips" id="cycCentre" role="group" aria-label="সেন্টার বাছুন"></div>
+  <div id="cycTable"></div>
+
+  <h3>ধাপে ধাপে সাফল্যের বাস্তব সম্ভাবনা</h3>
+  <p>উপরের টেবিলটা ভয় ধরিয়ে দিতে পারে। তাই পাশে সংখ্যাগুলোও থাকা দরকার — <b>কত চেষ্টায় কতজনের সন্তান আসে</b>। নিচেরগুলো সব <b>বড়, প্রকাশিত রেজিস্ট্রি বা কোহর্ট গবেষণা</b> থেকে, কোনো ক্লিনিকের দাবি নয়।</p>
+  <div class="tbl compact scrollable">
+    <table>
+      <thead><tr><th>কতটি পূর্ণ সাইকেল</th><th class="num">ক্রমযোজিত জীবিত জন্মহার<br><small class="muted">সাধারণ জনগোষ্ঠী</small></th><th class="num">এন্ডোমেট্রিওসিস / অ্যাডেনোমায়োসিস থাকলে</th><th>মন্তব্য</th></tr></thead>
+      <tbody>
+        <tr><td><b>১টি</b></td><td class="num">~৩৫% <small class="muted">(প্রতি ট্রান্সফারে, বয়স ১৮–৩৪)</small></td><td class="num">কম — এখানেই ঘাটতি সবচেয়ে বেশি</td><td>প্রথমবারেই হয়ে যাওয়া <b>ব্যতিক্রম নয়, কিন্তু নিয়মও নয়</b></td></tr>
+        <tr class="hl"><td><b>৩টি</b></td><td class="num"><b>৪২–৫৭%</b><br><small class="muted">McLernon ২০১৬, n=১,৭৮,৮৯৮</small></td><td class="num"><b>৫৩% (ITT) – ৭০% (per-protocol)</b><br><small class="muted">Alson ২০২৫, n=১,০৩৫</small></td><td>তুলনার জন্য: রোগ ছাড়া একই গবেষণায় ৬৮.৭%–৮৫.৭%</td></tr>
+        <tr><td><b>৮টি</b></td><td class="num">~৮২%</td><td class="num">—</td><td>বেশিরভাগ দম্পতির পক্ষে বাস্তবসম্মত নয়, কিন্তু দেখায় <b>বাধা প্রধানত সামর্থ্য ও ধৈর্যের</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout good">
+    <b>✔ সবচেয়ে গুরুত্বপূর্ণ ও সবচেয়ে কম বলা কথাটি: প্রথম সাইকেল ব্যর্থ হওয়া মানে পরেরগুলোও হবে না — তা নয়।</b>
+    ২০২৫-এর সবচেয়ে বড় প্রসপেক্টিভ গবেষণায় অ্যাডেনোমায়োসিস/এন্ডোমেট্রিওসিসের ক্ষতি <b>প্রথম সাইকেলেই সবচেয়ে বেশি</b> (aRR 0.69), আর <b>তৃতীয় সাইকেলে গিয়ে পার্থক্যটা আর পরিসংখ্যানগতভাবে অর্থবহ থাকে না</b> (aRR 0.83, p=0.18)। গবেষকদের নিজেদের ভাষায়: <i>“a negative first-cycle result should not preclude further attempts.”</i>
+    <div style="margin-top:.5rem">এজন্যই <b>এক সাইকেলের বাজেটে না গিয়ে দুই-তিন চেষ্টার পরিকল্পনা করে যাওয়া</b> শুধু আর্থিক বুদ্ধিমত্তা নয় — এটিই সবচেয়ে বেশি সম্ভাবনা তৈরি করে।</div>
+  </div>
+  <div class="callout warn">
+    <b>“পূর্ণ সাইকেল” মানে কী — এই শব্দটাতেই সবচেয়ে বেশি ধোঁকা হয়।</b> একটি <b>পূর্ণ (complete) সাইকেল</b> = একবার ডিম সংগ্রহ <b>+ সেই ব্যাচের সব ভ্রূণ ট্রান্সফার করা শেষ হওয়া</b>। অর্থাৎ উপরের টেবিলের “৩টি সাইকেল” মানে ৩ বার ডিম সংগ্রহ <b>এবং</b> তার সবগুলো ভ্রূণের ট্রান্সফার। ক্লিনিক যখন “সাফল্যের হার” বলে, তারা প্রায়ই বোঝায় <b>প্রতি ট্রান্সফারে গর্ভধারণ</b> — যা অনেক বড় শোনায়। <a href="#truth" data-scroll="truth">সাফল্য যাচাই</a> সেকশনে বিস্তারিত।
+  </div>
+  <div id="cycOdds"></div>
+
+  <h3>টাকা বাঁচানোর ৮টি সিদ্ধান্ত (যেগুলো আগে থেকে নিতে হয়)</h3>
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>চিকিৎসার দিক থেকে</h4>
+      <ol>
+        <li><b>Freeze-all চান, ফ্রেশ ট্রান্সফার নয়</b> — একই ট্রিপে ডিম নিয়ে ভ্রূণ জমিয়ে রাখলে পরের চেষ্টাগুলো সস্তা, আর জরায়ু বিশ্রাম পায়।</li>
+        <li><b>“Embryo banking” জিজ্ঞেস করুন</b> — কম ভ্রূণ হলে অনেক সেন্টার পরপর দুটি ডিম-সংগ্রহ করে একসাথে জমা করে, তারপর একবারে ট্রান্সফার। দুটি আলাদা ট্রিপের চেয়ে সস্তা।</li>
+        <li><b>ব্লাস্টোসিস্ট পর্যন্ত অপেক্ষা</b> — ৫ম দিনের ভ্রূণ প্রতি-ট্রান্সফারে বেশি সফল, তাই কম ট্রান্সফারে কাজ হয়।</li>
+        <li><b>অপ্রমাণিত add-on বাদ দিন</b> — assisted hatching, embryo glue, PRP, immune therapy, ERA — এগুলো প্রায়ই ৳৩০–৮০ হাজার যোগ করে কিন্তু জন্মহার বাড়ায় এমন প্রমাণ দুর্বল। <a href="#truth" data-scroll="truth">সাফল্য যাচাই</a> দেখুন।</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h4>টাকার দিক থেকে</h4>
+      <ol>
+        <li><b>লিখিত, itemised এস্টিমেট</b> — “প্যাকেজ” শব্দটা বিশ্বাস করবেন না; ওষুধ, ICSI, ফ্রিজিং, স্টোরেজ, thaw আলাদা কি না লিখিয়ে নিন।</li>
+        <li><b>ওষুধ কোথা থেকে কিনবেন</b> — হাসপাতালের ফার্মেসির বাইরে কিনলে অনেক সময় ২০–৩০% কম; কিন্তু <b>কোল্ড-চেইন</b> ঠিক আছে কি না নিশ্চিত হয়ে।</li>
+        <li><b>স্টোরেজ ফি বছরে</b> — ভ্রূণ জমিয়ে রাখলে বছরে ফি লাগে। কত, কীভাবে পাঠাবেন, না দিলে কী হয় — আগেই জেনে নিন।</li>
+        <li><b>দ্বিতীয় ট্রিপে ভিসা</b> — মেডিকেল ভিসার মেয়াদ ও এন্ট্রি-সংখ্যা দেখে নিন; একই ভিসায় দ্বিতীয়বার ঢোকা গেলে পুরো একটি ভিসা-প্রক্রিয়া বেঁচে যায়। <a href="#visa" data-scroll="visa">ভিসা সেকশন</a> দেখুন।</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>যে খরচগুলো কেউ হিসাবে ধরে না:</b>
+    <ul style="margin:.4rem 0 0">
+      <li><b>বাতিল সাইকেল</b> — ডিম ঠিকমতো না বাড়লে সাইকেল মাঝপথে থামতে পারে। ওষুধ ও স্ক্যানের টাকা তখনও চলে যায় (৳৫০–৯০ হাজার), কিন্তু ডিম-সংগ্রহ হয় না। বড় এন্ডোমেট্রিওমা থাকলে এই ঝুঁকি বেশি।</li>
+      <li><b>দেরি</b> — মাসিক শুরু না হওয়া, লাইনিং পাতলা থাকা, সংক্রমণ — এসবে ট্রিপ ৫–১০ দিন লম্বা হতে পারে। প্রতিদিনের থাকা-খাওয়া যোগ হয়।</li>
+      <li><b>আয়ের ক্ষতি</b> — দুজনের ৩ সপ্তাহ ছুটি, তিনবার হলে ৯ সপ্তাহ। এটি সবচেয়ে বড় লুকানো খরচ।</li>
+      <li><b>দ্বিতীয় ট্রিপে ফ্লাইট দামি হতে পারে</b> — FET-এর সময় আপনার ঠিক করা নয়, শরীরের চক্র ঠিক করে। তাই সস্তা জানালা পাওয়া যায় না। <a href="#season" data-scroll="season">মৌসুম</a> দেখে বাফার রাখুন।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ OTHER COUNTRIES ============ -->
+<section id="abroad">
+  <h2>ভারতের বদলে অন্য দেশ? — সৎ তুলনা</h2>
+  <p class="lede">“ভারতে ভিসা ঝামেলা, থাইল্যান্ড/মালয়েশিয়া/তুরস্কে চলে যাই” — এই ভাবনাটা স্বাভাবিক। তাই সাতটি বিকল্প দেশ ধরে <b>খরচ, ভিসা, আইন ও মান</b> যাচাই করা হয়েছে। উত্তরটা সংক্ষেপে: <b>ভারতই এখনো সবচেয়ে ভালো মূল্য দেয়</b> — কিন্তু কারণটা শুধু দাম নয়, নিচে দেখুন।</p>
+
+  <div class="callout bad">
+    <b>⚠ সবার আগে যেটা জানা দরকার — এবং যেটা কোনো ক্লিনিক আপনাকে বলবে না:</b><br>
+    <b>এশিয়া ও মধ্যপ্রাচ্যের একটি দেশেও ক্লিনিক-ভিত্তিক যাচাইকৃত সাফল্যের তথ্য প্রকাশিত হয় না।</b> পৃথিবীতে মাত্র <b>তিনটি জায়গায়</b> রোগী হিসেবে আপনি সরকারিভাবে নিরীক্ষিত, ক্লিনিক-ধরে-ক্লিনিক জন্মহার দেখতে পারেন — <b>যুক্তরাজ্য (HFEA), যুক্তরাষ্ট্র (CDC/SART) ও অস্ট্রেলিয়া-নিউজিল্যান্ড (ANZARD)</b>।
+    <div style="margin-top:.5rem">অর্থাৎ ভারত, থাইল্যান্ড, মালয়েশিয়া, তুরস্ক, নেপাল, শ্রীলঙ্কা, সিঙ্গাপুর, আমিরাত — <b>সব জায়গাতেই “আমাদের সাফল্যের হার ৭০%” একটি অনিরীক্ষিত বিজ্ঞাপন</b>। কাজেই <b>দেশ বাছাই সাফল্যের হার দিয়ে করা যায় না</b> — করতে হয় খরচ, আইন, ভিসা ও যাতায়াতের সুবিধা দিয়ে।</div>
+    <div style="margin-top:.5rem"><b>তুরস্কের ব্যাপারটা সবচেয়ে চোখে পড়ার মতো:</b> সেখানে সাফল্যের হার <u>প্রচার করাই আইনত নিষিদ্ধ</u> (ÜYTE বিধিমালা, ধারা ২৪)। তাই কোনো তুর্কি ক্লিনিক আপনাকে শতকরা হিসাব দিলে সে নিজের নিয়ন্ত্রকের নিয়মই ভাঙছে। <span class="pill v">✔ যাচাইকৃত</span></div>
+  </div>
+
+  <h3>এক নজরে — একটি ফ্রেশ ICSI সাইকেল, দুজনের সব খরচসহ</h3>
+  <p class="small muted">নিচের অঙ্কগুলো <b>দুজনের যাতায়াত, থাকা, খাওয়া, ভিসা ও চিকিৎসা</b> মিলিয়ে, এক ট্রিপ (২১–৩০ রাত)। ওষুধ ধরা আছে। ভ্রূণ হিমায়িত করা ও পরের FET ট্রিপ <b>আলাদা</b> — সেটি <a href="#cycles" data-scroll="cycles">২য়–৩য় চেষ্টার খরচ</a> সেকশনে।</p>
+  <div class="tbl scrollable">
+    <table>
+      <thead><tr><th>দেশ (শহর)</th><th class="num">দুজনের সব মিলিয়ে</th><th>ভিসা — বাংলাদেশিদের জন্য</th><th>ফ্লাইট</th><th>আইন ও নিয়ন্ত্রণ</th><th>রায়</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><b>🇮🇳 ভারত</b> (ভেলোর/দিল্লি)</td><td class="num"><b>৳৩.৩–৪.৬ লাখ</b><br><small class="muted">CMC ধরে, ২১ রাত</small></td><td><b>ভিসা ফি শূন্য</b>; IVAC সার্ভিস চার্জ ৳১,৫০০। <b>১ বছর মেয়াদ, ৩ এন্ট্রি, ৩ জন অ্যাটেনডেন্ট</b> <span class="pill v">✔</span></td><td>ননস্টপ ২.৫–৩ ঘণ্টা, সবচেয়ে সস্তা</td><td><b>সবচেয়ে শক্ত</b> — ART Act ২০২১, বাধ্যতামূলক নিবন্ধন ও জাতীয় রেজিস্ট্রি</td><td><b>১ম — সেরা মূল্য</b></td></tr>
+        <tr class="hl"><td><b>🇳🇵 নেপাল</b> (কাঠমান্ডু)</td><td class="num"><b>৳৪.৬–৮.২ লাখ</b><br><small class="muted">৩০ দিন ধরে</small></td><td><b>সম্পূর্ণ ফ্রি</b> — SAARC নাগরিক হিসেবে বছরে প্রথমবার গ্রাতিস, বিমানবন্দরেই ভিসা <span class="pill v">✔</span></td><td>ননস্টপ <b>১ ঘণ্টা ৪৫ মিনিট</b> — সবচেয়ে কাছে</td><td><b>দুর্বল</b> — প্রথম নীতিমালা এসেছে ২০২৫-এর আগস্টে; <b>৫০+ সেন্টার চললেও অনুমোদিত মাত্র ৯টি</b></td><td>ভিসা-ফ্লাইটে সেরা, <b>কিন্তু ঝুঁকি আছে</b></td></tr>
+        <tr><td><b>🇻🇳 ভিয়েতনাম</b> (হো চি মিন)</td><td class="num">৳৫.৫–৯ লাখ</td><td>ই-ভিসা সবার জন্য খোলা, <b>৯০ দিন, মাল্টিপল এন্ট্রি</b> সম্ভব <span class="pill p">●</span></td><td>ট্রানজিটসহ</td><td>মাঝারি — সেন্টার লাইসেন্সিং আছে, রেজিস্ট্রি নেই</td><td><b>সবচেয়ে ভালো বিকল্প</b> — ৯০ দিনের ভিসায় সাইকেল ও FET এক ভিসাতেই</td></tr>
+        <tr class="hl"><td><b>🇲🇾 মালয়েশিয়া</b> (কুয়ালালামপুর)</td><td class="num">৳৮.৬–১৩.৯ লাখ</td><td>eVISA <b>বাধ্যতামূলক</b>, ≈<b>৳৩,১০০</b>, ২–৭ কর্মদিবস। <b>মেডিকেল eVISA-তে স্বামী/স্ত্রী সঙ্গী হিসেবে স্বীকৃত</b> (সর্বোচ্চ ২ জন)। থাকার অনুমতি <b>৩০ দিন</b> — সাইকেল ১৮ দিন, তাই মার্জিন কম <span class="pill v">✔</span></td><td>ননস্টপ ৪ ঘণ্টা, <b>৫টি এয়ারলাইন</b>, রিটার্ন ৳৪১,৫০০ থেকে</td><td><b>ART আইন নেই, রেজিস্ট্রিও নেই।</b> RTAC সার্টিফিকেশন আছে — তবে সেটি <b>প্রক্রিয়ার</b> নিরীক্ষা, <b>ফলাফলের নয়</b></td><td><b>২য় — মুসলিম দম্পতির জন্য সবচেয়ে স্বাচ্ছন্দ্যের</b><br><small class="muted">হালাল খাবার স্বাভাবিক, ইংরেজিতে সব চলে</small></td></tr>
+        <tr><td><b>🇹🇭 থাইল্যান্ড</b> (ব্যাংকক)</td><td class="num">৳৮.৭–১৭.৬ লাখ <span class="pill p">●</span></td><td>ই-ভিসা; ট্যুরিস্ট শ্রেণিতেই <b>“medical treatment” স্পষ্টভাবে অনুমোদিত</b>, ~$৩০–৬০, ৬০ দিন</td><td>ননস্টপ ২.৫ ঘণ্টা</td><td>রেজিস্ট্রি আছে <b>কিন্তু প্রকাশিত হয় না</b>; ART আইন ২০১৫</td><td>ঝামেলাহীন, কিন্তু <b>দামি</b></td></tr>
+        <tr><td><b>🇱🇰 শ্রীলঙ্কা</b> (কলম্বো)</td><td class="num">৳৫.৩–১৫.৪ লাখ</td><td>ETA <b>$২০</b> (৩০ দিন)। ⚠ ২৫ মে ২০২৬ থেকে ৪০ দেশ ফ্রি পায় — <b>বাংলাদেশ সেই তালিকায় নেই</b>, যদিও ভারত-নেপাল-পাকিস্তান আছে <span class="pill v">✔</span></td><td>ননস্টপ ৩ ঘণ্টা ২০ মিনিট</td><td><b>সবচেয়ে দুর্বল</b> — কোনো ART আইন নেই; শুধু <i>“non-enforceable”</i> সার্কুলার</td><td>দামি ও অস্বচ্ছ। <b>তবে উন্নত এন্ডোমেট্রিওসিস সার্জারির একটি যাচাইযোগ্য নাম এখানে আছে</b></td></tr>
+        <tr><td><b>🇹🇷 তুরস্ক</b> (ইস্তানবুল)</td><td class="num">৳৯.৯–১৭.৮ লাখ</td><td class="bad-cell"><b>সবচেয়ে কঠিন।</b> শেনজেন/US/UK ভিসা না থাকলে <b>ই-ভিসা পাবেন না</b> — ঢাকা থেকে স্টিকার ভিসা, <b>৪৫–৯০ দিন সময়</b>, জনপ্রতি <b>৳২৫,৭৪০</b>, ফেরতযোগ্য নয় <span class="pill v">✔</span></td><td>ননস্টপ ৯ ঘণ্টা (টার্কিশ)</td><td>কড়া — কিন্তু সাফল্যের হার প্রকাশ <b>নিষিদ্ধ</b></td><td class="bad-cell"><b>এড়িয়ে চলুন</b> — নিচের লাল বাক্স দেখুন</td></tr>
+        <tr><td><b>🇸🇬 সিঙ্গাপুর</b></td><td class="num">৳১৫–২২ লাখ+</td><td>নিজে আবেদন করা <b>যায় না</b> — ঢাকার অনুমোদিত এজেন্টের মাধ্যমে, এবং <b>সিঙ্গাপুরের নাগরিক/PR বা কোম্পানির পরিচয়পত্র</b> লাগে</td><td>ননস্টপ ৪ ঘণ্টা</td><td><b>সবচেয়ে ভালো শাসন</b> — বাধ্যতামূলক রিপোর্টিং + স্বাধীন নিরীক্ষা</td><td>মান ভালো, <b>কিন্তু ৪–৫ গুণ দামি</b>; ভর্তুকি শুধু নাগরিকদের</td></tr>
+        <tr><td><b>🇦🇪 আমিরাত</b> (দুবাই)</td><td class="num">যাচাই করা যায়নি <span class="pill p">●</span></td><td><b>অমীমাংসিত</b> — বাংলাদেশিদের ভিজিট ভিসায় পুরনো বিধিনিষেধের বর্তমান অবস্থা নিশ্চিত হওয়া যায়নি</td><td>ননস্টপ ৫ ঘণ্টা</td><td>লাইসেন্সিং আছে, রেজিস্ট্রি নেই</td><td>কোনো ক্লিনিক দাম প্রকাশ করে না। <b>শুধু ভ্রূণ সংরক্ষণ ফি-ই ভারতের ৪.৫ গুণ</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout bad">
+    <b>⚠ তুরস্ক নিয়ে একটি আইনি তথ্য যা প্রায় কেউ জানে না — এবং যা ৩৫-এর কম বয়সীদের জন্য সিদ্ধান্তমূলক:</b><br>
+    তুর্কি ÜYTE বিধিমালার (RG ৩০/০৯/২০১৪, নং ২৯১৩৫) <b>সংযুক্তি EK-১৭, ক্রমিক ৭(খ)</b>-তে হুবহু লেখা: <span class="pill v">✔ যাচাইকৃত</span><br>
+    <i>“…<b>35 yaşa kadar birinci ve ikinci uygulamada tek embriyo</b>, üçüncü ve sonraki uygulamalarda iki embriyo, 35 yaş ve üzerinde tüm uygulamalarda en fazla iki embriyo transfer edilebilir.”</i>
+    <div class="tbl compact" style="margin:.6rem 0 .3rem">
+      <table>
+        <thead><tr><th>নারীর বয়স</th><th class="num">১ম চেষ্টা</th><th class="num">২য় চেষ্টা</th><th class="num">৩য় ও পরে</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td><b>৩৫-এর কম</b></td><td class="num"><b>মাত্র ১টি</b></td><td class="num"><b>মাত্র ১টি</b></td><td class="num">সর্বোচ্চ ২টি</td></tr>
+          <tr><td>৩৫ ও তার বেশি</td><td class="num">সর্বোচ্চ ২টি</td><td class="num">সর্বোচ্চ ২টি</td><td class="num">সর্বোচ্চ ২টি</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <b>কোনো ব্যতিক্রম নেই, ডাক্তারের সিদ্ধান্তে বদলানোর সুযোগ নেই, বিদেশিদের জন্য আলাদা নিয়মও নেই।</b> নিয়ম ভাঙলে ক্লিনিক <b>৬ মাস নতুন রোগী নিতে পারবে না</b>, দ্বিতীয়বারে <b>লাইসেন্স বাতিল</b>। কেউ “আপনি বিদেশি, দুটো দেওয়া যাবে” বললে সে আইন ভাঙার কথা বলছে।
+    <div style="margin-top:.5rem">অর্থাৎ ৩০ বছর বয়সী কারও জন্য তুরস্কে প্রতি ট্রান্সফারে সম্ভাবনা <b>কাঠামোগতভাবেই কম</b>, এবং ভ্রূণ হিমায়িত করা ও একাধিক FET ট্রিপ <b>বাধ্যতামূলক হয়ে দাঁড়ায়</b> — খরচ আরও বাড়ে।</div>
+    <div style="margin-top:.5rem"><b>আরেকটি ফাঁদ:</b> একই বিধিমালার <b>MADDE ২০(৭)</b> অনুযায়ী তুরস্কে জমানো ভ্রূণ <b>শুধু তুরস্কের ভিতরেই</b> অন্য সেন্টারে সরানো যায় (<i>“yurtiçindeki başka bir merkeze”</i>) — <b>দেশের বাইরে পাঠানো যায় না</b>। ভ্রূণ সর্বোচ্চ <b>৫ বছর</b> রাখা যায়। অর্থাৎ ভ্রূণ তুরস্কে জমালে প্রতিবার FET-এর জন্য <b>তুরস্কেই ফিরতে হবে</b> — এবং প্রতিবার সেই ৪৫–৯০ দিনের ভিসা-প্রক্রিয়া।</div>
+  </div>
+
+  <div class="callout good">
+    <b>✔ একটি জায়গায় মালয়েশিয়া সত্যিই এগিয়ে — এন্ডোমেট্রিওসিস ও অ্যাডেনোমায়োসিসের সার্জারিতে।</b>
+    কুয়ালালামপুরের <b>Thomson Hospital Kota Damansara</b>-য় <b>Endo Care @ Thomson</b> (চালু ফেব্রুয়ারি ২০২৫) নিজেদের বর্ণনায় <i>“an endometriosis surgeon accredited by the <b>British and European Board</b> to perform <b>Stage 4</b> endometriosis surgery”</i> রাখে, অক্সফোর্ডের এন্ডোমেট্রিওসিস সেন্টারের আদলে গড়া, এবং <b>অ্যাডেনোমায়োসিসের চিকিৎসা আলাদা করে উল্লেখ করে</b> — এই তালিকার আর কোনো সেন্টার তা করে না। <span class="pill v">✔ যাচাইকৃত</span>
+    <div style="margin-top:.5rem"><b>কেন এটি গুরুত্বপূর্ণ:</b> একই প্রতিষ্ঠানে <b>স্টেজ-৪ সার্জারির স্বীকৃতি</b> ও <b>রিপ্রোডাক্টিভ মেডিসিন সাবস্পেশালিটি</b> একসাথে থাকায় “সিস্ট কাটব কি কাটব না” সিদ্ধান্তটা <b>একই টিম</b> নেয় — দুই হাসপাতালের দুই ডাক্তারের মধ্যে দর-কষাকষি করতে হয় না। এক ওভারি থাকলে এটি সত্যিকারের সুবিধা।</div>
+    <div style="margin-top:.5rem"><b>তবে</b> — মালয়েশিয়ার কোনো ক্লিনিকেই <b>বাংলা ভাষার সহায়তা নেই</b>, এবং সেখানেও সাফল্যের কোনো নিরীক্ষিত তথ্য নেই। খরচ ভারতের প্রায় <b>দ্বিগুণ থেকে তিনগুণ</b>।</div>
+  </div>
+
+  <h3>“৮৭.৫% সাফল্য” কীভাবে বানানো হয় — একটি বাস্তব উদাহরণ</h3>
+  <p>বিদেশি ক্লিনিকের শতকরা হিসাব কীভাবে ফোলানো হয়, সেটা একটি আসল বিজ্ঞাপন দিয়ে দেখানো যাক। মালয়েশিয়ার একটি বড় ক্লিনিক তাদের হোমপেজে লেখে <b>“IVF Success Rates of up to ৮৭.৫%”</b>। ছোট হরফে ফুটনোটে লেখা, সংখ্যাটি আসলে: <span class="pill v">✔ যাচাইকৃত</span></p>
+  <div class="callout bad">
+    <i>“Clinical pregnancy rate from the transfer of vitrified-warmed <b>good graded euploid</b> blastocysts…”</i>
+    <div style="margin-top:.5rem">এই এক লাইনে <b>চারটি ছাঁকনি</b> বসানো আছে — প্রতিটিই সংখ্যাটাকে ওপরে তোলে:</div>
+    <ol style="margin:.4rem 0 0">
+      <li><b>“Clinical pregnancy”</b> — <b>জন্ম নয়, গর্ভধারণ</b>। এর পরে গর্ভপাত হলে সেটি এই হিসাবে ধরা নেই।</li>
+      <li><b>“per transfer”</b> — যাঁদের ডিম পাওয়া যায়নি, ভ্রূণ হয়নি, বা সাইকেল বাতিল হয়েছে, <b>তাঁরা হিসাবের বাইরে</b>।</li>
+      <li><b>“euploid”</b> — শুধু <b>জিনগত পরীক্ষায় উত্তীর্ণ</b> ভ্রূণ। অর্থাৎ সবচেয়ে ভালো ভ্রূণগুলো বেছে নেওয়ার <i>পরে</i>র হিসাব।</li>
+      <li><b>“good graded”</b> — তার ভেতর থেকেও আবার <b>সেরা গ্রেডের</b>গুলো।</li>
+    </ol>
+    <div style="margin-top:.5rem"><b>একজন রোগী হিসেবে আপনার আসল প্রশ্নটা হলো:</b> “আমি চিকিৎসা শুরু করলে সন্তান কোলে নিয়ে ফেরার সম্ভাবনা কত?” — সেটি হলো <b>শুরু করা প্রতি সাইকেলে জীবিত জন্ম</b>। বাস্তবে সেই সংখ্যাটি ৩০–৪০%-এর ঘরে থাকে, ৮৭% নয়।</div>
+    <div style="margin-top:.5rem">সংখ্যাটির উৎসও লক্ষ করুন — একটি <b>সম্মেলনের অ্যাবস্ট্রাক্ট</b>, কোনো নিরীক্ষিত রেজিস্ট্রি নয়। <b>এই কৌশল সব দেশেই এক</b>; শুধু শতকরা হিসাবটা বদলায়।</div>
+  </div>
+
+  <h3>তাহলে সিদ্ধান্তটা কী</h3>
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>ভারতই কেন এখনো এগিয়ে</h4>
+      <ol>
+        <li><b>দাম সবচেয়ে কম</b> — এবং পার্থক্যটা ছোট নয়। সিঙ্গাপুরের এক সাইকেলের টাকায় ভারতে <b>তিন-চারটি</b> সাইকেল হয়।</li>
+        <li><b>ভিসাটাই IVF-এর জন্য সবচেয়ে উপযুক্ত</b> — ফি শূন্য, <b>১ বছর মেয়াদ, ৩ এন্ট্রি, ৩ জন অ্যাটেনডেন্ট</b>। FET-এর দ্বিতীয় ট্রিপ একই ভিসায় হয়ে যায়। অন্য কোনো দেশে এই সুবিধা নেই।</li>
+        <li><b>একমাত্র দেশ যার বাধ্যতামূলক ART আইন ও জাতীয় রেজিস্ট্রি আছে</b> (ART Act ২০২১)। ফলাফল প্রকাশ হয় না ঠিকই, <b>কিন্তু ক্লিনিকটি বৈধভাবে নিবন্ধিত কি না তা আপনি নিজে যাচাই করতে পারেন</b> — <a href="https://registry.artsurrogacy.gov.in/">registry.artsurrogacy.gov.in</a>। এটি ছোট কথা নয়।</li>
+        <li><b>ফ্লাইট সবচেয়ে সস্তা ও ছোট</b>, আর ভাষা-খাবারে ধাক্কা সবচেয়ে কম।</li>
+        <li><b>একাধিক চেষ্টার সামর্থ্যই আসল সুবিধা</b> — কারণ সাফল্য আসে ২য়–৩য় চেষ্টায়।</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h4>কখন অন্য দেশ ভাবা যুক্তিযুক্ত</h4>
+      <ul>
+        <li><b>ভারতের ভিসা না পেলে বা অস্বাভাবিক দেরি হলে</b> — এখনো <i>“urgent cases on humanitarian grounds”</i>-কে অগ্রাধিকার দেওয়া হয়, আর IVF জরুরি নয়। এই ঝুঁকিটা বাস্তব।</li>
+        <li><b>৯০ দিনের ভিসায় সাইকেল ও FET একসাথে করতে চাইলে</b> → <b>ভিয়েতনাম</b>।</li>
+        <li><b>ঝামেলাহীন যাতায়াত ও ভালো সেবা চাইলে, বাড়তি টাকা সমস্যা না হলে</b> → থাইল্যান্ড/মালয়েশিয়া।</li>
+        <li><b>শুধু ব্যয় কমাতে চাইলে</b> → নেপাল সবচেয়ে সস্তা ও সবচেয়ে কাছে, <b>কিন্তু</b> শুধু <b>MoHP-অনুমোদিত ৯টি সেন্টারের</b> মধ্যেই থাকুন, এবং <b>লিখিতভাবে single embryo transfer</b> চান।</li>
+      </ul>
+      <div class="callout warn" style="margin-bottom:0"><b>যেটি দেশ বদলে সমাধান হয় না:</b> কোথাও যাচাইকৃত সাফল্যের তথ্য নেই। তাই <b>দেশ বদলে মান নিশ্চিত হয় না</b> — নিশ্চিত হয় শুধু <a href="#profile" data-scroll="profile">সঠিক প্রশ্ন করে</a> ও লিখিত এস্টিমেট নিয়ে।</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>টাকা পাঠানোর সীমা — যে দেশেই যান, এটি আগে দেখুন।</b> বাংলাদেশ ব্যাংকের নিয়মে চিকিৎসার জন্য বৈদেশিক মুদ্রা ছাড়ের নির্দিষ্ট সীমা আছে, এবং তার বেশি লাগলে ব্যাংকের মাধ্যমে আলাদা অনুমোদন নিতে হয়। <b>ট্রিপের আগেই নিজের ব্যাংকের ট্রেজারি/ফরেক্স ডেস্কে গিয়ে লিখিতভাবে জেনে নিন</b> কত পাঠানো যাবে, কী কাগজে (হাসপাতালের এস্টিমেট, ভিসা, টিকিট)। বিস্তারিত <a href="#money" data-scroll="money">ব্যাংকিং ও আর্থিক নিরাপত্তা</a> সেকশনে।
+  </div>
+</section>
+
 
 <!-- ============ 12. VOICES ============ -->
 <section id="voices">
@@ -3470,15 +3755,225 @@ function onScroll(){ const st=window.scrollY||document.documentElement.scrollTop
 function markScrollables(){ document.querySelectorAll('.tbl').forEach(d=>{ d.classList.toggle('scrollable', d.scrollWidth > d.clientWidth + 4); }); }
 function closeNav(){ const s=document.getElementById('sidenav'), b=document.getElementById('menuBtn'), sc=document.getElementById('scrim'); if(!s) return; s.classList.remove('open'); sc.classList.remove('on'); b.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
 function toggleNav(){ const s=document.getElementById('sidenav'), b=document.getElementById('menuBtn'), sc=document.getElementById('scrim'); const on=!s.classList.contains('open'); s.classList.toggle('open',on); sc.classList.toggle('on',on); b.setAttribute('aria-expanded',String(on)); document.body.style.overflow = on?'hidden':''; }
-function setRate(v){ R=v; localStorage.setItem('ivf_rate', String(v)); renderMoney(); renderHome(); renderBudget(); const h=(location.hash||'').slice(1).split('/'); if(h[0]==='centre') renderCentre(h[1]); document.querySelectorAll('.rate-echo').forEach(e=>e.textContent=R.toFixed(2)); }
+function setRate(v){ R=v; localStorage.setItem('ivf_rate', String(v)); renderMoney(); renderHome(); renderBudget(); renderCycles(); renderProfiles(); const h=(location.hash||'').slice(1).split('/'); if(h[0]==='centre') renderCentre(h[1]); document.querySelectorAll('.rate-echo').forEach(e=>e.textContent=R.toFixed(2)); }
+
+/* ===================== PROFILE MATCHER ===================== */
+const PROFILES = [
+{
+  t:'১. চকলেট সিস্ট / এন্ডোমেট্রিওমা — বিশেষত এক ওভারিতে',
+  who:'আগে একটি ওভারি বাদ গেছে, বা এখন এক/দুই পাশে এন্ডোমেট্রিওমা আছে',
+  know:`<ul>
+    <li><b>অপারেশন জন্মহার বাড়ায় না — এটাই সবচেয়ে জরুরি কথা।</b> ESHRE ২০২২-এর <b>strong recommendation</b>: <i>“not recommended to routinely perform surgery for ovarian endometrioma prior to ART to improve live birth rates… surgery is likely to have a negative impact on ovarian reserve.”</i></li>
+    <li><b>সিস্টেক্টমি (সিস্ট কেটে ফেলা) রিজার্ভের জন্য সবচেয়ে খারাপ বিকল্প।</b> ২১টি RCT-র নেটওয়ার্ক মেটা-অ্যানালাইসিসে সিস্টেক্টমিই সবচেয়ে বেশি AMH কমায়। একটি তুলনামূলক সিরিজে <b>অপারেশনের পর ৩৩.৭% ওভারিতে AFC শূন্য</b> হয়ে গিয়েছিল।</li>
+    <li><b>সিস্ট থাকলে ডিম কম আসে, কিন্তু ডিমের মান খারাপ হয় না।</b> ঘাটতিটা <b>সংখ্যায়, গুণে নয়</b> — প্রতি-ট্রান্সফারে জন্মহার প্রায় একই (Hamdan ২০১৫: OR 0.98)।</li>
+    <li><b>এক ওভারি মানে অর্ধেক ডিম নয় — প্রায় ৭০%।</b> বাকি ওভারি বাড়তি কাজ করে (৭.২ বনাম ৯.৯টি ডিম)।</li>
+  </ul>`,
+  where:`<ul>
+    <li><b><a href="#centre/cmc">CMC Vellore</a></b> — রক্ষণশীল ও প্রমাণভিত্তিক; অপ্রয়োজনীয় অপারেশনে ঠেলে দেয় না। এই প্রোফাইলের জন্য প্রথম পছন্দ।</li>
+    <li><b><a href="#centre/sgrh">Sir Ganga Ram, দিল্লি</a></b> — প্রকাশিত ফল আছে, এন্ডোস্কপি ইউনিট শক্তিশালী।</li>
+    <li>অপারেশন সত্যিই লাগবে কি না — <b>দ্বিতীয় মত</b> নিতে চাইলে উচ্চ-ভলিউম এক্সিশন ইউনিট (যেমন মুম্বাইয়ের Shree IVF &amp; Endometriosis Clinic) দেখতে পারেন। <span class="pill p">●</span> ভলিউমের দাবি স্বঘোষিত, নিরীক্ষিত নয়।</li>
+  </ul>`,
+  ask:`<ul>
+    <li><b>“আমার এক ওভারি — ESHRE তো অপারেশনের বিপক্ষে। অপারেশন প্রস্তাব করলে নির্দিষ্ট কারণটা কী?”</b></li>
+    <li>সিস্ট যদি সত্যিই সুঁই পৌঁছাতে বাধা দেয়: <b>“আলাদা করে আগে ড্রেন করবেন, নাকি সব ফলিকল তোলার পর <u>সবশেষে</u>, নতুন সুঁইয়ে?”</b> — কারণ ভুলবশত সিস্টের তরল মিশে গেলে জন্মহার কমে।</li>
+    <li><b>রিট্রিভালের সময় povidone-iodine দিয়ে যোনিপথ প্রস্তুত করা হবে কি না</b>, আর কোন অ্যান্টিবায়োটিক।</li>
+    <li><b>“ফোঁড়া (abscess) হলে লক্ষণ কী, কতদিন পর্যন্ত সতর্ক থাকব?”</b> — এটি রিট্রিভালের <b>৩ সপ্তাহ থেকে ২ মাস</b> পরেও হতে পারে, এমনকি গর্ভাবস্থার শুরুতে। এক ওভারি থাকলে এটি ওভারি হারানোর ঝুঁকি।</li>
+  </ul>`,
+  avoid:`<ul>
+    <li><b>“আগে সিস্ট পরিষ্কার করে নিই, তারপর IVF” — এই যুক্তিতে রাজি হবেন না</b> যদি না ব্যথা অসহ্য হয়, ক্যানসারের সন্দেহ থাকে, বা সিস্ট সত্যিই ফলিকলে পৌঁছাতে বাধা দেয়।</li>
+    <li><b>শুধু ড্রেন (aspiration) করাবেন না</b> — একা করলে <b>৫৩%</b> ফিরে আসে; গবেষকরা একে “পরীক্ষামূলক পদ্ধতি” বলেছেন।</li>
+    <li><b>ইথানল স্ক্লেরোথেরাপি</b> রিজার্ভের জন্য সবচেয়ে কম ক্ষতিকর হলেও <b>৫ সেমির বড় সিস্টে একটি গবেষণায় ১০০% ফিরে এসেছিল</b>, আর জন্মহারের তথ্য নেই। প্রতিষ্ঠিত চিকিৎসা হিসেবে উপস্থাপন করলে প্রশ্ন করুন।</li>
+  </ul>`
+},
+{
+  t:'২. অ্যাডেনোমায়োসিস / “জরায়ু বড় ও ভারী” — সবচেয়ে বেশি অবহেলিত সমস্যা',
+  who:'আল্ট্রাসাউন্ডে “bulky uterus”, “globular”, বা “adenomyosis pattern” লেখা এসেছে',
+  know:`<ul>
+    <li><b>এটি জন্মহার কমায় এবং গর্ভপাত প্রায় দ্বিগুণ–তিনগুণ করে।</b> মেটা-অ্যানালাইসিস: জীবিত জন্ম <b>OR 0.59</b>, গর্ভপাত <b>OR 2.11–3.40</b>। ২০২৪-এর সবচেয়ে ভালো গবেষণায় ক্রমযোজিত জন্মহার <b>২৪.৫% বনাম ৪২.৭%</b>।</li>
+    <li class="hl-li"><b>কিন্তু আসল কথা: “bulky uterus” লেখা থাকলেই অ্যাডেনোমায়োসিস <u>প্রমাণিত হয় না</u>।</b> আন্তর্জাতিক MUSA মানদণ্ডে রোগ নির্ণয়ের জন্য অন্তত একটি <b>প্রত্যক্ষ (direct) লক্ষণ</b> লাগে — myometrial cysts, hyperechogenic islands, বা subendometrial lines/buds। “বড় জরায়ু”, “fan-shaped shadowing” এগুলো <b>পরোক্ষ</b> লক্ষণ, একা যথেষ্ট নয়।</li>
+    <li><b>ভালো খবর ১:</b> ডিমের মান নষ্ট হয় না। ডোনার-ডিমের গবেষণায় অ্যাডেনোমায়োসিস থাকলেও ক্রমযোজিত জন্মহার <b>একই (৭৪.৩% বনাম ৭৪.৩%)</b> — শুধু <b>বেশিবার ট্রান্সফার</b> লাগে।</li>
+    <li><b>ভালো খবর ২:</b> ক্ষতিটা <b>প্রথম সাইকেলেই সবচেয়ে বেশি</b>, তৃতীয় সাইকেলে গিয়ে আর পরিসংখ্যানগতভাবে অর্থবহ থাকে না। গবেষকদের ভাষায়: <i>“a negative first-cycle result should not preclude further attempts.”</i></li>
+  </ul>`,
+  where:`<ul>
+    <li>যেকোনো ভালো সেন্টার চলবে — <b>শর্ত একটাই: আল্ট্রাসাউন্ডটি যেন MUSA মানদণ্ড ধরে রিপোর্ট করা হয়</b>।</li>
+    <li><b><a href="#centre/sgrh">Sir Ganga Ram</a></b> ও <b><a href="#centre/cmc">CMC</a></b> — দুটোতেই অভিজ্ঞ ইমেজিং ও এন্ডোস্কপি ইউনিট আছে।</li>
+    <li>দেশে বসেই এই স্ক্যানটি করানো যায় — <b>ভারতে যাওয়ার আগেই করে নিলে</b> ভারতে সময় ও টাকা বাঁচবে।</li>
+  </ul>`,
+  ask:`<ul>
+    <li><b>“MUSA মানদণ্ডে <u>প্রত্যক্ষ</u> লক্ষণ আছে কি, নাকি শুধু পরোক্ষ?”</b></li>
+    <li><b>“ছড়ানো (diffuse) না নির্দিষ্ট জায়গায় (focal)? junctional zone-এ, বাইরের মায়োমেট্রিয়ামে, নাকি দুটোতেই?”</b> — <b>দুটোতেই থাকলে</b> ফল সবচেয়ে খারাপ (HR 0.44); শুধু একটিতে থাকলে ফল প্রায় স্বাভাবিক।</li>
+    <li><b>“MRI করলে পরিকল্পনা বদলাবে কি?”</b> — ভালো MUSA-রিপোর্ট থাকলে MRI বাধ্যতামূলক নয়।</li>
+    <li>গর্ভাবস্থায় <b>বাড়তি নজরদারি</b> কী হবে — গর্ভপাত, প্রি-এক্লাম্পসিয়া ও প্রিটার্ম ডেলিভারির ঝুঁকি বেশি।</li>
+  </ul>`,
+  avoid:`<ul>
+    <li class="hl-li"><b>“ট্রান্সফারের আগে ২–৩ মাস ইনজেকশন দিয়ে জরায়ু ঘুম পাড়িয়ে দিই” (long GnRH-agonist down-regulation) — এটি ভারতে খুব বেশি প্রস্তাব করা হয়, কিন্তু ২০২৪–২৫-এর চারটি স্বাধীন মেটা-অ্যানালাইসিসের একটিতেও জন্মহার বাড়েনি</b> (সবচেয়ে সাম্প্রতিকটি: জীবিত জন্ম <b>OR 1.19, 95% CI 0.69–2.06</b> — অর্থহীন)। উল্টো এন্ডোমেট্রিওসিসের জন্য ESHRE <b>strongly against</b>।<br><b>প্রস্তাব করলে জিজ্ঞেস করুন:</b> “জন্মহার বাড়ার প্রমাণ কী, আর এই ২–৩ মাস দেরিতে আমার ডিম-মজুদের কত ক্ষতি হবে?”</li>
+    <li><b>“ইমিউন সমস্যা” বলে IVIG, স্টেরয়েড বা intralipid</b> — অ্যাডেনোমায়োসিসকে “প্রদাহজনিত রোগ” বলে এগুলো প্রায়ই বিক্রি করা হয়। HFEA-র তালিকায় IVIG ও স্টেরয়েড <b>লাল</b>।</li>
+  </ul>`
+},
+{
+  t:'৩. কম AMH / কম ডিম-মজুদ',
+  who:'AMH ১-এর নিচে, বা AFC কম, বা আগে সাইকেল বাতিল হয়েছে',
+  know:`<ul>
+    <li><b>AMH ডিমের <u>সংখ্যা</u> বলে, সন্তান হবে কি না বলে না।</b> ESHRE-র <b>strong recommendation</b>: <i>“AFC, AMH, basal FSH… are not recommended for the prediction of pregnancy and live birth.”</i> কম AMH শুনে হতাশ হওয়ার দরকার নেই।</li>
+    <li><b>AFC (অ্যান্ট্রাল ফলিকল কাউন্ট) AMH-এর চেয়ে ভালো ভবিষ্যদ্বাণী করে</b> কম-সাড়া দেওয়ার ক্ষেত্রে (AUC 0.916 বনাম 0.791)। দুটোই একসাথে করান।</li>
+    <li><b>পুরনো AMH দিয়ে প্রোটোকল ঠিক করা যায় না।</b> এন্ডোমেট্রিওমা থাকলে ৬ মাসে AMH ~১৯% কমতে পারে। <b>এক বছরের পুরনো হলে আবার করান</b> — এবং কোন মেশিনে (প্ল্যাটফর্ম) হলো তা লিখে রাখুন, কারণ মেশিনভেদে ফল বদলায়।</li>
+    <li>বেশি ডিম = বেশি সম্ভাবনা: ২৫+ ডিম পেলে ক্রমযোজিত জন্মহার ~৭০% পর্যন্ত ওঠে। তাই <b>দুই দফায় ডিম জমানো (embryo banking)</b> যুক্তিসঙ্গত।</li>
+  </ul>`,
+  where:`<ul>
+    <li><b><a href="#centre/sgrh">Sir Ganga Ram</a></b> — DuoStim (এক মাসে দুইবার ডিম সংগ্রহ) সহ কম-রিজার্ভে অভিজ্ঞ, প্রকাশিত গবেষণা আছে।</li>
+    <li><b><a href="#centre/cmc">CMC Vellore</a></b> — খরচ কম, তাই দুটি সাইকেল করার সামর্থ্য থাকে। কম-রিজার্ভে <b>একাধিক চেষ্টার সামর্থ্যই আসল সুবিধা</b>।</li>
+  </ul>`,
+  ask:`<ul>
+    <li><b>“Antagonist প্রোটোকল দিচ্ছেন তো?”</b> — ESHRE-র <b>strong recommendation</b>, এবং নিরাপত্তায় ভালো।</li>
+    <li><b>“দুই দফায় ডিম জমিয়ে তারপর ট্রান্সফার — আমার ক্ষেত্রে যুক্তিযুক্ত?”</b></li>
+    <li><b>“সাইকেল বাতিল হলে কত টাকা ফেরত পাব?”</b> — কম রিজার্ভে বাতিলের ঝুঁকি বেশি, আগেই লিখিয়ে নিন।</li>
+  </ul>`,
+  avoid:`<ul>
+    <li><b>PGT-A (ভ্রূণ বাছাই)</b> — কম রিজার্ভে বিশেষভাবে ক্ষতিকর: ভ্রূণ কম, বায়োপসিতে ঝুঁকি, আর জন্মহার বাড়ার প্রমাণ নেই। <b>HFEA: লাল</b>।</li>
+    <li><b>“ওভারিয়ান PRP”, “স্টেম সেল রিজুভেনেশন”</b> — দামি, প্রমাণ নেই। HFEA-তে PRP <b>লাল</b>।</li>
+    <li><b>DHEA/গ্রোথ হরমোনের বড় প্রতিশ্রুতি</b> — সামান্য ও অনিশ্চিত।</li>
+  </ul>`
+},
+{
+  t:'৪. স্বামীর রিপোর্ট স্বাভাবিক (no male factor)',
+  who:'সিমেন অ্যানালাইসিসে সংখ্যা, চলন ও গঠন স্বাভাবিক',
+  know:`<ul>
+    <li class="hl-li"><b>তাহলে ICSI লাগে না — অথচ প্রায় সব ভারতীয় সেন্টার ডিফল্ট হিসেবে ICSI করে এবং আলাদা টাকা নেয়।</b></li>
+    <li>দুটি বড় RCT, দুটিই শূন্য ফল: <b>Lancet 2021</b> (n=1,064) — জীবিত জন্ম ICSI ৩৫% বনাম সাধারণ IVF ৩১%, <b>পার্থক্য অর্থহীন</b>; <b>Lancet 2024</b> (n=2,387) — ৩৩.৮% বনাম ৩৬.৬%, অর্থাৎ সংখ্যায় <b>সাধারণ IVF-ই একটু এগিয়ে</b>। উপসংহার: <i>“Routine use is not recommended.”</i></li>
+    <li><b>এন্ডোমেট্রিওসিস নিষেকে বাধা দেয় না</b> — নিষেকের হার OR 1.10 (অর্থহীন পার্থক্য)। তাই “এন্ডোমেট্রিওসিস আছে তাই ICSI লাগবে” যুক্তিটি ভুল।</li>
+    <li>একমাত্র বাস্তব ঝুঁকি: প্রথমবার বলে <b>সম্পূর্ণ নিষেক-ব্যর্থতার ~৫%</b> সম্ভাবনা।</li>
+  </ul>`,
+  where:`<ul><li>সব সেন্টারেই প্রযোজ্য — এটি সেন্টার বাছাইয়ের নয়, <b>দর-কষাকষির</b> বিষয়।</li></ul>`,
+  ask:`<ul>
+    <li><b>“আমার স্বামীর রিপোর্ট স্বাভাবিক — সাধারণ IVF করবেন, নাকি ICSI? ICSI হলে কেন?”</b></li>
+    <li><b>“প্রথম সাইকেলে <u>split insemination</u> করা যায়?”</b> — অর্ধেক ডিমে সাধারণ IVF, অর্ধেকে ICSI। নিষেক-ব্যর্থতার বিরুদ্ধে বিমা, অথচ পুরো ICSI-র খরচ নয়। <small class="muted">(এর পক্ষে RCT নেই — এটি বাস্তবসম্মত আপস, প্রমাণ নয়।)</small></li>
+    <li>এস্টিমেটে <b>ICSI আলাদা লাইন আইটেম</b> হিসেবে দেখতে চান — সাধারণত ₹20,000–40,000।</li>
+  </ul>`,
+  avoid:`<ul>
+    <li><b>IMSI, PICSI, MACS</b> — HFEA-তে যথাক্রমে ধূসর/কালো; বাড়তি টাকা, প্রমাণ নেই।</li>
+    <li>“সব রোগীকেই আমরা ICSI করি” — এই উত্তর মানে ক্লিনিক কেস ধরে ভাবছে না।</li>
+  </ul>`
+},
+{
+  t:'৫. টিউব বন্ধ / হাইড্রোসালপিনক্স (টিউবে পানি)',
+  who:'HSG বা ল্যাপারোস্কপিতে টিউব বন্ধ বা ফোলা ধরা পড়েছে',
+  know:`<ul>
+    <li><b>হাইড্রোসালপিনক্স থাকলে IVF-এর সাফল্য প্রায় অর্ধেক হয়ে যায়</b> — ফোলা টিউবের তরল জরায়ুতে ফিরে এসে ভ্রূণের ক্ষতি করে।</li>
+    <li><b>ট্রান্সফারের আগে টিউব কেটে ফেলা বা বন্ধ করে দেওয়া (salpingectomy / clipping) জন্মহার বাড়ায়</b> — এটি সেই বিরল ক্ষেত্র যেখানে <b>অপারেশন সত্যিই কাজে দেয়</b> (এন্ডোমেট্রিওমার ঠিক উল্টো)।</li>
+    <li>টিউব বন্ধ কিন্তু ফোলা না হলে — IVF এমনিতেই টিউব এড়িয়ে যায়, অপারেশন লাগে না।</li>
+  </ul>`,
+  where:`<ul><li>ল্যাপারোস্কপি ও IVF <b>একই ছাদের নিচে</b> — <b><a href="#centre/sgrh">Sir Ganga Ram</a></b> বা <b><a href="#centre/cmc">CMC</a></b>. দুবার দুই জায়গায় গেলে দুবার যাতায়াতের খরচ।</li></ul>`,
+  ask:`<ul>
+    <li><b>“টিউব ফোলা (hydrosalpinx) আছে কি? থাকলে ট্রান্সফারের আগে সরানো হবে?”</b></li>
+    <li><b>“একই ট্রিপে ল্যাপারোস্কপি ও ডিম-সংগ্রহ করা যাবে, নাকি আলাদা আসতে হবে?”</b> — বাংলাদেশ থেকে গেলে এটি সরাসরি টাকার প্রশ্ন।</li>
+  </ul>`,
+  avoid:`<ul><li>ফোলা টিউব রেখেই ট্রান্সফার করে ফেলা — সম্ভাবনা নষ্ট হয়।</li></ul>`
+},
+{
+  t:'৬. বারবার ব্যর্থ ট্রান্সফার বা বারবার গর্ভপাত',
+  who:'ভালো ভ্রূণ দিয়েও দুই-তিনবার হয়নি, বা বারবার গর্ভপাত হয়েছে',
+  know:`<ul>
+    <li><b>এই দলটিই সবচেয়ে বেশি অপ্রমাণিত “অ্যাড-অন” কেনে</b> — কারণ হতাশা বেশি, আর ক্লিনিকের কাছে বিক্রির যুক্তিও সহজ।</li>
+    <li><b>ERA (এন্ডোমেট্রিয়াল রিসেপ্টিভিটি টেস্ট):</b> JAMA ২০২২-এর RCT (n=767) — জীবিত জন্ম <b>৫৮.৫% বনাম ৬১.৯%</b>, অর্থাৎ পার্থক্য নেই, বরং সংখ্যায় সাধারণ পদ্ধতিই এগিয়ে। গবেষকদের ভাষা: <i>“all clinical use… should be discontinued immediately.”</i> <b>HFEA: লাল</b>।</li>
+    <li><b>এন্ডোমেট্রিয়াল স্ক্র্যাচ:</b> NEJM ২০১৯-এর RCT (n=1,364) — জীবিত জন্ম <b>দুই দলেই ২৬.১%</b>, হুবহু সমান।</li>
+    <li><b>হিস্টেরোস্কপি (স্ক্যান স্বাভাবিক থাকলে):</b> দুটি বড় RCT — <b>৫৭% বনাম ৫৪%</b> এবং <b>২৯% বনাম ২৯%</b>। কোনো লাভ নেই।</li>
+    <li><b>অ্যাডেনোমায়োসিস কিন্তু গর্ভপাত সত্যিই বাড়ায়</b> (OR 2.11–3.40)। তাই “ব্যাখ্যাহীন” বলার আগে জরায়ু ঠিকমতো দেখা হয়েছে কি না নিশ্চিত হোন — <b>উপরের ২ নম্বর কার্ড</b> দেখুন।</li>
+  </ul>`,
+  where:`<ul><li>নতুন সেন্টার খোঁজার আগে <b>পুরনো সাইকেলের পূর্ণ রিপোর্ট</b> (ওষুধের ডোজ, ডিম-সংখ্যা, নিষেক-হার, ভ্রূণের গ্রেড, লাইনিং) সংগ্রহ করুন — এগুলো ছাড়া যেকোনো ডাক্তার আন্দাজে বলবেন।</li></ul>`,
+  ask:`<ul>
+    <li><b>“আপনি যে টেস্ট/চিকিৎসাটি দিচ্ছেন, HFEA-র তালিকায় সেটির রং কী?”</b> — এই একটি প্রশ্নেই বেশিরভাগ অ্যাড-অন বাদ পড়বে। তালিকা: <a href="https://www.hfea.gov.uk/treatments/treatment-add-ons/">hfea.gov.uk</a></li>
+    <li><b>“আগের সাইকেলে ঠিক কী ভুল হয়েছিল বলে আপনি মনে করেন?”</b> — সুনির্দিষ্ট উত্তর না এলে সতর্ক হোন।</li>
+  </ul>`,
+  avoid:`<ul>
+    <li><b>ইমিউন টেস্ট, IVIG, স্টেরয়েড, intralipid</b> — HFEA: IVIG <b>লাল</b>, স্টেরয়েড <b>লাল</b>, intralipid ধূসর।</li>
+    <li><b>থাইরয়েড স্বাভাবিক থাকলে শুধু TPO-পজিটিভ বলে থাইরক্সিন</b> — TABLET RCT (n=952): জীবিত জন্ম <b>৩৭.৪% বনাম ৩৭.৯%</b>, কোনো লাভ নেই।</li>
+    <li><b>টাইম-ল্যাপস ইনকিউবেটর, এমব্রায়ো গ্লু, অ্যাসিস্টেড হ্যাচিং</b> — HFEA-তে কালো/হলুদ/ধূসর। <b>HFEA-র তালিকায় একটিও সবুজ নেই।</b></li>
+  </ul>`
+},
+{
+  t:'৭. PCOS / অনিয়মিত মাসিক',
+  who:'ডিম্বস্ফোটন হয় না বা অনিয়মিত, AMH প্রায়ই বেশি',
+  know:`<ul>
+    <li><b>এটি তুলনামূলকভাবে ভালো পূর্বাভাসের দল</b> — ডিম সাধারণত অনেক পাওয়া যায়।</li>
+    <li><b>প্রধান ঝুঁকি OHSS</b> (ওভারি অতিরিক্ত সাড়া দিয়ে ফুলে যাওয়া) — বিদেশে থাকা অবস্থায় এটি গুরুতর।</li>
+    <li>প্রতিরোধ প্রতিষ্ঠিত: <b>antagonist প্রোটোকল + GnRH-agonist ট্রিগার + freeze-all</b> — OHSS-এর ঝুঁকি প্রায় এক-চতুর্থাংশে নামে (OR 0.26)।</li>
+    <li>IVF-এর আগে ডিম্বস্ফোটন-উদ্দীপনা (letrozole) দিয়ে চেষ্টা করাই স্বাভাবিক ধাপ — সরাসরি IVF-এ ঠেলে দিলে প্রশ্ন করুন।</li>
+  </ul>`,
+  where:`<ul><li>যেকোনো ভালো সেন্টার — তবে <b>২৪ ঘণ্টা জরুরি সেবা ও ভর্তির ব্যবস্থা আছে</b> এমন হাসপাতাল-ভিত্তিক ইউনিট বেছে নিন (OHSS-এর কারণে)। স্ট্যান্ডঅ্যালোন ক্লিনিকে ICU থাকে না।</li></ul>`,
+  ask:`<ul>
+    <li><b>“OHSS ঠেকাতে agonist ট্রিগার ও freeze-all করবেন তো?”</b></li>
+    <li><b>“OHSS হলে কোথায় ভর্তি হব, খরচ কত, কে দেবে?”</b> — দেশে ফেরার ফ্লাইট পিছিয়ে যেতে পারে, সেটিও ধরে রাখুন।</li>
+  </ul>`,
+  avoid:`<ul><li>ফ্রেশ ট্রান্সফারে জোর করা, যখন অনেক ডিম পাওয়া গেছে — এটিই OHSS-কে বিপজ্জনক করে তোলে।</li></ul>`
+}
+];
+function renderProfiles(){
+  const el=document.getElementById('profileCards'); if(!el||!PROFILES.length) return;
+  el.innerHTML = PROFILES.map(p=>`<div class="card prof">
+    <h4>${p.t}</h4>
+    ${p.who?`<p class="small muted" style="margin:.1rem 0 .6rem">${p.who}</p>`:''}
+    <div class="prof-grid">
+      <div><b class="lbl">কী বোঝা দরকার</b>${p.know}</div>
+      <div><b class="lbl">কোথায় যাবেন</b>${p.where}</div>
+      <div><b class="lbl">যা চাইবেন</b>${p.ask}</div>
+      <div><b class="lbl bad-lbl">যা করবেন না</b>${p.avoid}</div>
+    </div>
+  </div>`).join('');
+  convertRupees(el);
+}
+
+/* ===================== MULTI-CYCLE COST MODEL ===================== */
+const CYC_LIST = ['cmc','sgrh','oasis','kjk','kaberi','nova'];
+let cycPick = 'cmc';
+const FREEZE = [25000,40000];   /* ভ্রূণ হিমায়িতকরণ (এক ব্যাচ), ₹ */
+const STORE  = [15000,30000];   /* বছরে স্টোরেজ ফি, ₹ */
+function tripCost(c, nights){
+  const city=CITIES[c.city], f=FLIGHTS[city.flight];
+  const sub = f.s1*2 + city.transferINR*R + (city.stayINR + city.foodINR + city.transportINR)*R*nights + 700*R + 3000;
+  return sub*1.10;
+}
+function tripCostMother(c, nights){
+  const city=CITIES[c.city], f=FLIGHTS[city.flight];
+  return f.s1 + (400+300)*R*nights + 1500 + 300*R;
+}
+const CYC_STEPS = [
+  {t:'ট্রিপ ১', w:'<b>ফ্রেশ সাইকেল</b> — উদ্দীপনা, ডিম সংগ্রহ, নিষেক, এবং <b>সব ভ্রূণ হিমায়িত (freeze-all)</b>', n:21, med:'cf'},
+  {t:'ট্রিপ ২', w:'<b>FET #১</b> — প্রথম হিমায়িত ভ্রূণ ট্রান্সফার। নতুন ইনজেকশন বা ডিম-সংগ্রহ নেই', n:12, med:'f'},
+  {t:'ট্রিপ ৩', w:'<b>FET #২</b> — ভ্রূণ বাকি থাকলে। <span class="muted">এটাই সবচেয়ে সস্তা চেষ্টা</span>', n:12, med:'fs'},
+  {t:'ট্রিপ ৪', w:'<b>২য় ফ্রেশ সাইকেল</b> — ভ্রূণ ফুরিয়ে গেলে পুরো প্রক্রিয়া আবার', n:21, med:'cf'},
+  {t:'ট্রিপ ৫', w:'<b>FET #৩</b> — দ্বিতীয় ব্যাচের ভ্রূণ থেকে', n:12, med:'f'}
+];
+function cycMed(c, kind){
+  const cy=c.cost.cycle, fe=c.cost.fet;
+  if(kind==='cf') return [(cy[0]+FREEZE[0])*R, (cy[1]+FREEZE[1])*R];
+  if(kind==='fs') return [(fe[0]+STORE[0])*R, (fe[1]+STORE[1])*R];
+  return [fe[0]*R, fe[1]*R];
+}
+function renderCycles(){
+  const chips=document.getElementById('cycCentre'), box=document.getElementById('cycTable');
+  if(!box) return;
+  if(chips) chips.innerHTML = CYC_LIST.map(id=>{const c=byId(id); return c?`<button class="chip${id===cycPick?' on':''}" data-cyc="${id}">${esc(c.short)}</button>`:'';}).join('');
+  const c=byId(cycPick); if(!c) return;
+  let cumLo=0, cumHi=0, cumM=0;
+  const rows = CYC_STEPS.map((s,i)=>{
+    const med=cycMed(c,s.med), trip=tripCost(c,s.n), mum=tripCostMother(c,s.n);
+    const lo=med[0]+trip, hi=med[1]+trip;
+    cumLo+=lo; cumHi+=hi; cumM+=mum;
+    return `<tr class="${s.med==='cf'?'hl':''}"><td><b>${s.t}</b><br><small class="muted">${bnNum(s.n)} রাত</small></td><td>${s.w}</td><td class="num">${fmtRange(med[0],med[1])}</td><td class="num">${fmtBDTx(trip)}</td><td class="num">${fmtRange(lo,hi)}</td><td class="num"><b>${fmtRange(cumLo,cumHi)}</b></td><td class="num">+${fmtBDTx(cumM)}</td></tr>`;
+  }).join('');
+  box.innerHTML = `<div class="tbl"><table><thead><tr><th>ধাপ</th><th>কী হয়</th><th class="num">চিকিৎসা</th><th class="num">যাতায়াত+থাকা (২ জন)</th><th class="num">এই ধাপের মোট</th><th class="num">এ পর্যন্ত সর্বমোট</th><th class="num">মা সঙ্গে গেলে</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="muted" style="margin:.5rem 0 0"><b>${esc(c.short)}</b> · ১₹ = <span class="rate-echo">${R.toFixed(2)}</span>৳ · চিকিৎসার দাম ${esc(c.cost.cycleNote? 'সেন্টারের নিজস্ব তথ্য/অনুমান':'অনুমান')} · যাতায়াতে ফ্লাইট, ট্রান্সফার, থাকা, খাওয়া, লোকাল যাতায়াত, সিম, ভিসা ও ১০% কন্টিনজেন্সি ধরা। <b>ভ্রূণ হিমায়িতকরণ ₹${nfIN.format(FREEZE[0])}–${nfIN.format(FREEZE[1])}</b> ও <b>বছরে স্টোরেজ ₹${nfIN.format(STORE[0])}–${nfIN.format(STORE[1])}</b> ধরা হয়েছে — এগুলো সেন্টারভেদে বদলায়, লিখিত কোটে মিলিয়ে নিন।</p>`;
+  convertRupees(box);
+}
 
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('body > section').forEach(s=>s.classList.add('view'));
+  document.addEventListener('click', e=>{ const b=e.target.closest('[data-cyc]'); if(!b) return; cycPick=b.dataset.cyc; renderCycles(); });
   const inp=document.getElementById('rateInput'); if(inp){ inp.value=R.toFixed(2); inp.addEventListener('change', ()=>{ const v=parseFloat(inp.value); if(v>0.5&&v<3) setRate(v); }); }
   const mb=document.getElementById('menuBtn'); if(mb) mb.addEventListener('click', toggleNav);
   const sc=document.getElementById('scrim'); if(sc) sc.addEventListener('click', closeNav);
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeNav(); });
-  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); addProfileLinks(); initPlanner(); route();
+  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); renderCycles(); renderProfiles(); addProfileLinks(); initPlanner(); route();
   document.addEventListener('click', e=>{
     const a=e.target.closest('[data-scroll]'); if(!a) return;
     e.preventDefault();
