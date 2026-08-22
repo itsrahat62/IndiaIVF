@@ -674,6 +674,12 @@ details.more .more-body > :first-child{margin-top:0}
 #aiSetup .cbtn{color:var(--ink);background:var(--surface);border:1px solid var(--line)}
 #aiSetup .cbtn.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
 
+/* the scroll-to-top button and the AI button shared one corner — stack them */
+#toTop{bottom:5.4rem}
+@media (max-width:760px){ #toTop{bottom:5rem;right:.9rem} }
+/* toTop sits above the AI button; both step aside while the drawer is open */
+body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition:opacity .15s}
+
 </style>
 <script src="keys.js" defer onerror="void 0"></script>
 </head>
@@ -4364,8 +4370,8 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
   <div id="aiChips2" class="chat-chips"></div>
   <div id="aiFiles2" class="chat-files"></div>
   <form class="chat-input" id="aiForm2">
-    <button type="button" class="cbtn icon" id="aiAttach2" title="ছবি বা ফাইল" aria-label="সংযুক্ত করুন">📎</button>
-    <input type="file" id="aiFile2" accept="image/*,.md,.txt,.markdown,text/*" multiple hidden>
+    <button type="button" class="cbtn icon" id="aiAttach2" title="ছবি, বা .md / .txt ফাইল" aria-label="সংযুক্ত করুন">📎</button>
+    <input type="file" id="aiFile2" accept="image/*,text/plain,.md,.markdown,.txt,.text,.csv,.json,.log" multiple hidden>
     <textarea id="aiText2" rows="1" placeholder="ডাক্তার যা বললেন লিখুন…" spellcheck="false"></textarea>
     <button type="submit" class="cbtn primary" id="aiSend2">পাঠান</button>
   </form>
@@ -5334,6 +5340,12 @@ function aiRenderFiles(){
 }
 function aiAddFile(file){
   const isImg = /^image\//.test(file.type);
+  /* Android often reports an empty type for .md — fall back to the extension */
+  const textish = /\.(md|markdown|txt|text|csv|json|log)$/i.test(file.name) || /^text\//.test(file.type);
+  if(!isImg && !textish){
+    aiPush('bot','**এই ধরনের ফাইল পড়তে পারি না।** ছবি (jpg/png) অথবা লেখার ফাইল (.md, .txt) দিন। PDF হলে স্ক্রিনশট নিয়ে ছবি হিসেবে দিন।');
+    return;
+  }
   if(file.size > 6*1024*1024){ aiPush('bot','ফাইলটি খুব বড় (৬ MB-এর বেশি)। ছোট করে আবার দিন।'); return; }
   const rd = new FileReader();
   rd.onload = ()=>{
@@ -5467,12 +5479,14 @@ function initChat(){
         scrim=document.getElementById('aiScrim'), close=document.getElementById('aiClose');
   const openDock = ()=>{
     dock.classList.add('open'); scrim.classList.add('on'); dock.setAttribute('aria-hidden','false');
+    document.body.classList.add('ai-open');
     if(window.innerWidth<=760) document.body.style.overflow='hidden';
     setTimeout(()=>{ const t=document.getElementById('aiText2'); if(t) t.focus(); },120);
     const log=document.getElementById('aiLog2'); if(log) log.scrollTop=log.scrollHeight;
   };
   const closeDock = ()=>{
     dock.classList.remove('open'); scrim.classList.remove('on'); dock.setAttribute('aria-hidden','true');
+    document.body.classList.remove('ai-open');
     document.body.style.overflow='';
   };
   if(fab) fab.addEventListener('click', openDock);
