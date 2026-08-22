@@ -585,6 +585,46 @@ details.more .more-body > :first-child{margin-top:0}
 .mailbox .mail-body .tbl{margin:.6rem 0}
 @media(max-width:560px){.mailbox .mail-body{padding:.8rem;font-size:.9rem}.mailbox .mail-head{padding:.6rem .75rem;font-size:.85rem}}
 
+/* ---------- AI chat ---------- */
+.ai-field{display:block;margin:.55rem 0}
+.ai-field>span{display:block;font-size:.85rem;font-weight:700;margin-bottom:.25rem}
+.ai-field textarea,.ai-field input{width:100%;box-sizing:border-box;padding:.5rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.86rem}
+.ai-actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.6rem}
+#aiSetup.done{opacity:.72}
+.btn{padding:.44rem .8rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.86rem;cursor:pointer}
+.btn:hover{background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.primary:disabled{opacity:.6;cursor:default}
+.btn.tiny{padding:.24rem .55rem;font-size:.78rem}
+.btn.icon{padding:.4rem .55rem;font-size:1rem;line-height:1}
+.chatwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);margin-top:1rem}
+.chat-bar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem .85rem;background:var(--surface2);border-bottom:1px solid var(--line)}
+.chat-title .dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--bad);margin-right:.35rem;vertical-align:middle}
+.chat-title .dot.on{background:var(--good)}
+.chat-tools{display:flex;gap:.6rem;align-items:center}
+.tgl{display:inline-flex;gap:.3rem;align-items:center;font-size:.82rem;cursor:pointer;white-space:nowrap}
+.chat-log{max-height:min(60vh,520px);overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.7rem;background:var(--ground)}
+.msg{display:flex}
+.msg.user{justify-content:flex-end}
+.msg .bub{max-width:88%;padding:.6rem .8rem;border-radius:12px;font-size:.93rem;line-height:1.6;white-space:normal;overflow-wrap:anywhere}
+.msg.bot .bub{background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.user .bub{background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.msg .meta{margin-top:.4rem;font-size:.72rem;opacity:.6}
+.msg .src{display:inline-block;margin-top:.4rem;font-size:.76rem;opacity:.8;border-top:1px dashed var(--line);padding-top:.3rem;width:100%}
+.chat-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.7rem .85rem 0}
+.chat-files{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 .85rem}
+.chat-files:not(:empty){padding-top:.6rem}
+.fchip{display:inline-flex;align-items:center;gap:.35rem;padding:.22rem .5rem;border:1px solid var(--line);border-radius:999px;font-size:.78rem;background:var(--surface2)}
+.fchip button{border:0;background:none;cursor:pointer;font-size:1rem;line-height:1;color:var(--muted);padding:0}
+.chat-input{display:flex;gap:.45rem;align-items:flex-end;padding:.7rem .85rem .85rem}
+.chat-input textarea{flex:1;min-width:0;resize:none;padding:.5rem .65rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.92rem;max-height:140px}
+@media(max-width:560px){
+  .chat-log{max-height:58vh;padding:.7rem}
+  .msg .bub{max-width:94%;font-size:.9rem}
+  .chat-input{padding:.6rem .6rem .7rem}
+}
+
 </style>
 </head>
 <body>
@@ -612,6 +652,7 @@ details.more .more-body > :first-child{margin-top:0}
       <a href="#profile" data-nav="profile"><i>❖</i>আপনার সমস্যা অনুযায়ী</a>
       <a href="#worked" data-nav="worked"><i>✎</i>একটি বাস্তব কেস</a>
       <a href="#emails" data-nav="emails"><i>✉</i>হাসপাতালে যে মেইল</a>
+      <a href="#chat" data-nav="chat"><i>✦</i>AI-কে জিজ্ঞেস করুন</a>
       <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
       <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
       <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
@@ -1497,6 +1538,84 @@ details.more .more-body > :first-child{margin-top:0}
       <li><b>“কত পার্সেন্ট সাকসেস?”</b> — প্রথম ইমেইলে নয়। এটি জিজ্ঞেস করতে হয় নির্দিষ্ট করে: <i>“live births per cycle started, for women of my wife's age and diagnosis, over the last 12 months”</i> — <a href="#profile" data-scroll="q7">বাকি প্রশ্নগুলো</a></li>
       <li><b>ছেলে/মেয়ে বেছে নেওয়ার কথা</b> — ভারতে এটি ফৌজদারি অপরাধ, বাংলাদেশেও নিষিদ্ধ। জিজ্ঞেস করলেই আপনার আবেদন সন্দেহের তালিকায় চলে যেতে পারে</li>
     </ul>
+  </div>
+</section>
+
+<!-- ============ AI CHAT ============ -->
+<section id="chat">
+  <h2>AI-কে জিজ্ঞেস করুন — ডাক্তার কী বললেন, বুঝে নিন</h2>
+  <p class="lede">ডাক্তারের চেম্বার থেকে বেরিয়ে প্রায়ই মনে হয় — <b>“উনি যা বললেন সেটা কি ঠিক? আমি কি সব বুঝেছি?”</b> এই চ্যাটটা ঠিক সেই কাজের জন্য। এটি <b>এই গাইডের সব তথ্য জানে</b>, তাই ডাক্তারের কথা গাইডের প্রমাণের সাথে মিলিয়ে দেখতে পারে।</p>
+
+  <div class="callout bad">
+    <b>⚠ আগে তিনটি কথা — এগুলো না মানলে ক্ষতি হতে পারে</b>
+    <ol style="margin:.5rem 0 0">
+      <li><b>এটি ডাক্তার নয়, এবং ডাক্তারের সিদ্ধান্তের বিকল্পও নয়।</b> এটি শুধু <b>বুঝতে</b> ও <b>প্রশ্ন সাজাতে</b> সাহায্য করে। AI ভুলও করতে পারে।</li>
+      <li><b>আপনার ডাক্তারের নির্দেশ AI-এর কথায় বদলাবেন না।</b> মিল না পেলে সেটি <b>ডাক্তারকে জিজ্ঞেস করার প্রশ্ন</b> — নিজে সিদ্ধান্ত নেওয়ার কারণ নয়।</li>
+      <li><b>যা পাঠাবেন তা Google/Groq-এর সার্ভারে যাবে।</b> রিপোর্ট বা প্রেসক্রিপশনের ছবি দিলে <b>নাম-ঠিকানার অংশ আঙুল দিয়ে ঢেকে</b> ছবি তুলুন, বা কেটে বাদ দিন।</li>
+    </ol>
+  </div>
+
+  <div id="aiSetup" class="callout warn">
+    <b>শুরু করতে একবার API কী বসাতে হবে</b> — <b>যেটা সবচেয়ে ভালো উত্তর দেয় সেটাই আগে চেষ্টা করা হয়</b>, না পারলে পরেরটা। — কী <b>শুধু আপনার এই ব্রাউজারেই</b> জমা থাকে, সাইটে বা ইন্টারনেটে কোথাও যায় না। প্রতিটি ডিভাইসে (ফোন, ল্যাপটপ) একবার করে বসাতে হবে।
+    <div style="margin-top:.6rem">
+      <label class="ai-field"><span>সব কী একসাথে পেস্ট করুন <small class="muted">(সবচেয়ে সহজ — যেভাবে খুশি পেস্ট করুন, নিজে নিজে ভাগ হয়ে যাবে)</small></span>
+        <textarea id="aiBulk" rows="3" placeholder="এখানে সব কী একসাথে পেস্ট করুন, তারপর নিচের বোতাম চাপুন" spellcheck="false"></textarea></label>
+      <div class="ai-actions" style="margin:.2rem 0 .8rem"><button class="btn" id="aiSort">ভাগ করে বসাও</button><span id="aiSortState" class="muted small"></span></div>
+      <label class="ai-field"><span>Gemini কী <small class="muted">(এক লাইনে একটি করে, একাধিক দিলে একটার কোটা শেষ হলে পরেরটা চলবে)</small></span>
+        <textarea id="aiGem" rows="3" placeholder="AQ.xxxxxxxx&#10;AQ.yyyyyyyy" spellcheck="false"></textarea></label>
+      <label class="ai-field"><span>Groq কী <small class="muted">(ঐচ্ছিক — <b>ওয়েব সার্চ</b> এখানেই কাজ করে)</small></span>
+        <input id="aiGroq" type="text" placeholder="gsk_xxxxxxxx" spellcheck="false"></label>
+      <label class="ai-field"><span>BazaarLink কী <small class="muted">(থাকলে <b>এটাই সবচেয়ে ভালো উত্তর দেয়</b> — Claude/GPT পাওয়া যায়)</small></span>
+        <input id="aiBL" type="text" placeholder="sk-bl-xxxxxxxx" spellcheck="false"></label>
+      <label class="ai-field"><span>AI/ML API কী <small class="muted">(ঐচ্ছিক — ১০০০+ মডেল, তবে ক্রেডিট লাগে)</small></span>
+        <input id="aiAIML" type="text" placeholder="xxxxxxxxxxxxxxxx" spellcheck="false"></label>
+      <label class="ai-field"><span>OpenRouter কী <small class="muted">(ঐচ্ছিক — বাড়তি ব্যাকআপ)</small></span>
+        <input id="aiOR" type="text" placeholder="sk-or-v1-xxxxxxxx" spellcheck="false"></label>
+      <div class="ai-actions">
+        <button class="btn primary" id="aiSave">সংরক্ষণ করুন</button>
+        <button class="btn" id="aiClear">মুছে ফেলুন</button>
+        <span id="aiKeyState" class="muted small"></span>
+      </div>
+      <p class="small muted" style="margin:.5rem 0 0"><a href="https://aistudio.google.com/apikey">aistudio.google.com/apikey</a> থেকে ফ্রি Gemini কী নেওয়া যায় · <a href="https://console.groq.com/keys">console.groq.com/keys</a> থেকে Groq · <a href="https://openrouter.ai/keys">openrouter.ai/keys</a> থেকে OpenRouter কী।</p>
+    </div>
+  </div>
+
+  <div class="chatwrap">
+    <div class="chat-bar">
+      <div class="chat-title"><span class="dot" id="aiDot"></span> <b>গাইড-সহায়ক</b> <small class="muted" id="aiWho"></small></div>
+      <div class="chat-tools">
+        <label class="tgl" title="উত্তরের জন্য ইন্টারনেটে খুঁজবে (Groq কী লাগবে)"><input type="checkbox" id="aiWeb"> <span>ওয়েব সার্চ</span></label>
+        <button class="btn tiny" id="aiReset">নতুন কথা</button>
+      </div>
+    </div>
+
+    <div id="aiLog" class="chat-log" aria-live="polite">
+      <div class="msg bot"><div class="bub">
+        <b>আসসালামু আলাইকুম।</b> আমি এই গাইডের সব তথ্য জানি — সেন্টার, খরচ, ভিসা, ওষুধ, প্রমাণ, সব।<br><br>
+        <b>সবচেয়ে ভালো কাজে লাগবে এভাবে:</b> ডাক্তার যা বললেন হুবহু লিখে দিন, আমি গাইডের প্রমাণের সাথে মিলিয়ে বলব — কোনটা মিলছে, কোনটা মিলছে না, আর কী প্রশ্ন করা দরকার।<br><br>
+        <b>ডাক্তারের সাথে কথার নোট .md বা .txt ফাইলে দিলে</b> আমি ছকে সাজিয়ে দেব — <b>✔ যা ঠিক আছে</b>, <b>⚠ যা নিয়ে প্রশ্ন করা দরকার</b>, আর <b>? যা গাইডে নেই</b>। প্রেসক্রিপশন বা রিপোর্টের <b>ছবি</b>ও দিতে পারেন।
+      </div></div>
+    </div>
+
+    <div id="aiChips" class="chat-chips">
+      <button class="chip" data-q="ডাক্তার বলেছেন আগে সিস্টের অপারেশন করে তারপর IVF করতে হবে। এটা কি ঠিক?">ডাক্তার অপারেশন করতে বলেছেন — ঠিক?</button>
+      <button class="chip" data-q="ডাক্তার ICSI করতে বলেছেন। স্বামীর রিপোর্ট স্বাভাবিক হলেও কি ICSI লাগে?">ICSI করতে বলেছেন — লাগবে?</button>
+      <button class="chip" data-q="ডাক্তার ট্রান্সফারের আগে ২-৩ মাস ইনজেকশন দিয়ে ডাউনরেগুলেশন করতে বলেছেন। এর প্রমাণ কী?">২-৩ মাস ইনজেকশন বলেছেন — প্রমাণ কী?</button>
+      <button class="chip" data-q="আমাকে এই টেস্টগুলো করতে দিয়েছেন। কোনগুলো আসলে দরকার আর কোনগুলো বাদ দেওয়া যায়?">এই টেস্টগুলো কি সবই দরকার?</button>
+      <button class="chip" data-q="ভিসার জন্য হাসপাতালের চিঠিতে কী কী লেখা থাকতে হবে?">ভিসার চিঠিতে কী থাকতে হবে?</button>
+      <button class="chip" data-q="আমার মোট খরচ কত হতে পারে, আর কীভাবে কমানো যায়?">খরচ কত, কমাব কীভাবে?</button>
+      <button class="chip" data-q="ডাক্তারের সাথে আজকের কথাগুলো ফাইলে দিলাম। কোনটা করা ঠিক হবে আর কোনটা নিয়ে প্রশ্ন করা দরকার, ছকে সাজিয়ে বলুন।">ফাইল দিলাম — কোনটা ঠিক, কোনটা নয়?</button>
+    </div>
+
+    <div id="aiFiles" class="chat-files"></div>
+
+    <form class="chat-input" id="aiForm">
+      <button type="button" class="btn icon" id="aiAttach" title="ছবি বা ফাইল যোগ করুন" aria-label="সংযুক্ত করুন">📎</button>
+      <input type="file" id="aiFile" accept="image/*,.md,.txt,.markdown,text/*" multiple hidden>
+      <textarea id="aiText" rows="1" placeholder="ডাক্তার যা বললেন লিখুন, বা প্রশ্ন করুন…" spellcheck="false"></textarea>
+      <button type="submit" class="btn primary" id="aiSend">পাঠান</button>
+    </form>
+    <p class="small muted" style="margin:.5rem .2rem 0">উত্তরে গাইডের কোন অংশ থেকে বলা হচ্ছে তা লেখা থাকবে। <b>ভুল মনে হলে গাইডের ওই সেকশনটা নিজে পড়ে দেখুন</b> — লিংক দেওয়া থাকবে।</p>
   </div>
 </section>
 
@@ -4762,6 +4881,518 @@ function closeNav(){ const s=document.getElementById('sidenav'), b=document.getE
 function toggleNav(){ const s=document.getElementById('sidenav'), b=document.getElementById('menuBtn'), sc=document.getElementById('scrim'); const on=!s.classList.contains('open'); s.classList.toggle('open',on); sc.classList.toggle('on',on); b.setAttribute('aria-expanded',String(on)); document.body.style.overflow = on?'hidden':''; }
 function setRate(v){ R=v; localStorage.setItem('ivf_rate', String(v)); renderMoney(); renderHome(); renderBudget(); renderCycles(); renderProfiles(); const h=(location.hash||'').slice(1).split('/'); if(h[0]==='centre') renderCentre(h[1]); document.querySelectorAll('.rate-echo').forEach(e=>e.textContent=R.toFixed(2)); }
 
+/* ===================== AI CHAT ===================== */
+/* Model IDs are DISCOVERED at runtime, not hard-coded — Google retires them
+   often, and a new one should be picked up without touching this file.
+   The lists below are only the fallback if discovery fails. */
+const AI_GEM_FALLBACK = ['gemini-flash-latest','gemini-3.7-flash','gemini-3.6-flash','gemini-3.5-flash'];
+const AI_OR_FALLBACK  = ['google/gemma-4-31b-it:free','nvidia/nemotron-3.5-lightning:free'];
+const AI_BL_FALLBACK  = ['claude-sonnet-4.6','gemini-3.7-flash','deepseek-v4-flash','glm-5.2'];
+const AI_BL_BASE      = 'https://api.bazaarlink.ai/v1';
+const AI_AI_BASE      = 'https://api.aimlapi.com/v1';
+const AI_AI_FALLBACK  = ['openai/gpt-5-5','claude-sonnet-4.6','gemini-3.7-flash'];
+
+/* OpenAI-compatible gateways, best first. Each is tried in turn; within each,
+   models are discovered at runtime so a newer one is picked up automatically. */
+const AI_OAI = [
+  {k:'ai', name:'AI/ML API',  base:AI_AI_BASE, fallback:AI_AI_FALLBACK, cache:'ai'},
+  /* BazaarLink sends no CORS headers, so a browser cannot call it. Kept in case
+     that changes; it is skipped automatically after the first failure. */
+  {k:'bl', name:'BazaarLink', base:AI_BL_BASE, fallback:AI_BL_FALLBACK, cache:'bl'}
+];
+const aiDead = new Set();   /* providers that failed this session — don't retry */
+const aiCool = new Map();   /* key -> ms timestamp until which it is rate-limited */
+const AI_MAX_TRIES = 8;     /* hard cap so a bad day can't take five minutes */
+const aiHot = k => (aiCool.get(k)||0) < Date.now();
+const aiChill = (k, secs) => aiCool.set(k, Date.now() + (secs||90)*1000);
+const AI_GROQ_TEXT    = 'openai/gpt-oss-120b';
+const AI_GROQ_WEB     = 'groq/compound';
+const AI_KEYSTORE     = 'ivf_ai_keys_v1';
+const AI_MODELCACHE   = 'ivf_ai_models_v1';
+const AI_CACHE_HOURS  = 24;
+
+function aiCacheGet(){
+  try{ const c = JSON.parse(localStorage.getItem(AI_MODELCACHE)||'{}');
+       if(c.at && (Date.now()-c.at) < AI_CACHE_HOURS*3600e3) return c; }catch(e){}
+  return null;
+}
+function aiCacheSet(patch){
+  let c = {}; try{ c = JSON.parse(localStorage.getItem(AI_MODELCACHE)||'{}'); }catch(e){}
+  Object.assign(c, patch, {at:Date.now()});
+  try{ localStorage.setItem(AI_MODELCACHE, JSON.stringify(c)); }catch(e){}
+}
+/* rank gemini models: newest version first, stable before preview, flash before pro */
+function aiRankGem(names){
+  const bad = /(embedding|aqa|tts|image|vision|audio|live|native|thinking-exp|learnlm|gemma)/i;
+  return names.filter(n=>!bad.test(n))
+    .map(n=>{
+      const v = parseFloat((n.match(/gemini-(\d+(?:\.\d+)?)/)||[])[1] || (/latest/.test(n)?'99':'0'));
+      return {n, v, flash:/flash/.test(n)?1:0, lite:/lite/.test(n)?1:0, prev:/preview|exp/.test(n)?1:0};
+    })
+    .sort((a,b)=> b.flash-a.flash || a.prev-b.prev || a.lite-b.lite || b.v-a.v)
+    .map(o=>o.n);
+}
+async function aiDiscoverGemini(key){
+  const c = aiCacheGet(); if(c && c.gem && c.gem.length) return c.gem;
+  try{
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(key)+'&pageSize=200');
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    const names = (j.models||[])
+      .filter(m=>(m.supportedGenerationMethods||[]).indexOf('generateContent')>=0)
+      .map(m=>String(m.name||'').replace('models/',''));
+    const ranked = aiRankGem(names);
+    if(ranked.length){ aiCacheSet({gem:ranked.slice(0,6)}); return ranked.slice(0,6); }
+  }catch(e){}
+  return AI_GEM_FALLBACK;
+}
+/* BazaarLink: an OpenAI-compatible gateway with many frontier models.
+   Prefer the strongest reasoning models — this task is clinical judgement, not chat. */
+async function aiDiscoverOAI(prov, key){
+  const c = aiCacheGet(); if(c && c[prov.cache] && c[prov.cache].length) return c[prov.cache];
+  try{
+    const r = await fetch(prov.base+'/models', {headers:{'Authorization':'Bearer '+key}});
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    const ids = (j.data||[]).map(m=>String(m.id||''));
+    const bad  = /(image|video|audio|tts|embed|rerank|guard|whisper|codex|code|ocr)/i;
+    const tier = id =>
+        /claude-opus/.test(id)      ? 0 :
+        /claude-sonnet/.test(id)    ? 1 :
+        /gemini-[\d.]*-?pro/.test(id) ? 2 :
+        /gpt-[\d.]+(?!-mini)/.test(id) ? 3 :
+        /gemini.*flash/.test(id)    ? 4 :
+        /deepseek|kimi|glm|qwen|minimax/.test(id) ? 5 : 6;
+    const ver = id => parseFloat((id.match(/(\d+(?:\.\d+)?)/)||[])[1]||0);
+    const ranked = ids.filter(id=>id && !bad.test(id))
+      .sort((a,b)=> tier(a)-tier(b) || ver(b)-ver(a));
+    if(ranked.length){ const o={}; o[prov.cache]=ranked.slice(0,6); aiCacheSet(o); return ranked.slice(0,6); }
+  }catch(e){}
+  return prov.fallback;
+}
+async function aiDiscoverOR(key){
+  const c = aiCacheGet(); if(c && c.or && c.or.length) return c.or;
+  try{
+    const r = await fetch('https://openrouter.ai/api/v1/models');
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    const free = (j.data||[]).filter(m=>{
+      const p = m.pricing||{}; return parseFloat(p.prompt||'1')===0 && /:free$/.test(m.id||'');
+    }).sort((a,b)=>(b.context_length||0)-(a.context_length||0)).map(m=>m.id);
+    if(free.length){ aiCacheSet({or:free.slice(0,6)}); return free.slice(0,6); }
+  }catch(e){}
+  return AI_OR_FALLBACK;
+}
+
+let AI_KB = null, AI_KB_LOADING = null;
+let aiHistory = [];      /* [{role:'user'|'model', text}] */
+let aiFiles = [];        /* [{name, mime, b64?, text?}] */
+let aiBusy = false;
+
+function aiKeys(){
+  try{ const k = JSON.parse(localStorage.getItem(AI_KEYSTORE)||'{}');
+       return {gem:(k.gem||[]).filter(Boolean), groq:(k.groq||'').trim(), or:(k.or||'').trim(), bl:(k.bl||'').trim(), ai:(k.ai||'').trim()}; }
+  catch(e){ return {gem:[], groq:'', or:'', bl:'', ai:''}; }
+}
+function aiSaveKeys(gemText, groq, or, bl, ai){
+  const gem = gemText.split(/[\s,;]+/).map(s=>s.trim()).filter(s=>s.length>10);
+  const o = {gem, groq:(groq||'').trim(), or:(or||'').trim(), bl:(bl||'').trim(), ai:(ai||'').trim()};
+  localStorage.setItem(AI_KEYSTORE, JSON.stringify(o));
+  return o;
+}
+function aiKeyState(){
+  const k = aiKeys(); const el = document.getElementById('aiKeyState'); if(!el) return k;
+  const bits = [];
+  if(k.gem.length) bits.push(k.gem.length+'টি Gemini');
+  if(k.groq) bits.push('Groq');
+  if(k.or) bits.push('OpenRouter');
+  if(k.bl) bits.push('BazaarLink');
+  if(k.ai) bits.push('AI/ML');
+  el.textContent = bits.length ? 'সংরক্ষিত: '+bits.join(' + ') : 'কোনো কী সংরক্ষিত নেই';
+  const any = !!(k.gem.length||k.groq||k.or||k.bl||k.ai);
+  const setup = document.getElementById('aiSetup'); if(setup) setup.classList.toggle('done', any);
+  const dot = document.getElementById('aiDot'); if(dot) dot.classList.toggle('on', any);
+  return k;
+}
+
+/* ---- knowledge base: loaded lazily, retrieved by keyword overlap ---- */
+function aiLoadKB(){
+  if(AI_KB) return Promise.resolve(AI_KB);
+  if(AI_KB_LOADING) return AI_KB_LOADING;
+  AI_KB_LOADING = fetch('kb.js').then(r=>r.ok?r.text():Promise.reject(new Error('kb '+r.status)))
+    .then(src=>{ AI_KB = (new Function(src + '; return KB;'))(); return AI_KB; })
+    .catch(e=>{ console.warn('KB load failed', e); AI_KB = []; return AI_KB; });
+  return AI_KB_LOADING;
+}
+function aiTokens(s){
+  return (s||'').toLowerCase()
+    .replace(/[^ঀ-৿a-z0-9\s]/g,' ')
+    .split(/\s+/).filter(w=>w.length>2);
+}
+function aiRetrieve(q, n){
+  if(!AI_KB || !AI_KB.length) return [];
+  const qt = aiTokens(q); if(!qt.length) return [];
+  const uniq = [...new Set(qt)];
+  const scored = AI_KB.map(c=>{
+    const hay = (c.t+' '+c.x).toLowerCase();
+    let s = 0;
+    uniq.forEach(w=>{ if(hay.indexOf(w)>=0){ s += 1; if(c.t.toLowerCase().indexOf(w)>=0) s += 2; } });
+    return {c, s};
+  }).filter(o=>o.s>0).sort((a,b)=>b.s-a.s).slice(0, n||5);
+  return scored.map(o=>o.c);
+}
+function aiContext(q){
+  const hits = aiRetrieve(q, 5);
+  if(!hits.length) return {text:'', ids:[]};
+  let out = '', ids = [];
+  hits.forEach(c=>{
+    const piece = `\n### [${c.id}] ${c.t}\n${c.x.slice(0,3800)}\n`;
+    if(out.length + piece.length < 16000){ out += piece; ids.push(c.id); }
+  });
+  return {text:out, ids:[...new Set(ids)]};
+}
+
+const AI_SYSTEM = `তুমি "IVF ভারত গাইড" নামের একটি বাংলা ওয়েবসাইটের সহায়ক। ওই গাইডটি বাংলাদেশি দম্পতিদের জন্য — ভারতে IVF করানোর সেন্টার, খরচ, ভিসা, ওষুধ ও চিকিৎসার প্রমাণ নিয়ে।
+
+তোমার প্রধান কাজ: ব্যবহারকারী ডাক্তারের সাথে কথোপকথনের নোট, ফাইল বা ছবি দেবে — তুমি সেটিকে নিচের গাইড-অংশের প্রমাণের সাথে মিলিয়ে বলবে **কোনটা করা ঠিক হবে আর কোনটা নিয়ে প্রশ্ন করা দরকার**।
+
+ডাক্তারের কথা/নোট/ফাইল পেলে ঠিক এই ছকে উত্তর দেবে:
+
+**✔ যা ঠিক আছে — নিশ্চিন্তে এগোতে পারেন**
+(যেসব পরামর্শ গাইডের প্রমাণের সাথে মেলে। প্রতিটির পাশে এক লাইনে কেন।)
+
+**⚠ যা নিয়ে প্রশ্ন করা দরকার**
+(যেসব পরামর্শ গাইডের প্রমাণের সাথে মেলে না, বা যেগুলোর প্রমাণ দুর্বল। প্রতিটির জন্য লিখবে:
+ — ডাক্তার কী বলেছেন
+ — গাইড কী বলে (সংখ্যা বা সুপারিশসহ)
+ — **ডাক্তারকে হুবহু যে প্রশ্নটি করবেন** — উদ্ধৃতি চিহ্নে, যাতে কপি করে পড়ে শোনানো যায়)
+
+**? যা গাইডে নেই**
+(যেসব বিষয়ে গাইডে তথ্য নেই — সোজা বলবে, বানিয়ে বলবে না।)
+
+**সবচেয়ে জরুরি প্রশ্ন**
+(উপরের সবের মধ্যে সবচেয়ে গুরুত্বপূর্ণ একটি বা দুটি প্রশ্ন, আলাদা করে।)
+
+শেষে লিখবে গাইডের কোন সেকশন থেকে বলছ, এভাবে: [সূত্র: সেকশন-আইডি]।
+
+সাধারণ প্রশ্ন হলে (ডাক্তারের কথা না হলে) এই ছক লাগবে না — সহজভাবে উত্তর দিয়ে সূত্র লিখবে।
+
+কঠোর নিয়ম:
+- তুমি ডাক্তার নও। রোগ নির্ণয় করবে না, ওষুধ বা ডোজ ঠিক করবে না, কোনো চিকিৎসা শুরু বা বন্ধ করতে বলবে না।
+- ব্যবহারকারীকে কখনো ডাক্তারের নির্দেশ অমান্য করতে বলবে না। মতভেদ থাকলে সেটিকে "ডাক্তারকে জিজ্ঞেস করার প্রশ্ন" হিসেবে দেবে।
+- নিচের গাইড-অংশে যা নেই তা নিজে বানাবে না। না জানলে সোজা বলবে "এটা গাইডে নেই"।
+- সংখ্যা বা তারিখ বানাবে না। গাইডে যা আছে হুবহু তাই বলবে।
+- উত্তর দেবে সহজ বাংলায়, ছোট অনুচ্ছেদে। জরুরি অংশ **বোল্ড** করবে। খুব লম্বা করবে না।
+- কেউ ছেলে/মেয়ে বেছে নেওয়ার উপায় জানতে চাইলে বলবে এটি বাংলাদেশ ও ভারত দুই দেশেই বেআইনি, এবং সাহায্য করবে না।
+- গুরুতর উপসর্গ (তীব্র পেটব্যথা, জ্বর, শ্বাসকষ্ট, প্রচণ্ড রক্তক্ষরণ) বললে সবার আগে দ্রুত ডাক্তার বা হাসপাতালে যেতে বলবে।`;
+
+function aiEsc(s){ return String(s||'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function aiFmt(s){
+  let h = aiEsc(s);
+  h = h.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+  h = h.replace(/\[সূত্র:\s*([^\]]+)\]/g, (m,ids)=>{
+    const links = ids.split(/[,·]/).map(x=>x.trim()).filter(Boolean).map(id=>{
+      const known = document.getElementById(id);
+      return known ? `<a href="#${id}" data-scroll="${id}">${id}</a>` : aiEsc(id);
+    }).join(' · ');
+    return `<span class="src">সূত্র: ${links}</span>`;
+  });
+  return h.replace(/\n/g,'<br>');
+}
+function aiPush(role, text, meta){
+  const log = document.getElementById('aiLog');
+  const d = document.createElement('div');
+  d.className = 'msg ' + (role==='user'?'user':'bot');
+  d.innerHTML = `<div class="bub">${role==='user'?aiEsc(text).replace(/\n/g,'<br>'):aiFmt(text)}${meta?`<div class="meta">${aiEsc(meta)}</div>`:''}</div>`;
+  log.appendChild(d); log.scrollTop = log.scrollHeight;
+  return d;
+}
+
+/* ---- providers ---- */
+async function aiCallGemini(key, model, parts, useHistory){
+  const contents = [];
+  if(useHistory) aiHistory.slice(-8).forEach(m=>contents.push({role:m.role, parts:[{text:m.text}]}));
+  contents.push({role:'user', parts});
+  const body = {
+    contents,
+    systemInstruction:{parts:[{text:AI_SYSTEM}]},
+    generationConfig:{temperature:0.3, maxOutputTokens:4096},
+    safetySettings:[
+      {category:'HARM_CATEGORY_HARASSMENT',threshold:'BLOCK_ONLY_HIGH'},
+      {category:'HARM_CATEGORY_HATE_SPEECH',threshold:'BLOCK_ONLY_HIGH'},
+      {category:'HARM_CATEGORY_SEXUALLY_EXPLICIT',threshold:'BLOCK_ONLY_HIGH'},
+      {category:'HARM_CATEGORY_DANGEROUS_CONTENT',threshold:'BLOCK_ONLY_HIGH'}
+    ]
+  };
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`,
+    {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok){ const e = new Error((j.error&&j.error.message)||('HTTP '+r.status)); e.code = r.status; throw e; }
+  const cand = (j.candidates||[])[0];
+  const txt = cand && cand.content && (cand.content.parts||[]).map(p=>p.text||'').join('').trim();
+  if(!txt){
+    if(cand && cand.finishReason && cand.finishReason!=='STOP') throw new Error('বন্ধ হয়ে গেছে: '+cand.finishReason);
+    throw new Error('খালি উত্তর');
+  }
+  return txt;
+}
+/* one OpenAI-shaped caller for both Groq and OpenRouter */
+async function aiCallOpenAI(url, key, model, prompt, extraHeaders){
+  const msgs = [{role:'system', content:AI_SYSTEM}];
+  aiHistory.slice(-6).forEach(m=>msgs.push({role:m.role==='model'?'assistant':'user', content:m.text}));
+  msgs.push({role:'user', content:prompt});
+  const r = await fetch(url, {
+    method:'POST',
+    headers:Object.assign({'Authorization':'Bearer '+key,'Content-Type':'application/json'}, extraHeaders||{}),
+    body:JSON.stringify({model, messages:msgs, temperature:0.3, max_tokens:2400})
+  });
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok){ const e = new Error((j.error&&(j.error.message||j.error))||('HTTP '+r.status)); e.code = r.status; throw e; }
+  if(j.error){ const e = new Error(j.error.message||String(j.error)); e.code = j.error.code||500; throw e; }
+  const m = ((j.choices||[])[0]||{}).message || {};
+  let out = (m.content||'').trim();
+  /* some open models leak their scratchpad — keep only the answer */
+  out = out.replace(/^[\s\S]*?<\/think>\s*/i,'').replace(/^(here'?s? (a |my )?thinking process:|আমার ভাবনা:)[\s\S]*?\n\n/i,'').trim();
+  if(!out) throw new Error('খালি উত্তর');
+  return out;
+}
+const aiCallGroq = (key, model, prompt) =>
+  aiCallOpenAI('https://api.groq.com/openai/v1/chat/completions', key, model, prompt);
+const aiCallGw = (base, key, model, prompt) =>
+  aiCallOpenAI(base+'/chat/completions', key, model, prompt);
+const aiCallOR = (key, model, prompt) =>
+  aiCallOpenAI('https://openrouter.ai/api/v1/chat/completions', key, model, prompt,
+    {'HTTP-Referer':location.origin, 'X-Title':'IVF Bharat Guide'});
+
+async function aiAsk(question){
+  const keys = aiKeys();
+  if(!keys.gem.length && !keys.groq && !keys.or && !keys.bl && !keys.ai){ throw new Error('আগে উপরে API কী বসান।'); }
+  await aiLoadKB();
+  const fileBlob = aiFiles.filter(f=>f.text).map(f=>f.text).join(' ').slice(0,4000);
+  const ctx = aiContext(question + ' ' + fileBlob);
+  const hasImage = aiFiles.some(f=>f.b64);
+  const wantWeb = document.getElementById('aiWeb') && document.getElementById('aiWeb').checked;
+
+  let prompt = '';
+  if(ctx.text) prompt += `নিচে ওই গাইডের প্রাসঙ্গিক অংশ দেওয়া হলো। এগুলোই তোমার প্রধান সূত্র:\n${ctx.text}\n---\n`;
+  const txtFiles = aiFiles.filter(f=>f.text);
+  if(txtFiles.length) prompt += txtFiles.map(f=>`ব্যবহারকারীর ফাইল "${f.name}":\n${f.text.slice(0,12000)}`).join('\n\n') + '\n---\n';
+  prompt += 'ব্যবহারকারীর প্রশ্ন: ' + question;
+
+  const tried = [];
+  const retryable = c => !c || c===429 || c===500 || c===502 || c===503 || c===504;
+
+  /* 1. web search first, if asked (images cannot go this route) */
+  if(wantWeb && keys.groq && !hasImage){
+    try{ const t = await aiCallGroq(keys.groq, AI_GROQ_WEB, prompt + '\n\n(প্রয়োজনে ইন্টারনেটে খুঁজে দেখো, এবং কোথা থেকে পেলে তা লিখো।)');
+         return {text:t, who:'Groq · ওয়েব সার্চ', ids:ctx.ids}; }
+    catch(e){ tried.push('web:'+(e.code||e.message)); }
+  }
+
+  /* 2. OpenAI-compatible gateways, best first — these carry the strongest models. Text only. */
+  if(!hasImage){
+    for(const prov of AI_OAI){
+      const key = keys[prov.k]; if(!key || aiDead.has(prov.k)) continue;
+      const models = await aiDiscoverOAI(prov, key);
+      for(const model of models){
+        try{ const t = await aiCallGw(prov.base, key, model, prompt);
+             return {text:t, who:prov.name+' · '+model, ids:ctx.ids}; }
+        catch(e){
+          const blocked = !e.code;                       /* CORS / network — the whole host is unusable */
+          const noFunds = e.code===401 || e.code===403;  /* key or balance problem — no other model will help */
+          tried.push(prov.k+':'+(blocked?'cors':e.code));
+          if(blocked || noFunds){ aiDead.add(prov.k); break; }
+        }
+      }
+    }
+  }
+
+  /* 3. Gemini — discovered models × every key. Handles images. */
+  if(keys.gem.length){
+    const parts = [{text:prompt}];
+    aiFiles.filter(f=>f.b64).forEach(f=>parts.push({inline_data:{mime_type:f.mime, data:f.b64}}));
+    const models = (await aiDiscoverGemini(keys.gem[0])).slice(0,3);
+    const deadModels = new Set();
+    let n = 0;
+    outer:
+    for(const k of keys.gem){                 /* key-major: a hot key answers on its best model */
+      if(!aiHot(k)) continue;
+      for(const model of models){
+        if(deadModels.has(model)) continue;
+        if(++n > AI_MAX_TRIES) break outer;
+        try{ const t = await aiCallGemini(k, model, parts, true);
+             return {text:t, who:'Gemini · '+model, ids:ctx.ids}; }
+        catch(e){
+          tried.push(model.replace('gemini-','')+':'+(e.code||''));
+          if(e.code===429){ aiChill(k); continue outer; }        /* this key is spent — next key */
+          if(e.code===404 || e.code===400){ deadModels.add(model); continue; }  /* model gone */
+          if(!retryable(e.code)) continue outer;
+        }
+      }
+    }
+  }
+
+  /* 4. OpenRouter free models (text only) */
+  if(keys.or && !hasImage){
+    const models = await aiDiscoverOR(keys.or);
+    for(const model of models){
+      try{ const t = await aiCallOR(keys.or, model, prompt);
+           return {text:t, who:'OpenRouter · '+model, ids:ctx.ids}; }
+      catch(e){ tried.push('or:'+(e.code||'')); }
+    }
+  }
+
+  /* 5. Groq plain text */
+  if(keys.groq && !hasImage){
+    for(const model of [AI_GROQ_TEXT, AI_GROQ_WEB]){
+      try{ const t = await aiCallGroq(keys.groq, model, prompt);
+           return {text:t, who:'Groq · '+model, ids:ctx.ids}; }
+      catch(e){ tried.push('groq:'+(e.code||'')); }
+    }
+  }
+
+  /* everything failed — drop any stale discovered model list so the next try re-discovers */
+  try{ localStorage.removeItem(AI_MODELCACHE); }catch(e){}
+  const imgNote = hasImage ? ' ছবি শুধু Gemini পড়তে পারে, আর সব Gemini কী-ই ব্যর্থ হয়েছে। ছবি ছাড়া লিখে দেখুন।' : '';
+  throw new Error('কোনো মডেলই উত্তর দিল না।' + imgNote + ' চেষ্টা: ' + tried.slice(0,8).join(', '));
+}
+
+function aiRenderFiles(){
+  const box = document.getElementById('aiFiles'); if(!box) return;
+  box.innerHTML = aiFiles.map((f,i)=>`<span class="fchip">${f.b64?'🖼':'📄'} ${aiEsc(f.name)} <button data-rmf="${i}" aria-label="বাদ দিন">×</button></span>`).join('');
+}
+function aiAddFile(file){
+  const isImg = /^image\//.test(file.type);
+  if(file.size > 6*1024*1024){ aiPush('bot','ফাইলটি খুব বড় (৬ MB-এর বেশি)। ছোট করে আবার দিন।'); return; }
+  const rd = new FileReader();
+  rd.onload = ()=>{
+    if(isImg) aiFiles.push({name:file.name, mime:file.type, b64:String(rd.result).split(',')[1]});
+    else aiFiles.push({name:file.name, text:String(rd.result)});
+    aiRenderFiles();
+  };
+  isImg ? rd.readAsDataURL(file) : rd.readAsText(file);
+}
+
+async function aiSubmit(q){
+  if(aiBusy) return;
+  const ta = document.getElementById('aiText');
+  const question = (q!=null ? q : ta.value).trim();
+  if(!question && !aiFiles.length) return;
+  aiBusy = true;
+  const btn = document.getElementById('aiSend'); if(btn){ btn.disabled = true; btn.textContent = '…'; }
+  const fileNote = aiFiles.length ? ' ['+aiFiles.map(f=>f.name).join(', ')+']' : '';
+  aiPush('user', question + fileNote);
+  if(q==null) ta.value = '';
+  const chips = document.getElementById('aiChips'); if(chips) chips.style.display='none';
+  const thinking = aiPush('bot','ভাবছি…');
+  const t0 = Date.now();
+  const tick = setInterval(()=>{
+    const el = thinking.querySelector('.bub'); if(!el) return;
+    const s = Math.round((Date.now()-t0)/1000);
+    el.textContent = s < 12 ? 'ভাবছি…'
+      : s < 40 ? 'ভাবছি… ('+s+'s) — গাইড পড়ছি'
+      : 'একটু সময় লাগছে ('+s+'s) — ফ্রি কোটা শেষ হলে পরের কী-তে যাচ্ছি, অপেক্ষা করুন';
+  }, 1000);
+  try{
+    const res = await aiAsk(question);
+    thinking.querySelector('.bub').innerHTML = aiFmt(res.text) + `<div class="meta">${aiEsc(res.who)}</div>`;
+    aiHistory.push({role:'user', text:question});
+    aiHistory.push({role:'model', text:res.text});
+    const who = document.getElementById('aiWho'); if(who) who.textContent = res.who;
+  }catch(e){
+    thinking.querySelector('.bub').innerHTML = '<b>উত্তর আনা গেল না।</b><br>'+aiEsc(e.message);
+  }finally{
+    clearInterval(tick);
+    aiFiles = []; aiRenderFiles();
+    aiBusy = false;
+    if(btn){ btn.disabled = false; btn.textContent = 'পাঠান'; }
+    const log = document.getElementById('aiLog'); if(log) log.scrollTop = log.scrollHeight;
+  }
+}
+
+function aiSortKeys(blob){
+  const out = {gem:[], groq:'', or:'', bl:'', ai:''};
+  (blob||'').split(/[\s,;"'`]+/).map(x=>x.trim()).filter(x=>x.length>15).forEach(k=>{
+    if(/^AQ\./.test(k))            out.gem.push(k);
+    else if(/^gsk_/.test(k))        out.groq = k;
+    else if(/^sk-or-/.test(k))      out.or   = k;
+    else if(/^sk-bl-/.test(k))      out.bl   = k;
+    else if(/^[0-9a-f]{32}$/i.test(k)) out.ai = k;
+    else if(/^AIza/.test(k))        out.gem.push(k);   /* older Google key format */
+  });
+  return out;
+}
+
+function initChat(){
+  const setup = document.getElementById('aiSetup'); if(!setup) return;
+  const k = aiKeyState();
+  const gemBox = document.getElementById('aiGem'),
+        groqBox = document.getElementById('aiGroq'),
+        orBox   = document.getElementById('aiOR'),
+        blBox   = document.getElementById('aiBL'),
+        aiBox   = document.getElementById('aiAIML');
+  const mask = v => v ? v.slice(0,6)+'…'+v.slice(-4) : '';
+  if(gemBox && k.gem.length) gemBox.value = k.gem.map(mask).join('\n');
+  if(groqBox && k.groq) groqBox.value = mask(k.groq);
+  if(orBox && k.or) orBox.value = mask(k.or);
+  if(blBox && k.bl) blBox.value = mask(k.bl);
+  if(aiBox && k.ai) aiBox.value = mask(k.ai);
+
+  document.getElementById('aiSave').addEventListener('click', ()=>{
+    const cur = aiKeys();
+    const g = gemBox.value.includes('…') ? cur.gem.join('\n') : gemBox.value;
+    const q = groqBox.value.includes('…') ? cur.groq : groqBox.value;
+    const o = orBox.value.includes('…')   ? cur.or   : orBox.value;
+    const b = blBox.value.includes('…')   ? cur.bl   : blBox.value;
+    const a = aiBox.value.includes('…')   ? cur.ai   : aiBox.value;
+    aiSaveKeys(g, q, o, b, a); aiKeyState();
+    try{ localStorage.removeItem(AI_MODELCACHE); }catch(e){}   /* re-discover with the new keys */
+    aiPush('bot','কী সংরক্ষিত হয়েছে। এখন প্রশ্ন করতে পারেন।');
+  });
+  document.getElementById('aiClear').addEventListener('click', ()=>{
+    localStorage.removeItem(AI_KEYSTORE); try{localStorage.removeItem(AI_MODELCACHE);}catch(e){}
+    gemBox.value=''; groqBox.value=''; orBox.value=''; blBox.value=''; aiBox.value=''; aiKeyState();
+  });
+  document.getElementById('aiSort').addEventListener('click', ()=>{
+    const bulk = document.getElementById('aiBulk');
+    const f = aiSortKeys(bulk.value);
+    const cur = aiKeys();
+    const gem = [...new Set(f.gem.concat(bulk.value.includes('…')?cur.gem:[]))];
+    aiSaveKeys(gem.join('\n'), f.groq||cur.groq, f.or||cur.or, f.bl||cur.bl, f.ai||cur.ai);
+    try{ localStorage.removeItem(AI_MODELCACHE); }catch(e){}
+    const k = aiKeyState();
+    if(gemBox) gemBox.value = k.gem.map(mask).join('\n');
+    if(groqBox) groqBox.value = mask(k.groq);
+    if(orBox) orBox.value = mask(k.or);
+    if(blBox) blBox.value = mask(k.bl);
+    if(aiBox) aiBox.value = mask(k.ai);
+    bulk.value = '';
+    const st = document.getElementById('aiSortState');
+    const n = k.gem.length + (k.groq?1:0) + (k.or?1:0) + (k.bl?1:0) + (k.ai?1:0);
+    if(st) st.textContent = n ? n+'টি কী বসানো হয়েছে ✓' : 'চেনা কোনো কী পাওয়া যায়নি';
+  });
+  document.getElementById('aiForm').addEventListener('submit', e=>{ e.preventDefault(); aiSubmit(); });
+  document.getElementById('aiAttach').addEventListener('click', ()=>document.getElementById('aiFile').click());
+  document.getElementById('aiFile').addEventListener('change', e=>{ [...e.target.files].forEach(aiAddFile); e.target.value=''; });
+  document.getElementById('aiFiles').addEventListener('click', e=>{
+    const b = e.target.closest('[data-rmf]'); if(!b) return;
+    aiFiles.splice(+b.dataset.rmf,1); aiRenderFiles();
+  });
+  document.getElementById('aiChips').addEventListener('click', e=>{
+    const b = e.target.closest('[data-q]'); if(!b) return; aiSubmit(b.dataset.q);
+  });
+  document.getElementById('aiReset').addEventListener('click', ()=>{
+    aiHistory = []; aiFiles = []; aiRenderFiles();
+    const log = document.getElementById('aiLog');
+    log.innerHTML = '<div class="msg bot"><div class="bub">নতুন করে শুরু করলাম। বলুন।</div></div>';
+    const chips = document.getElementById('aiChips'); if(chips) chips.style.display='';
+  });
+  const ta = document.getElementById('aiText');
+  ta.addEventListener('input', ()=>{ ta.style.height='auto'; ta.style.height = Math.min(ta.scrollHeight,140)+'px'; });
+  ta.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); aiSubmit(); } });
+  aiLoadKB();
+}
+
 /* ===================== PROFILE MATCHER ===================== */
 const PROFILES = [
 {
@@ -4978,7 +5609,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const mb=document.getElementById('menuBtn'); if(mb) mb.addEventListener('click', toggleNav);
   const sc=document.getElementById('scrim'); if(sc) sc.addEventListener('click', closeNav);
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeNav(); });
-  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); renderCycles(); renderProfiles(); addProfileLinks(); initPlanner(); route();
+  convertRupees(document.body); renderMoney(); renderHome(); renderBudget(); renderCycles(); renderProfiles(); initChat(); addProfileLinks(); initPlanner(); route();
   document.addEventListener('click', e=>{
     const a=e.target.closest('[data-scroll]'); if(!a) return;
     e.preventDefault();
