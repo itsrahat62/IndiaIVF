@@ -544,6 +544,17 @@ nav.jump a:hover{background:var(--accent-soft);border-color:var(--accent)}
 nav.jump a b{display:inline-grid;place-items:center;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--accent);color:var(--on-grad,#fff);font-size:.72rem;line-height:1}
 @media(max-width:560px){nav.jump a{font-size:.78rem;padding:.3rem .58rem}}
 
+/* collapsible "read more" blocks */
+details.more{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:1rem 0;overflow:hidden}
+details.more > summary{cursor:pointer;list-style:none;padding:.8rem 1rem .8rem 2.9rem;font-weight:700;position:relative;color:var(--accent-ink,var(--ink));background:var(--accent-soft);transition:background .15s}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::before{content:"+";position:absolute;left:.95rem;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--accent);color:#fff;font-size:1rem;line-height:1;font-weight:700}
+details.more[open] > summary::before{content:"−"}
+details.more > summary:hover{filter:brightness(.97)}
+details.more .more-body{padding:.9rem 1rem 1.1rem;border-top:1px solid var(--line)}
+details.more .more-body > :first-child{margin-top:0}
+@media(max-width:560px){details.more > summary{padding:.7rem .8rem .7rem 2.7rem;font-size:.94rem}details.more .more-body{padding:.8rem .8rem 1rem}}
+
 </style>
 </head>
 <body>
@@ -1851,12 +1862,12 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
     <h2>ভারতীয় মেডিকেল ভিসা — A থেকে Z <small class="h2sub">কোন সাইটে আবেদন · হাসপাতালের চিঠি · IVAC অ্যাপয়েন্টমেন্টের ৫টার যুদ্ধ · ফি · কাগজ · সমস্যা ও সমাধান</small></h2>
 
     <div class="callout bad">
-      <b>শুরুতেই তিনটি কথা — এগুলো না জানলে সময় ও টাকা দুটোই নষ্ট হবে</b>
+      <b>ভুল করার আগে চারটি কথা</b>
       <ol style="margin:.5rem 0 0">
-        <li><b>বাংলাদেশিরা <span style="text-decoration:line-through">indianvisaonline.gov.in</span>-এ আবেদন করেন না।</b> সঠিক ঠিকানা <b><a href="https://indianvisa-bangladesh.nic.in/">indianvisa-bangladesh.nic.in</a></b> — সাইটটি নিজেই লিখেছে: <i>"This is the only website for application of Indian Visa to Indian Missions/Posts in Bangladesh."</i> <span class="pill v">✔</span></li>
-        <li><b>পোর্টালটি সম্ভবত শুধু বাংলাদেশ থেকেই খোলে</b> — বিদেশ থেকে চেষ্টা করলে সাড়া না-ও দিতে পারে (আমরা বাইরের নেটওয়ার্ক থেকে খুলতে পারিনি)। না খুললে <a href="https://www.ivacbd.com/">ivacbd.com</a>-এর <b>"Apply Online"</b> বোতাম দিয়ে ঢুকুন — সেটি একই পোর্টালে নিয়ে যায়।</li>
-        <li><b>অ্যাপয়েন্টমেন্টের স্লট দিনে একবারই ছাড়া হয় — ঠিক বিকেল ৫টায়</b>, এবং তা <b>শুধু পরের কার্যদিবসের জন্য</b>। তার আগে ওয়েবফাইল আপলোড করতে হয় দুপুরের নির্দিষ্ট জানালায়। এটাই পুরো প্রক্রিয়ার সবচেয়ে কঠিন ধাপ।</li>
-        <li><b>হাসপাতালের ইনভাইটেশন লেটার এখন সরকারি পোর্টাল থেকে জেনারেট করতে হয়</b> — ভারতীয় মিশনের ভাষায়: <i>"Medical Visa will be issued only after pre-validation letter generated from the portal"</i> (<a href="https://indianfrro.gov.in/frro/medicalvaluetravel/">Medical &amp; Ayush Visa Portal</a>)। <span class="pill v">✔</span></li>
+        <li><b>সঠিক ওয়েবসাইট: <a href="https://indianvisa-bangladesh.nic.in/">indianvisa-bangladesh.nic.in</a></b><br><small class="muted"><s>indianvisaonline.gov.in</s> নয় — ওটা অন্য দেশের জন্য। খুলতে সমস্যা হলে <a href="https://www.ivacbd.com/">ivacbd.com</a>-এর “Apply Online” বোতাম দিয়ে ঢুকুন।</small></li>
+        <li><b>আগে হাসপাতালের চিঠি, তারপর সব।</b><br><small class="muted">চিঠি ছাড়া আবেদনই করা যায় না। আর চিঠিটা সরকারি পোর্টাল থেকে জেনারেট হতে হবে।</small></li>
+        <li><b>স্লট ছাড়া হয় দিনে একবার — ঠিক বিকেল ৫টায়</b><br><small class="muted">শুধু পরের কার্যদিবসের জন্য। এটাই সবচেয়ে কঠিন ধাপ — আলাদা করে প্রস্তুতি নিন।</small></li>
+        <li><b>বাংলাদেশিরা e-Visa পান না</b><br><small class="muted">সবাইকে IVAC-এ গিয়ে বায়োমেট্রিক দিতে হয়। ইন্টারনেটে “India e-Visa” নিয়ে যা লেখা, তা আপনার ক্ষেত্রে খাটে না।</small></li>
       </ol>
     </div>
 
@@ -1890,8 +1901,27 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       <div style="margin-top:.6rem"><b>এবং মনে রাখুন — ভিসা যে হাসপাতালের নামে, চিকিৎসাও সেখানেই করতে হবে।</b> IVAC-এর নিজস্ব নোটিশ: <i>"Change of Hospital requires FRRO permission in India. Change of hospital without FRRO permission amounts to visa rules violation and may lead to restrictions on travel to India in future."</i> <span class="pill v">✔</span> অর্থাৎ <b>ভিসার আগেই সেন্টার চূড়ান্ত করুন</b> — পরে মন বদলালে ঝামেলা।</div>
     </div>
 
-    <h3 id="whichvisa" style="margin-top:1.4rem">কে কোন ভিসা নেবেন — স্বামী M1 না M2?</h3>
-    <p>দম্পতি হিসেবে গেলে এই প্রশ্নটাই সবচেয়ে বেশি করা হয়। উত্তর: <b>স্ত্রী অবশ্যই M1</b>। স্বামীর ক্ষেত্রে দুটোই বৈধ, তবে <b>M1 হলে সুবিধা বেশি</b> — এবং IVF-এ সেটা <i>সত্যও</i>, কারণ স্বামীও নমুনা দেন, অর্থাৎ তিনিও চিকিৎসাধীন।</p>
+        <h3 style="margin-top:1.4rem" id="whichvisa">কে কোন ভিসা নেবেন — এক নজরে</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>কে</th><th>কোন ভিসা</th><th>কেন</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td><b>স্ত্রী</b> (রোগী)</td><td><b>M1</b></td><td>তিনিই চিকিৎসা নিচ্ছেন — এতে কোনো প্রশ্ন নেই</td></tr>
+          <tr class="hl"><td><b>স্বামী</b></td><td><b>M1 চাইলে ভালো</b><br><small class="muted">না হলে M2-ও ঠিক আছে</small></td><td>IVF-এ তিনিও নমুনা দেন, তাই রোগী হিসেবে চিঠি চাওয়া যায়। <b>M1 হলে সুবিধা:</b> স্ত্রীর ভিসার উপর নির্ভর করতে হয় না</td></tr>
+          <tr><td><b>মা / অন্য সঙ্গী</b></td><td><b>M2</b><br><small class="muted">(অ্যাটেনডেন্ট)</small></td><td>সর্বোচ্চ <b>৩ জন</b> অ্যাটেনডেন্ট নেওয়া যায় — এটি সরকারি নথিতে লেখা</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good">
+      <b>মেয়াদ ও এন্ট্রি দুটোতেই M1 আর M2 একই — পার্থক্য শুধু একটাই:</b> M2 রোগীর ভিসার সাথে বাঁধা থাকে (<i>co-terminus</i>), তাই মেয়াদ বাড়াতে গেলে রোগীর কাগজও লাগে। M1 নিজে দাঁড়িয়ে থাকে।
+      <div style="margin-top:.5rem"><b>দুজনেই যা পাবেন:</b> মেয়াদ <b>১ বছর পর্যন্ত</b> · <b>৩টি এন্ট্রি</b> · আরও এক বছর বাড়ানো যায়। <b>৩ এন্ট্রি মানে FET-এর দ্বিতীয় ট্রিপে নতুন ভিসা লাগবে না</b> — শর্ত একটাই, হাসপাতালের চিঠিতে চিকিৎসার সময়কাল <b>৯–১২ মাস</b> লেখাতে হবে।</div>
+    </div>
+
+    <details class="more">
+      <summary>স্বামীর জন্য M1 না M2 — পুরো যুক্তি ও সরকারি ভাষ্য</summary>
+      <div class="more-body">
+      <p class="small muted">সংক্ষেপে উপরেই সব আছে। নিচে শুধু কেন — সরকারি নথির হুবহু বাক্যসহ।</p>
+<p>দম্পতি হিসেবে গেলে এই প্রশ্নটাই সবচেয়ে বেশি করা হয়। উত্তর: <b>স্ত্রী অবশ্যই M1</b>। স্বামীর ক্ষেত্রে দুটোই বৈধ, তবে <b>M1 হলে সুবিধা বেশি</b> — এবং IVF-এ সেটা <i>সত্যও</i>, কারণ স্বামীও নমুনা দেন, অর্থাৎ তিনিও চিকিৎসাধীন।</p>
     <div class="tbl compact">
       <table>
         <thead><tr><th>বিষয়</th><th>M1 (রোগী)</th><th>M2 / MED-X (মেডিকেল অ্যাটেনডেন্ট)</th></tr></thead>
@@ -1973,8 +2003,9 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
         </ul>
       </div>
     </div>
-
-    <h3 style="margin-top:1.4rem">ধাপ ১–৪ — অনলাইন ফর্ম ও অ্যাপয়েন্টমেন্টের নিয়ম</h3>
+      </div>
+    </details>
+<h3 style="margin-top:1.4rem">ধাপ ১–৪ — অনলাইন ফর্ম ও অ্যাপয়েন্টমেন্টের নিয়ম</h3>
     <p class="small">নিচের নিয়মগুলো <b>অ্যাপয়েন্টমেন্ট পোর্টালে হুবহু লেখা আছে</b> <span class="pill v">✔</span> — এগুলো ভাঙলে বুকিং বাতিল বা ভিসা রিজেক্ট হতে পারে:</p>
     <div class="tbl compact">
       <table>
@@ -2008,8 +2039,11 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       </ul>
     </div>
 
-    <h3 style="margin-top:1.4rem" id="ayush">"এখন নাকি মেডিকেল নয়, আয়ুষ ভিসা দিচ্ছে" — আসল ব্যাপারটা কী</h3>
-    <div class="callout good">
+        <details class="more" id="ayush">
+      <summary>“এখন নাকি মেডিকেল নয়, আয়ুষ ভিসা দিচ্ছে” — গুজবটা কি সত্যি?</summary>
+      <div class="more-body">
+      <p class="small muted">এক কথায়: <b>গুজবটি ভুল।</b> আয়ুষ মেডিকেল ভিসার বিকল্প নয়, এটি মেডিকেল ভিসারই একটি উপ-শ্রেণি — এবং IVF সবসময় M1-এ পড়ে। নিচে প্রমাণ।</p>
+<div class="callout good">
       <b>সংক্ষেপে: কথাটা ভুল বোঝাবুঝি। আয়ুষ মেডিকেল ভিসার <i>বিকল্প</i> নয় — আয়ুষ নিজেই মেডিকেল ভিসার একটি <i>উপ-শ্রেণি</i>।</b>
       IVAC-এর নিজস্ব "Visa Category Wise Documents Required" নথিতে <b>দুটি আলাদা পাতা</b> আছে, দুটিরই শিরোনাম <b>"MEDICAL VISA"</b>: <span class="pill v">✔ যাচাইকৃত</span>
       <ul style="margin:.5rem 0 0">
@@ -2058,8 +2092,9 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
         <div class="callout warn" style="margin-bottom:0"><b>ভুল শ্রেণিতে গেলে ঝুঁকি:</b> ভিসার শর্ত হলো <b>যে চিকিৎসার জন্য ভিসা, সেটিই এবং যে হাসপাতালের নামে, সেখানেই</b>। আয়ুষ ভিসায় অ্যালোপ্যাথিক IVF করাতে গেলে হাসপাতাল রেজিস্ট্রেশনে সমস্যা, FRRO এক্সটেনশন নাকচ, এমনকি ভিসা-শর্ত লঙ্ঘনের ঝুঁকি — যা ভবিষ্যতের আবেদনেও প্রভাব ফেলে।</div>
       </div>
     </div>
-
-    <h3 style="margin-top:1.4rem">কাগজপত্র (M1 = রোগী · M2 = অ্যাটেনডেন্ট)</h3>
+      </div>
+    </details>
+<h3 style="margin-top:1.4rem">কাগজপত্র (M1 = রোগী · M2 = অ্যাটেনডেন্ট)</h3>
     <p class="small">সরকারি সূত্র: ঢাকার ভারতীয় হাইকমিশনের <a href="https://hcidhaka.gov.in/pdf/Documents_Required_for_Visa%20_for_website.pdf">Documents Required for Visa (PDF)</a> ও IVAC-এর <b>সংশোধিত</b> তালিকা। <span class="pill v">✔</span> <b>অ্যাটেনডেন্টের জন্য আলাদা তালিকা নেই</b> — একই কাগজ, শুধু রোগীর চিঠিতে তাঁর নাম-পাসপোর্ট থাকতে হবে।</p>
     <div class="tbl">
       <table>
@@ -2146,8 +2181,11 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       <div style="margin-top:.5rem"><b>তাই:</b> কাগজপত্র একটি <b>স্বচ্ছ প্লাস্টিক ব্যাগে</b> নিন; মোবাইল ও হ্যান্ডব্যাগ গাড়িতে বা বাইরে কারও কাছে রেখে যান; <b>পেমেন্টের রসিদ</b> ও <b>OTP-তে ব্যবহৃত মোবাইল নম্বরটি</b> সঙ্গে রাখুন (নম্বরটি লিখে নিন, যেহেতু ফোন নেওয়া যাবে না)।</div>
     </div>
 
-    <h3 style="margin-top:1.4rem">সমস্যা → কারণ → সমাধান <small class="h2sub" style="display:inline">— নিজে আবেদন করতে গেলে যা যা ঘটে</small></h3>
-    <div class="tbl">
+        <details class="more">
+      <summary>কিছু আটকে গেলে — সমস্যা → কারণ → সমাধান</summary>
+      <div class="more-body">
+      <p class="small muted">সব ঠিকঠাক চললে এটি লাগবে না। আটকে গেলে এখানে খুঁজুন।</p>
+<div class="tbl">
       <table>
         <thead><tr><th>সমস্যা</th><th>কেন হয়</th><th>কী করবেন</th></tr></thead>
         <tbody>
@@ -2181,8 +2219,10 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
         </tbody>
       </table>
     </div>
+      </div>
+    </details>
 
-    <div class="grid grid-2" style="margin-top:.8rem">
+<div class="grid grid-2" style="margin-top:.8rem">
       <div class="card">
         <h4>সফল হওয়ার ১০টি নিয়ম</h4>
         <ol>
@@ -3632,48 +3672,154 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 
 
 <!-- ============ 12. VOICES ============ -->
+<!-- ============ COMMUNITY VOICES ============ -->
 <section id="voices">
-  <div class="wrap">
-    <h2>বাংলাদেশিরা কী বলছেন — ফেসবুক গ্রুপ, ইউটিউব, সংবাদ</h2>
-    <div class="callout"><b>সততার সাথে বলা দরকার:</b> বাংলাদেশি IVF-অভিজ্ঞতার আসল আলোচনা হয় <b>ফেসবুকের গ্রুপে</b>, যেগুলোর পোস্ট লগইন ছাড়া পড়া যায় না (আমরা শুধু গ্রুপের নাম/সদস্য-সংখ্যা/টিজার দেখতে পেরেছি)। তাই এখানে যা আছে তা মূলত <b>বাংলা ইউটিউব ভ্লগের কমেন্ট-থ্রেড</b> (আমরা সরাসরি পড়েছি) ও সংবাদমাধ্যম থেকে। এই গ্রুপগুলোতে নিজে পোস্ট করে "কেউ CMC/Ganga Ram/Oasis-এ করেছেন?" জিজ্ঞেস করুন — সবচেয়ে কাজের উৎস।</div>
-    <div class="grid grid-2">
-      <div class="card">
-        <h4>ফেসবুক গ্রুপ/পেজ (অবস্থা ১৮ আগস্ট ২০২৬)</h4>
-        <ul>
-          <li><a href="https://www.facebook.com/groups/1345962540601021/">Infertility Help Group Bangladesh (বন্ধ্যাত্ব হেল্প গ্রুপ)</a> — পাবলিক, <b>৪৪.৭ হাজার সদস্য</b> — সবচেয়ে বড়; Nova IVF নিয়ে থ্রেড আছে (<a href="https://www.facebook.com/groups/1345962540601021/permalink/1512148917315715/">লিংক</a>)</li>
-          <li><a href="https://www.facebook.com/groups/1380905560182769/">Infertility Help Group Bangladesh (২য়)</a> — পাবলিক, ১৬.৮ হাজার সদস্য</li>
-          <li><a href="https://www.facebook.com/groups/ivfbd/">INDIAN IVF TREATMENT COMMUNITY BANGLADESH</a> — প্রাইভেট, ৮৩ সদস্য (২০২৩), নিষ্ক্রিয়</li>
-          <li><a href="https://www.facebook.com/groups/1533490631905797/">IVF Journey Bangladesh</a> — ফাঁকা · <a href="https://www.facebook.com/IVFBangladesh/">IVF community of Bangladesh</a> (পেজ, ৩.৪ হাজার, ২০২২ থেকে নিষ্ক্রিয়)</li>
-          <li><a href="https://www.facebook.com/PFRCBD/">PFRC Bangladesh</a> — পেজ, ২৬ হাজার ফলোয়ার, ঢাকা লিয়াজোঁ অফিস; শুধু প্রোমো পোস্ট, কমেন্ট দেখা যায়নি (নিজেদের পেজ — নিরপেক্ষ নয়)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>সংবাদমাধ্যম ও নিয়ন্ত্রক-তথ্য</h4>
-        <ul>
-          <li><b>BMJ (সেপ্টে ২০২৫):</b> ভারতে egg-sharing, ডোনারের অনুমতি ছাড়া ডিম ব্যবহার, ভ্রূণ ফ্রিজ না করে গোপনে অন্য রোগীতে ট্রান্সফার, শুক্রাণু বদল — দুর্বল নজরদারি। <a href="https://www.bmj.com/content/390/bmj.r1769">লিংক</a></li>
-          <li><b>ThePrint (জুন ২০২৬):</b> দিল্লিতে ভ্রূণ অদলবদল DNA-টেস্টে ধরা; গুরগাঁওয়ে অবৈধ সেন্টার থেকে ৮৪ ভ্রূণ জব্দ; বিভ্রান্তিকর সাকসেস-বিজ্ঞাপন। <a href="https://theprint.in/ground-reports/india-ivf-boom-dark-side-unlicensed-clinics-embryo-mix-ups-dna-tests/2969215/">লিংক</a></li>
-          <li><b>রাজ্যসভা (জুলাই ২০২৬):</b> ৩ বছরে ১৭টি শোষণ-অভিযোগ (দিল্লি, কর্ণাটক, তামিলনাড়ু, তেলেঙ্গানা…) <a href="https://kashmirlife.net/17-complaints-of-womens-exploitation-at-ivf-surrogacy-centres-reported-in-three-years-444441/">লিংক</a>; কর্ণাটকে রাজ্যব্যাপী IVF নজরদারি (ফেব্রু ২০২৬)।</li>
-          <li><b>প্রথম আলো (২০২০):</b> দম্পতিরা বছরের পর বছর ৫–১০ লাখ টাকা খরচ, "অপ্রয়োজনীয় প্রসিডিওরের দিকে আবেগ দিয়ে ঠেলা", সরকারি তদারকি নেই। <a href="https://www.prothomalo.com/lifestyle/চিকিৎসা-পেতে-ভোগান্তি">লিংক</a> · <b>বণিক বার্তা (২০২৩):</b> অনেকে ভারত/থাইল্যান্ডে যান, ডলার-বহির্গমন। <a href="https://www.bonikbarta.com/magazine/287/d1urqmwIwv76aOjr">লিংক</a></li>
-          <li><b>ORF (এপ্রিল ২০২৫):</b> ২০২৩-এ ~৪.৪৯ লাখ বাংলাদেশি ভারতে চিকিৎসা নিয়েছেন, ~৬০% কলকাতায়। <a href="https://www.orfonline.org/research/medical-tourism-as-a-pillar-of-india-bangladesh-relations-will-it-hold">লিংক</a></li>
-        </ul>
-      </div>
-    </div>
+  <h2>বাংলাদেশিরা কী বলছেন — এবং কোনটা বিশ্বাস করবেন</h2>
+  <p class="lede">ফেসবুক গ্রুপ, ইউটিউব কমেন্ট, “বাংলাদেশের সেরা ১০ IVF সেন্টার” — এসব ঘেঁটে দেখা হয়েছে। <b>যা পাওয়া গেল, তার সবচেয়ে বড় খবরটাই হলো কী পাওয়া গেল না।</b></p>
 
-    <h3 style="margin-top:1.2rem">ইউটিউব কমেন্ট-থ্রেড থেকে (সরাসরি পড়া; নাম/ভাষা থেকে বাংলাদেশি অনুমিত)</h3>
-    <div class="tbl compact"><table>
-      <thead><tr><th>উৎস</th><th>কী বলছেন (সারমর্ম)</th><th>আমাদের পাঠ</th></tr></thead>
-      <tbody>
-        <tr><td><a href="https://www.youtube.com/watch?v=P1MyMhUUCpY">"My IVF treatment cost… Vellore CMC" (It's Suparnaaaaa; 164K ভিউ, 273 কমেন্ট)</a></td><td>এক রোগী: "মোট ১ লাখ ৬০ হাজার নিয়েছে; ট্রান্সফারের পরের ওষুধ নিজের খরচ"; আরেকজন: "১.৫০ লাখ কোট, ১.৪০ দিয়েছি, ২৯ তারিখে ট্রান্সফার"; একজন: "সব ওষুধসহ ~৪ লাখ"; বাংলাদেশি কমেন্টার প্রশ্ন: CMC-র কোন ডাক্তার (Aleyamma, Mohan Kamath নাম আসে), কত দিন থাকতে হবে, দৈনিক খরচ, বাংলা অনুবাদক আছে কি না; একজন Vellore-এর Sandhya Hospital-এ ভালো ফল পেয়েছেন; "মধ্যবিত্তের ৪–৫ লাখ দেওয়া কঠিন"</td><td>CMC-ধরনের প্যাকেজ ₹1.5–1.7 L (মেডিকেল), ট্রিপসহ ~৳4–5 L — আমাদের বাজেট-টেবিলের সাথে মেলে</td></tr>
-        <tr><td><a href="https://www.youtube.com/watch?v=9gU_4_TnOM4">ATN Bangla-র Chennai Fertility Center (Dr V.M. Thomas) প্রোমো ক্লিপ (165K ভিউ, 299 কমেন্ট)</a></td><td>একাধিক বাংলাদেশি: "কমপক্ষে ১৫–২০ লাখ টাকা বাজেট নিয়ে যান", "কসাইখানার মতো ব্যবহার", "ডাকাত ডাক্তার"; "টিভি চ্যানেল ভারতীয় হাসপাতালের বিজ্ঞাপন করছে — এরা ইন্ডিয়ান এজেন্ট"; "CFC-র বাংলাদেশ CEO আলহাজ আজাদের নম্বর?"; কেউ কেউ কলকাতার (Goutam Khastagir, ৮০ হাজার–২ লাখ) পরামর্শ</td><td>১৫–২০ লাখের দাবি অতিরঞ্জিত/একাধিক সাইকেল-ভ্রমণসহ হতে পারে (CFC-র ওয়েব-দাম ₹1.3–2.5 L) — কিন্তু <b>এজেন্ট-কাঠামো ও দাম নিয়ে অসন্তোষ</b> স্পষ্ট; সেজন্যই CFC আমাদের শর্টলিস্টে নিচে</td></tr>
-        <tr><td><a href="https://www.youtube.com/watch?v=h0Do_3JVHCg">"কোন IVF center-এ success rate বেশি — Kolkata/Vellore/Chennai" (44K ভিউ, 304 কমেন্ট)</a></td><td>বাংলাদেশ থেকে: "স্ত্রীর AMH 0.11 — কোথায় যাব, ডোনার লাগবে?"; "CMC-র কোন ডাক্তার, খরচ কত?"; "Iswarya Ambattur না Indira Kolkata?"; "V.M. Thomas/CFC কেমন?"; "কত দিনের জন্য আসতে হবে?"; সাফল্য/ব্যর্থতার গল্প বেশিরভাগ কলকাতার (Indira)</td><td>বাংলাদেশিদের মধ্যে কলকাতা-বাদে সবচেয়ে বেশি নাম: <b>CMC Vellore, CFC, Iswarya, PFRC</b>; দিল্লি/হায়দ্রাবাদ/মুম্বাই প্রায় আসেই না — অর্থাৎ ওখানে "বাংলা কমিউনিটি" নেই, কিন্তু চিকিৎসার মানের সাথে এর সম্পর্ক নেই</td></tr>
-        <tr><td><a href="https://www.youtube.com/watch?v=PIwMmJ9cQzM">"Vellore CMC IVF Package Low Price" (Hindi, 15K)</a> · <a href="https://www.youtube.com/watch?v=fpkMurRXOQA">Md Fizz — বাংলাদেশ থেকে ভেলোর কীভাবে যাবেন (55K)</a></td><td>বাংলাদেশি প্রশ্ন: CMC অ্যাপয়েন্টমেন্ট নম্বর, ৫৫/৪৫ বছর দম্পতির IVF সম্ভব কি না, "বাংলা অনুবাদক আছে?"; Fizz-এর ভিডিও যাত্রা-গাইড (IVF তথ্য নেই)</td><td>ভাষা ও যাত্রা-লজিস্টিক নিয়ে দুশ্চিন্তা সাধারণ — সেকশন ৬–১০ সেজন্যই বিস্তারিত</td></tr>
-        <tr><td><a href="https://www.youtube.com/watch?v=WslM62UvI8o">Iswarya-র "বাংলাদেশি দম্পতির IVF ফিডব্যাক" (5.9M ভিউ, প্রোমোটেড)</a></td><td>টেস্টিমোনিয়াল; মাত্র ৫ কমেন্ট, কোনোটাই তথ্যপূর্ণ নয়</td><td>মার্কেটিং — প্রমাণ নয়</td></tr>
-      </tbody></table></div>
-    <div class="grid grid-2">
-      <div class="card"><h4>বারবার আসা অভিযোগ</h4><ul><li>খরচ/সামর্থ্য (সবচেয়ে বেশি), বিদেশি হলে বেশি দাম নেওয়া হয় কি না — সন্দেহ</li><li>এজেন্ট/দালাল/লিয়াজোঁ-অফিস ও টিভি-বিজ্ঞাপন — কমিশন-কাঠামো</li><li>প্যাকেজের বাইরে ওষুধ/FET/ফ্রিজিং — লুকানো খরচ</li><li>ডোনার ডিম নিয়ে চাপ/গোপনীয়তার উদ্বেগ</li><li>ভাষা (বাংলা অনুবাদক), কত দিন থাকতে হবে — অনিশ্চয়তা</li></ul></div>
-      <div class="card"><h4>বারবার আসা পরামর্শ (আমাদের সংযোজনসহ)</h4><ul><li>নির্দিষ্ট ডাক্তারের নাম ধরে যান; থাকার বাজেট আগে ধরুন</li><li>দালাল নয় — হাসপাতালের ইমেইল/পোর্টাল সরাসরি; হাসপাতালের অ্যাকাউন্টে পেমেন্ট, রসিদ</li><li>Level-2 রেজিস্ট্রেশন যাচাই (রেজিস্ট্রি); itemised লিখিত কোট; ভ্রূণ/ডিমের সংখ্যা লিখিত</li><li>এক খারাপ সাইকেলের পরই ডোনারে যেতে বললে দ্বিতীয় মতামত</li><li>স্টোরেজ-চুক্তি নিজেদের নামে, বার্ষিক ফি ও যোগাযোগ চালু রাখুন (নইলে ভ্রূণ "abandoned" ধরা হয় — সেকশন ১৩)</li></ul></div>
+  <div class="callout bad">
+    <b>⚠ সবচেয়ে জরুরি আবিষ্কার: বাংলাদেশি রোগীদের নিজেদের কোনো পড়ার-মতো খোলা IVF কমিউনিটি নেই।</b>
+    <ul style="margin:.5rem 0 0">
+      <li>বড় গ্রুপগুলো <b>প্রাইভেট</b> — লগইন ছাড়া একটি পোস্টও পড়া যায় না।</li>
+      <li>এই অঞ্চলের যে সাপোর্ট গ্রুপটি খোলা গেল, সেখানে <b>২,০২৭ সদস্যের মধ্যে গত এক মাসে পোস্ট মাত্র ৪টি</b> — কার্যত নিষ্ক্রিয়।</li>
+      <li>বাকি যা কিছু “বাংলাদেশি IVF আলোচনা” বলে সার্চে আসে, তার <b>বেশিরভাগই আসলে ভারতীয় মেডিকেল-ট্যুরিজম এজেন্সির বিজ্ঞাপন</b>, বাংলাদেশি কনটেন্টের ছদ্মবেশে।</li>
+    </ul>
+    <div style="margin-top:.6rem"><b>এর ফল কী?</b> যে শূন্যস্থানে রোগীদের সৎ অভিজ্ঞতা থাকার কথা, সেখানে বসে আছে <b>বিক্রেতার কথা</b>। নিচে সেটা হাতেনাতে দেখানো হলো।</div>
+  </div>
+
+  <h3>ধরা পড়া কৌশল ১ — “বাংলাদেশের সেরা ১০ IVF সেন্টার”, যার ৮টিই ভারতে</h3>
+  <div class="callout warn">
+    একটি <b>নয়াদিল্লি-ভিত্তিক এজেন্সির</b> ওয়েবসাইটে “বাংলাদেশের সেরা ১০ IVF সেন্টার” তালিকা আছে। খুলে দেখলে: <span class="pill v">✔ যাচাইকৃত</span>
+    <div class="tbl compact scrollable" style="margin:.6rem 0 .3rem">
+      <table>
+        <thead><tr><th class="num">#</th><th>তালিকায় যা আছে</th><th>আসলে কোথায়</th></tr></thead>
+        <tbody>
+          <tr><td class="num">১</td><td>একটি ভারতীয় এজেন্সি</td><td>ভারত</td></tr>
+          <tr class="hl"><td class="num">২</td><td><b>যারা তালিকাটি বানিয়েছে, তারা নিজেরাই</b></td><td>নয়াদিল্লি</td></tr>
+          <tr><td class="num">৩–৪</td><td>আরও দুটি ভারতীয় এজেন্সি</td><td>ভারত</td></tr>
+          <tr><td class="num">৫</td><td>একটি হাসপাতাল</td><td><b>কোয়েম্বাটুর</b></td></tr>
+          <tr><td class="num">৬</td><td>একটি ফার্টিলিটি সেন্টার — দাবি <b>“৮০–৯০%”</b></td><td><b>চেন্নাই</b></td></tr>
+          <tr class="hl"><td class="num">৭</td><td><b>ঢাকার একটি হাসপাতাল</b> — তালিকার <b>একমাত্র সত্যিকারের বাংলাদেশি নাম</b></td><td>ঢাকা</td></tr>
+          <tr><td class="num">৮–১০</td><td>চেন্নাই ও অন্যান্য ভারতীয় প্রতিষ্ঠান</td><td>ভারত</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <b>তিনটি জিনিস একসাথে খেয়াল করুন:</b> তালিকাটি <b>নিজেদের কোম্পানিকে দুই নম্বরে</b> রেখেছে; ১০টির মধ্যে <b>৯টিই বাংলাদেশে নেই</b>; আর একটি সেন্টারের দাবি <b>“৮০–৯০% সাফল্য”</b> — <b>পৃথিবীর কোথাও, কোনো বয়সে, প্রতি সাইকেলে এই হার নেই।</b>
+    <div style="margin-top:.5rem"><b>তুলনার জন্য:</b> বাংলাদেশে মাঠ-গবেষণায় একজন সিনিয়র চিকিৎসকের নিজের দেওয়া সংখ্যা — <b>“the success rate is 20 to 25%”</b>। অর্থাৎ ৭৫–৮০% দম্পতি খালি হাতে ফেরেন।</div>
+  </div>
+
+  <h3>ধরা পড়া কৌশল ২ — একই চিকিৎসা, বাংলাদেশিদের জন্য দ্বিগুণ দাম</h3>
+  <div class="callout bad">
+    <b>এটাই সবচেয়ে দামি ফাঁদ, এবং এটি অনুমান নয় — দুই পক্ষের নিজেদের প্রকাশিত দাম মিলিয়ে দেখা।</b> <span class="pill v">✔ যাচাইকৃত</span>
+    <div class="tbl compact scrollable" style="margin:.6rem 0 .3rem">
+      <table>
+        <thead><tr><th>কে বলছে</th><th class="num">দাম</th><th class="num">টাকায়</th></tr></thead>
+        <tbody>
+          <tr><td><b>ভারতের ভেতরের বাজারদর</b><br><small class="muted">(চেন্নাইয়ে IVF, একটি ভারতীয় ফ্যাসিলিটেটরের প্রকাশিত হিসাব)</small></td><td class="num">₹১.৪–২.৪ লাখ<br><small class="muted">≈ $১,৭০০–২,৯০০</small></td><td class="num"><b>৳২–৩.৪ লাখ</b></td></tr>
+          <tr class="hl"><td class="bad-cell"><b>একই চেন্নাই-গ্রুপের ঢাকা-অফিসের ওয়েবসাইট</b><br><small class="muted">বাংলাদেশি রোগীদের জন্য</small></td><td class="num bad-cell"><b>$৪,০০০–৬,০০০</b></td><td class="num bad-cell"><b>৳৪.৯–৭.৩ লাখ</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <b>একই সেন্টার, একই চিকিৎসা — বাংলাদেশি হওয়ার কারণে দাম ২–২.৫ গুণ।</b> পার্থক্যটা <b>৳৩ লাখেরও বেশি</b>, যা দিয়ে আরেকটি পূর্ণ সাইকেল হয়ে যেত।
+    <div style="margin-top:.6rem"><b>যেভাবে এড়াবেন:</b> ভারতীয় সেন্টারের <b>মূল (ভারতীয়) ওয়েবসাইটের দাম</b> বের করুন, আর <b>হাসপাতালের নিজের ইমেইলে</b> সরাসরি এস্টিমেট চান — ঢাকা অফিস বা এজেন্টের মাধ্যমে নয়। টাকাও <b>হাসপাতালকে সরাসরি</b> দিন।</div>
+  </div>
+
+  <div class="callout warn">
+    <b>চেনার উপায় — “বাংলাদেশি” সাইট আসলে ভারতীয় এজেন্সি কি না</b>
+    <ul style="margin:.45rem 0 0">
+      <li><b>ডোমেইনের নামে দেশ জোড়া</b> — মূল ভারতীয় নামের সাথে <code>bd</code> বা <code>bangladesh</code> লাগানো থাকলে সেটি প্রায়ই বিক্রয়-শাখা</li>
+      <li><b>দাম ডলারে</b>, রুপিতে নয় — ভারতের ভেতরের রোগীকে কেউ ডলারে দাম বলে না</li>
+      <li><b>যোগাযোগ জিমেইল বা শুধু WhatsApp নম্বর</b>, প্রাতিষ্ঠানিক ইমেইল নয়</li>
+      <li><b>“ইনবক্স করুন” / “সেরা প্যাকেজ”</b> — হাসপাতাল এভাবে লেখে না, দালাল লেখে</li>
+      <li><b>রেডিটে ব্যক্তিগত প্রোফাইলে পোস্ট</b> — কোনো সাবরেডিটে নয়, নিজের প্রোফাইলে “IVF Cost in Bangladesh: A Comprehensive Guide” লেখা মানে সেটি রোগীর অভিজ্ঞতা নয়, লিংক-বিল্ডিং</li>
+    </ul>
+  </div>
+
+  <h3>যে সংখ্যাটি নিজেই নিজেকে কাটে</h3>
+  <div class="callout bad">
+    ঢাকার একটি পরিচিত ফার্টিলিটি সেন্টারের <b>একই হোমপেজে</b> দুটি সংখ্যা পাশাপাশি আছে: <span class="pill v">✔ যাচাইকৃত</span>
+    <div style="margin:.55rem 0;padding:.7rem .85rem;border-radius:8px;background:var(--surface2)">
+      <b>“35% clinical pregnancy rate and 25% take-home baby rate”</b><br>
+      <b>“62% LIVE-BIRTH RATE”</b> <small class="muted">(দুবার, বড় করে লেখা)</small>
+    </div>
+    <b>দুটো একসাথে সত্যি হতে পারে না — দুই কারণে:</b>
+    <ol style="margin:.4rem 0 0">
+      <li><b>“take-home baby rate” আর “live-birth rate” একই জিনিস।</b> একটি ২৫%, আরেকটি ৬২% — একই পাতায়।</li>
+      <li><b>জীবিত জন্মহার কখনো গর্ভধারণের হারের চেয়ে বেশি হতে পারে না।</b> গর্ভধারণ ৩৫% হলে জন্ম ৬২% হওয়া অসম্ভব — প্রতিটি জন্মের আগে একটি গর্ভধারণ লাগে।</li>
+    </ol>
+    <div style="margin-top:.5rem">এর মধ্যে <b>২৫%-এর সংখ্যাটিই বিশ্বাসযোগ্য</b> — কারণ সেটি মাঠ-গবেষণার ২০–২৫%-এর সাথে মেলে। <b>৬২%-এর ব্যানারটি ব্যানারই।</b></div>
+    <div style="margin-top:.5rem"><b>শিক্ষা:</b> কোনো সেন্টারের সংখ্যা দেখলে <b>একই পাতার অন্য সংখ্যাগুলোর সাথে মিলিয়ে দেখুন</b>। নিজেদের সাথে নিজেরা না মিললে, কোনোটাই বিশ্বাস করার দরকার নেই।</div>
+  </div>
+
+  <h3>যা সত্যিই রোগীদের কথা — সাংবাদিকতা ও মাঠ-গবেষণা থেকে</h3>
+  <p class="small muted">ফেসবুক পড়া যায়নি, তাই নিচের কথাগুলো এসেছে <b>সংবাদমাধ্যম ও প্রকাশিত মাঠ-গবেষণা</b> থেকে — যেখানে গবেষক সরাসরি দম্পতিদের সাথে কথা বলেছেন। <b>এগুলো ফোরামের পোস্টের চেয়ে বেশি নির্ভরযোগ্য, কম নয়।</b></p>
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>যা তাঁরা খরচ করেছেন</h4>
+      <ul>
+        <li>এক দম্পতি <b>১৬ বছরে ৬টির বেশি সেন্টারে ~৳১০ লাখ</b> — সন্তান হয়নি</li>
+        <li>মাঠ-গবেষণায়: একজন <b>৳৭০,০০০</b>, আরেকজন <b>৳১,১৬,০০০</b> — কারও গর্ভধারণ হয়নি</li>
+        <li class="hl-li"><b>এটাই সবচেয়ে গুরুত্বপূর্ণ প্যাটার্ন:</b> বিজ্ঞাপনের “প্যাকেজ” দাম আর <b>শেষ পর্যন্ত যা খরচ হয়</b> — দুটো এক নয়। <a href="#cycles" data-scroll="cycles">২য়–৩য় চেষ্টার খরচ</a> দেখুন।</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>যা তাঁরা অভিযোগ করেছেন</h4>
+      <ul>
+        <li>বেসরকারি সেন্টারে <b>“emotional blackmail”</b> ও <b>“wrong treatment”</b>; দম্পতিরা বলেছেন <b>“harassment and suffering”</b></li>
+        <li>ইনজেকশনের পর <b>জ্বর ও তীব্র ব্যথা</b></li>
+        <li class="hl-li">মাঠ-গবেষণায় আটটি বড় ART সেন্টার দেখে মন্তব্য: <b><i>“None have any particular registration for providing ART”</i></b></li>
+      </ul>
     </div>
   </div>
+  <div class="callout good">
+    <b>✔ আর একটি ইতিবাচক খবর, যেটা বিজ্ঞাপনে আসে না:</b> এক দম্পতি সরকারি <b>মোহাম্মদপুর ফার্টিলিটি সার্ভিসেস</b> কেন্দ্রে <b>“১৭টি পরীক্ষা করিয়েছেন নামমাত্র খরচে”</b>, এবং ১০ বছর পর সন্তান হয়েছে। ঢাকা মেডিকেলেও সরকারি উদ্যোগে টেস্টটিউব বেবি হয়েছে।
+    <div style="margin-top:.5rem"><b>মানে কী:</b> <b>রোগ-নির্ণয়ের ধাপটা সরকারি কেন্দ্রে নামমাত্র খরচে করিয়ে নেওয়া যায়</b> — বেসরকারি সাইকেলে টাকা ঢালার আগে। <small class="muted">(তবে মোহাম্মদপুর কেন্দ্রে IVF হয় না — পরীক্ষা ও IUI পর্যন্ত।)</small></div>
+  </div>
+
+  <h3>চূড়ান্ত বিচার — কমিউনিটি কোথায় ঠিক, কোথায় ভুল</h3>
+  <div class="grid grid-2">
+    <div class="card">
+      <h4 style="color:var(--good)">✔ যেখানে সবার কথা শুনবেন</h4>
+      <ol>
+        <li><b>“প্যাকেজের চেয়ে অনেক বেশি খরচ হবে”</b> — একদম ঠিক, বারবার প্রমাণিত।</li>
+        <li><b>“আগে সরকারি কেন্দ্রে পরীক্ষা করান”</b> — ঠিক, এবং সত্যিই টাকা বাঁচে।</li>
+        <li><b>“ভারতে ডলারের কোটের চেয়ে সস্তা”</b> — ঠিক, এবং তাঁরা যতটা ভাবেন তার চেয়েও বেশি সস্তা (উপরের টেবিল দেখুন)।</li>
+        <li><b>থাকা-খাওয়া, যাতায়াত, দোভাষী, কোন এলাকায় উঠবেন</b> — এখানে কমিউনিটির পরামর্শই সেরা, আর ভুল হলেও ক্ষতি কম।</li>
+        <li><b>“শুরুর আগে লিখিত itemised খরচ নিন”</b> — সবচেয়ে কাজের পরামর্শ, এবং কোনো ক্লিনিক নিজে থেকে দেয় না।</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--bad)">✕ যেখানে কমিউনিটি ক্ষতি করে</h4>
+      <ol>
+        <li class="hl-li"><b>সাফল্যের হারের বিজ্ঞাপন বিশ্বাস করা।</b> ৮০–৯০% অসম্ভব; বাস্তব <b>২০–২৫%</b>। “৮৫%” শুনে এক সাইকেলের বাজেট নিয়ে নামলে ৭৫–৮০% সম্ভাবনার জন্য কেউ প্রস্তুত থাকে না।</li>
+        <li><b>“ISO সার্টিফাইড” বা “বিদেশি সহযোগিতা”-কে সরকারি অনুমোদন ভাবা।</b> ISO একটি ল্যাবের মান — চিকিৎসার লাইসেন্স নয়।</li>
+        <li><b>“সেরা ১০” তালিকা ও Quora-র উত্তর বিশ্বাস করা</b> — উপরে দেখলেন এগুলো কী।</li>
+        <li><b>আগে কবিরাজি/ফকিরি</b> — টাকা তো যায়ই, সবচেয়ে বড় ক্ষতি হলো <b>যে বছরগুলোতে বয়স অনুকূল ছিল সেগুলো চলে যায়</b>।</li>
+        <li><b>“অমুক ডাক্তারের হাত ভালো”</b> — IVF-এর ফল নির্ভর করে <b>ল্যাবের মান, বয়স ও ভ্রূণবিজ্ঞানীর দক্ষতার</b> ওপর, ব্যক্তিত্বের ওপর নয়। এই ধারণাটাই মানুষকে সবচেয়ে বড় বিজ্ঞাপনদাতার হাতে তুলে দেয়।</li>
+        <li><b>অপ্রমাণিত অ্যাড-অন</b> — PGS-এ ৳৫০ হাজার–১ লাখ, হ্যাচিংয়ে ৳১৫–৩০ হাজার। সাধারণ রোগীর জন্মহার এতে বাড়ে না। <a href="#profile" data-scroll="p-6">প্রমাণ</a></li>
+        <li class="hl-li"><b>ছেলে/মেয়ে বেছে নেওয়ার প্রস্তাব</b> — বাংলাদেশে চিকিৎসা-কারণ ছাড়া লিঙ্গ নির্ধারণ <b>আইনত নিষিদ্ধ</b> (হাইকোর্টের নির্দেশনা)। যে সেন্টার এটি অফার করে, <b>সে আপনাকে জানিয়ে দিচ্ছে আর কী কী করতে পারে</b>।</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <b>তাহলে ফেসবুক গ্রুপ কি একেবারেই অকেজো?</b> না — কিন্তু <b>কী জিজ্ঞেস করছেন তার উপর সব নির্ভর করে।</b>
+    <div class="tbl compact scrollable" style="margin:.6rem 0 .2rem">
+      <table>
+        <thead><tr><th>যা জিজ্ঞেস করলে কাজে দেবে</th><th>যা জিজ্ঞেস করলে বিপদ</th></tr></thead>
+        <tbody>
+          <tr><td>“ভেলোরে CMC-র কাছাকাছি কোথায় উঠেছিলেন? বাসা ভাড়া কত?”</td><td class="bad-cell">“সবচেয়ে ভালো IVF সেন্টার কোনটা?”</td></tr>
+          <tr><td>“চেন্নাইতে বাংলা বলতে পারে এমন কেউ ছিল?”</td><td class="bad-cell">“কোন ডাক্তারের হাত ভালো?”</td></tr>
+          <tr><td>“আপনার বিলে কী কী আলাদা করে ধরা হয়েছিল?”</td><td class="bad-cell">“কার সাকসেস রেট বেশি?”</td></tr>
+          <tr><td>“ভিসার স্লট পেতে কত দিন লেগেছিল?”</td><td class="bad-cell">“কোন এজেন্ট ভালো?”</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <b>নিয়মটা সহজ:</b> <b>ঘটনা</b> জিজ্ঞেস করুন (কত লাগল, কোথায় থাকলেন, কত দিন) — <b>মতামত</b> নয় (কে ভালো, কার হাত ভালো)। ঘটনায় কমিউনিটি নির্ভরযোগ্য; মতামতে সেখানে বিক্রেতারাও বসে আছেন।
+    <div style="margin-top:.5rem"><b>আর যেই “সেরা সেন্টার” বলুক</b> — <a href="#profile" data-scroll="q7">৭টি প্রশ্ন</a> করে যাচাই করে নিন। কোনো সৎ সেন্টার এই প্রশ্নগুলোতে বিরক্ত হবে না।</div>
+  </div>
+
+  <p class="small muted"><b>সততার জন্য:</b> এই সেকশনের কোনো ফেসবুক-পোস্ট উদ্ধৃত করা হয়নি, কারণ <b>একটিও পড়া যায়নি</b> — গ্রুপগুলো প্রাইভেট, আর সার্চেও লগইন লাগে। উপরের সব তথ্য এসেছে <b>খোলা ওয়েবসাইট, সংবাদমাধ্যম ও প্রকাশিত মাঠ-গবেষণা</b> থেকে, যেগুলো আমরা নিজে খুলে পড়েছি। কোনো নির্দিষ্ট প্রতিষ্ঠানের বিরুদ্ধে প্রতারণার অভিযোগ করা হচ্ছে না — <b>যা প্রকাশিত, শুধু তা-ই দেখানো হয়েছে</b>, সিদ্ধান্ত আপনার।</p>
 </section>
 
 <!-- ============ 13. LAW ============ -->
