@@ -667,7 +667,7 @@ details.more .more-body > :first-child{margin-top:0}
   .dock-btns .cbtn{padding:.22rem .45rem;font-size:.75rem}
 }
 
-/* the base stylesheet colours bare <button> white; win on specificity, not !important */
+/* chat buttons use .cbtn so the hero .btn rule (forced white) cannot reach them */
 #aiDock .dock-btns .cbtn,#aiDock .chat-input .cbtn.icon{color:var(--ink);background:var(--surface);border:1px solid var(--line)}
 #aiDock .dock-btns .cbtn:hover,#aiDock .chat-input .cbtn.icon:hover{background:var(--accent-soft)}
 #aiDock .chat-input .cbtn.primary,#chat .cbtn.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
