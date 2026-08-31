@@ -688,6 +688,13 @@ body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition
 .addr-lite{background:#f4f6f8;border:1px solid #e3e6ea;border-radius:8px;
   padding:.5rem .7rem;margin:.4rem 0;font-size:1.02rem;font-weight:600;word-break:break-word}
 
+/* two-line sidenav entries: label + one-line description */
+.sidenav a .sn-l{display:flex;flex-direction:column;line-height:1.28;min-width:0}
+.sidenav a .sn-l em{font-style:normal;font-size:.76rem;opacity:.62;font-weight:400;
+  margin-top:.12rem;white-space:normal}
+.sidenav a{align-items:flex-start;padding-top:.5rem;padding-bottom:.5rem}
+.sidenav a>i{margin-top:.08rem}
+
 </style>
 <script src="keys.js" defer onerror="void 0"></script>
 </head>
@@ -710,62 +717,45 @@ body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition
 <div class="scrim" id="scrim"></div>
 <aside class="sidenav" id="sidenav" aria-label="সাইট মেনু">
   <div class="sn-inner">
-    <div class="sn-group">
-      <div class="sn-title">শুরু করুন</div>
-      <a href="#verdict" data-nav="verdict"><i>◆</i>হোম · টপ ৫</a>
-      <a href="#profile" data-nav="profile"><i>❖</i>আপনার সমস্যা অনুযায়ী</a>
-      <a href="#worked" data-nav="worked"><i>✎</i>একটি বাস্তব কেস</a>
-      <a href="#ivf" data-nav="ivf"><i>✦</i>শুধু IVF — কোথায়, কত</a>
-      <a href="#emails" data-nav="emails"><i>✉</i>হাসপাতালে যে মেইল</a>
-      <a href="#chat" data-nav="chat"><i>✦</i>AI-কে জিজ্ঞেস করুন</a>
-      <a href="#case" data-nav="case"><i>✚</i>চিকিৎসা-প্রমাণ</a>
-      <a href="#truth" data-nav="truth"><i>◎</i>সাফল্য যাচাই</a>
-      <a href="#compare" data-nav="compare"><i>▤</i>তুলনা টেবিল</a>
-      <a href="#reviews" data-nav="reviews"><i>★</i>রিভিউ যাচাই</a>
-    </div>
-    <div class="sn-group">
-      <div class="sn-title">সেন্টার প্রোফাইল</div>
-      <a class="sn-c" href="#centre/cmc" data-centre="cmc"><b>১</b>CMC Vellore</a>
-      <a class="sn-c" href="#centre/sgrh" data-centre="sgrh"><b>২</b>Sir Ganga Ram, দিল্লি</a>
-      <a class="sn-c" href="#centre/oasis" data-centre="oasis"><b>৩</b>Oasis + Rooma Sinha</a>
-      <a class="sn-c" href="#centre/tandulwadkar" data-centre="tandulwadkar"><b>৪</b>Dr Tandulwadkar, পুনে</a>
-      <a class="sn-c" href="#centre/kaberi" data-centre="kaberi"><b>৫</b>Dr Kaberi Banerjee</a>
-      <a href="#centres" data-nav="centres"><i>⌂</i>সব সেন্টার (শহরভিত্তিক)</a>
-    </div>
-    <div class="sn-group">
-      <div class="sn-title">যাত্রার প্রস্তুতি</div>
-      <a href="#appointment" data-nav="appointment"><i>✉</i>অ্যাপয়েন্টমেন্ট</a>
-      <a href="#visa" data-nav="visa"><i>▣</i>ভিসা (অ্যাটেনডেন্ট-সহ)</a>
-      <a href="#steps" data-nav="steps"><i>①</i>ধাপে ধাপে — পুরো পথ</a>
-      <a href="#planner" data-nav="planner"><i>◈</i>ফ্লাইট প্ল্যানার</a>
-      <a href="#flights" data-nav="flights"><i>✈</i>ভাড়া ও ব্যাগেজ</a>
-      <a href="#season" data-nav="season"><i>◷</i>কখন সস্তা / দামি</a>
-    </div>
-    <div class="sn-group">
-      <div class="sn-title">ওখানে থাকা</div>
-      <a href="#stay" data-nav="stay"><i>⌾</i>বাসা, রান্না ও খাবার</a>
-      <a href="#apps" data-nav="apps"><i>▦</i>অ্যাপ ও বুকিং</a>
-      <a href="#etiquette" data-nav="etiquette"><i>☯</i>আঞ্চলিক আদব-কায়দা</a>
-      <a href="#clinical" data-nav="clinical"><i>✛</i>চিকিৎসাকালীন প্রস্তুতি</a>
-      <a href="#emergency" data-nav="emergency"><i>☎</i>বিপদে পড়লে</a>
-    </div>
-    <div class="sn-group">
-      <div class="sn-title">টাকা-পয়সা</div>
-      <a href="#money" data-nav="money"><i>₿</i>ব্যাংকিং ও আর্থিক নিরাপত্তা</a>
-      <a href="#budget" data-nav="budget"><i>৳</i>পূর্ণ বাজেট</a>
-      <a href="#cycles" data-nav="cycles"><i>⟳</i>২য়–৩য় চেষ্টার খরচ</a>
-      <a href="#save" data-nav="save"><i>↓</i>খরচ কমানোর উপায়</a>
-      <a href="#abroad" data-nav="abroad"><i>◐</i>ভারতের বদলে অন্য দেশ?</a>
-    </div>
-    <div class="sn-group">
-      <div class="sn-title">আরও</div>
-      <a href="#voices" data-nav="voices"><i>❝</i>বাংলাদেশিদের কথা</a>
-      <a href="#law" data-nav="law"><i>§</i>ভারতীয় আইন</a>
-      <a href="#bd" data-nav="bd"><i>★</i>বাংলাদেশে বিকল্প</a>
-      <a href="#sources" data-nav="sources"><i>↗</i>সূত্র-তালিকা</a>
-    </div>
-    <div class="sn-foot">সব হিসাব ৳-তে · রেট উপরের বাক্সে বদলান</div>
+  <div class="sn-group">
+    <div class="sn-title">শুরু করুন</div>
+    <a href="#verdict" data-nav="verdict"><i>◆</i><span class="sn-l">হোম · টপ ৫ সেন্টার<em>কে এগিয়ে, কেন — এক নজরে</em></span></a>
+    <a href="#profile" data-nav="profile"><i>❖</i><span class="sn-l">আপনার সমস্যা অনুযায়ী<em>সিস্ট? এক ওভারি? কোনটা আপনার কেস</em></span></a>
+    <a href="#chat" data-nav="chat"><i>✦</i><span class="sn-l">AI-কে জিজ্ঞেস করুন<em>ডাক্তার যা বললেন, বুঝে নিন</em></span></a>
   </div>
+  <div class="sn-group">
+    <div class="sn-title">কোন সেন্টার — এবং কেন</div>
+    <a href="#ivf" data-nav="ivf"><i>✚</i><span class="sn-l">শুধু IVF · কোথায়, কত খরচ<em>সাইকেলের পূর্ণ ভাঙানি, টাকায়</em></span></a>
+    <a href="#centres" data-nav="centres"><i>▤</i><span class="sn-l">সব সেন্টার · শহরভিত্তিক<em>প্রোফাইল, তুলনা, রিভিউ ও যোগাযোগ</em></span></a>
+    <a href="#truth" data-nav="truth"><i>◈</i><span class="sn-l">সাফল্যের হার যাচাই<em>“৭০%” কেন বিশ্বাস করবেন না</em></span></a>
+    <a href="#worked" data-nav="worked"><i>✎</i><span class="sn-l">একটি বাস্তব কেস<em>শুরু থেকে শেষ — কীভাবে সিদ্ধান্ত</em></span></a>
+  </div>
+  <div class="sn-group">
+    <div class="sn-title">যোগাযোগ ও ভিসা</div>
+    <a href="#steps" data-nav="steps"><i>①</i><span class="sn-l">ধাপে ধাপে — পুরো পথ<em>অফার লেটার → ওয়েব ফাইল → ভিসা</em></span></a>
+    <a href="#emails" data-nav="emails"><i>✉</i><span class="sn-l">হাসপাতালে পাঠানোর মেইল<em>কপি করে পাঠানোর মতো তৈরি</em></span></a>
+    <a href="#visa" data-nav="visa"><i>▣</i><span class="sn-l">ভিসার তথ্যভাণ্ডার<em>কাগজ, ফি, IVAC, আইন ও সমস্যা</em></span></a>
+  </div>
+  <div class="sn-group">
+    <div class="sn-title">খরচ ও টাকা</div>
+    <a href="#budget" data-nav="budget"><i>₪</i><span class="sn-l">পূর্ণ বাজেট<em>দুজনের, মা সহ · ২য়–৩য় চেষ্টাসহ</em></span></a>
+    <a href="#money" data-nav="money"><i>▦</i><span class="sn-l">ব্যাংক ও টাকা নেওয়া<em>কত ডলার, কীভাবে, কোথায় খরচ</em></span></a>
+    <a href="#save" data-nav="save"><i>↓</i><span class="sn-l">খরচ কমানোর ১২ উপায়<em>সবচেয়ে বড়টা আগে</em></span></a>
+    <a href="#abroad" data-nav="abroad"><i>⊕</i><span class="sn-l">ভারতের বদলে অন্য দেশ?<em>সৎ তুলনা · দেশেও কী সম্ভব</em></span></a>
+  </div>
+  <div class="sn-group">
+    <div class="sn-title">যাত্রা ও থাকা</div>
+    <a href="#flights" data-nav="flights"><i>✈</i><span class="sn-l">ফ্লাইট · ভাড়া ও সময়<em>প্ল্যানার, মাসভিত্তিক দাম, ব্যাগেজ</em></span></a>
+    <a href="#stay" data-nav="stay"><i>⌂</i><span class="sn-l">বাসা, খাবার ও সিম<em>কিচেনসহ ফ্ল্যাট, অ্যাপ, বুকিং</em></span></a>
+    <a href="#clinical" data-nav="clinical"><i>♥</i><span class="sn-l">ওখানে গিয়ে<em>দিন-ভিত্তিক প্রস্তুতি · বিপদে পড়লে</em></span></a>
+  </div>
+  <div class="sn-group">
+    <div class="sn-title">যাচাই ও সূত্র</div>
+    <a href="#etiquette" data-nav="etiquette"><i>☯</i><span class="sn-l">আঞ্চলিক আদব-কায়দা<em>কোন রাজ্যে কী মানা</em></span></a>
+    <a href="#voices" data-nav="voices"><i>❝</i><span class="sn-l">বাংলাদেশিদের কথা<em>কোনটা বিশ্বাস করবেন, কোনটা নয়</em></span></a>
+    <a href="#sources" data-nav="sources"><i>⛭</i><span class="sn-l">সূত্র-তালিকা<em>সব লিংক এক জায়গায়</em></span></a>
+  </div>
+</div>
 </aside>
 
 
@@ -1938,6 +1928,7 @@ body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition
 <section id="truth">
   <div class="wrap">
     <h2>"সাকসেস রেট" বনাম আসল জন্মহার — কীভাবে র‍্যাংক করলাম</h2>
+  <p class="subnav">এই অংশে আরও: <a href="#case" data-scroll="case">চিকিৎসার প্রমাণ কী বলে</a></p>
     <div class="grid grid-2">
       <div class="card">
         <h3>ভারতে কেন per-clinic জন্মহার পাওয়া যায় না</h3>
@@ -2098,6 +2089,7 @@ body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition
 <section id="centres">
   <div class="wrap">
     <h2>শহরভিত্তিক বিশ্লেষণ — সেন্টার, ডাক্তার, দাম, যোগাযোগ</h2>
+  <p class="subnav">এই অংশে আরও: <a href="#compare" data-scroll="compare">তুলনা টেবিল</a> · <a href="#reviews" data-scroll="reviews">Google রিভিউ যাচাই</a> · <a href="#appointment" data-scroll="appointment">সব যোগাযোগ</a></p>
     <p class="muted small">প্রতিটি কার্ডে: কে আছেন (২০২৫–২৬-এ যাচাই), প্রমাণ, দাম, বাংলাদেশি রোগীর অভিজ্ঞতা, থাকা, এবং সরাসরি যোগাযোগ-লিংক। "▸ বিস্তারিত" খুললে সূত্রসহ পুরো নোট।</p>
 
     <h3 style="margin-top:1rem">ভেলোর (তামিলনাড়ু)</h3>
@@ -2304,45 +2296,10 @@ body.ai-open #toTop,body.ai-open #aiFab{opacity:0;pointer-events:none;transition
       </table>
     </div>
   </div>
-</section>
-<!-- ============ 6. APPOINTMENT ============ -->
-<section id="appointment">
-  <div class="wrap">
-    <h2>অ্যাপয়েন্টমেন্ট — ধাপে ধাপে, যোগাযোগ-তালিকা ও ইমেইল টেমপ্লেট</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>৮ ধাপ (সব সেন্টারে একই)</h3>
-        <ol>
-          <li><b>কাগজ জোগাড়</b> — সেকশন ২-এর চেকলিস্ট (AMH, AFC, semen analysis, USG/MRI, অপারেশন নোট, ওষুধের ইতিহাস) স্ক্যান করে PDF করুন।</li>
-          <li><b>২–৩ সেন্টারে একসাথে রিপোর্ট পাঠান</b> (ইমেইল + WhatsApp; নিচের টেমপ্লেট)। লিখিত উত্তর চান: প্ল্যান, দিন-সংখ্যা, itemised দাম, "সিস্ট রেখে IVF করবেন কি না"।</li>
-          <li><b>ভিডিও/টেলি-কনসাল্ট</b> (Solo Clinic, Malpani ₹3,000 Zoom, Delhi-র বেশিরভাগ, Oasis ফ্রি) — মূল প্রশ্নগুলো করুন; কে রিট্রিভাল করবেন জেনে নিন।</li>
-          <li><b>ইনভাইটেশন/অ্যাপয়েন্টমেন্ট লেটার</b> নিন (দুজনের নাম, পাসপোর্ট নম্বর, চিকিৎসার ধরন, তারিখ) — মেডিকেল ভিসার জন্য বাধ্যতামূলক। CMC-তে "AYUSH INFO FORM" ইমেইল করে।</li>
-          <li><b>ভিসা</b> (সেকশন ৭) — রোগীর MED, সঙ্গীর MED-X (attendant); IVF-এ দুজনেই রোগী হলে দুজনের MED।</li>
-          <li><b>তারিখ ঠিক করুন মাসিকের সাথে মিলিয়ে</b>: ফ্রেশ সাইকেল হলে Day 1-এর ২–৩ দিন আগে পৌঁছান; রিমোট-স্টার্ট অনুমতি থাকলে ঢাকায় Day 2 স্ক্যান + ইনজেকশন শুরু, স্টিমুলেশনের ৫–৭ দিনে পৌঁছান।</li>
-          <li><b>ফ্লাইট + থাকা</b> বুক করুন (সেকশন ৮–১০); ফেরার টিকিট নমনীয় রাখুন — রিট্রিভাল/ট্রান্সফারের দিন ১–৩ দিন এদিক-ওদিক হয়।</li>
-          <li>পৌঁছে <b>রেজিস্ট্রেশন</b> (পাসপোর্ট, ভিসা, বিয়ের সনদ, ছবি) → বেসলাইন স্ক্যান → লিখিত সম্মতি (ART Rules Form) → শুরু। প্রতিটি পেমেন্টের রসিদ ও ভ্রূণ/ডিমের সংখ্যা লিখিত নিন।</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h3>ইমেইল/WhatsApp টেমপ্লেট (কপি করে পাঠান)</h3>
-        <div class="callout" style="font-family:'Segoe UI',system-ui,sans-serif;font-size:.9rem;line-height:1.55">
-Subject: IVF consultation request — Bangladeshi couple, single ovary + recurrent 6 cm endometrioma<br><br>
-Dear Dr ____ / International Patient Desk,<br>
-We are a married couple from Dhaka, Bangladesh. My wife (age __, AMH __ ng/mL on __/__/2026, AFC __) has endometriosis; her right/left ovary was removed in ____ (operation note + histopathology attached). The remaining ovary has a ~6 cm endometrioma that recurs after each course of hormonal treatment (list attached). Husband's semen analysis attached.<br>
-We would like your written opinion on: (1) proceeding straight to IVF/ICSI with the cyst in situ vs any surgery/sclerotherapy; (2) your recommended protocol and freeze-all / embryo-banking plan; (3) whether baseline scan and first stimulation days can be done in Dhaka so we arrive by stimulation day 5–7; (4) total days required in India; (5) an itemised estimate (consultation, medicines, monitoring, retrieval, ICSI, blastocyst culture, vitrification, annual storage, FET, anaesthesia, any international surcharge); (6) your live-birth rate per retrieval for similar patients last year; (7) your ART Act Level-2 registration number.<br>
-Please also send an appointment/invitation letter for the Indian medical visa (both names as per passport).<br>
-Thank you,<br>____ (phone/WhatsApp +880 ____)
-        </div>
-        <h4 style="margin-top:.8rem">সময়-পরিকল্পনার তিন ছক</h4>
-        <ul>
-          <li><b>এক ট্রিপ (৪–৬ সপ্তাহ):</b> ওয়ার্কআপ ৩–৫ দিন → স্টিমুলেশন ১০–১৪ দিন → রিট্রিভাল → ফ্রেশ ট্রান্সফার (Day 5) → ১০ দিন পর প্রেগন্যান্সি টেস্ট। এন্ডোমেট্রিওসিসে freeze-all ভালো বলে এই ছক কম পছন্দের।</li>
-          <li><b>দুই ট্রিপ (~১৬–২০ দিন + ~৭–১০ দিন):</b> ট্রিপ ১: স্টিমুলেশন→রিট্রিভাল→freeze-all; ট্রিপ ২ (১–৩ মাস পর): এন্ডোমেট্রিয়াম প্রস্তুতি ঢাকায় শুরু → FET → ফিরে এসে টেস্ট। <b>সবচেয়ে বাস্তবসম্মত।</b></li>
-          <li><b>রিমোট-স্টার্ট (~১০–১৪ দিন/ট্রিপ):</b> ঢাকায় Day 2 স্ক্যান+ইনজেকশন (Nova ঢাকা / নিজের ডাক্তার), Day 5–7-এ পৌঁছানো, রিট্রিভাল, freeze-all; পরে FET ট্রিপ। Sunflower আহমেদাবাদ ও Malpani স্পষ্ট অফার করে; Nova/Oasis/Kaberi Banerjee/SGRH — লিখিত জিজ্ঞেস করুন; CMC করে না।</li>
-        </ul>
-      </div>
-    </div>
 
-    <h3 style="margin-top:1.2rem">সব সুপারিশকৃত সেন্টারের যোগাযোগ (ইমেইল · WhatsApp · ফোন · ওয়েব)</h3>
+  <h3 id="appointment" style="margin-top:1.6rem">সব সুপারিশকৃত সেন্টারের যোগাযোগ — এক তালিকায়</h3>
+  <p class="small muted">ধাপে ধাপে কী করবেন <a href="#steps" data-scroll="steps">এখানে</a>, আর পাঠানোর মতো তৈরি ইমেইল <a href="#emails" data-scroll="emails">এখানে</a>।</p>
+
     <div class="tbl">
       <table>
         <thead><tr><th>সেন্টার / ডাক্তার</th><th>ইমেইল</th><th>WhatsApp / মোবাইল</th><th>ল্যান্ডলাইন / হেল্পলাইন</th><th>ওয়েব / বুকিং</th></tr></thead>
@@ -2370,10 +2327,10 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
       </table>
     </div>
     <p class="small muted">নম্বর/ইমেইল সব সেন্টারের নিজস্ব ওয়েবসাইট/প্রোফাইল থেকে (১৮ আগস্ট ২০২৬)। বদলাতে পারে — প্রথম বার্তায় উত্তর না এলে ওয়েবসাইটের ফর্ম ব্যবহার করুন। কোনো এজেন্ট/দালালকে টাকা নয়; হাসপাতালের অ্যাকাউন্টে সরাসরি পেমেন্ট, রসিদ নিন।</p>
-  </div>
-</section>
 
-<!-- ============ 7. VISA ============ -->
+</section>
+<!-- ============ 6. APPOINTMENT ============ -->
+<!-- appointment section merged into #centres (was duplicating #steps and #emails) -->
 <!-- ============ VISA (A-Z) ============ -->
 <section id="visa">
   <div class="wrap">
@@ -3303,6 +3260,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <section id="flights">
   <div class="wrap">
     <h2>ফ্লাইট — Google Flights লাইভ ভাড়া (১৮ আগস্ট ২০২৬)</h2>
+  <p class="subnav">এই অংশে আরও: <a href="#planner" data-scroll="planner">ফ্লাইট প্ল্যানার</a> · <a href="#season" data-scroll="season">কখন সস্তা, কখন দামি</a></p>
     <p class="muted small">সব ভাড়া <b>Google Flights</b> থেকে, ঢাকা (DAC) থেকে <b>রিটার্ন, ইকোনমি, ১ জন প্রাপ্তবয়স্ক, ট্যাক্সসহ, ৳ (BDT)</b> — দম্পতির জন্য ×২। S1 = ২০ সেপ্টে→১১ অক্টো ২০২৬ (৩ সপ্তাহ), S2 = ৮ নভে→১৩ ডিসে ২০২৬ (৫ সপ্তাহ)। <b>Skyscanner</b> সব চেষ্টায় (.net/.com/.co.in) "Are you a person or a robot?" ক্যাপচায় আটকেছে — সেখান থেকে ভাড়া নেওয়া যায়নি; আপনি ফোনের Skyscanner অ্যাপে একই তারিখ মিলিয়ে দেখতে পারেন। ভাড়া প্রতিদিন বদলায়।</p>
     <div class="tbl">
       <table>
@@ -3480,6 +3438,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <section id="stay">
   <div class="wrap">
     <h2>বাসা, রান্না ও দীর্ঘমেয়াদী থাকা <small class="h2sub">কিচেনসহ ফ্ল্যাট কীভাবে খুঁজবেন, কোন এলাকায় থাকবেন, দালাল কীভাবে এড়াবেন, খাবার কোথায় পাবেন</small></h2>
+  <p class="subnav">এই অংশে আরও: <a href="#apps" data-scroll="apps">সিম, অ্যাপ ও বুকিং</a></p>
 
     <div class="callout gold">
       <b>এক লাইনে সবচেয়ে দরকারি পরামর্শ:</b> হোটেলে নয় — <b>রান্নাঘরসহ (kitchen/kitchenette) সার্ভিস অ্যাপার্টমেন্ট বা ফ্ল্যাট</b> নিন, হাসপাতাল থেকে হাঁটা দূরত্বে। কারণ তিনটি: (১) IVF চলাকালীন বাইরের খাবারে পেটের ইনফেকশন বা জ্বর হলে <b>পুরো সাইকেল বাতিল</b> হয়ে যেতে পারে; (২) ইনজেকশন ফ্রিজে রাখতে হয় — নিজের ফ্রিজ থাকা মানে দুশ্চিন্তা কম; (৩) ২–৬ সপ্তাহ বাইরের খাবার খাওয়া অসম্ভব ব্যয়বহুল ও ক্লান্তিকর। মাসিক ভাড়ায় নিলে রাতপ্রতি খরচ প্রায় <b>অর্ধেক</b> হয়ে যায়।
@@ -3942,6 +3901,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <section id="clinical">
   <div class="wrap">
     <h2>চিকিৎসা চলাকালীন শারীরিক ও ব্যবহারিক প্রস্তুতি <small class="h2sub">দিন-ভিত্তিক সূচি, ইনজেকশন সংরক্ষণ, রিট্রিভালের দিন, OHSS-এর বিপদ-চিহ্ন, ট্রান্সফারের পর কী করবেন</small></h2>
+  <p class="subnav">এই অংশে আরও: <a href="#emergency" data-scroll="emergency">বিপদে পড়লে — হেল্পলাইন</a></p>
 
     <div class="callout warn">এই সেকশন <b>চিকিৎসা-পরামর্শ নয়</b> — আপনার ডাক্তারের নির্দেশই চূড়ান্ত। এটি আন্তর্জাতিক গাইডলাইন (ESHRE, NHS, HFEA, RCOG, Cochrane, CDC) থেকে নেওয়া <b>ব্যবহারিক প্রস্তুতি</b>, যাতে বিদেশে গিয়ে অপ্রস্তুত না হন।</div>
 
@@ -4486,6 +4446,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <section id="budget">
   <div class="wrap">
     <h2>পূর্ণ বাজেট — দুজনের জন্য (৳), সঙ্গে "মা গেলে" হিসাব</h2>
+  <p class="subnav">এই অংশে আরও: <a href="#cycles" data-scroll="cycles">২য়–৩য় চেষ্টার খরচ</a> · <a href="#save" data-scroll="save">খরচ কমানোর উপায়</a></p>
     <p class="muted small">অনুমানের ভিত্তি: ফ্লাইট = সেকশন ৮-এর Google Flights ভাড়া (জনপ্রতি রিটার্ন) ×২; ভিসা = IVAC ফি ৳1,500 ×২ (ভারতীয় ভিসা-ফি মওকুফ); থাকা = দুজনের ডাবল রুমের মধ্যম দর (সেকশন ১০); খাবার দুজনের ₹500–1,000/দিন; লোকাল যাতায়াত ₹100–300/দিন; SIM ₹700; বিমানবন্দর/শহর-স্থানান্তর; রেট উপরের বাক্সে বদলানো যায় (এই টেবিল সঙ্গে সঙ্গে বদলাবে); ১০% কন্টিনজেন্সি ধরা। <b>চিকিৎসার খরচ আলাদা</b> (নিচে যোগ করা আছে)। সংখ্যা গোল করা।</p>
     <div id="budgetTable"></div>
 
@@ -4649,6 +4610,7 @@ Thank you,<br>____ (phone/WhatsApp +880 ____)
 <!-- ============ OTHER COUNTRIES ============ -->
 <section id="abroad">
   <h2>ভারতের বদলে অন্য দেশ? — সৎ তুলনা</h2>
+  <p class="subnav">এই অংশে আরও: <a href="#bd" data-scroll="bd">দেশেই IVF — তুলনা</a></p>
   <p class="lede">“ভারতে ভিসা ঝামেলা, থাইল্যান্ড/মালয়েশিয়া/তুরস্কে চলে যাই” — এই ভাবনাটা স্বাভাবিক। তাই সাতটি বিকল্প দেশ ধরে <b>খরচ, ভিসা, আইন ও মান</b> যাচাই করা হয়েছে। উত্তরটা সংক্ষেপে: <b>ভারতই এখনো সবচেয়ে ভালো মূল্য দেয়</b> — কিন্তু কারণটা শুধু দাম নয়, নিচে দেখুন।</p>
 
   <div class="callout bad">
